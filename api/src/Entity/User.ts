@@ -14,7 +14,8 @@ export class User {
 
     @Column()
     type: number;
-
+    
+    @Column()
     password: string;
 
     @Column()
