@@ -9,3 +9,11 @@ Récuperation du projet git.
 ```bash
 git clone https://github.com/Nirator78/medecinDesArbres.git
 ```
+Création d'une branch.
+```bash
+git branch nomDeLaBranch
+```
+Changé d'une branch.
+```bash
+git checkout nomDeLaBranch
+```
