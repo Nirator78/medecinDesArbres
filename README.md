@@ -35,6 +35,13 @@ Ecologie
 Récuperation du projet git.
 ```bash
 git clone https://github.com/Nirator78/medecinDesArbres.git
+Initialisation fichier frontend
+```
+npx create-react-app frontend
+cd my-app
+npm start
+```bash
+git clone https://github.com/Nirator78/medecinDesArbres.git
 ```
 Créer une branch.
 ```bash
