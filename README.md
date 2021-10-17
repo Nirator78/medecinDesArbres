@@ -37,8 +37,8 @@ Récuperation du projet git.
 git clone https://github.com/Nirator78/medecinDesArbres.git
 Initialisation fichier frontend
 ```
-npx create-react-app frontend
-cd my-app
+cd frontend
+npm install
 npm start
 ```bash
 git clone https://github.com/Nirator78/medecinDesArbres.git
