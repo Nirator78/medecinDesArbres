@@ -4,6 +4,18 @@ Ecologie
 - Mini jeux type quizz, jeu de roles
 - Vente de produits dérivés
 - Plein de mini projet avec pour finalité l'écologie
+
+## Technologie utilisée
+### Frontend
+- [Reactjs](https://fr.reactjs.org/)
+- [Tailwindcss](https://tailwindcss.com/)
+### Backend
+- [Nodejs](https://nodejs.org/fr/)
+- [TypeORM](https://typeorm.io/#/)
+### Basse de données
+- [Mysql](https://www.mysql.com/fr/)
+## Version du projet
+**1.0.0**
 ## Installation
 Récuperation du projet git.
 ```bash
