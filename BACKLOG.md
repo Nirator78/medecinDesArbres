@@ -4,7 +4,7 @@
 - Liste des meilleurs netoyeurs 
 - Liste netoyages récents 
 - Liste de quelques fiches pédagogiques
-- Liste de quelques quizz
+- Liste de quelques quiz
 - Liste de quelques articles en boutiques 
 - Menu de navigation 
 - Bouton connexion
@@ -37,18 +37,18 @@
 - Redirection vers se connecter 
 ## Super Admin
 - Ajouter des administrateurs
-- Créer / Modifier / Supprimer / ajouter des questions a un quizz 
+- Créer / Modifier / Supprimer / ajouter des questions a un quiz
 - Créer / Modifier / Supprimer de nouveaux produits dans la boutique en ligne
 - Créer / Modifier / Supprimer un nouveau meet up irl 
 ## Admin
-- Créer / Modifier / Supprimer / ajouter des questions a un quizz 
+- Créer / Modifier / Supprimer / ajouter des questions a un quiz
 - Créer / Modifier / Supprimer de nouveaux produits dans la boutique en ligne
 - Créer / Modifier / Supprimer un nouveau meet up irl 
-## Quizz
+## Quiz
 - Ajout de question 
-- Création du quizz 
-- Supprimer un quizz
-- Commencer un quizz
+- Création du quiz
+- Supprimer un quiz
+- Commencer un quiz
 - Répondre a une question
 - Passer a la question suivante
 - Valider ses réponses
