@@ -1,7 +1,7 @@
 # MedecinDesArbres
 Ecologie
 - Site documentaire (consultation de fiches) => but éducatif
-- Mini jeux type quizz, jeu de roles
+- Mini jeux type quiz, jeu de roles
 - Vente de produits dérivés
 - Plein de mini projet avec pour finalité l'écologie
 
