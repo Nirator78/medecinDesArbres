@@ -7,9 +7,11 @@
 - Liste de quelques quiz
 - Liste de quelques articles en boutiques 
 - Menu de navigation 
+- Footer
 - Bouton connexion
 - Bouton déconnexion
 - Bouton profile 
+- Au lancement -> tarteaucitron
 ## Création d'un compte
 - Email
 - Nom
