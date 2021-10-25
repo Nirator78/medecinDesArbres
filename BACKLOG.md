@@ -69,6 +69,11 @@
 - Récupérer la liste des meet up a venir / passé
 - Afficher les spécificités d'un meet up (lieu / date / autres) 
 - Annoncer sa participation a un meet up
+## Concours des meilleurs netoyeurs : 
+- Sélectionner sa localisation
+- Renseigner un nombre de sacs de déchets ramassés (facultatif)
+- Possibilité de partager son ramassage via insta, fb, twitter... Exemple : 'Jean-Truc a ramassé des déchets à Nantes' 
+- Visualisation des 5 derniers ramassages.
 ## Fiches pédagogiques
 - Liste des fiches (differents thèmes)
 - Lire la fiche 
