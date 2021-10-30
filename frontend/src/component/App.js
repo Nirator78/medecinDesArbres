@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from '../image/logo.svg';
 import '../css/App.css';
 import { BrowserRouter, Route } from "react-router-dom";
 import Acceuil from "../page/Acceuil"
