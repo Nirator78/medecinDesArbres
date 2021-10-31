@@ -12,6 +12,7 @@ function App() {
           <div>
             <Route path="/home" component={Acceuil}/>
             <Route path="/Quiz" component={Quiz}/>
+            <Route path="/Quiz/{id}" component={Quiz}/>
             <Route path="/VisualNovel" component={VisualNovel}/>
           </div>
       </BrowserRouter>
