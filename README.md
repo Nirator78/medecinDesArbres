@@ -1,54 +1,73 @@
 # MedecinDesArbres
 Ecologie
 - Site documentaire (consultation de fiches) => but éducatif
-- Mini jeux type quizz, jeu de roles
+- Mini jeux type quiz, jeu de roles
 - Vente de produits dérivés
 - Plein de mini projet avec pour finalité l'écologie
 
-## Backlog
-### Identification
-- Se créer un compte
-- Se connecter
-- Se déconnecter
-- Faire une demande de mot de passe oublié
-- Changer son mot de passe
-### Admin
-- Ajouter des administrateurs
-- Créer / ajouter / Modifier des questions a une quiz
-- Créer / Modifier de nouveaux produits dans la boutique en ligne
-- Créer / Modifier un nouveau meet up irl 
-### Quiz 
-- Commencer un quiz
-- Répondre a une question
-- Passer a la question suivante
-- Valider ses réponses
-- Regarder ses scores (?) 
-### Boutique
-- Ajouter un produit a son panier
-- Valider son panier
-- Dépenser son argent 
-### Meet Up IRL
-- Récupérer la liste des meet up a venir / passé
-- Afficher les spécificités d'un meet up (lieu / date / autres) 
-- Annoncer sa participation a un meet up
+## Technologie utilisée
+### Frontend
+- [Reactjs](https://fr.reactjs.org/)
+- [Tailwindcss](https://tailwindcss.com/)
+### Backend
+- [Nodejs](https://nodejs.org/fr/)
+- [TypeORM](https://typeorm.io/#/)
+### Basse de données
+- [Mysql](https://www.mysql.com/fr/)
+## Version du projet
+**1.0.0**
 ## Installation
 Récuperation du projet git.
 ```bash
 git clone https://github.com/Nirator78/medecinDesArbres.git
-Initialisation fichier frontend
 ```
+Initialisation fichier frontend
+```bash
 cd frontend
 npm install
 npm start
-```bash
-git clone https://github.com/Nirator78/medecinDesArbres.git
 ```
-Créer une branch.
+Initialisation fichier api
+```bash
+cd api
+npm install
+npm start
+```
+## Information utile
+
+Créer une branch
 ```bash
 git branch nomDeLaBranch
 ```
-Changer de branch.
+Changer de branch
 ```bash
 git checkout nomDeLaBranch
 ```
-## Commit
+Merge branch main sur une branch
+
+```bash
+git merge origin/main
+```
+### Commit
+Pour commit des modifications de notre branch
+Ne pas oublier d'ajout ces fichiers modifié
+```bash
+git add *
+
+git add NomDesFichiers
+```
+Ensuite le commit 
+
+```bash
+git commit -m 'Message du commit'
+
+git push
+```
+
+Ou en une seule commande ajout et commit 
+
+```bash
+git commit -am 'Message du commit'
+
+git push
+```
