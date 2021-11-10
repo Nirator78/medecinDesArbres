@@ -34,18 +34,6 @@ export class CommandeController {
         }
     }
 
-    async getCommandeByBoutique(request: Request, response: Response, next: NextFunction) {
-        const verif = await this.authentificationService.getUserInfo(request);
-        let commandeListe = [];
-        if(verif.boutiqueId = request.params.id){
-            commandeListe = await this.commandeRepository.find({ where: {boutique: request.params.id}, relations: ["user", "commandeLignes", "commandeLignes.article"] });
-            if(commandeListe){
-                return { status: 1, data: commandeListe }
-            }
-        }
-        return { status: 0 };
-    }
-
     async getCommandeByUser(request: Request, response: Response, next: NextFunction) {
         const verif = await this.authentificationService.getUserInfo(request);
         let commandeListe = [];

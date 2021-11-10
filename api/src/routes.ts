@@ -4,6 +4,7 @@ import FichePedagogiqueRoute from "./Route/FichePedagogiqueRoute";
 import PanierRoute from "./Route/PanierRoute";
 import UserRoute from "./Route/UserRoute";
 import VilleRoute from "./Route/VilleRoute";
+import ConferenceRoute from "./Route/ConferenceRoute";
 
 export const Routes = [
     ...ArticleRoute,
@@ -12,4 +13,5 @@ export const Routes = [
     ...PanierRoute,
     ...UserRoute,
     ...VilleRoute,
+    ...ConferenceRoute
 ];
