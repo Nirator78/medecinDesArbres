@@ -14,7 +14,7 @@ export class PanierController {
 
     async all(request: Request, response: Response, next: NextFunction) {
         if(request.query.user){
-            let panierListe = await this.panierRepository.find({ relations: ["article", "boutique", "user"], where: {user: request.query.user} });
+            let panierListe = await this.panierRepository.find({ relations: ["article", "user"], where: {user: request.query.user} });
             if(panierListe){
                 return { status: 1, data: panierListe }
             }else{
@@ -26,7 +26,7 @@ export class PanierController {
     }
 
     async one(request: Request, response: Response, next: NextFunction) {
-        let panier = await this.panierRepository.findOne(request.params.id,{ relations: ["article", "boutique", "user"] });
+        let panier = await this.panierRepository.findOne(request.params.id,{ relations: ["article", "user"] });
         if(panier){
             return { status: 1, data: [panier] }
         }else{
@@ -38,7 +38,7 @@ export class PanierController {
         const verif = await this.authentificationService.getUserInfo(request);
         let paniers = [];
         if(verif.userId = request.params.id){
-            paniers = await this.panierRepository.find({ where: {user: request.params.id}, relations: ["article", "boutique", "user"], order: {boutique: 1} });
+            paniers = await this.panierRepository.find({ where: {user: request.params.id}, relations: ["article", "user"]});
             if(paniers){
                 return { status: 1, data: paniers }
             }
