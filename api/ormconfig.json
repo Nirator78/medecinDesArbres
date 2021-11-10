@@ -1,9 +1,10 @@
 {
    "type": "mysql",
-   "host": "localhost",
+   "host": "192.168.56.105",
    "port": 3306,
-   "username": "root",
+   "username": "dev",
    "database": "test",
+   "password": "BdD123456!?",
    "synchronize": true,
    "logging": false,
    "entities": [
