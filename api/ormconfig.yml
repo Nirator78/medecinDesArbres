@@ -1,0 +1,12 @@
+- name: default
+  type: mysql
+  host: 192.168.56.105
+  database: test
+  username: dev
+  password: BdD123456!?
+  synchronize: true
+  logging: false
+  entities:
+     - ./src/Entity/**/*.ts
+  cli:
+     entitiesDir: src/Entity
