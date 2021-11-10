@@ -7,12 +7,6 @@ export class Image {
     id: number;
 
     @Column()
-    idObject: number;
-
-    @Column()
-    typeObject: string;
-
-    @Column()
     url: string;
 
 }

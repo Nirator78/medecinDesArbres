@@ -1,4 +1,5 @@
-import {Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinTable} from "typeorm";
+import {Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn} from "typeorm";
+import {Image} from "./Image";
 
 @Entity()
 export class Article {
@@ -18,8 +19,9 @@ export class Article {
     @Column()
     stock: string;
 
-    @Column()
-    image: number;
+    @OneToOne(() => Image)
+    @JoinColumn()
+    image: Image;
 
     @Column()
     tag: string;
