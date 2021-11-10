@@ -24,6 +24,6 @@
    },
    "scripts": {
       "start": "ts-node src/index.ts",
-      "fixtures": "fixtures ./fixtures --config ormconfig.json --sync --debug"
+      "fixtures": "fixtures ./fixtures --config ./ormconfig.json --sync --require ts-node/register"
    }
 }
