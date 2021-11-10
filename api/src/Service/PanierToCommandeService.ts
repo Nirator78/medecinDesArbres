@@ -1,0 +1,61 @@
+import {getRepository} from 'typeorm';
+import {Commande} from '../Entity/Commande';
+import {CommandeLigne} from '../Entity/CommandeLigne';
+import {Panier} from '../Entity/Panier';
+
+/**
+ * Created by Clement on 24/08/2021
+ * Created At 19:19
+ */
+export class PanierToCommandeService {
+
+    private commandeRepository = getRepository(Commande);
+    private commandeLigneRepository = getRepository(CommandeLigne);
+    private panierRepository = getRepository(Panier);
+
+    /**
+     * Récupère le plus gros numéro de commande de l'incrémante de 1
+     */
+    async getLastNoCommande(){
+        let commande = await this.commandeRepository.find({order: {numero: -1}, take: 1 });
+        if(commande.length){
+            return commande[0].numero + 1;
+        }else{
+            return 1;
+        }
+    }
+
+    async create(userId, panierList) {
+
+        // Création de la commande
+        let newCommande = new Commande();
+        newCommande.numero = await this.getLastNoCommande();
+        newCommande.date = new Date();
+        newCommande.user = userId;
+        await this.commandeRepository.save(newCommande);
+
+        // Création des lignes de commande
+        let newCommandeLigne;
+        for (let i = 0; i < panierList.length; i++) {
+            newCommandeLigne = new CommandeLigne();
+            newCommandeLigne.quantite = panierList[i].quantite;
+            newCommandeLigne.article = panierList[i].article;
+            newCommandeLigne = {
+                quantite: panierList[i].quantite,
+                article: panierList[i].article,
+                commande: newCommande,
+            };
+            await this.commandeLigneRepository.save(newCommandeLigne);
+
+            // Suppression des lignes de panier
+            this.deletePanierById(panierList[i].id);
+        }
+
+        return await this.commandeRepository.findOne(newCommande.id, { relations: ["user", "commandeLignes", "commandeLignes.article"] });
+    }
+
+    async deletePanierById(id){
+        let panierToRemove = await this.panierRepository.findOne(id);
+        await this.panierRepository.remove(panierToRemove);
+    }
+}
