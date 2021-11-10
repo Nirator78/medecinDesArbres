@@ -34,6 +34,13 @@ cd api
 npm install
 npm start
 ```
+Initialisation fixtures
+```bash
+cd api
+npm install
+npm start
+npm run fixtures
+```
 ## Information utile
 
 Créer une branch
