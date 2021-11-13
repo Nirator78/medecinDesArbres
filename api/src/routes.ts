@@ -5,7 +5,8 @@ import PanierRoute from "./Route/PanierRoute";
 import UserRoute from "./Route/UserRoute";
 import VilleRoute from "./Route/VilleRoute";
 import ConferenceRoute from "./Route/ConferenceRoute";
-import VisualNovelController from "./Route/VisualNovelRoute";
+import VisualNovelRoute from "./Route/VisualNovelRoute";
+import QuizRoute from "./Route/QuizRoute";
 
 export const Routes = [
     ...ArticleRoute,
@@ -15,5 +16,6 @@ export const Routes = [
     ...UserRoute,
     ...VilleRoute,
     ...ConferenceRoute,
-    ...VisualNovelController,
+    ...VisualNovelRoute,
+    ...QuizRoute,
 ];
