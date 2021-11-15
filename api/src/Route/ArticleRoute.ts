@@ -15,14 +15,20 @@ export default [
     },
     {
         method: "post",
-        route: "/articles",
+        route: "/article",
         controller: ArticleController,
         action: "save"
     },
     {
         method: "put",
-        route: "/articles",
+        route: "/article",
         controller: ArticleController,
         action: "update"
+    },
+    {
+        method: "delete",
+        route: "/article/:id",
+        controller: ArticleController,
+        action: "remove"
     }
 ];
