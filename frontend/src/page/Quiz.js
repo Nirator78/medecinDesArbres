@@ -1,9 +1,14 @@
 import React from 'react';
+import Cors from '../component/navigation/Cors';
 
 export default function Quiz (props) {
     return (
         <div>
-            <h1>Quiz</h1>
+            <Cors>
+                <div className="font-bold">
+                    <h1>Quiz</h1>
+                </div>
+            </Cors>
         </div>
     )
 }
