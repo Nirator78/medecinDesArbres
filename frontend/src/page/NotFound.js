@@ -1,12 +1,13 @@
 import React from 'react';
+import { Typography } from '@mui/material';
 import Cors from '../component/navigation/Cors';
 
-export default function VisualNovel (props) {
+export default function Accueil (props) {
     return (
         <div>
             <Cors>
                 <div className="font-bold">
-                    <h1>VisualNovel</h1>
+                    Erreur 404
                 </div>
             </Cors>
         </div>

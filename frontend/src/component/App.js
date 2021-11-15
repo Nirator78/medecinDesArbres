@@ -1,20 +1,22 @@
 import React from 'react';
 import '../css/App.css';
-import { BrowserRouter, Route } from "react-router-dom";
-import Acceuil from "../page/Acceuil"
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import Accueil from "../page/Accueil"
 import Quiz from "../page/Quiz"
 import VisualNovel from "../page/VisualNovel"
+import NotFound from "../page/NotFound"
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-          <div>
-            <Route path="/home" component={Acceuil}/>
-            <Route path="/Quiz" component={Quiz}/>
-            <Route path="/Quiz/{id}" component={Quiz}/>
-            <Route path="/VisualNovel" component={VisualNovel}/>
-          </div>
+          <Switch>
+            <Route path="/" exact component={Accueil}/>
+            <Route path="/Quiz" exact component={Quiz}/>
+            <Route path="/Quiz/{id}" exact component={Quiz}/>
+            <Route path="/VisualNovel" exact component={VisualNovel}/>
+            <Route component={NotFound}/>
+          </Switch>
       </BrowserRouter>
     </div>
   );
