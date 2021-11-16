@@ -8,7 +8,7 @@ export default function Cors ({children}) {
             <Headers/>
             <div className="relative min-h-screen md:flex">
                 <NavVertical/>
-                <div className="flex-1">
+                <div className="flex-1 bg-gray-50">
                     {children}
                 </div>
             </div>
