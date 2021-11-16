@@ -3,6 +3,7 @@ import '../css/App.css';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Accueil from "../page/Accueil"
 import Quiz from "../page/Quiz"
+import ParcoursEcolo from "../page/ParcoursEcolo"
 import VisualNovel from "../page/VisualNovel"
 import NotFound from "../page/NotFound"
 
@@ -12,6 +13,7 @@ function App() {
       <BrowserRouter>
           <Switch>
             <Route path="/" exact component={Accueil}/>
+            <Route path="/ParcoursEcolo" exact component={ParcoursEcolo}/>
             <Route path="/Quiz" exact component={Quiz}/>
             <Route path="/Quiz/{id}" exact component={Quiz}/>
             <Route path="/VisualNovel" exact component={VisualNovel}/>

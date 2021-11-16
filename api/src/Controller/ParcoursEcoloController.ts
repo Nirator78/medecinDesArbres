@@ -1,0 +1,45 @@
+import {getRepository} from "typeorm";
+import {NextFunction, Request, Response} from "express";
+import {ParcoursEcolo} from "../Entity/ParcoursEcolo";
+import {AuthentificationService} from '../Service/AuthentificationService';
+
+export class ParcoursEcoloController {
+
+    private parcoursEcoloRepository = getRepository(ParcoursEcolo);
+    private authentificationService = new AuthentificationService();
+
+    async all(request: Request, response: Response, next: NextFunction) {
+        let parcoursEcoloListe = await this.parcoursEcoloRepository.find();
+
+        if(parcoursEcoloListe){
+            return { status: 1, data: parcoursEcoloListe }
+        }else{
+            return { status: 0 };
+        }
+    }
+
+    async one(request: Request, response: Response, next: NextFunction) {
+        let parcoursEcolo = await this.parcoursEcoloRepository.findOne(request.params.id);
+        if(parcoursEcolo){
+            return { status: 1, data: parcoursEcolo }
+        }else{
+            return { status: 0 };
+        }
+    }
+
+    async save(request: Request, response: Response, next: NextFunction) {
+        const parcoursEcolo = await this.parcoursEcoloRepository.save(request.body);
+        return { status: 1, data: parcoursEcolo} ;
+    }
+
+    async update(request: Request, response: Response, next: NextFunction) {
+        const parcoursEcolo = await this.parcoursEcoloRepository.save(request.body);
+        return { status: 1, data: parcoursEcolo} ;
+    }
+
+    async remove(request: Request, response: Response, next: NextFunction) {
+        let parcoursEcoloToRemove = await this.parcoursEcoloRepository.findOne(request.params.id);
+        await this.parcoursEcoloRepository.remove(parcoursEcoloToRemove);
+    }
+
+}
