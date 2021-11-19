@@ -30,5 +30,11 @@ export default [
         route: "/user-quiz/:id",
         controller: UserQuizController,
         action: "remove"
+    },
+    {
+        method: "get",
+        route: "/user/:id/user-quizs",
+        controller: UserQuizController,
+        action: "getUserQuizByUser"
     }
 ];

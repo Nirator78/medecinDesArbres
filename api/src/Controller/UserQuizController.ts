@@ -42,4 +42,14 @@ export class UserQuizController {
         await this.userQuizRepository.remove(userQuizToRemove);
     }
 
+    async getUserQuizByUser(request: Request, response: Response, next: NextFunction) {
+        let userQuizListe = await this.userQuizRepository.find({ where: {user: request.params.id},  relations: ["user", "quiz", "userQuestion", "userQuestion.question", "userQuestion.userReponse", "userQuestion.userReponse.reponse"] });
+
+        if(userQuizListe){
+            return { status: 1, data: userQuizListe }
+        }else{
+            return { status: 0 };
+        }
+    }
+
 }
