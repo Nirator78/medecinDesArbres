@@ -6,11 +6,8 @@ import {Request, Response} from "express";
 import {Routes} from "./Routes";
 
 // Logging system
-//const morgan = require('morgan');
 import * as morgan from 'morgan';
-//const  rfs = require('rotating-file-stream')
 import * as rfs from 'rotating-file-stream';
-//const path = require('path')
 import * as path from 'path';
 
 createConnection().then(async connection => {
