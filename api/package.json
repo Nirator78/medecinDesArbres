@@ -16,10 +16,13 @@
       "express": "^4.15.4",
       "jsonwebtoken": "^8.5.1",
       "keygenerator": "^1.0.4",
+      "morgan": "^1.10.0",
       "mysql": "^2.18.1",
       "nodemailer": "^6.7.0",
       "nodemon": "^2.0.13",
+      "path": "^0.12.7",
       "reflect-metadata": "^0.1.10",
+      "rotating-file-stream": "^3.0.1",
       "typeorm": "0.2.34"
    },
    "scripts": {
