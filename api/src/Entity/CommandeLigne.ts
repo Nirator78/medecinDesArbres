@@ -1,8 +1,5 @@
-/**
- * Created by Clement on 20/07/2021
- * Created At 09:46
- */
 import {Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinTable} from "typeorm";
+
 import { Article } from "./Article";
 import {Commande} from './Commande';
 

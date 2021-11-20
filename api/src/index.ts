@@ -5,11 +5,38 @@ import * as bodyParser from "body-parser";
 import {Request, Response} from "express";
 import {Routes} from "./Routes";
 
+// Logging system
+import * as morgan from 'morgan';
+import * as rfs from 'rotating-file-stream';
+import * as path from 'path';
+
 createConnection().then(async connection => {
 
     // create express app
     const app = express();
     app.use(bodyParser.json());
+
+    // Logging system
+    const accessLogStream = rfs.createStream('access.log', {
+        interval: '1d', // rotate daily
+        path: path.join('./log')
+    });
+    morgan.token('body', req => {
+        return JSON.stringify(req.body)
+    });
+    morgan.token('datetime', req => {
+        let date_ob = new Date();
+        let date = ("0" + date_ob.getDate()).slice(-2);
+        let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+        let year = date_ob.getFullYear();
+        let hours = date_ob.getHours();
+        let minutes = date_ob.getMinutes();
+        let seconds = date_ob.getSeconds();
+        let datetime = year + "-" + month + "-" + date + " " + hours + ":" + minutes + ":" + seconds;
+
+        return datetime
+    });
+    app.use(morgan(':datetime  :method :url :status :response-time ms - :res[content-length] Body :body ', { stream: accessLogStream }));
 
     // register express routes from defined application routes
     Routes.forEach(route => {

@@ -1,4 +1,5 @@
-import {Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToOne, OneToMany, JoinColumn} from "typeorm";
+import {Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToOne, JoinColumn} from "typeorm";
+
 import {VisualNovelPage} from "./VisualNovelPage";
 import {Image} from "./Image";
 
@@ -18,5 +19,6 @@ export class VisualNovelChoix {
     @ManyToOne(() => VisualNovelPage, visualNovelPage => visualNovelPage.id)
     visualNovelPage: VisualNovelPage;
 
-    // Manque la page de redirection
+    @ManyToOne(() => VisualNovelPage, visualNovelPage => visualNovelPage.id)
+    redirection: VisualNovelPage;
 }

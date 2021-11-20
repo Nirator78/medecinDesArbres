@@ -3,6 +3,7 @@
  * Created At 09:45
  */
 import {Entity, PrimaryGeneratedColumn, Column, OneToMany} from 'typeorm'
+
 import {ConferenceParticipant} from "./ConferenceParticipant";
 
 @Entity()

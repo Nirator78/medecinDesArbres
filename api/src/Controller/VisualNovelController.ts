@@ -9,7 +9,7 @@ export class VisualNovelController {
     private authentificationService = new AuthentificationService();
 
     async all(request: Request, response: Response, next: NextFunction) {
-        let visualNovelListe = await this.visualNovelRepository.find({ relations: ["visualNovelPages", "visualNovelPages.visualNovelChoix"] });
+        let visualNovelListe = await this.visualNovelRepository.find({ relations: ["visualNovelPages", "visualNovelPages.visualNovelChoix", "visualNovelPages.visualNovelChoix.redirection"] });
 
         if(visualNovelListe){
             return { status: 1, data: visualNovelListe }
@@ -19,7 +19,7 @@ export class VisualNovelController {
     }
 
     async one(request: Request, response: Response, next: NextFunction) {
-        let visualNovel = await this.visualNovelRepository.findOne(request.params.id,{ relations: ["visualNovelPages", "visualNovelPages.visualNovelChoix"] });
+        let visualNovel = await this.visualNovelRepository.findOne(request.params.id,{ relations: ["visualNovelPages", "visualNovelPages.visualNovelChoix", "visualNovelPages.visualNovelChoix.redirection"] });
         if(visualNovel){
             return { status: 1, data: visualNovel }
         }else{
