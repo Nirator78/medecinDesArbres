@@ -9,6 +9,7 @@ import ConferenceRoute from "./Route/ConferenceRoute";
 import VisualNovelRoute from "./Route/VisualNovelRoute";
 import QuizRoute from "./Route/QuizRoute";
 import UserQuizRoute from "./Route/UserQuizRoute";
+import UserVisualNovelRoute from "./Route/UserVisualNovelRoute";
 
 export const Routes = [
     ...ArticleRoute,
@@ -22,4 +23,5 @@ export const Routes = [
     ...VisualNovelRoute,
     ...QuizRoute,
     ...UserQuizRoute,
+    ...UserVisualNovelRoute,
 ];
