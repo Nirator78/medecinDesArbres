@@ -1,4 +1,5 @@
 import {Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn, ManyToOne, JoinTable} from "typeorm";
+
 import {Image} from "./Image";
 import {User} from "./User";
 import {Ville} from "./Ville";
@@ -13,7 +14,7 @@ export class ParcoursEcolo {
     @JoinTable({ name: "user" })
     user: User;
 
-    @OneToOne(() => Image)
+    @OneToOne(() => Image, {cascade: true})
     @JoinColumn()
     image: Image;
 

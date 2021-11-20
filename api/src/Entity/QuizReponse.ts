@@ -1,4 +1,5 @@
 import {Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToOne, JoinColumn} from "typeorm";
+
 import {Image} from "./Image";
 import {QuizQuestion} from "./QuizQuestion";
 
@@ -17,12 +18,10 @@ export class QuizReponse {
     @Column()
     bonne: number;
 
-    @OneToOne(() => Image)
+    @OneToOne(() => Image, {cascade: true})
     @JoinColumn()
     image: Image;
 
     @ManyToOne(() => QuizQuestion, quizQuestion => quizQuestion.id)
     quizQuestion: QuizQuestion;
-
-    // Manque la page de redirection
 }

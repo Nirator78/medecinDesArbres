@@ -3,6 +3,7 @@
  * Created At 09:46
  */
 import {Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinTable} from "typeorm";
+
 import {Conference} from "./Conference";
 import { User } from "./User";
 

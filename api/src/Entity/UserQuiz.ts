@@ -1,4 +1,5 @@
 import {Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, JoinTable} from "typeorm";
+
 import {Quiz} from "./Quiz";
 import {UserQuestion} from "./UserQuestion";
 import {User} from "./User";

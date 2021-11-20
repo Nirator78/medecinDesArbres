@@ -3,6 +3,7 @@
  * Created At 09:46
  */
 import {Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToOne, JoinColumn} from "typeorm";
+
 import {FichePedagogique} from "./FichePedagogique";
 import {Image} from "./Image";
 
@@ -18,7 +19,7 @@ export class SousPartieFichePedagogique {
     @Column()
     contenue: string;
 
-    @OneToOne(() => Image)
+    @OneToOne(() => Image, {cascade: true})
     @JoinColumn()
     image: Image;
 

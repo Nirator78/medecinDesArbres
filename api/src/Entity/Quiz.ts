@@ -1,4 +1,5 @@
 import {Entity, PrimaryGeneratedColumn, Column, OneToMany, OneToOne, JoinColumn} from "typeorm";
+
 import {Image} from "./Image";
 import {QuizQuestion} from "./QuizQuestion";
 
@@ -23,7 +24,7 @@ export class Quiz {
     @Column()
     age: number;
 
-    @OneToOne(() => Image)
+    @OneToOne(() => Image, {cascade: true})
     @JoinColumn()
     image: Image;
 

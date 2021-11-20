@@ -1,4 +1,5 @@
 import {Entity, PrimaryGeneratedColumn, Column, OneToMany} from "typeorm";
+
 import {VisualNovelPage} from "./VisualNovelPage";
 
 @Entity()

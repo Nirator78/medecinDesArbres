@@ -1,4 +1,5 @@
 import {Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, JoinTable} from "typeorm";
+
 import {User} from "./User";
 import {VisualNovel} from "./VisualNovel";
 import {UserVisualNovelPage} from "./UserVisualNovelPage";

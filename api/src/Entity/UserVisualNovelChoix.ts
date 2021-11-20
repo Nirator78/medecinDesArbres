@@ -1,4 +1,5 @@
 import {Entity, PrimaryGeneratedColumn, ManyToOne} from "typeorm";
+
 import {UserVisualNovelPage} from "./UserVisualNovelPage";
 import {VisualNovelChoix} from "./VisualNovelChoix";
 

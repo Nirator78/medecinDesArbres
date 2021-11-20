@@ -1,4 +1,5 @@
 import {Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn} from "typeorm";
+
 import {Image} from "./Image";
 
 @Entity()
@@ -19,7 +20,7 @@ export class Article {
     @Column()
     stock: string;
 
-    @OneToOne(() => Image)
+    @OneToOne(() => Image, {cascade: true})
     @JoinColumn()
     image: Image;
 
