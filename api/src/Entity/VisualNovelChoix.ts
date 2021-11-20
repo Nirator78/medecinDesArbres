@@ -18,5 +18,8 @@ export class VisualNovelChoix {
     @ManyToOne(() => VisualNovelPage, visualNovelPage => visualNovelPage.id)
     visualNovelPage: VisualNovelPage;
 
+    @ManyToOne(() => VisualNovelPage, visualNovelPage => visualNovelPage.id)
+    redirection: VisualNovelPage;
+
     // Manque la page de redirection
 }
