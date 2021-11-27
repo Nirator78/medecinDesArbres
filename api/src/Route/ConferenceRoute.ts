@@ -3,7 +3,7 @@ import { ConferenceController } from "../Controller/ConferenceController";
 export default [
     {
         method: "get",
-        route: "/conference",
+        route: "/conferences",
         controller: ConferenceController,
         action: "all"
     }, 

@@ -15,31 +15,31 @@ export default [
     }, 
     {
         method: "post",
-        route: "/users",
+        route: "/user",
         controller: UserController,
         action: "save"
     },
     {
         method: "put",
-        route: "/users",
+        route: "/user",
         controller: UserController,
         action: "update"
     },
     {
         method: "post",
-        route: "/users/login",
+        route: "/user/login",
         controller: UserController,
         action: "login"
     },
     {
         method: "post",
-        route: "/users/forgot-password-request",
+        route: "/user/forgot-password-request",
         controller: UserController,
         action: "forgotPasswordRequest"
     },
     {
         method: "post",
-        route: "/users/forgot-password-response",
+        route: "/user/forgot-password-response",
         controller: UserController,
         action: "forgotPasswordResponse"
     }
