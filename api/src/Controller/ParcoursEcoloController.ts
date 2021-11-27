@@ -29,17 +29,22 @@ export class ParcoursEcoloController {
 
     async save(request: Request, response: Response, next: NextFunction) {
         const parcoursEcolo = await this.parcoursEcoloRepository.save(request.body);
-        return { status: 1, data: parcoursEcolo} ;
+        return { status: 1, data: parcoursEcolo } ;
     }
 
     async update(request: Request, response: Response, next: NextFunction) {
         const parcoursEcolo = await this.parcoursEcoloRepository.save(request.body);
-        return { status: 1, data: parcoursEcolo} ;
+        return { status: 1, data: parcoursEcolo } ;
     }
 
     async remove(request: Request, response: Response, next: NextFunction) {
-        let parcoursEcoloToRemove = await this.parcoursEcoloRepository.findOne(request.params.id);
-        await this.parcoursEcoloRepository.remove(parcoursEcoloToRemove);
+        try{
+            let parcoursEcoloToRemove = await this.parcoursEcoloRepository.findOne(request.params.id);
+            await this.parcoursEcoloRepository.remove(parcoursEcoloToRemove);
+            return { status: 1 }
+        }catch (e){
+            return { status: 0, error: e }
+        }
     }
 
 }

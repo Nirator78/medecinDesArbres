@@ -38,17 +38,22 @@ export class UserVisualNovelController {
 
     async save(request: Request, response: Response, next: NextFunction) {
         const userVisualNovel = await this.userVisualNovelRepository.save(request.body);
-        return { status: 1, data: userVisualNovel} ;
+        return { status: 1, data: userVisualNovel } ;
     }
 
     async update(request: Request, response: Response, next: NextFunction) {
         const userVisualNovel = await this.userVisualNovelRepository.save(request.body);
-        return { status: 1, data: userVisualNovel} ;
+        return { status: 1, data: userVisualNovel } ;
     }
 
     async remove(request: Request, response: Response, next: NextFunction) {
-        let userVisualNovelToRemove = await this.userVisualNovelRepository.findOne(request.params.id);
-        await this.userVisualNovelRepository.remove(userVisualNovelToRemove);
+        try{
+            let userVisualNovelToRemove = await this.userVisualNovelRepository.findOne(request.params.id);
+            await this.userVisualNovelRepository.remove(userVisualNovelToRemove);
+            return { status: 1 }
+        }catch (e){
+            return { status: 0, error: e }
+        }
     }
 
     async getUserVisualNovelByUser(request: Request, response: Response, next: NextFunction) {

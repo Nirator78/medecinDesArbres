@@ -32,16 +32,21 @@ export class FichePedagogiqueController {
 
     async save(request: Request, response: Response, next: NextFunction) {
         const fichePedagogique = await this.fichePedagogiqueRepository.save(request.body);
-        return {status: 1, data: fichePedagogique};
+        return { status: 1, data: fichePedagogique };
     }
 
     async update(request: Request, response: Response, next: NextFunction) {
         const fichePedagogique = await this.fichePedagogiqueRepository.save(request.body);
-        return { status: 1, data: fichePedagogique} ;
+        return { status: 1, data: fichePedagogique } ;
     }
 
     async remove(request: Request, response: Response, next: NextFunction) {
-        let fichePedagogiqueToRemove = await this.fichePedagogiqueRepository.findOne(request.params.id);
-        await this.fichePedagogiqueRepository.remove(fichePedagogiqueToRemove);
+        try{
+            let fichePedagogiqueToRemove = await this.fichePedagogiqueRepository.findOne(request.params.id);
+            await this.fichePedagogiqueRepository.remove(fichePedagogiqueToRemove);
+            return { status: 1 }
+        }catch (e){
+            return { status: 0, error: e }
+        }
     }
 }

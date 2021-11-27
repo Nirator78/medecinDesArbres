@@ -48,17 +48,22 @@ export class CommandeController {
 
     async save(request: Request, response: Response, next: NextFunction) {
         const commande = await this.commandeRepository.save(request.body);
-        return {status: 1, data: commande};
+        return {status: 1, data: commande };
     }
 
     async update(request: Request, response: Response, next: NextFunction) {
         const commande = await this.commandeRepository.save(request.body);
-        return { status: 1, data: commande} ;
+        return { status: 1, data: commande } ;
     }
 
     async remove(request: Request, response: Response, next: NextFunction) {
-        let commandeToRemove = await this.commandeRepository.findOne(request.params.id);
-        await this.commandeRepository.remove(commandeToRemove);
+        try{
+            let commandeToRemove = await this.commandeRepository.findOne(request.params.id);
+            await this.commandeRepository.remove(commandeToRemove);
+            return { status: 1 }
+        }catch (e){
+            return { status: 0, error: e }
+        }
     }
 
     async createCommandeByPanier(request: Request, response: Response, next: NextFunction) {
@@ -71,7 +76,7 @@ export class CommandeController {
             // Création de la commande et des lignes de commande
             let newCommande = await this.panierToCommandeService.create(userId, panierUtilisateur);
 
-            return { status: 1, data: newCommande};
+            return { status: 1, data: newCommande };
         }else{
             return { status: 0 };
         }

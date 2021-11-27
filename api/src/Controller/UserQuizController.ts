@@ -29,17 +29,22 @@ export class UserQuizController {
 
     async save(request: Request, response: Response, next: NextFunction) {
         const userQuiz = await this.userQuizRepository.save(request.body);
-        return { status: 1, data: userQuiz} ;
+        return { status: 1, data: userQuiz } ;
     }
 
     async update(request: Request, response: Response, next: NextFunction) {
         const userQuiz = await this.userQuizRepository.save(request.body);
-        return { status: 1, data: userQuiz} ;
+        return { status: 1, data: userQuiz } ;
     }
 
     async remove(request: Request, response: Response, next: NextFunction) {
-        let userQuizToRemove = await this.userQuizRepository.findOne(request.params.id);
-        await this.userQuizRepository.remove(userQuizToRemove);
+        try{
+            let userQuizToRemove = await this.userQuizRepository.findOne(request.params.id);
+            await this.userQuizRepository.remove(userQuizToRemove);
+            return { status: 1 }
+        }catch (e){
+            return { status: 0, error: e }
+        }
     }
 
     async getUserQuizByUser(request: Request, response: Response, next: NextFunction) {

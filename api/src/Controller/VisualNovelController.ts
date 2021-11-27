@@ -29,17 +29,22 @@ export class VisualNovelController {
 
     async save(request: Request, response: Response, next: NextFunction) {
         const visualNovel = await this.visualNovelRepository.save(request.body);
-        return { status: 1, data: visualNovel} ;
+        return { status: 1, data: visualNovel } ;
     }
 
     async update(request: Request, response: Response, next: NextFunction) {
         const visualNovel = await this.visualNovelRepository.save(request.body);
-        return { status: 1, data: visualNovel} ;
+        return { status: 1, data: visualNovel } ;
     }
 
     async remove(request: Request, response: Response, next: NextFunction) {
-        let visualNovelToRemove = await this.visualNovelRepository.findOne(request.params.id);
-        await this.visualNovelRepository.remove(visualNovelToRemove);
+        try{
+            let visualNovelToRemove = await this.visualNovelRepository.findOne(request.params.id);
+            await this.visualNovelRepository.remove(visualNovelToRemove);
+            return { status: 1 }
+        }catch (e){
+            return { status: 0, error: e }
+        }
     }
 
 }

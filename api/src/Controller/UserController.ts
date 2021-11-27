@@ -15,7 +15,7 @@ export class UserController {
 
     async all(request: Request, response: Response, next: NextFunction) {
         const users = await this.userRepository.find();
-        return { status: 1, data: users} ;
+        return { status: 1, data: users } ;
     }
 
     async one(request: Request, response: Response, next: NextFunction) {
@@ -27,17 +27,22 @@ export class UserController {
         request.body.password = await bcrypt.hash(request.body.password,salt);
         const user = this.userRepository.save(request.body);
         let token = jwt.sign({ data: user },process.env.SECRET_TOKEN, { expiresIn: '1h' });
-        return { status: 1, data: user, token: token} ;
+        return { status: 1, data: user, token: token };
     }
 
     async update(request: Request, response: Response, next: NextFunction) {
         const user = await this.userRepository.save(request.body);
-        return { status: 1, data: user} ;
+        return { status: 1, data: user } ;
     }
 
     async remove(request: Request, response: Response, next: NextFunction) {
-        let userToRemove = await this.userRepository.findOne(request.params.id);
-        await this.userRepository.remove(userToRemove);
+        try{
+            let userToRemove = await this.userRepository.findOne(request.params.id);
+            await this.userRepository.remove(userToRemove);
+            return { status: 1 }
+        }catch (e){
+            return { status: 0, error: e }
+        }
     }
 
     async login(request: Request, response: Response, next: NextFunction) {

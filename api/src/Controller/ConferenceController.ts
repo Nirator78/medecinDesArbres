@@ -32,16 +32,21 @@ export class ConferenceController {
 
     async save(request: Request, response: Response, next: NextFunction) {
         const conference = await this.conferenceRepository.save(request.body);
-        return {status: 1, data: conference};
+        return {status: 1, data: conference };
     }
 
     async update(request: Request, response: Response, next: NextFunction) {
         const conference = await this.conferenceRepository.save(request.body);
-        return { status: 1, data: conference} ;
+        return { status: 1, data: conference } ;
     }
 
     async remove(request: Request, response: Response, next: NextFunction) {
-        let conferenceToRemove = await this.conferenceRepository.findOne(request.params.id);
-        await this.conferenceRepository.remove(conferenceToRemove);
+        try{
+            let conferenceToRemove = await this.conferenceRepository.findOne(request.params.id);
+            await this.conferenceRepository.remove(conferenceToRemove);
+            return { status: 1 }
+        }catch (e){
+            return { status: 0, error: e }
+        }
     }
 }

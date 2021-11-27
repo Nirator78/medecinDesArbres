@@ -48,17 +48,22 @@ export class PanierController {
 
     async save(request: Request, response: Response, next: NextFunction) {
         const panier = await this.panierRepository.save(request.body);
-        return { status: 1, data: panier} ;
+        return { status: 1, data: panier } ;
     }
 
     async update(request: Request, response: Response, next: NextFunction) {
         const panier = await this.panierRepository.save(request.body);
-        return { status: 1, data: panier} ;
+        return { status: 1, data: panier } ;
     }
 
     async remove(request: Request, response: Response, next: NextFunction) {
-        let panierToRemove = await this.panierRepository.findOne(request.params.id);
-        await this.panierRepository.remove(panierToRemove);
+        try{
+            let panierToRemove = await this.panierRepository.findOne(request.params.id);
+            await this.panierRepository.remove(panierToRemove);
+            return { status: 1 }
+        }catch (e){
+            return { status: 0, error: e }
+        }
     }
 
 }

@@ -21,7 +21,7 @@ export class ArticleController {
     async one(request: Request, response: Response, next: NextFunction) {
         let article = await this.articleRepository.findOne(request.params.id);
         if(article){
-            return { status: 1, data: article }
+            return { status: 1, data: article };
         }else{
             return { status: 0 };
         }
@@ -29,17 +29,22 @@ export class ArticleController {
 
     async save(request: Request, response: Response, next: NextFunction) {
         const article = await this.articleRepository.save(request.body);
-        return { status: 1, data: article} ;
+        return { status: 1, data: article };
     }
 
     async update(request: Request, response: Response, next: NextFunction) {
         const article = await this.articleRepository.save(request.body);
-        return { status: 1, data: article} ;
+        return { status: 1, data: article };
     }
 
     async remove(request: Request, response: Response, next: NextFunction) {
-        let articleToRemove = await this.articleRepository.findOne(request.params.id);
-        await this.articleRepository.remove(articleToRemove);
+        try{
+            let articleToRemove = await this.articleRepository.findOne(request.params.id);
+            await this.articleRepository.remove(articleToRemove);
+            return { status: 1 };
+        }catch (e){
+            return { status: 0, error: e };
+        }
     }
 
 }
