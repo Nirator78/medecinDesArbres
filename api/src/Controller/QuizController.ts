@@ -29,17 +29,22 @@ export class QuizController {
 
     async save(request: Request, response: Response, next: NextFunction) {
         const quiz = await this.quizRepository.save(request.body);
-        return { status: 1, data: quiz} ;
+        return { status: 1, data: quiz } ;
     }
 
     async update(request: Request, response: Response, next: NextFunction) {
         const quiz = await this.quizRepository.save(request.body);
-        return { status: 1, data: quiz} ;
+        return { status: 1, data: quiz } ;
     }
 
     async remove(request: Request, response: Response, next: NextFunction) {
-        let quizToRemove = await this.quizRepository.findOne(request.params.id);
-        await this.quizRepository.remove(quizToRemove);
+        try{
+            let quizToRemove = await this.quizRepository.findOne(request.params.id);
+            await this.quizRepository.remove(quizToRemove);
+            return { status: 1 }
+        }catch (e){
+            return { status: 0, error: e }
+        }
     }
 
 }

@@ -31,13 +31,13 @@ export default [
     },
     {
         method: "post",
-        route: "/commandes",
+        route: "/commande",
         controller: CommandeController,
         action: "save"
     },
     {
         method: "put",
-        route: "/commandes",
+        route: "/commande",
         controller: CommandeController,
         action: "update"
     }

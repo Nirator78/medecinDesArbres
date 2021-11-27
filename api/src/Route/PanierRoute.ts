@@ -25,14 +25,20 @@ export default [
     },
     {
         method: "post",
-        route: "/paniers",
+        route: "/panier",
         controller: PanierController,
         action: "save"
     },
     {
         method: "put",
-        route: "/paniers",
+        route: "/panier",
         controller: PanierController,
         action: "update"
+    },
+    {
+        method: "delete",
+        route: "/panier/:id",
+        controller: PanierController,
+        action: "remove"
     }
 ];

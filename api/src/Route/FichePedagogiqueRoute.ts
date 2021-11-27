@@ -3,7 +3,7 @@ import { FichePedagogiqueController } from "../Controller/FichePedagogiqueContro
 export default [
     {
         method: "get",
-        route: "/fiche-pedagogique",
+        route: "/fiche-pedagogiques",
         controller: FichePedagogiqueController,
         action: "all"
     }, 
