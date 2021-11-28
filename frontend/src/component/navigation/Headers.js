@@ -5,7 +5,6 @@ export default function Headers () {
       <div className="block px-4 py-2 rounded-md flex space-x-2 p-4 ">
         <div className="flex justify-start lg:w-0 lg:flex-1">
           <a href="#">
-            <span className="sr-only">Workflow</span>
             <img
             className="h-8 w-auto sm:h-10"
             src="logo.png"
