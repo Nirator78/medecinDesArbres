@@ -1,8 +1,7 @@
 import React from 'react';
-import { Typography } from '@mui/material';
 import Cors from '../component/navigation/Cors';
 
-export default function Accueil (props) {
+export default function NotFound (props) {
     return (
         <div>
             <Cors>
