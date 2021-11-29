@@ -13,9 +13,9 @@ export class User {
     prenom: string;
 
     @Column()
-    type: number;
+    role: string;
 
-    @Column({ select: false })
+    @Column()
     password: string;
 
     @Column()

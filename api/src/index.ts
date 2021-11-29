@@ -51,8 +51,9 @@ createConnection().then(async connection => {
         });
     });
 
-    // setup express app here
-    // ...
+    //Accès au variable du fichier .env
+    const dotenv = require('dotenv');
+    dotenv.config();
 
     // start express server
     app.listen(3000);

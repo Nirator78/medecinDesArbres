@@ -23,9 +23,9 @@ export class UserController {
     }
 
     async save(request: Request, response: Response, next: NextFunction) {
-        const salt = await bcrypt.genSalt(10);
-        request.body.password = await bcrypt.hash(request.body.password,salt);
-        const user = this.userRepository.save(request.body);
+        const salt = bcrypt.genSaltSync(10);
+        request.body.password = bcrypt.hashSync(request.body.password, salt);
+        const user = await this.userRepository.save(request.body);
         let token = jwt.sign({ data: user },process.env.SECRET_TOKEN, { expiresIn: '1h' });
         return { status: 1, data: user, token: token };
     }
@@ -48,10 +48,9 @@ export class UserController {
     async login(request: Request, response: Response, next: NextFunction) {
         let userLogin = await this.userRepository.findOne({ email: request.body.email});
         if(userLogin){
-            const testPassword= await bcrypt.compare(request.body.password, userLogin.password);
+            const testPassword = await bcrypt.compare(request.body.password, userLogin.password);
             if(testPassword){
                 let data;
-                // Site commerçant on ajoute l'id de la boutique dans le token d'authentification
                 data = {user: userLogin};
                 let token = jwt.sign({ data }, process.env.SECRET_TOKEN);
                 return { status: 1, data: userLogin, token: token }
