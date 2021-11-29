@@ -1,0 +1,14 @@
+entity: User
+processor: ./processor/UserProcessor
+items:
+  user1:
+    nom: Duval
+    prenom: Clement
+    role: super-admin
+    password: '123456'
+    adresse: 5 rue ici
+    pays: France
+    ville: St Cyr
+    code_postal: 78210
+    telephone: 0102030405
+    email: nirator.game@gmail.com
