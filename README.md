@@ -54,7 +54,9 @@ git checkout nomDeLaBranch
 Merge branch main sur une branch
 
 ```bash
+git fetch
 git merge origin/main
+git push
 ```
 ### Commit
 Pour commit des modifications de notre branch
