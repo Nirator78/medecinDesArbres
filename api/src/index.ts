@@ -9,12 +9,14 @@ import {Routes} from "./Routes";
 import * as morgan from 'morgan';
 import * as rfs from 'rotating-file-stream';
 import * as path from 'path';
+import * as cors from 'cors';
 
 createConnection().then(async connection => {
 
     // create express app
     const app = express();
     app.use(bodyParser.json());
+    app.use(cors());
 
     // Logging system
     const accessLogStream = rfs.createStream('access.log', {
