@@ -12,3 +12,36 @@ items:
     code_postal: 78210
     telephone: 0102030405
     email: nirator.game@gmail.com
+  user2:
+    nom: Serre
+    prenom: Nolan
+    role: super-admin
+    password: '123456'
+    adresse: 80 rue ici
+    pays: France
+    ville: Versailles
+    code_postal: 78000
+    telephone: 0102030405
+    email: noguizeweb@gmail.com
+  user3:
+    nom: Gonzalez
+    prenom: Esteban
+    role: super-admin
+    password: '123456'
+    adresse: Rue ici
+    pays: France
+    ville: Paris
+    code_postal: 75000
+    telephone: 0102030405
+    email: esteban@gmail.com
+  user4:
+    nom: Buisson
+    prenom: Charlotte
+    role: super-admin
+    password: '123456'
+    adresse: Rue ici
+    pays: France
+    ville: Paris
+    code_postal: 75000
+    telephone: 0102030405
+    email: charlotte@gmail.com
