@@ -35,7 +35,7 @@ items:
     telephone: 0102030405
     email: esteban@gmail.com
   user4:
-    nom: Buisson
+    nom: Brisson
     prenom: Charlotte
     role: super-admin
     password: '123456'
