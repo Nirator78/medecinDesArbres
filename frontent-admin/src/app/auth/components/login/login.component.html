@@ -1,5 +1,8 @@
-<form #myform="ngForm" (ngSubmit) = "onSubmit(myform)" >
-    <div class="modal-body">
+<div class="card my-auto mx-auto" style="width: 30rem;">
+  <div class="card-body">
+    <h5 class="card-title">Administrateur - Medecins des Arbres</h5>
+    <form #myform="ngForm" (ngSubmit) = "onSubmit(myform)" >
+      <div class="modal-body">
         <div class="input-group input-group-sm mb-3">
           <div class="input-group-prepend">
             <span class="input-group-text" id="inputGroup-sizing-sm"><i class="bi bi-envelope-fill mr-2"></i> Email</span>
@@ -12,8 +15,10 @@
           </div>
           <input class = 'form-control' type = "password" name = "password" placeholder = "Password" aria-describedby="inputGroup-sizing-sm" ngModel>
         </div>
-    </div>
+      </div>
       <div class="modal-footer">
         <input class= 'btn btn-outline-info' type = "submit" (click)='refresh()' value = "Connexion">
       </div>
-</form>
+    </form>
+  </div>
+</div>
