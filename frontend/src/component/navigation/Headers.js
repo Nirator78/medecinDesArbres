@@ -1,4 +1,22 @@
+import { Tooltip } from '@mui/material';
+import { Box } from '@mui/system';
 import React from 'react';
+import Connexion from '../../page/Auth/Connexion';
+import Inscription from '../../page/Auth/Inscription';
+import AuthService from '../../services/auth.service';
+import AccountMenu from './Profile';
+
+let connexion;
+let account;
+let inscription;
+let userLogo;
+if (AuthService.getToken()) {
+  account = <AccountMenu/>
+} else {
+  connexion =  <Connexion/>;
+  inscription = <Inscription/>
+}
+
 
 export default function Headers () {
     return (
@@ -13,21 +31,13 @@ export default function Headers () {
           </a>
         </div>
         <div>
-          <a
-            href="#"
-            className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-green-500 hover:bg-green-600"
-          >
-            Sign up
-          </a>
+            {account}
+            <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center', mx: 1 }}>
+              {connexion}
+              {inscription}
+            </Box>
         </div>  
-        <div className="flex items-center px-5">
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-2" fill="none" viewBox="0 0 26 26" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-          </svg>
-          <div className="flex-shrink-0">
-            <img className="h-10 w-10 rounded-full"  src="https://images.pexels.com/photos/2589653/pexels-photo-2589653.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="Profile image" alt="" />
-          </div>
-        </div>
+        {userLogo}
       </div>
     )
 }
