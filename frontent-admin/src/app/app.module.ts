@@ -6,11 +6,13 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {AuthModule} from "./auth/auth/auth.module";
 import { MenuAdminComponent } from './menu-admin/menu-admin.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuAdminComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
