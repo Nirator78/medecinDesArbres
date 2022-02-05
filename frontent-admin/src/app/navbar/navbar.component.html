@@ -1,70 +1,122 @@
-<!-- Vertical navbar -->
 <div class="vertical-nav bg-white ml-2" id="sidebar">
   <div class="py-4 px-3 mb-4 bg-light">
-    <div class="media d-flex align-items-center"><img src="https://bootstrapious.com/i/snippets/sn-v-nav/avatar.png" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm">
+    <div class="media d-flex align-items-center">
       <div class="media-body">
-        <h4 class="m-0">Jason Doe</h4>
-        <p class="font-weight-light text-muted mb-0">Medecin Des Arbres</p>
+        <h1 class="m-0">Medecin Des Arbres</h1>
+        <h2>Panneau d'aministration</h2>
       </div>
     </div>
   </div>
 
-  <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">Main</p>
+  <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">Général</p>
 
   <ul class="nav flex-column bg-white mb-0">
     <li class="nav-item">
       <a href="#" class="nav-link text-dark font-italic bg-light">
         <i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
-        Home
-      </a>
-    </li>
-    <li class="nav-item">
-      <a href="#" class="nav-link text-dark font-italic">
-        <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
-        About
-      </a>
-    </li>
-    <li class="nav-item">
-      <a href="#" class="nav-link text-dark font-italic">
-        <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
-        Services
-      </a>
-    </li>
-    <li class="nav-item">
-      <a href="#" class="nav-link text-dark font-italic">
-        <i class="fa fa-picture-o mr-3 text-primary fa-fw"></i>
-        Gallery
+        Utilisateur
+        <!-- Gestion des tables: User, PasswordKey, ainsi que l'historique de leur quiz et visual novel -->
       </a>
     </li>
   </ul>
 
-  <p class="text-gray font-weight-bold text-uppercase px-3 small py-4 mb-0">Charts</p>
+  <p class="text-gray font-weight-bold text-uppercase px-3 small py-4 mb-0">Magasin</p>
 
   <ul class="nav flex-column bg-white mb-0">
     <li class="nav-item">
       <a href="#" class="nav-link text-dark font-italic">
         <i class="fa fa-area-chart mr-3 text-primary fa-fw"></i>
-        Area charts
+        Article
+        <!-- Gestion des tables: Article -->
       </a>
     </li>
     <li class="nav-item">
       <a href="#" class="nav-link text-dark font-italic">
         <i class="fa fa-bar-chart mr-3 text-primary fa-fw"></i>
-        Bar charts
+        Commande
+        <!-- Gestion des tables: Commande, CommandeLignes -->
       </a>
     </li>
     <li class="nav-item">
       <a href="#" class="nav-link text-dark font-italic">
         <i class="fa fa-pie-chart mr-3 text-primary fa-fw"></i>
-        Pie charts
+        Panier
+        <!-- Gestion des tables: Panier -->
       </a>
     </li>
     <li class="nav-item">
       <a href="#" class="nav-link text-dark font-italic">
-        <i class="fa fa-line-chart mr-3 text-primary fa-fw"></i>
-        Line charts
+        <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
+        Statistique vente
+      </a>
+    </li>
+  </ul>
+
+  <p class="text-gray font-weight-bold text-uppercase px-3 small py-4 mb-0">Apprentissage</p>
+
+  <ul class="nav flex-column bg-white mb-0">
+    <li class="nav-item">
+      <a href="#" class="nav-link text-dark font-italic">
+        <i class="fa fa-area-chart mr-3 text-primary fa-fw"></i>
+        Fiche pédagogique
+        <!-- Gestion des tables: FichePédagogique, SousPartie -->
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="#" class="nav-link text-dark font-italic">
+        <i class="fa fa-pie-chart mr-3 text-primary fa-fw"></i>
+        Conférence
+        <!-- Gestion des tables: Conférence, ConférenceParticipant -->
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="#" class="nav-link text-dark font-italic">
+        <i class="fa fa-pie-chart mr-3 text-primary fa-fw"></i>
+        ParcoursEcolo
+        <!-- Gestion des tables: ParcoursEcolo -->
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="#" class="nav-link text-dark font-italic">
+        <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
+        Statistique
+      </a>
+    </li>
+  </ul>
+
+  <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">Quiz</p>
+
+  <ul class="nav flex-column bg-white mb-0">
+    <li class="nav-item">
+      <a href="#" class="nav-link text-dark font-italic bg-light">
+        <i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
+        Quiz
+        <!-- Gestion des tables: Quiz -->
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="#" class="nav-link text-dark font-italic">
+        <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
+        Statistique Quiz
+      </a>
+    </li>
+  </ul>
+
+  <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">Visual Novel</p>
+
+  <ul class="nav flex-column bg-white mb-0">
+    <li class="nav-item">
+      <a href="#" class="nav-link text-dark font-italic bg-light">
+        <i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
+        Visual Novel
+        <!-- Gestion des tables: Visual Novel -->
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="#" class="nav-link text-dark font-italic">
+        <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
+        Statistique Visual Novel
       </a>
     </li>
   </ul>
 </div>
-<!-- End vertical navbar -->
