@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthService} from "../services/auth.service";
+import {Router} from "@angular/router";
+import { faPowerOff } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-navbar',
@@ -7,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  faPowerOff = faPowerOff;
+
+  constructor(private authService: AuthService, private router:Router) { }
 
   ngOnInit(): void {
+  }
+
+  logout() {
+    this.authService.clearStorage();
+    this.router.navigate(['login']);
   }
 
 }

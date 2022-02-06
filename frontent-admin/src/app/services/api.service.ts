@@ -8,8 +8,10 @@ import {AuthService} from './auth.service';
 })
 
 export class ApiService {
+
   baseUrl = 'http://localhost:3000/api/';
   headers;
+
   constructor(private _http: HttpClient, private _auth: AuthService) {
     // Si l'utilisateur est connecté on ajoute son token d'authentification dans les requêtes sinon on n'ajoute rien
     if(this._auth.getUserDetails() != null){
@@ -30,7 +32,6 @@ export class ApiService {
   }
 
   postTypeRequest(url, payload) {
-    console.log(payload);
     return this._http.post(`${this.baseUrl}${url}`, payload, { headers: this.headers }).pipe(map(res => {
       return res;
     }));
