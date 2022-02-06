@@ -7,12 +7,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {AuthModule} from "./auth/auth/auth.module";
 import { MenuAdminComponent } from './menu-admin/menu-admin.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import {UserModule} from "./user/user.module";
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuAdminComponent,
-    NavbarComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -20,7 +21,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     NgbModule,
     FormsModule,
     ReactiveFormsModule,
-    AuthModule
+    AuthModule,
+    UserModule
   ],
   providers: [],
   bootstrap: [AppComponent]
