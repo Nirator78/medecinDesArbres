@@ -1,7 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { window } from 'rxjs/operators';
 import { DOCUMENT } from '@angular/common';
 import {ApiService} from "../../../services/api.service";
 import {AuthService} from "../../../services/auth.service";
