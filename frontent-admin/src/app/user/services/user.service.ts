@@ -9,7 +9,8 @@ export class UserService {
   constructor(private apiService: ApiService) {
   }
 
-  async getAllUser() {
-    // a faire
+  async getAllUser(): Promise<any>{
+    const response = await this.apiService.getTypeRequest('users').toPromise() || {};
+    return response["data"];
   }
 }

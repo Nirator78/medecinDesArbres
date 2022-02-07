@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
 import {UserService} from "../../services/user.service";
-import {ApiService} from "../../../services/api.service";
 import { faSync } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -13,9 +12,8 @@ export class ListUserComponent implements OnInit {
   faSync = faSync;
 
   public userList;
-  private errorMessage;
 
-  constructor(private userService: UserService, private apiService: ApiService) {
+  constructor(private userService: UserService) {
     this.userList = [];
     this.refresh();
   }
@@ -23,13 +21,8 @@ export class ListUserComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  refresh() {
-    this.apiService.getTypeRequest(`users`).subscribe((res:any)=>
-    {
-      this.userList = res.data;
-    },err => {
-      this.errorMessage =  err['error'].message;
-    });
+  async refresh() {
+    this.userList = await this.userService.getAllUser();
   }
 
 }
