@@ -1,9 +1,12 @@
 <h3>Liste des utilisateurs</h3>
 <br>
 
-<button class="btn btn-success btn-sm mr-2 ml-2" (click)="refresh()">Rafraichir
-  <fa-icon class="pl-2" [icon]="faSync"></fa-icon>
-</button>
+<div class="btn-group" role="group" aria-label="Basic example">
+  <app-modal-user></app-modal-user>
+  <button class="btn border-left btn-success btn-sm" (click)="refresh()">
+    <fa-icon [icon]="faSync"></fa-icon>
+  </button>
+</div>
 
 <br><br>
 
