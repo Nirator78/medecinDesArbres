@@ -1,15 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-modal-user',
   templateUrl: './modal-user.component.html',
   styleUrls: ['./modal-user.component.css']
 })
-export class ModalUserComponent implements OnInit {
+export class ModalUserComponent {
 
-  constructor() { }
+  constructor(private modalService: NgbModal) {
 
-  ngOnInit(): void {
+  }
+
+  open(content) {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' });
   }
 
 }
