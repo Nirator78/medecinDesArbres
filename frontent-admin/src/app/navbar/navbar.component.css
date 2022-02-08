@@ -1,0 +1,23 @@
+.vertical-nav {
+  min-width: 17rem;
+  width: 17rem;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1
+{
+  font-size: 20px;
+  font-family: "Segoe print";
+  font-weight: bold;
+  color: #3e993f;
+}
+
+h2
+{
+  font-size: 15px;
+  font-family: "Segoe print";
+  color: #3e993f;
+}

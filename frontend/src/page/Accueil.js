@@ -1,5 +1,5 @@
 import React from 'react';
-import { Paper, Typography, Grid } from '@mui/material';
+import { Paper } from '@mui/material';
 import Cors from '../component/navigation/Cors';
 
 export default function Accueil (props) {

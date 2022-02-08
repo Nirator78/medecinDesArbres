@@ -1,0 +1,42 @@
+<div class="card-body">
+  <!-- Utilisateurs -->
+  <h3 class="page-header">
+    Utilisateurs
+  </h3>
+  <!-- Liste des utilisateurs -->
+  <p class="card-description mb-4">
+    Liste des utilisateurs
+  </p>
+
+  <div class="mb-4">
+    <div class="btn-group" role="group" aria-label="Basic example">
+      <app-modal-user></app-modal-user>
+      <button class="btn border-left btn-success btn-sm" (click)="refresh()">
+        <fa-icon [icon]="faSync"></fa-icon>
+      </button>
+    </div>
+  </div>
+  <ng-template [ngIf]="userList.length>0" [ngIfElse]="elseBlockTot">
+    <div class="table-responsive">
+      <table class="table table-hover table-sm" style="white-space: nowrap">
+        <thead>
+        <tr>
+          <th scope="col">Nom</th>
+          <th scope="col">Prenom</th>
+          <th scope="col">Email</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let user of userList">
+          <td> {{ user.nom }} </td>
+          <td> {{ user.prenom }} </td>
+          <td> {{ user.email }} </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </ng-template>
+  <ng-template #elseBlockTot>
+    <p>Pas d'utilisateur enregistré.</p>
+  </ng-template>
+</div>

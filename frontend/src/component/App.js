@@ -7,6 +7,7 @@ import ParcoursEcolo from "../page/ParcoursEcolo"
 import VisualNovel from "../page/VisualNovel"
 import NotFound from "../page/NotFound"
 import Boutique from '../page/Boutique';
+import Connexion from '../page/Auth/Connexion';
 
 function App() {
   return (
