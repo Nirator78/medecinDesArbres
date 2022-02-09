@@ -3,3 +3,19 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 @import '~bootstrap/dist/css/bootstrap.min.css';
+
+label.required:after {
+    content:" *";
+    color: #EB5E28!important;
+    font-size: 17px;
+}
+label.notrequired:after {
+    content:" *";
+    visibility: hidden;
+    font-size: 17px;
+}
+.star:after {
+    content: "*";
+    color: #EB5E28!important;
+    font-size: 17px;
+}
