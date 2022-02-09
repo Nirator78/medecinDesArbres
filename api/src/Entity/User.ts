@@ -16,7 +16,7 @@ export class User {
     prenom: string;
 
     @IsNotEmpty()
-    @Column()
+    @Column({default: 'user'})
     role: string;
 
     @IsNotEmpty()
@@ -37,7 +37,7 @@ export class User {
 
     @IsNotEmpty()
     @Column()
-    code_postal: string;
+    codePostal: string;
 
     @IsNotEmpty()
     @Column()
