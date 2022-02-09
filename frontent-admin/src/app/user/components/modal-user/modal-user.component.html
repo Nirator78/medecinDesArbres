@@ -10,7 +10,7 @@
       <!-- Nom -->
       <div class="form-row">    
         <div class="col">
-          <label for="nom">Nom</label>
+          <label class="required" for="nom">Nom</label>
 
           <input 
             type="text" 
@@ -36,7 +36,7 @@
         </div>
          <!-- Prénom -->
         <div class="col">    
-          <label for="prenom">Prénom</label>
+          <label class="required" for="prenom">Prénom</label>
 
           <input 
             type="text" 
@@ -61,7 +61,7 @@
       <!-- Email -->
       <div class="form-row">   
         <div class="col"> 
-          <label for="email">Email</label>
+          <label class="required" for="email">Email</label>
 
           <input 
             type="text" 
@@ -87,7 +87,7 @@
         </div>
          <!-- téléphone -->
         <div class="col">    
-          <label for="telephone">Téléphone</label>
+          <label class="required" for="telephone">Téléphone</label>
 
           <input 
             type="text" 
@@ -115,7 +115,7 @@
       <!-- Adresse -->
       <div class="form-row">  
         <div class="col"> 
-          <label for="adresse">Adresse</label>
+          <label class="required" for="adresse">Adresse</label>
 
           <input 
             type="text" 
@@ -137,7 +137,7 @@
         </div>
         <!-- Ville -->
         <div class="col">  
-          <label for="ville">Ville</label>
+          <label class="required" for="ville">Ville</label>
   
           <input 
             type="text" 
@@ -162,7 +162,7 @@
       <div class="form-row">  
         <!-- Code postal -->
         <div class="col">
-          <label for="codePostal">Code postal</label>
+          <label class="required" for="codePostal">Code postal</label>
 
           <input 
             type="text" 
@@ -184,7 +184,7 @@
         </div>
         <!-- Pays -->  
         <div class="col">
-          <label for="pays">Pays</label>
+          <label class="required" for="pays">Pays</label>
 
           <input 
             type="text" 
@@ -208,7 +208,7 @@
       <!-- Mot de passe -->
       <div class="form-row">  
         <div class="col">
-          <label for="password">Mot de passe</label>
+          <label class="required" for="password">Mot de passe</label>
 
           <input 
             type="password" 
@@ -229,6 +229,20 @@
           </div>
         </div>
       </div>
+      <div class="form-row">  
+        <div class="col">
+          <label class="required" for="role">Rôle</label>
+          <select class="browser-default custom-select" name="role" required ngModel>
+            <option value="" disabled selected>Choisir un rôle</option>
+            <option value="super-admin">Super administateur</option>
+            <option value="admin">Administateur</option>
+            <option value="user">Utilisateur</option>
+          </select>
+        </div>
+      </div>
+      <small>
+        <span class="star"></span> Obligatoire
+      </small>
     </div>
 
     <div class="modal-footer">

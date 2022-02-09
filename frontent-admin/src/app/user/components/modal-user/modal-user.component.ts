@@ -4,7 +4,6 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { NgForm } from '@angular/forms';
 import {UserService} from "../../services/user.service";
 import {ListUserComponent} from "../list-user/list-user.component";
-
 @Component({
   selector: 'app-modal-user',
   templateUrl: './modal-user.component.html',
@@ -23,8 +22,11 @@ export class ModalUserComponent {
   }
 
   onSubmit(form: NgForm){
+    // Post l'utilisateur 
     this.userService.createUser(form).then(() => {
+      // Ferme le modal
       this.modalService.dismissAll();
+      // Refresh la liste des utilisateurs
       this.listUserComponent.refresh();
     });
   }
