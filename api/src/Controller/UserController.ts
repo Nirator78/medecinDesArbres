@@ -23,12 +23,12 @@ export class UserController {
     }
 
     async save(request: Request, response: Response, next: NextFunction) {
-        console.log(request.body);
         const salt = bcrypt.genSaltSync(10);
         request.body.password = bcrypt.hashSync(request.body.password, salt);
+
         const user = await this.userRepository.save(request.body);
         let token = jwt.sign({ data: user },process.env.SECRET_TOKEN, { expiresIn: '1h' });
-        console.log({ status: 1, data: user, token: token });
+
         return { status: 1, data: user, token: token };
     }
 

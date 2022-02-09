@@ -13,4 +13,9 @@ export class UserService {
     const response = await this.apiService.getTypeRequest('users').toPromise() || {};
     return response["data"];
   }
+
+  async createUser(user) {
+    const response = await this.apiService.postTypeRequest('user', user.value).toPromise() || {};
+    return response["data"];
+  }
 }
