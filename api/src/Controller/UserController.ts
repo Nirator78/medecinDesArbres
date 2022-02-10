@@ -1,6 +1,6 @@
 import {getRepository} from "typeorm";
 import {NextFunction, Request, Response} from "express";
-import {User} from "../Entity/User";
+import {User, UserRole} from "../Entity/User";
 
 import {PasswordKey} from '../Entity/PasswordKey';
 import {MailService} from '../Service/MailService';
@@ -58,6 +58,27 @@ export class UserController {
                 return { status: 1, data: userLogin, token: token }
             }else{
                 return { status: 0 };
+            }
+        }else{
+            return { status: 0 };
+        }
+    }
+
+    async loginAdmin(request: Request, response: Response, next: NextFunction) {
+        let userLogin = await this.userRepository.findOne({ email: request.body.email});
+        if(userLogin){
+            if(userLogin.role === UserRole.USER){
+                return { status: 0 };
+            }else{
+                const testPassword = await bcrypt.compare(request.body.password, userLogin.password);
+                if(testPassword){
+                    let data;
+                    data = {user: userLogin};
+                    let token = jwt.sign({ data }, process.env.SECRET_TOKEN);
+                    return { status: 1, data: userLogin, token: token }
+                }else{
+                    return { status: 0 };
+                }
             }
         }else{
             return { status: 0 };

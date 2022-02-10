@@ -39,6 +39,12 @@ export default [
     },
     {
         method: "post",
+        route: "/user/login-admin",
+        controller: UserController,
+        action: "loginAdmin"
+    },
+    {
+        method: "post",
         route: "/user/forgot-password-request",
         controller: UserController,
         action: "forgotPasswordRequest"
