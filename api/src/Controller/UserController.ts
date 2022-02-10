@@ -65,23 +65,15 @@ export class UserController {
     }
 
     async loginAdmin(request: Request, response: Response, next: NextFunction) {
-        let userLogin = await this.userRepository.findOne({ email: request.body.email});
-        if(userLogin){
-            if(userLogin.role === UserRole.USER){
+        const login = await this.login(request, response, next);
+        if(login.status === 1) {
+            if(login.data.role === UserRole.USER) {
                 return { status: 0 };
             }else{
-                const testPassword = await bcrypt.compare(request.body.password, userLogin.password);
-                if(testPassword){
-                    let data;
-                    data = {user: userLogin};
-                    let token = jwt.sign({ data }, process.env.SECRET_TOKEN);
-                    return { status: 1, data: userLogin, token: token }
-                }else{
-                    return { status: 0 };
-                }
+                return login
             }
         }else{
-            return { status: 0 };
+            return login
         }
     }
 
