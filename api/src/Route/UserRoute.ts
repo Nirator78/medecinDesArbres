@@ -54,5 +54,17 @@ export default [
         route: "/user/forgot-password-response",
         controller: UserController,
         action: "forgotPasswordResponse"
+    },
+    {
+        method: "get",
+        route: "/password-keys",
+        controller: UserController,
+        action: "getAllPasswordKey"
+    },
+    {
+        method: "delete",
+        route: "/password-key/:id",
+        controller: UserController,
+        action: "removePasswordKeysToRemove"
     }
 ];
