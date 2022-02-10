@@ -1,5 +1,5 @@
-import { Injectable } from "@angular/core";
-import { ApiService } from "../../services/api.service";
+import {Injectable} from "@angular/core";
+import {ApiService} from "../../services/api.service";
 
 @Injectable({
   providedIn: "root"
@@ -17,5 +17,9 @@ export class UserService {
   async createUser(user) {
     const response = await this.apiService.postTypeRequest('user', user.value).toPromise() || {};
     return response["data"];
+  }
+
+  async deleteUser(id) {
+    return await this.apiService.deleteTypeRequest(`user/${id}`).toPromise() || {};
   }
 }

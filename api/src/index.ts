@@ -12,7 +12,6 @@ import * as path from 'path';
 import * as cors from 'cors';
 
 createConnection().then(async connection => {
-
     // create express app
     const app = express();
     app.use(bodyParser.json());

@@ -30,8 +30,8 @@ export class LoginComponent implements OnInit {
     }
 
     onSubmit(form: NgForm) {
-        this._api.postTypeRequest('user/login', form.value).subscribe((res: any) => {
-            if (res.status) {
+        this._api.postTypeRequest('user/login-admin', form.value).subscribe((res: any) => {
+            if (res.status === 1) {
                 this._auth.setDataInLocalStorage('userData', JSON.stringify(res.data));
                 this._auth.setDataInLocalStorage('token', res.token);
                 this._router.navigate(['home']);

@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import {UserService} from "../../services/user.service";
 import { faSync } from '@fortawesome/free-solid-svg-icons';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: "app-list-user",
@@ -10,6 +11,7 @@ import { faSync } from '@fortawesome/free-solid-svg-icons';
 export class ListUserComponent implements OnInit {
 
   faSync = faSync;
+  faTrash = faTrash;
 
   public userList;
 
@@ -23,6 +25,13 @@ export class ListUserComponent implements OnInit {
 
   async refresh() {
     this.userList = await this.userService.getAllUser();
+  }
+
+  async deleteUser(id) {
+    // Suppression de l'utilisateur
+    await this.userService.deleteUser(id);
+    // Puis on rafraichi la liste
+    this.refresh();
   }
 
 }

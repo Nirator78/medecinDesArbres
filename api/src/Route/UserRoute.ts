@@ -26,10 +26,22 @@ export default [
         action: "update"
     },
     {
+        method: "delete",
+        route: "/user/:id",
+        controller: UserController,
+        action: "remove"
+    },
+    {
         method: "post",
         route: "/user/login",
         controller: UserController,
         action: "login"
+    },
+    {
+        method: "post",
+        route: "/user/login-admin",
+        controller: UserController,
+        action: "loginAdmin"
     },
     {
         method: "post",
