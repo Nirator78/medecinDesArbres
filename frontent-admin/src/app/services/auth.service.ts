@@ -8,6 +8,15 @@ export class AuthService {
   constructor() {
   }
 
+  private tokenExpired(token) {
+    try {
+      const expiry = (JSON.parse(atob(token.split('.')[1]))).exp;
+      return (Math.floor((new Date).getTime() / 1000)) >= expiry;
+    }catch (err){
+      return null;
+    }
+  }
+
   getUserDetails() {
     return localStorage.getItem('userData') ? localStorage.getItem('userData') : null;
   }
@@ -17,7 +26,12 @@ export class AuthService {
   }
 
   getToken() {
-    return localStorage.getItem('token');
+    const token = localStorage.getItem('token')
+    if (this.tokenExpired(token) === null) {
+      return null;
+    } else {
+      return token;
+    }
   }
 
   clearStorage() {
