@@ -28,6 +28,7 @@
    },
    "scripts": {
       "start": "ts-node src/index.ts",
+      "nodemon": "nodemon --exec ts-node src/index.ts",
       "fixtures": "fixtures ./fixtures --config ./ormconfig.json --sync --require ts-node/register"
    }
 }
