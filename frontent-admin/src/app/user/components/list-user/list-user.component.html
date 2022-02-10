@@ -24,6 +24,7 @@
           <th scope="col">Nom</th>
           <th scope="col">Prenom</th>
           <th scope="col">Email</th>
+          <th scope="col">Actions</th>
         </tr>
         </thead>
         <tbody>
@@ -31,6 +32,7 @@
           <td> {{ user.nom }} </td>
           <td> {{ user.prenom }} </td>
           <td> {{ user.email }} </td>
+          <td> <button type="button" class="btn btn-danger" (click)="deleteUser(user.id)"><fa-icon [icon]="faTrash"></fa-icon></button> </td>
         </tr>
         </tbody>
       </table>

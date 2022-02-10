@@ -36,8 +36,15 @@ export class ApiService {
       return res;
     }));
   }
+
   putTypeRequest(url, payload) {
     return this._http.put(`${this.baseUrl}${url}`, payload, { headers: this.headers }).pipe(map(res => {
+      return res;
+    }));
+  }
+
+  deleteTypeRequest(url) {
+    return this._http.delete(`${this.baseUrl}${url}`, { headers: this.headers }).pipe(map(res => {
       return res;
     }));
   }
