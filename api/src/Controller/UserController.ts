@@ -124,4 +124,19 @@ export class UserController {
             return { status: 0 };
         }
     }
+
+    async getAllPasswordKey(request: Request, response: Response, next: NextFunction) {
+        const passwordKeys = await this.passwordKeyRepository.find();
+        return { status: 1, data: passwordKeys } ;
+    }
+
+    async removePasswordKeysToRemove(request: Request, response: Response, next: NextFunction) {
+        try{
+            let passwordKeyToRemove = await this.passwordKeyRepository.findOne(request.params.id);
+            await this.passwordKeyRepository.remove(passwordKeyToRemove);
+            return { status: 1 }
+        }catch (e){
+            return { status: 0, error: e }
+        }
+    }
 }
