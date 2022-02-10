@@ -6,11 +6,13 @@ import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
+import { ListPasswordKeyComponent } from './components/list-password-key/list-password-key.component';
 
 @NgModule({
   declarations: [
     ListUserComponent,
-    ModalUserComponent
+    ModalUserComponent,
+    ListPasswordKeyComponent
   ],
   imports: [
     CommonModule,

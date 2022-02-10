@@ -57,7 +57,7 @@ export default [
     },
     {
         method: "get",
-        route: "/password-key",
+        route: "/password-keys",
         controller: UserController,
         action: "getAllPasswordKey"
     },
