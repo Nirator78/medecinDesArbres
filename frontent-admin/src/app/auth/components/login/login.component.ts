@@ -13,6 +13,8 @@ import {AuthService} from "../../../services/auth.service";
 
 export class LoginComponent implements OnInit {
     isLogin: boolean = false;
+    pasAdmin: boolean = false;
+    pasUser: boolean = false;
     errorMessage: string= "";
 
     constructor(
@@ -30,11 +32,18 @@ export class LoginComponent implements OnInit {
     }
 
     onSubmit(form: NgForm) {
+        this.pasAdmin = false;
         this._api.postTypeRequest('user/login-admin', form.value).subscribe((res: any) => {
             if (res.status === 1) {
                 this._auth.setDataInLocalStorage('userData', JSON.stringify(res.data));
                 this._auth.setDataInLocalStorage('token', res.token);
                 this._router.navigate(['home']);
+            }
+            else if (res.status === 2) {
+                this.pasAdmin = true;
+            }
+            else if (res.status === 0) {
+                this.pasUser = true;
             }
         }, err => {
             this.errorMessage = err['error'].message;

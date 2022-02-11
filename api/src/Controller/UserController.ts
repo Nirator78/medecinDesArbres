@@ -68,7 +68,7 @@ export class UserController {
         const login = await this.login(request, response, next);
         if(login.status === 1) {
             if(login.data.role === UserRole.USER) {
-                return { status: 0 };
+                return { status: 2 };
             }else{
                 return login
             }
