@@ -45,3 +45,14 @@ items:
     codePostal: 75000
     telephone: "0120202020"
     email: charlotte@gmail.com
+  pleb:
+    nom: Pleb
+    prenom: Pleb
+    role: user
+    password: '123456'
+    adresse: Rue ici
+    pays: France
+    ville: Paris
+    codePostal: 75000
+    telephone: "0120202020"
+    email: test@test.com

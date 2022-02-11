@@ -1,0 +1,23 @@
+entity: Commande
+items:
+  commande1:
+    numero: 0001
+    date: "2022-01-01"
+    user: '@pleb'
+    commandeLignes:
+      - "@commandeLigne10"
+      - "@commandeLigne11"
+
+  commande2:
+    numero: 0002
+    date: "2022-01-01"
+    user: '@pleb'
+    commandeLignes:
+      - "@commandeLigne2"
+
+  commande3:
+    numero: 0003
+    date: "2022-01-01"
+    user: '@pleb'
+    commandeLignes:
+      - "@commandeLigne3"

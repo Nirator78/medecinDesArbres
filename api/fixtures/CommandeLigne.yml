@@ -1,0 +1,17 @@
+entity: CommandeLigne
+items:
+  commandeLigne10:
+    quantite: 1
+    article: '@article1'
+
+  commandeLigne11:
+    quantite: 1
+    article: '@article2'
+
+  commandeLigne2:
+    quantite: 2
+    article: '@article2'
+
+  commandeLigne3:
+    quantite: 3
+    article: '@article3'

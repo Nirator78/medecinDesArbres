@@ -1,0 +1,20 @@
+entity: Article
+items:
+  article1:
+    nom: Pomme
+    description: Une pomme de folie
+    prix: 1
+    stock: 10
+    tag: fruit
+  article2:
+    nom: Poire
+    description: Une poire de folie
+    prix: 1
+    stock: 10
+    tag: fruit
+  article3:
+    nom: Banane
+    description: Une banane de folie
+    prix: 1
+    stock: 10
+    tag: fruit
