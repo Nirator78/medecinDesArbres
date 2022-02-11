@@ -1,0 +1,18 @@
+entity: Panier
+items:
+  panier1:
+    article: '@article1'
+    quantite: 2
+    user: '@pleb'
+  panier2:
+    article: '@article2'
+    quantite: 3
+    user: '@pleb'
+  panier3:
+    article: '@article3'
+    quantite: 3
+    user: '@pleb'
+  panier4:
+    article: '@article3'
+    quantite: 4
+    user: '@pleb'
