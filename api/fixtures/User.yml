@@ -10,7 +10,7 @@ items:
     pays: France
     ville: St Cyr
     codePostal: 78210
-    telephone: 0102030405
+    telephone: "0120202020"
     email: nirator.game@gmail.com
   user2:
     nom: Serre
@@ -21,7 +21,7 @@ items:
     pays: France
     ville: Versailles
     codePostal: 78000
-    telephone: 0102030405
+    telephone: "0120202020"
     email: noguizeweb@gmail.com
   user3:
     nom: Gonzalez
@@ -32,7 +32,7 @@ items:
     pays: France
     ville: Paris
     codePostal: 75000
-    telephone: 0102030405
+    telephone: "0120202020"
     email: esteban@gmail.com
   user4:
     nom: Brisson
@@ -43,5 +43,5 @@ items:
     pays: France
     ville: Paris
     codePostal: 75000
-    telephone: 0102030405
+    telephone: "0120202020"
     email: charlotte@gmail.com

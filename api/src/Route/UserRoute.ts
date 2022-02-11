@@ -21,7 +21,7 @@ export default [
     },
     {
         method: "put",
-        route: "/user",
+        route: "/user/:id",
         controller: UserController,
         action: "update"
     },

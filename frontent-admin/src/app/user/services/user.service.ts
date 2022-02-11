@@ -20,7 +20,8 @@ export class UserService {
   }
 
   async updateUser(user) {
-    const response = await this.apiService.putTypeRequest('user/' + user.id, user.value).toPromise() || {};
+    console.log(user.value);
+    const response = await this.apiService.putTypeRequest('user/' + user.value.id, user.value).toPromise() || {};
     return response["data"];
   }
 

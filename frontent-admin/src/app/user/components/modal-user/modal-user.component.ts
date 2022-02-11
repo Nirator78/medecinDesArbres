@@ -4,6 +4,7 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { NgForm } from '@angular/forms';
 import {UserService} from "../../services/user.service";
 import {ListUserComponent} from "../list-user/list-user.component";
+import { mergeWith } from 'rxjs';
 
 @Component({
   selector: 'app-modal-user',
@@ -13,7 +14,7 @@ import {ListUserComponent} from "../list-user/list-user.component";
 export class ModalUserComponent {
 
   @Input() mode!: string;
-  @Input() user!: any;
+  @Input() user: any = {};
   faPlus = faPlus;
 
   constructor(private modalService: NgbModal, private userService: UserService, private listUserComponent: ListUserComponent) {
@@ -25,8 +26,16 @@ export class ModalUserComponent {
   }
 
   onSubmit(form: NgForm){
+    let methode = "";
+    if(this.user.id){
+      methode="updateUser"
+      form.value.id = this.user = JSON.parse(this.user.id);
+    }
+    else {
+      methode="createUser"
+    }
     // Post l'utilisateur
-    this.userService.createUser(form).then(() => {
+    this.userService[methode](form).then(() => {
       // Ferme le modal
       this.modalService.dismissAll();
       // Refresh la liste des utilisateurs

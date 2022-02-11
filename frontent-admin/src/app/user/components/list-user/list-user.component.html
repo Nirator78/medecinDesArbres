@@ -29,7 +29,7 @@
         </thead>
         <tbody>
         <tr *ngFor="let user of userList">
-          <td> <app-modal-user mode="url" [user]="user">{{ user.nom }}</app-modal-user></td>
+          <td> <app-modal-user mode="url" [user]="user"></app-modal-user></td>
           <td> {{ user.prenom }} </td>
           <td> {{ user.email }} </td>
           <td> <button type="button" class="btn btn-danger" (click)="deleteUser(user.id)"><fa-icon [icon]="faTrash"></fa-icon></button> </td>
