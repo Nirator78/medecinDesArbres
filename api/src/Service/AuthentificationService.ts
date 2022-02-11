@@ -12,9 +12,9 @@ export class AuthentificationService {
         const userInfo =  await jwt.verify(token, process.env.SECRET_TOKEN);
         let infoReturn;
         if(userInfo.data.user.type){
-            infoReturn = {userId: userInfo.data.user.id, boutiqueId: userInfo.data.boutique}
+            infoReturn = {userId: userInfo.data.user, boutiqueId: userInfo.data.boutique}
         }else{
-            infoReturn = {userId: userInfo.data.user.id};
+            infoReturn = {userId: userInfo.data.user};
         }
         return infoReturn;
     }

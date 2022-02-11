@@ -37,7 +37,7 @@ export class CommandeController {
     async getCommandeByUser(request: Request, response: Response, next: NextFunction) {
         const verif = await this.authentificationService.getUserInfo(request);
         let commandeListe = [];
-        if(verif.userID = request.params.id){
+        if(verif.userId.id === request.params.id){
             commandeListe = await this.commandeRepository.find({ where: {user: request.params.id}, relations: ["user", "commandeLignes", "commandeLignes.article"] });
             if(commandeListe){
                 return { status: 1, data: commandeListe }
@@ -69,7 +69,7 @@ export class CommandeController {
     async createCommandeByPanier(request: Request, response: Response, next: NextFunction) {
         const { userId } = request.params;
         const verif = await this.authentificationService.getUserInfo(request);
-        if(verif.userId = userId){
+        if(verif.userId.id  === userId){
             // Recherche des paniers que l'utilisateur viens de valider
             let panierUtilisateur = await this.panierRepository.find({ where: {user: userId}, relations: ["user", "article"] });
 

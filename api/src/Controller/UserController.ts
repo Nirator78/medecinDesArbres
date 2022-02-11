@@ -4,6 +4,7 @@ import {User, UserRole} from "../Entity/User";
 
 import {PasswordKey} from '../Entity/PasswordKey';
 import {MailService} from '../Service/MailService';
+import {AuthentificationService} from "../Service/AuthentificationService";
 
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
@@ -12,9 +13,16 @@ export class UserController {
 
     private userRepository = getRepository(User);
     private passwordKeyRepository = getRepository(PasswordKey);
+    private authentificationService = new AuthentificationService();
 
     async all(request: Request, response: Response, next: NextFunction) {
-        const users = await this.userRepository.find();
+        const verif = await this.authentificationService.getUserInfo(request);
+        let filtre = {};
+        // Si admin on ne renvoie que les utilisateurs
+        if(verif.userId.role === "admin"){
+            Object.assign(filtre, {role: "user"});
+        }
+        const users = await this.userRepository.find(filtre);
         return { status: 1, data: users } ;
     }
 
