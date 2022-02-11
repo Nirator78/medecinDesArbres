@@ -24,6 +24,7 @@
           <th scope="col">Nom</th>
           <th scope="col">Prenom</th>
           <th scope="col">Email</th>
+          <th scope="col">Rôle</th>
           <th scope="col">Actions</th>
         </tr>
         </thead>
@@ -32,7 +33,15 @@
           <td> <app-modal-user mode="url" [user]="user"></app-modal-user></td>
           <td> {{ user.prenom }} </td>
           <td> {{ user.email }} </td>
-          <td> <button type="button" class="btn btn-danger" (click)="deleteUser(user.id)"><fa-icon [icon]="faTrash"></fa-icon></button> </td>
+          <td> 
+            <label class="badge badge-pill" [ngClass]="{
+              'badge-success':user.role === 'super-admin',
+              'badge-secondary':user.role === 'admin',
+              'badge-warning':user.role === 'user'
+            }">{{ user.role }}
+          </label> 
+          </td>
+          <td> <button type="button" class="btn btn-danger btn-sm" (click)="deleteUser(user.id)"><fa-icon [icon]="faTrash"></fa-icon></button> </td>
         </tr>
         </tbody>
       </table>
