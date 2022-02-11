@@ -1,6 +1,7 @@
 <ng-template #content let-modal>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Création d'utilisateur</h4>
+    <h4 *ngIf="!user" class="modal-title" id="modal-basic-title">Création d'utilisateur</h4>
+    <h4 *ngIf="user" class="modal-title" id="modal-basic-title">Modification d'utilisateur</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -18,11 +19,11 @@
             aria-label="nom"
             name="nom"
             aria-describedby="inputGroup-sizing-sm"
-            ngModel
             required
             minlength="4"
             #nom="ngModel"
             placeholder="Nom"
+            ngModel="{{user['nom']}}"
           >
 
           <div *ngIf="nom.invalid  && (nom.dirty || nom.touched)">
@@ -44,10 +45,10 @@
             aria-label="prenom"
             name="prenom"
             aria-describedby="inputGroup-sizing-sm"
-            ngModel
             required
             #prenom="ngModel"
             placeholder="Prénom"
+            ngModel="{{user['prenom']}}"
           >
 
           <div *ngIf="prenom.invalid  && (prenom.dirty || prenom.touched)">
@@ -69,11 +70,11 @@
             aria-label="email"
             name="email"
             aria-describedby="inputGroup-sizing-sm"
-            ngModel
             required
             #email="ngModel"
             placeholder="Adresse email"
             email
+            ngModel="{{user['email']}}"
           >
 
           <div *ngIf="email.invalid  && (email.dirty || email.touched)">
@@ -95,11 +96,11 @@
             aria-label="telephone"
             name="telephone"
             aria-describedby="inputGroup-sizing-sm"
-            ngModel
             required
             #telephone="ngModel"
             placeholder="Numéro téléphone"
             pattern="(0)[0-9 ]{9}"
+            ngModel="{{user['telephone']}}"
           >
 
           <div *ngIf="telephone.invalid  && (telephone.dirty || telephone.touched)">
@@ -123,10 +124,10 @@
             aria-label="adresse"
             name="adresse"
             aria-describedby="inputGroup-sizing-sm"
-            ngModel
             required
             #adresse="ngModel"
             placeholder="Adresse"
+            ngModel="{{user['adresse']}}"
           >
 
           <div *ngIf="adresse.invalid  && (adresse.dirty || adresse.touched)">
@@ -145,10 +146,10 @@
             aria-label="ville"
             name="ville"
             aria-describedby="inputGroup-sizing-sm"
-            ngModel
             required
             #ville="ngModel"
             placeholder="Ville"
+            ngModel="{{user['ville']}}"
           >
 
           <div *ngIf="ville.invalid  && (ville.dirty || ville.touched)">
@@ -170,10 +171,10 @@
             aria-label="codePostal"
             name="codePostal"
             aria-describedby="inputGroup-sizing-sm"
-            ngModel
             required
             #codePostal="ngModel"
             placeholder="Code postal"
+            ngModel="{{user['codePostal']}}"
           >
 
           <div *ngIf="codePostal.invalid  && (codePostal.dirty || codePostal.touched)">
@@ -192,10 +193,10 @@
             aria-label="pays"
             name="pays"
             aria-describedby="inputGroup-sizing-sm"
-            ngModel
             required
             #pays="ngModel"
             placeholder="Pays"
+            ngModel="{{user['pays']}}"
           >
 
           <div *ngIf="pays.invalid  && (pays.dirty || pays.touched)">
@@ -206,7 +207,7 @@
         </div>
       </div>
       <!-- Mot de passe -->
-      <div class="form-row">
+      <div *ngIf="!user.id" class="form-row">
         <div class="col">
           <label class="required" for="password">Mot de passe</label>
 
@@ -216,7 +217,7 @@
             aria-label="password"
             name="password"
             aria-describedby="inputGroup-sizing-sm"
-            ngModel
+            ngModel="{{user['password']}}"
             required
             #password="ngModel"
             placeholder="Mot de passe"
@@ -232,7 +233,7 @@
       <div class="form-row">
         <div class="col">
           <label class="required" for="role">Rôle</label>
-          <select class="browser-default custom-select" name="role" required ngModel>
+          <select class="browser-default custom-select" name="role" required ngModel="{{user['role']}}">
             <option value="" disabled selected>Choisir un rôle</option>
             <option value="super-admin">Super administateur</option>
             <option value="admin">Administateur</option>
@@ -246,7 +247,7 @@
     </div>
 
     <div class="modal-footer">
-      <input class="btn btn-primary" type="submit" value="Inscription" [disabled]="myform.invalid">
+      <input class="btn btn-primary" type="submit" value="Sauvegarder" [disabled]="myform.invalid">
     </div>
   </form>
 </ng-template>
