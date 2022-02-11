@@ -33,6 +33,7 @@ export class LoginComponent implements OnInit {
 
     onSubmit(form: NgForm) {
         this.pasAdmin = false;
+        this.pasUser = false;
         this._api.postTypeRequest('user/login-admin', form.value).subscribe((res: any) => {
             if (res.status === 1) {
                 this._auth.setDataInLocalStorage('userData', JSON.stringify(res.data));
