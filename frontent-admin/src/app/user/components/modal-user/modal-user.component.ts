@@ -5,6 +5,7 @@ import { NgForm } from '@angular/forms';
 import {UserService} from "../../services/user.service";
 import {ListUserComponent} from "../list-user/list-user.component";
 import { mergeWith } from 'rxjs';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-modal-user',
@@ -16,9 +17,10 @@ export class ModalUserComponent {
   @Input() mode!: string;
   @Input() user: any = {};
   faPlus = faPlus;
-
-  constructor(private modalService: NgbModal, private userService: UserService, private listUserComponent: ListUserComponent) {
-
+  userConnecter ;
+  constructor(private modalService: NgbModal, private userService: UserService, private listUserComponent: ListUserComponent, private authService:AuthService) {
+    this.userConnecter = this.authService.getUserDetails();
+    this.userConnecter = JSON.parse(this.userConnecter);
   }
 
   open(content) {

@@ -235,8 +235,8 @@
           <label class="required" for="role">Rôle</label>
           <select class="browser-default custom-select" name="role" required ngModel="{{user['role']}}">
             <option value="" disabled selected>Choisir un rôle</option>
-            <option value="super-admin">Super administateur</option>
-            <option value="admin">Administateur</option>
+            <option *ngIf="userConnecter.role !== 'admin'" value="super-admin">Super administateur</option>
+            <option *ngIf="userConnecter.role !== 'admin'" value="admin">Administateur</option>
             <option value="user">Utilisateur</option>
           </select>
         </div>
