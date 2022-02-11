@@ -10,7 +10,7 @@
 
   <div class="mb-4">
     <div class="btn-group" role="group" aria-label="Basic example">
-      <app-modal-user></app-modal-user>
+      <app-modal-user mode="modal"></app-modal-user>
       <button class="btn border-left btn-success btn-sm" (click)="refresh()">
         <fa-icon [icon]="faSync"></fa-icon>
       </button>
@@ -29,7 +29,7 @@
         </thead>
         <tbody>
         <tr *ngFor="let user of userList">
-          <td> {{ user.nom }} </td>
+          <td> <app-modal-user mode="url" [user]="user">{{ user.nom }}</app-modal-user></td>
           <td> {{ user.prenom }} </td>
           <td> {{ user.email }} </td>
           <td> <button type="button" class="btn btn-danger" (click)="deleteUser(user.id)"><fa-icon [icon]="faTrash"></fa-icon></button> </td>

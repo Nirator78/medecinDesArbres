@@ -8,20 +8,20 @@
   <form #myform = "ngForm" (ngSubmit) = "onSubmit(myform)" >
     <div class="modal-body">
       <!-- Nom -->
-      <div class="form-row">    
+      <div class="form-row">
         <div class="col">
           <label class="required" for="nom">Nom</label>
 
-          <input 
-            type="text" 
-            class="form-control" 
-            aria-label="nom" 
-            name="nom" 
-            aria-describedby="inputGroup-sizing-sm" 
-            ngModel 
-            required 
+          <input
+            type="text"
+            class="form-control"
+            aria-label="nom"
+            name="nom"
+            aria-describedby="inputGroup-sizing-sm"
+            ngModel
+            required
             minlength="4"
-            #nom="ngModel" 
+            #nom="ngModel"
             placeholder="Nom"
           >
 
@@ -35,18 +35,18 @@
           </div>
         </div>
          <!-- Prénom -->
-        <div class="col">    
+        <div class="col">
           <label class="required" for="prenom">Prénom</label>
 
-          <input 
-            type="text" 
-            class="form-control" 
-            aria-label="prenom" 
-            name="prenom" 
-            aria-describedby="inputGroup-sizing-sm" 
-            ngModel 
-            required 
-            #prenom="ngModel" 
+          <input
+            type="text"
+            class="form-control"
+            aria-label="prenom"
+            name="prenom"
+            aria-describedby="inputGroup-sizing-sm"
+            ngModel
+            required
+            #prenom="ngModel"
             placeholder="Prénom"
           >
 
@@ -57,21 +57,21 @@
           </div>
         </div>
       </div>
-     
+
       <!-- Email -->
-      <div class="form-row">   
-        <div class="col"> 
+      <div class="form-row">
+        <div class="col">
           <label class="required" for="email">Email</label>
 
-          <input 
-            type="text" 
-            class="form-control" 
-            aria-label="email" 
-            name="email" 
-            aria-describedby="inputGroup-sizing-sm" 
-            ngModel 
-            required 
-            #email="ngModel" 
+          <input
+            type="text"
+            class="form-control"
+            aria-label="email"
+            name="email"
+            aria-describedby="inputGroup-sizing-sm"
+            ngModel
+            required
+            #email="ngModel"
             placeholder="Adresse email"
             email
           >
@@ -86,18 +86,18 @@
           </div>
         </div>
          <!-- téléphone -->
-        <div class="col">    
+        <div class="col">
           <label class="required" for="telephone">Téléphone</label>
 
-          <input 
-            type="text" 
-            class="form-control" 
-            aria-label="telephone" 
-            name="telephone" 
-            aria-describedby="inputGroup-sizing-sm" 
-            ngModel 
-            required 
-            #telephone="ngModel" 
+          <input
+            type="text"
+            class="form-control"
+            aria-label="telephone"
+            name="telephone"
+            aria-describedby="inputGroup-sizing-sm"
+            ngModel
+            required
+            #telephone="ngModel"
             placeholder="Numéro téléphone"
             pattern="(0)[0-9 ]{9}"
           >
@@ -113,19 +113,19 @@
         </div>
       </div>
       <!-- Adresse -->
-      <div class="form-row">  
-        <div class="col"> 
+      <div class="form-row">
+        <div class="col">
           <label class="required" for="adresse">Adresse</label>
 
-          <input 
-            type="text" 
-            class="form-control" 
-            aria-label="adresse" 
-            name="adresse" 
-            aria-describedby="inputGroup-sizing-sm" 
-            ngModel 
-            required 
-            #adresse="ngModel" 
+          <input
+            type="text"
+            class="form-control"
+            aria-label="adresse"
+            name="adresse"
+            aria-describedby="inputGroup-sizing-sm"
+            ngModel
+            required
+            #adresse="ngModel"
             placeholder="Adresse"
           >
 
@@ -136,43 +136,43 @@
           </div>
         </div>
         <!-- Ville -->
-        <div class="col">  
+        <div class="col">
           <label class="required" for="ville">Ville</label>
-  
-          <input 
-            type="text" 
-            class="form-control" 
-            aria-label="ville" 
-            name="ville" 
-            aria-describedby="inputGroup-sizing-sm" 
-            ngModel 
-            required 
-            #ville="ngModel" 
+
+          <input
+            type="text"
+            class="form-control"
+            aria-label="ville"
+            name="ville"
+            aria-describedby="inputGroup-sizing-sm"
+            ngModel
+            required
+            #ville="ngModel"
             placeholder="Ville"
           >
-  
+
           <div *ngIf="ville.invalid  && (ville.dirty || ville.touched)">
             <div *ngIf="ville.errors?.['required']">
               <small id="ville" class="text-danger"> Ville est obligatoire</small>
             </div>
           </div>
         </div>
-      </div> 
+      </div>
       <!-- Code postal / Pays-->
-      <div class="form-row">  
+      <div class="form-row">
         <!-- Code postal -->
         <div class="col">
           <label class="required" for="codePostal">Code postal</label>
 
-          <input 
-            type="text" 
-            class="form-control" 
-            aria-label="codePostal" 
-            name="codePostal" 
-            aria-describedby="inputGroup-sizing-sm" 
-            ngModel 
-            required 
-            #codePostal="ngModel" 
+          <input
+            type="text"
+            class="form-control"
+            aria-label="codePostal"
+            name="codePostal"
+            aria-describedby="inputGroup-sizing-sm"
+            ngModel
+            required
+            #codePostal="ngModel"
             placeholder="Code postal"
           >
 
@@ -182,19 +182,19 @@
             </div>
           </div>
         </div>
-        <!-- Pays -->  
+        <!-- Pays -->
         <div class="col">
           <label class="required" for="pays">Pays</label>
 
-          <input 
-            type="text" 
-            class="form-control" 
-            aria-label="pays" 
-            name="pays" 
-            aria-describedby="inputGroup-sizing-sm" 
-            ngModel 
-            required 
-            #pays="ngModel" 
+          <input
+            type="text"
+            class="form-control"
+            aria-label="pays"
+            name="pays"
+            aria-describedby="inputGroup-sizing-sm"
+            ngModel
+            required
+            #pays="ngModel"
             placeholder="Pays"
           >
 
@@ -206,19 +206,19 @@
         </div>
       </div>
       <!-- Mot de passe -->
-      <div class="form-row">  
+      <div class="form-row">
         <div class="col">
           <label class="required" for="password">Mot de passe</label>
 
-          <input 
-            type="password" 
-            class="form-control" 
-            aria-label="password" 
-            name="password" 
-            aria-describedby="inputGroup-sizing-sm" 
-            ngModel 
-            required 
-            #password="ngModel" 
+          <input
+            type="password"
+            class="form-control"
+            aria-label="password"
+            name="password"
+            aria-describedby="inputGroup-sizing-sm"
+            ngModel
+            required
+            #password="ngModel"
             placeholder="Mot de passe"
           >
 
@@ -229,7 +229,7 @@
           </div>
         </div>
       </div>
-      <div class="form-row">  
+      <div class="form-row">
         <div class="col">
           <label class="required" for="role">Rôle</label>
           <select class="browser-default custom-select" name="role" required ngModel>
@@ -251,4 +251,5 @@
   </form>
 </ng-template>
 
-<button class="btn btn-success btn-sm font-weight-bold" (click)="open(content)"><fa-icon class="pr-2" [icon]="faPlus"></fa-icon>Nouvel utilisateur</button>
+<button class="btn btn-success btn-sm font-weight-bold" (click)="open(content)" *ngIf="mode === 'modal'"><fa-icon class="pr-2" [icon]="faPlus"></fa-icon>Nouvel utilisateur</button>
+<button (click)="open(content)" *ngIf="mode === 'url'" class="btn btn-link p-0">{{user.nom}}</button>

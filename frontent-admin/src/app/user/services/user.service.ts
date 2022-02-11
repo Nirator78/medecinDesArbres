@@ -19,6 +19,11 @@ export class UserService {
     return response["data"];
   }
 
+  async updateUser(user) {
+    const response = await this.apiService.putTypeRequest('user/' + user.id, user.value).toPromise() || {};
+    return response["data"];
+  }
+
   async deleteUser(id) {
     return await this.apiService.deleteTypeRequest(`user/${id}`).toPromise() || {};
   }
