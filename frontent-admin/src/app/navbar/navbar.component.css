@@ -31,3 +31,7 @@ h2
 .nav-item:hover::after {
   width: 100%
 }
+
+.active{
+  background-color: #3e993f;
+}
