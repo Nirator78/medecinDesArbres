@@ -1,7 +1,4 @@
 .vertical-nav {
-  min-width: 17rem;
-  width: 17rem;
-  height: 100vh;
   top: 0;
   left: 0;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
@@ -20,4 +17,17 @@ h2
   font-size: 15px;
   font-family: "Segoe print";
   color: #3e993f;
+}
+
+.nav-item::after {
+  content: '';
+  display: block;
+  width: 0px;
+  height: 2px;
+  background: #3e993f;
+  transition: 0.3s
+}
+
+.nav-item:hover::after {
+  width: 100%
 }
