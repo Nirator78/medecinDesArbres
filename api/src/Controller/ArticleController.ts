@@ -9,7 +9,7 @@ export class ArticleController {
     private authentificationService = new AuthentificationService();
 
     async all(request: Request, response: Response, next: NextFunction) {
-        let articleListe = await this.articleRepository.find();
+        let articleListe = await this.articleRepository.find({ relations: ["image"] });
 
         if(articleListe){
             return { status: 1, data: articleListe }
@@ -19,7 +19,7 @@ export class ArticleController {
     }
 
     async one(request: Request, response: Response, next: NextFunction) {
-        let article = await this.articleRepository.findOne(request.params.id);
+        let article = await this.articleRepository.findOne(request.params.id, { relations: ["image"] });
         if(article){
             return { status: 1, data: article };
         }else{

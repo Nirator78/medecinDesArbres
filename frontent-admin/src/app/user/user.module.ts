@@ -22,8 +22,7 @@ import { ListPasswordKeyComponent } from './components/list-password-key/list-pa
     FontAwesomeModule
   ],
   exports: [
-    ListUserComponent,
-    ModalUserComponent
+    ListUserComponent
   ]
 })
 export class UserModule { }

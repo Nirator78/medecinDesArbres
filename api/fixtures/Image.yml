@@ -1,0 +1,8 @@
+entity: Image
+items:
+  image1:
+   url: "/article/1.png"
+  image2:
+    url: "/article/2.png"
+  image3:
+    url: "/article/3.png"

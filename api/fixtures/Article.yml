@@ -5,16 +5,19 @@ items:
     description: Une pomme de folie
     prix: 1
     stock: 10
+    image: "@image1"
     tag: fruit
   article2:
     nom: Poire
     description: Une poire de folie
     prix: 1
     stock: 10
+    image: "@image2"
     tag: fruit
   article3:
     nom: Banane
     description: Une banane de folie
     prix: 1
     stock: 10
+    image: "@image3"
     tag: fruit
