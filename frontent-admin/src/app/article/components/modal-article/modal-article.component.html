@@ -10,7 +10,7 @@
     <div class="modal-body">
       <!-- Nom -->
       <div class="form-row">
-        <div class="col">
+        <div class="col-12">
           <label class="required" for="nom">Nom</label>
 
           <input
@@ -39,8 +39,8 @@
         <div class="col">
           <label class="required" for="description">Description</label>
 
-          <input
-            type="text"
+          <textarea 
+            type="textarea"
             class="form-control"
             aria-label="description"
             name="description"
@@ -49,7 +49,7 @@
             #description="ngModel"
             placeholder="Description"
             ngModel="{{article['description']}}"
-          >
+          ></textarea>
 
           <div *ngIf="description.invalid  && (description.dirty || description.touched)">
             <div *ngIf="description.errors?.['required']">
@@ -62,170 +62,103 @@
       <!-- Email -->
       <div class="form-row">
         <div class="col">
-          <label class="required" for="email">Email</label>
+          <label class="required" for="prix">Prix</label>
 
           <input
-            type="text"
+            type="number"
             class="form-control"
-            aria-label="email"
-            name="email"
+            aria-label="prix"
+            name="prix"
             aria-describedby="inputGroup-sizing-sm"
             required
-            #email="ngModel"
-            placeholder="Adresse email"
-            email
-            ngModel="{{article['email']}}"
+            #prix="ngModel"
+            placeholder="Prix"
+            min="0"
+            ngModel="{{article['prix']}}"
           >
 
-          <div *ngIf="email.invalid  && (email.dirty || email.touched)">
-            <div *ngIf="email.errors?.['email']">
-              <small id="emailInvalid" class="text-danger"> Email invalide </small>
+          <div *ngIf="prix.invalid  && (prix.dirty || prix.touched)">
+            <div *ngIf="prix.errors?.['min']">
+              <small id="prixInvalid" class="text-danger"> Prix invalide </small>
             </div>
-            <div *ngIf="email.errors?.['required']">
-              <small id="email" class="text-danger"> Email est obligatoire </small>
+            <div *ngIf="prix.errors?.['required']">
+              <small id="prix" class="text-danger"> Prix est obligatoire </small>
             </div>
           </div>
         </div>
-        <!-- téléphone -->
+        <!-- stock -->
         <div class="col">
-          <label class="required" for="telephone">Téléphone</label>
+          <label class="required" for="stock">Stock</label>
 
           <input
-            type="text"
+            type="number"
             class="form-control"
-            aria-label="telephone"
-            name="telephone"
+            aria-label="stock"
+            name="stock"
             aria-describedby="inputGroup-sizing-sm"
             required
-            #telephone="ngModel"
-            placeholder="Numéro téléphone"
-            pattern="(0)[0-9 ]{9}"
-            ngModel="{{article['telephone']}}"
+            #stock="ngModel"
+            placeholder="Stock"
+            min="1"
+            ngModel="{{article['stock']}}"
           >
 
-          <div *ngIf="telephone.invalid  && (telephone.dirty || telephone.touched)">
-            <div *ngIf="telephone.errors?.['required']">
-              <small id="telephone" class="text-danger"> Téléphone est obligatoire </small>
+          <div *ngIf="stock.invalid  && (stock.dirty || stock.touched)">
+            <div *ngIf="stock.errors?.['required']">
+              <small id="stock" class="text-danger"> Stock est obligatoire </small>
             </div>
-            <div *ngIf="telephone.errors?.['pattern']">
-              <small id="telephone" class="text-danger"> Téléphone invalide </small>
+            <div *ngIf="stock.errors?.['min']">
+              <small id="stock" class="text-danger"> Stock invalide </small>
             </div>
           </div>
         </div>
       </div>
-      <!-- Adresse -->
+      <!-- Image 
       <div class="form-row">
         <div class="col">
-          <label class="required" for="adresse">Adresse</label>
+          <label class="required" for="image">Image</label>
 
           <input
-            type="text"
+            type="file"
             class="form-control"
-            aria-label="adresse"
-            name="adresse"
+            aria-label="image"
+            name="image"
             aria-describedby="inputGroup-sizing-sm"
-            required
-            #adresse="ngModel"
-            placeholder="Adresse"
-            ngModel="{{article['adresse']}}"
+            
+            #image="ngModel"
+            placeholder="Image"
+            ngModel="{{article['image']}}"
+            accept="image/png, image/jpeg"
           >
 
-          <div *ngIf="adresse.invalid  && (adresse.dirty || adresse.touched)">
-            <div *ngIf="adresse.errors?.['required']">
-              <small id="adresse" class="text-danger"> Adresse est obligatoire</small>
+          <div *ngIf="image.invalid  && (image.dirty || image.touched)">
+            <div *ngIf="image.errors?.['required']">
+              <small id="image" class="text-danger"> Image est obligatoire</small>
             </div>
           </div>
         </div>
-        <!-- Ville -->
-        <div class="col">
-          <label class="required" for="ville">Ville</label>
-
-          <input
-            type="text"
-            class="form-control"
-            aria-label="ville"
-            name="ville"
-            aria-describedby="inputGroup-sizing-sm"
-            required
-            #ville="ngModel"
-            placeholder="Ville"
-            ngModel="{{article['ville']}}"
-          >
-
-          <div *ngIf="ville.invalid  && (ville.dirty || ville.touched)">
-            <div *ngIf="ville.errors?.['required']">
-              <small id="ville" class="text-danger"> Ville est obligatoire</small>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Code postal / Pays-->
+      </div>-->
+      <!-- Tag -->
       <div class="form-row">
-        <!-- Code postal -->
+        <!-- Tag -->
         <div class="col">
-          <label class="required" for="codePostal">Code postal</label>
+          <label class="required" for="tag">Tag</label>
 
           <input
             type="text"
             class="form-control"
-            aria-label="codePostal"
-            name="codePostal"
+            aria-label="tag"
+            name="tag"
             aria-describedby="inputGroup-sizing-sm"
             required
-            #codePostal="ngModel"
-            placeholder="Code postal"
-            ngModel="{{article['codePostal']}}"
+            #tag="ngModel"
+            placeholder="Tag"
+            ngModel="{{article['tag']}}"
           >
 
-          <div *ngIf="codePostal.invalid  && (codePostal.dirty || codePostal.touched)">
-            <div *ngIf="codePostal.errors?.['required']">
-              <small id="codePostal" class="text-danger"> Code postal est obligatoire</small>
-            </div>
-          </div>
-        </div>
-        <!-- Pays -->
-        <div class="col">
-          <label class="required" for="pays">Pays</label>
-
-          <input
-            type="text"
-            class="form-control"
-            aria-label="pays"
-            name="pays"
-            aria-describedby="inputGroup-sizing-sm"
-            required
-            #pays="ngModel"
-            placeholder="Pays"
-            ngModel="{{article['pays']}}"
-          >
-
-          <div *ngIf="pays.invalid  && (pays.dirty || pays.touched)">
-            <div *ngIf="pays.errors?.['required']">
-              <small id="pays" class="text-danger"> Pays est obligatoire</small>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Mot de passe -->
-      <div *ngIf="!article.id" class="form-row">
-        <div class="col">
-          <label class="required" for="password">Mot de passe</label>
-
-          <input
-            type="password"
-            class="form-control"
-            aria-label="password"
-            name="password"
-            aria-describedby="inputGroup-sizing-sm"
-            ngModel="{{article['password']}}"
-            required
-            #password="ngModel"
-            placeholder="Mot de passe"
-          >
-
-          <div *ngIf="password.invalid  && (password.dirty || password.touched)">
-            <div *ngIf="password.errors?.['required']">
-              <small id="password" class="text-danger"> Mot de passe est obligatoire</small>
+          <div *ngIf="tag.invalid  && (tag.dirty || tag.touched)">
+            <div *ngIf="tag.errors?.['required']">
+              <small id="tag" class="text-danger"> Tag est obligatoire</small>
             </div>
           </div>
         </div>
