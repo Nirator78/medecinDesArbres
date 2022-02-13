@@ -15,8 +15,9 @@ export class ModalArticleComponent  {
   @Input() mode!: string;
   @Input() article: any = {};
   faPlus = faPlus;
+  file;
 
-  constructor(private modalService: NgbModal, private userService: ArticleService, private listUserComponent: ListArticleComponent) {
+  constructor(private modalService: NgbModal, private articleService: ArticleService, private listArticleComponent: ListArticleComponent) {
   }
 
   open(content) {
@@ -32,13 +33,33 @@ export class ModalArticleComponent  {
     else {
       methode="createArticle"
     }
+
     // Post l"utilisateur
-    this.userService[methode](form).then(() => {
+    this.articleService[methode](form).then(async (res) => {
+      // Upload du fichier après création de l'article
+      if(this.file){
+        const formData = new FormData();
+
+        formData.append("image", this.file);
+
+        await this.articleService.uploadImageArticle(res.id, formData);
+      }
+
       // Ferme le modal
       this.modalService.dismissAll();
       // Refresh la liste des utilisateurs
-      this.listUserComponent.refresh();
+      this.listArticleComponent.refresh();
     });
+  }
+
+  onFileSelected(event) {
+    const fichier = event.target.files[0];
+
+    if(fichier.size <= 50000) {
+      this.file = fichier;
+    }else{
+      // popup d'alerte taille trop grand
+    }
   }
 
 }

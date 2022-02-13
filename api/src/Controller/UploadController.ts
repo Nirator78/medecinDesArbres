@@ -6,27 +6,25 @@ export class UploadController {
         try {
             if(!request.files) {
                 response.send({
-                    status: false,
-                    message: 'No file uploaded'
+                    status: 0
                 });
             } else {
-                //Use the name of the input field (i.e. "avatar") to retrieve the uploaded file
-                let avatar = request.files.avatar;
+                let image = request.files.image;
 
                 const {type, id} = request.params;
-                const extension = avatar.name.split('.')[1];
 
-                //Use the mv() method to place the file in upload directory (i.e. "uploads")
-                avatar.mv(`./uploads/${type}/` + `${id}.${extension}`);
+                // On enregistre le fichier au bon endroit
+                image.mv(`./uploads/${type}/` + `${id}.png`);
 
-                //send responseponse
+                // Créer un objet Image pour le lié à son parent
+
+                //send response
                 response.send({
-                    status: true,
-                    message: 'File is uploaded',
+                    status: 1,
                     data: {
-                        name: avatar.name,
-                        mimetype: avatar.mimetype,
-                        size: avatar.size
+                        name: image.name,
+                        mimetype: image.mimetype,
+                        size: image.size
                     }
                 });
             }

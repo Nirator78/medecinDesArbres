@@ -20,12 +20,16 @@ export class ArticleService {
   }
 
   async updateArticle(user) {
-    console.log(user.value);
     const response = await this.apiService.putTypeRequest('article/' + user.value.id, user.value).toPromise() || {};
     return response["data"];
   }
 
   async deleteArticle(id) {
     return await this.apiService.deleteTypeRequest(`article/${id}`).toPromise() || {};
+  }
+
+  async uploadImageArticle(id, image) {
+    const response = await this.apiService.uploadTypeRequest('article', id, image).toPromise() || {};
+    return response["data"];
   }
 }
