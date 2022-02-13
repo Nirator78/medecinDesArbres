@@ -4,6 +4,7 @@ import * as express from "express";
 import * as bodyParser from "body-parser";
 import {Request, Response} from "express";
 import {Routes} from "./Routes";
+import * as expressFileupload from "express-fileupload";
 
 // Logging system
 import * as morgan from 'morgan';
@@ -14,6 +15,16 @@ import * as cors from 'cors';
 createConnection().then(async connection => {
     // create express app
     const app = express();
+
+    // enable file upload
+    app.use(expressFileupload({
+        createParentPath: true
+    }));
+
+    // add static file routes
+    app.use(express.static('uploads'));
+
+    // add middleware
     app.use(bodyParser.json());
     app.use(cors());
 
