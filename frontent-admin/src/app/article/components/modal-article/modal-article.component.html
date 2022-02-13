@@ -1,1 +1,246 @@
-<p>modal-article works!</p>
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 *ngIf="mode === 'modal'" class="modal-title" id="modal-basic-title">Création d'article</h4>
+    <h4 *ngIf="mode === 'url'" class="modal-title" id="modal-basic-title">Modification d'article</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <form #myform = "ngForm" (ngSubmit) = "onSubmit(myform)" >
+    <div class="modal-body">
+      <!-- Nom -->
+      <div class="form-row">
+        <div class="col">
+          <label class="required" for="nom">Nom</label>
+
+          <input
+            type="text"
+            class="form-control"
+            aria-label="nom"
+            name="nom"
+            aria-describedby="inputGroup-sizing-sm"
+            required
+            minlength="4"
+            #nom="ngModel"
+            placeholder="Nom"
+            ngModel="{{article['nom']}}"
+          >
+
+          <div *ngIf="nom.invalid  && (nom.dirty || nom.touched)">
+            <div *ngIf="nom.errors?.['minlength']">
+              <small id="nomMin" class="text-danger"> Il faut minimum 4 caractéres</small>
+            </div>
+            <div *ngIf="nom.errors?.['required']">
+              <small id="nomRequired" class="text-danger"> Nom est obligatoire</small>
+            </div>
+          </div>
+        </div>
+        <!-- Description -->
+        <div class="col">
+          <label class="required" for="description">Description</label>
+
+          <input
+            type="text"
+            class="form-control"
+            aria-label="description"
+            name="description"
+            aria-describedby="inputGroup-sizing-sm"
+            required
+            #description="ngModel"
+            placeholder="Description"
+            ngModel="{{article['description']}}"
+          >
+
+          <div *ngIf="description.invalid  && (description.dirty || description.touched)">
+            <div *ngIf="description.errors?.['required']">
+              <small id="descriptionRequired" class="text-danger"> Description est obligatoire</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Email -->
+      <div class="form-row">
+        <div class="col">
+          <label class="required" for="email">Email</label>
+
+          <input
+            type="text"
+            class="form-control"
+            aria-label="email"
+            name="email"
+            aria-describedby="inputGroup-sizing-sm"
+            required
+            #email="ngModel"
+            placeholder="Adresse email"
+            email
+            ngModel="{{article['email']}}"
+          >
+
+          <div *ngIf="email.invalid  && (email.dirty || email.touched)">
+            <div *ngIf="email.errors?.['email']">
+              <small id="emailInvalid" class="text-danger"> Email invalide </small>
+            </div>
+            <div *ngIf="email.errors?.['required']">
+              <small id="email" class="text-danger"> Email est obligatoire </small>
+            </div>
+          </div>
+        </div>
+        <!-- téléphone -->
+        <div class="col">
+          <label class="required" for="telephone">Téléphone</label>
+
+          <input
+            type="text"
+            class="form-control"
+            aria-label="telephone"
+            name="telephone"
+            aria-describedby="inputGroup-sizing-sm"
+            required
+            #telephone="ngModel"
+            placeholder="Numéro téléphone"
+            pattern="(0)[0-9 ]{9}"
+            ngModel="{{article['telephone']}}"
+          >
+
+          <div *ngIf="telephone.invalid  && (telephone.dirty || telephone.touched)">
+            <div *ngIf="telephone.errors?.['required']">
+              <small id="telephone" class="text-danger"> Téléphone est obligatoire </small>
+            </div>
+            <div *ngIf="telephone.errors?.['pattern']">
+              <small id="telephone" class="text-danger"> Téléphone invalide </small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Adresse -->
+      <div class="form-row">
+        <div class="col">
+          <label class="required" for="adresse">Adresse</label>
+
+          <input
+            type="text"
+            class="form-control"
+            aria-label="adresse"
+            name="adresse"
+            aria-describedby="inputGroup-sizing-sm"
+            required
+            #adresse="ngModel"
+            placeholder="Adresse"
+            ngModel="{{article['adresse']}}"
+          >
+
+          <div *ngIf="adresse.invalid  && (adresse.dirty || adresse.touched)">
+            <div *ngIf="adresse.errors?.['required']">
+              <small id="adresse" class="text-danger"> Adresse est obligatoire</small>
+            </div>
+          </div>
+        </div>
+        <!-- Ville -->
+        <div class="col">
+          <label class="required" for="ville">Ville</label>
+
+          <input
+            type="text"
+            class="form-control"
+            aria-label="ville"
+            name="ville"
+            aria-describedby="inputGroup-sizing-sm"
+            required
+            #ville="ngModel"
+            placeholder="Ville"
+            ngModel="{{article['ville']}}"
+          >
+
+          <div *ngIf="ville.invalid  && (ville.dirty || ville.touched)">
+            <div *ngIf="ville.errors?.['required']">
+              <small id="ville" class="text-danger"> Ville est obligatoire</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Code postal / Pays-->
+      <div class="form-row">
+        <!-- Code postal -->
+        <div class="col">
+          <label class="required" for="codePostal">Code postal</label>
+
+          <input
+            type="text"
+            class="form-control"
+            aria-label="codePostal"
+            name="codePostal"
+            aria-describedby="inputGroup-sizing-sm"
+            required
+            #codePostal="ngModel"
+            placeholder="Code postal"
+            ngModel="{{article['codePostal']}}"
+          >
+
+          <div *ngIf="codePostal.invalid  && (codePostal.dirty || codePostal.touched)">
+            <div *ngIf="codePostal.errors?.['required']">
+              <small id="codePostal" class="text-danger"> Code postal est obligatoire</small>
+            </div>
+          </div>
+        </div>
+        <!-- Pays -->
+        <div class="col">
+          <label class="required" for="pays">Pays</label>
+
+          <input
+            type="text"
+            class="form-control"
+            aria-label="pays"
+            name="pays"
+            aria-describedby="inputGroup-sizing-sm"
+            required
+            #pays="ngModel"
+            placeholder="Pays"
+            ngModel="{{article['pays']}}"
+          >
+
+          <div *ngIf="pays.invalid  && (pays.dirty || pays.touched)">
+            <div *ngIf="pays.errors?.['required']">
+              <small id="pays" class="text-danger"> Pays est obligatoire</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Mot de passe -->
+      <div *ngIf="!article.id" class="form-row">
+        <div class="col">
+          <label class="required" for="password">Mot de passe</label>
+
+          <input
+            type="password"
+            class="form-control"
+            aria-label="password"
+            name="password"
+            aria-describedby="inputGroup-sizing-sm"
+            ngModel="{{article['password']}}"
+            required
+            #password="ngModel"
+            placeholder="Mot de passe"
+          >
+
+          <div *ngIf="password.invalid  && (password.dirty || password.touched)">
+            <div *ngIf="password.errors?.['required']">
+              <small id="password" class="text-danger"> Mot de passe est obligatoire</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <small>
+        <span class="star"></span> Obligatoire
+      </small>
+    </div>
+
+    <div class="modal-footer">
+      <input class="btn btn-primary" type="submit" value="Sauvegarder" [disabled]="myform.invalid">
+    </div>
+  </form>
+</ng-template>
+
+<button class="btn btn-success btn-sm font-weight-bold" (click)="open(content)" *ngIf="mode === 'modal'"><fa-icon class="pr-2" [icon]="faPlus"></fa-icon>Nouvel article</button>
+<button (click)="open(content)" *ngIf="mode === 'url'" class="btn btn-link p-0">{{article.nom}}</button>
+

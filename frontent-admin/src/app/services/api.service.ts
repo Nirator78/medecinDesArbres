@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import {AuthService} from './auth.service';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ import {AuthService} from './auth.service';
 
 export class ApiService {
 
-  baseUrl = 'http://localhost:3000/api/';
+  baseUrl = `${environment.apiUrl}/api/`;
   headers;
 
   constructor(private _http: HttpClient, private _auth: AuthService) {

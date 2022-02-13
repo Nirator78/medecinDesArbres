@@ -4,7 +4,6 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { NgForm } from '@angular/forms';
 import {UserService} from "../../services/user.service";
 import {ListUserComponent} from "../list-user/list-user.component";
-import { mergeWith } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
