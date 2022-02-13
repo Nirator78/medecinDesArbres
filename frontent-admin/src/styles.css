@@ -19,3 +19,7 @@ label.notrequired:after {
     color: #EB5E28!important;
     font-size: 17px;
 }
+/* A retire si probleme */
+html {
+    overflow: hidden; /* les dépassements seront masqués */
+  }
