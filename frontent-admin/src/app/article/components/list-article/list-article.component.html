@@ -35,7 +35,7 @@
           <td> {{ article.description }} </td>
           <td> {{ article.prix }} € </td>
           <td> {{ article.stock }} </td>
-          <td> <img src="{{environment.apiUrl + article.image.url}}" width="50" height="50"/> </td>
+          <td> <img src="{{article.image ? (environment.apiUrl + article?.image?.url) : 'https://via.placeholder.com/50' }}" width="50" height="50"/> </td>
           <td> <button type="button" class="btn btn-danger btn-sm" (click)="deleteUser(article.id)"><fa-icon [icon]="faTrash"></fa-icon></button> </td>
         </tr>
         </tbody>

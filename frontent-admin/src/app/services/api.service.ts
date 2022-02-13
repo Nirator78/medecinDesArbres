@@ -49,4 +49,11 @@ export class ApiService {
       return res;
     }));
   }
+
+  uploadTypeRequest(type, id, image) {
+    return this._http.post(`${this.baseUrl}upload/${type}/${id}`, image).pipe(map(res => {
+      return res;
+    }));
+  }
+
 }
