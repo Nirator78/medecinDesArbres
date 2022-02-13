@@ -25,13 +25,20 @@ h2
   width: 0px;
   height: 2px;
   background: #3e993f;
-  transition: 0.3s
+  transition: 0.4s;
 }
 
 .nav-item:hover::after {
   width: 100%
 }
 
+.nav-link {
+  padding: 5px 5px;
+  transition: 0.2s;
+  color: #3e993f;
+}
+
 .active{
   background-color: #3e993f;
+  color: #3e993f;
 }
