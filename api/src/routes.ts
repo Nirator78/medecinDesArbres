@@ -10,6 +10,7 @@ import VisualNovelRoute from "./Route/VisualNovelRoute";
 import QuizRoute from "./Route/QuizRoute";
 import UserQuizRoute from "./Route/UserQuizRoute";
 import UserVisualNovelRoute from "./Route/UserVisualNovelRoute";
+import UploadRoute from "./Route/UploadRoute";
 
 export const Routes = [
     ...ArticleRoute,
@@ -24,4 +25,5 @@ export const Routes = [
     ...QuizRoute,
     ...UserQuizRoute,
     ...UserVisualNovelRoute,
+    ...UploadRoute,
 ];
