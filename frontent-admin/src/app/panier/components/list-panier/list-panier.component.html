@@ -1,0 +1,46 @@
+<div class="card-body">
+  <!-- Paniers -->
+  <h3 class="page-header">
+    Paniers
+  </h3>
+  <!-- Liste des paniers -->
+  <p class="card-description mb-4">
+    Liste des paniers
+  </p>
+
+  <div class="mb-4">
+    <div class="btn-group" role="group" aria-label="Basic example">
+      <app-modal-panier mode="modal"></app-modal-panier>
+      <button class="btn border-left btn-success btn-sm" (click)="refresh()">
+        <fa-icon [icon]="faSync"></fa-icon>
+      </button>
+    </div>
+  </div>
+  <ng-template [ngIf]="panierList.length>0" [ngIfElse]="elseBlockTot">
+    <div class="table-responsive">
+      <table class="table table-hover table-sm" style="white-space: nowrap">
+        <thead>
+        <tr>
+          <th scope="col">Nom</th>
+          <th scope="col">Prenom</th>
+          <th scope="col">Article</th>
+          <th scope="col">Quantité</th>
+          <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let panier of panierList">
+          <td> <app-modal-panier mode="url" [panier]="panier"></app-modal-panier></td>
+          <td> {{ panier.user.prenom }} </td>
+          <td> {{ panier.article.nom }} </td>
+          <td> {{ panier.quantite }} </td>
+          <td> <button type="button" class="btn btn-danger btn-sm" (click)="deletePanier(panier.id)"><fa-icon [icon]="faTrash"></fa-icon></button> </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </ng-template>
+  <ng-template #elseBlockTot>
+    <p>Pas de panier enregistré.</p>
+  </ng-template>
+</div>

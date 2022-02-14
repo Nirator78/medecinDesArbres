@@ -1,0 +1,101 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 *ngIf="mode === 'modal'" class="modal-title" id="modal-basic-title">Création de panier</h4>
+    <h4 *ngIf="mode === 'url'" class="modal-title" id="modal-basic-title">Modification de panier</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <form #myform = "ngForm" (ngSubmit) = "onSubmit(myform)" >
+    <div class="modal-body">
+      <!-- Utilisateur -->
+      <div class="form-row">
+        <div class="col">
+          <label class="required" for="user">Utilisateur</label>
+
+          <select
+            class="form-control"
+            aria-label="user"
+            id="user"
+            name="user"
+            #user="ngModel"
+            aria-describedby="inputGroup-sizing-sm"
+            required
+            placeholder="Utilisateur"
+            ngModel="{{panier['user']}}"
+          >
+            <option *ngFor="let c of userList" [ngValue]="c">{{c.nom}}</option>
+          </select>
+
+          <div *ngIf="user.invalid  && (user.dirty || user.touched)">
+            <div *ngIf="user.errors?.['required']">
+              <small id="userRequired" class="text-danger"> Utilisateur est obligatoire</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <label class="required" for="article">Article</label>
+
+          <select
+            class="form-control"
+            aria-label="article"
+            id="article"
+            name="article"
+            #article="ngModel"
+            aria-describedby="inputGroup-sizing-sm"
+            required
+            placeholder="Article"
+            ngModel="{{panier['article']}}"
+          >
+            <option *ngFor="let c of articleList" [ngValue]="c">{{c.nom}}</option>
+          </select>
+
+          <div *ngIf="article.invalid  && (article.dirty || article.touched)">
+            <div *ngIf="article.errors?.['required']">
+              <small id="nomRequired" class="text-danger"> Article est obligatoire</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <!-- Quantité -->
+        <div class="col">
+          <label class="required" for="quantite">Quantité</label>
+
+          <input
+            type="number"
+            class="form-control"
+            aria-label="quantite"
+            name="quantite"
+            aria-describedby="inputGroup-sizing-sm"
+            required
+            #quantite="ngModel"
+            placeholder="Quantité"
+            min="1"
+            ngModel="{{article['quantite']}}"
+          >
+
+          <div *ngIf="quantite.invalid  && (quantite.dirty || quantite.touched)">
+            <div *ngIf="quantite.errors?.['required']">
+              <small id="quantite" class="text-danger"> Quantité est obligatoire </small>
+            </div>
+            <div *ngIf="quantite.errors?.['min']">
+              <small id="quantite" class="text-danger"> Quantité invalide </small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <small>
+        <span class="star"></span> Obligatoire
+      </small>
+    </div>
+
+    <div class="modal-footer">
+      <input class="btn btn-primary" type="submit" value="Sauvegarder" [disabled]="myform.invalid">
+    </div>
+  </form>
+</ng-template>
+
+<button class="btn btn-success btn-sm font-weight-bold" (click)="open(content)" *ngIf="mode === 'modal'"><fa-icon class="pr-2" [icon]="faPlus"></fa-icon>Nouvel utilisateur</button>
+<button (click)="open(content)" *ngIf="mode === 'url'" class="btn btn-link p-0">{{panier.user.nom}}</button>
