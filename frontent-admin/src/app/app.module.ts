@@ -11,13 +11,17 @@ import { UserModule } from "./user/user.module";
 import { HttpClientModule } from "@angular/common/http";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {ArticleModule} from "./article/article.module";
-import {PanierModule} from "./panier/panier.module";
+import { ConfirmationDialogComponent } from './ui/confirmation-dialog/confirmation-dialog.component';
+import { ConfirmationDialogService } from './ui/confirmation-dialog/confirmation-dialog.service';
+import { PanierModule } from "./panier/panier.module";
+
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuAdminComponent,
-    NavbarComponent
+    NavbarComponent,
+    ConfirmationDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +36,7 @@ import {PanierModule} from "./panier/panier.module";
     ArticleModule,
     PanierModule
   ],
-  providers: [],
+  providers: [ConfirmationDialogService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

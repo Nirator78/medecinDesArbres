@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import {UserService} from "../../services/user.service";
 import { faSync } from '@fortawesome/free-solid-svg-icons';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { ConfirmationDialogService } from './../../../ui/confirmation-dialog/confirmation-dialog.service';
 
 @Component({
   selector: "app-list-user",
@@ -12,10 +13,11 @@ export class ListUserComponent implements OnInit {
 
   faSync = faSync;
   faTrash = faTrash;
+  confirmation;
 
   public userList;
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private confirmationDialogService: ConfirmationDialogService) {
     this.userList = [];
     this.refresh();
   }
@@ -28,8 +30,15 @@ export class ListUserComponent implements OnInit {
   }
 
   async deleteUser(id) {
+    await this.confirmationDialogService.confirm('Suppression', 'Êtez-vous sur de vouloir supprimer cette utilisateur ?')
+    .then(confirm => this.confirmation = confirm)
+    .catch(() => console.log('Annuler'));
     // Suppression de l'utilisateur
-    await this.userService.deleteUser(id);
+    if(this.confirmation){
+      await this.userService.deleteUser(id);
+    }
+    // Suppression de l'utilisateur
+
     // Puis on rafraichi la liste
     this.refresh();
   }
