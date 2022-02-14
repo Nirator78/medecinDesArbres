@@ -6,6 +6,7 @@ import {MenuAdminComponent} from "./menu-admin/menu-admin.component";
 import {ListUserComponent} from "./user/components/list-user/list-user.component";
 import {ListPasswordKeyComponent} from "./user/components/list-password-key/list-password-key.component";
 import {ListArticleComponent} from "./article/components/list-article/list-article.component";
+import {ListPanierComponent} from "./panier/components/list-panier/list-panier.component";
 
 const routes: Routes = [
   { path: '', component: LoginComponent, pathMatch: 'full' },
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'utilisateur', component: ListUserComponent, canActivate:[LoginGuard] },
   { path: 'password-key', component: ListPasswordKeyComponent, canActivate:[LoginGuard] },
   { path: 'article', component: ListArticleComponent, canActivate:[LoginGuard] },
+  { path: 'panier', component: ListPanierComponent, canActivate:[LoginGuard] },
   { path: '**', redirectTo: '' }
 ];
 
