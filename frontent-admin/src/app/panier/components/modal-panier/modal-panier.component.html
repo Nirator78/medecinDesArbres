@@ -24,7 +24,7 @@
             placeholder="Utilisateur"
             ngModel="{{panier['user']}}"
           >
-            <option *ngFor="let c of userList" [ngValue]="c">{{c.nom}}</option>
+            <option *ngFor="let user of userList" [ngValue]="user">{{user.nom}}</option>
           </select>
 
           <div *ngIf="user.invalid  && (user.dirty || user.touched)">
@@ -48,7 +48,7 @@
             placeholder="Article"
             ngModel="{{panier['article']}}"
           >
-            <option *ngFor="let c of articleList" [ngValue]="c">{{c.nom}}</option>
+            <option *ngFor="let article of articleList" [ngValue]="article">{{article.nom}}</option>
           </select>
 
           <div *ngIf="article.invalid  && (article.dirty || article.touched)">
