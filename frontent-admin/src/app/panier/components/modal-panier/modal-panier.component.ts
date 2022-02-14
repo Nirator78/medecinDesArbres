@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { NgForm } from '@angular/forms';
@@ -12,7 +12,7 @@ import {ArticleService} from "../../../article/services/article.service";
   templateUrl: './modal-panier.component.html',
   styleUrls: ['./modal-panier.component.css']
 })
-export class ModalPanierComponent implements OnInit{
+export class ModalPanierComponent{
 
   @Input() mode!: string;
   @Input() panier: any = {};
@@ -26,13 +26,12 @@ export class ModalPanierComponent implements OnInit{
     this.userList = []
   }
 
-  async ngOnInit() {
+  async open(content) {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title', size: 'lg'});
+
+    // Récupération des liste pour le formulaire à l'ouverture sinon spam de l'api
     this.userList = await this.userService.getAllUser();
     this.articleList = await this.articleService.getAllArticle();
-  }
-
-  open(content) {
-    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title', size: 'lg'});
   }
 
   onSubmit(form: NgForm){
@@ -44,11 +43,11 @@ export class ModalPanierComponent implements OnInit{
     else {
       methode="createPanier"
     }
-    // Post l'utilisateur
+    // Post le panier
     this.panierService[methode](form).then(() => {
       // Ferme le modal
       this.modalService.dismissAll();
-      // Refresh la liste des utilisateurs
+      // Refresh la liste des paniers
       this.listPanierComponent.refresh();
     });
   }

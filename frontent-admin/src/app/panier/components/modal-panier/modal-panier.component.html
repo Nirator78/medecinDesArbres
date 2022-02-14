@@ -73,7 +73,7 @@
             #quantite="ngModel"
             placeholder="Quantité"
             min="1"
-            ngModel="{{article['quantite']}}"
+            ngModel="{{panier['quantite']}}"
           >
 
           <div *ngIf="quantite.invalid  && (quantite.dirty || quantite.touched)">
@@ -97,5 +97,5 @@
   </form>
 </ng-template>
 
-<button class="btn btn-success btn-sm font-weight-bold" (click)="open(content)" *ngIf="mode === 'modal'"><fa-icon class="pr-2" [icon]="faPlus"></fa-icon>Nouvel utilisateur</button>
+<button class="btn btn-success btn-sm font-weight-bold" (click)="open(content)" *ngIf="mode === 'modal'"><fa-icon class="pr-2" [icon]="faPlus"></fa-icon>Nouveau panier</button>
 <button (click)="open(content)" *ngIf="mode === 'url'" class="btn btn-link p-0">{{panier.user.nom}}</button>
