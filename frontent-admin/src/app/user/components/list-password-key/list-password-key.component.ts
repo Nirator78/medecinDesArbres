@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { faSync } from '@fortawesome/free-solid-svg-icons';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { ConfirmationDialogService } from 'src/app/ui/confirmation-dialog/confirmation-dialog.service';
 import {PasswordKeyService} from "../../services/password-key.service";
 
 @Component({
@@ -12,10 +13,11 @@ export class ListPasswordKeyComponent implements OnInit {
 
   faSync = faSync;
   faTrash = faTrash;
+  confirmation;
 
   public passwordKeyList;
 
-  constructor(private passwordKeyService: PasswordKeyService) {
+  constructor(private passwordKeyService: PasswordKeyService, private confirmationDialogService: ConfirmationDialogService) {
     this.passwordKeyList = [];
     this.refresh();
   }
@@ -28,8 +30,13 @@ export class ListPasswordKeyComponent implements OnInit {
   }
 
   async deletePasswordKey(id) {
+    await this.confirmationDialogService.confirm('Suppression', 'Êtez-vous sur de vouloir supprimer cette demande ?')
+    .then(confirm => this.confirmation = confirm)
+    .catch(() => console.log('Annuler'));
     // Suppression de la demande de mot de passe oublié
-    await this.passwordKeyService.deletePasswordKey(id);
+    if(this.confirmation){
+      await this.passwordKeyService.deletePasswordKey(id);
+    }
     // Puis on rafraichi la liste
     this.refresh();
   }

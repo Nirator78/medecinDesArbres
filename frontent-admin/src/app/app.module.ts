@@ -13,7 +13,7 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {ArticleModule} from "./article/article.module";
 import { ConfirmationDialogComponent } from './ui/confirmation-dialog/confirmation-dialog.component';
 import { ConfirmationDialogService } from './ui/confirmation-dialog/confirmation-dialog.service';
-import {PanierModule} from "./panier/panier.module";
+import { PanierModule } from "./panier/panier.module";
 
 
 @NgModule({

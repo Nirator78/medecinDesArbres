@@ -29,9 +29,9 @@ export class ListArticleComponent implements OnInit {
   }
 
   async deleteUser(id) {
-    await this.confirmationDialogService.confirm('Please confirm..', 'Do you really want to ... ?')
+    await this.confirmationDialogService.confirm('Suppression', 'Êtez-vous sur de vouloir supprimer cette article ?')
     .then(confirm => this.confirmation = confirm)
-    .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
+    .catch(() => console.log('Annuler'));
     // Suppression de l'utilisateur
     if(this.confirmation){
       await this.articleService.deleteArticle(id);
