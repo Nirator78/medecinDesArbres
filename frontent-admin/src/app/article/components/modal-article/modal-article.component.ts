@@ -53,13 +53,7 @@ export class ModalArticleComponent  {
   }
 
   onFileSelected(event) {
-    const fichier = event.target.files[0];
-
-    if(fichier.size <= 50000) {
-      this.file = fichier;
-    }else{
-      // popup d'alerte taille trop grand
-    }
+    this.file = event.target.files[0];
   }
 
 }
