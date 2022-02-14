@@ -113,32 +113,6 @@
           </div>
         </div>
       </div>
-      <!-- Image
-      <div class="form-row">
-        <div class="col">
-          <label class="required" for="image">Image</label>
-
-          <input
-            type="file"
-            class="form-control"
-            aria-label="image"
-            name="image"
-            aria-describedby="inputGroup-sizing-sm"
-
-            #image="ngModel"
-            placeholder="Image"
-            ngModel="{{article['image']}}"
-            accept="image/png, image/jpeg"
-          >
-
-          <div *ngIf="image.invalid  && (image.dirty || image.touched)">
-            <div *ngIf="image.errors?.['required']">
-              <small id="image" class="text-danger"> Image est obligatoire</small>
-            </div>
-          </div>
-        </div>
-      </div>-->
-      <!-- Tag -->
       <div class="form-row">
         <!-- Tag -->
         <div class="col">
@@ -163,22 +137,20 @@
           </div>
         </div>
       </div>
-      <small>
-        <span class="star"></span> Obligatoire
-      </small>
-    </div>
 
-    <div class="form-row col">
       <div class="mb-3 w-96">
         <label for="formFileSm" class="form-label inline-block mb-2 text-gray-700">Image</label>
         <input
-          class="form-control block w-full px-2 py-1 text-sm font-normal text-gray-700 bg-white bg-clip-padding
-                  border border-solid border-gray-300 rounded transition ease-in-out m-0
-                  focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-         id="formFileSm"
-         type="file"
-         (change)="onFileSelected($event)">
+          class="form-control"
+          id="formFileSm"
+          type="file"
+          (change)="onFileSelected($event)"
+          accept="image/*"
+        >
       </div>
+      <small>
+        <span class="star"></span> Obligatoire
+      </small>
     </div>
 
     <div class="modal-footer">
