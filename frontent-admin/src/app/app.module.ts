@@ -11,6 +11,7 @@ import { UserModule } from "./user/user.module";
 import { HttpClientModule } from "@angular/common/http";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {ArticleModule} from "./article/article.module";
+import {PanierModule} from "./panier/panier.module";
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import {ArticleModule} from "./article/article.module";
     AuthModule,
     UserModule,
     FontAwesomeModule,
-    ArticleModule
+    ArticleModule,
+    PanierModule
   ],
   providers: [],
   bootstrap: [AppComponent]

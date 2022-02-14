@@ -47,7 +47,7 @@ items:
     email: charlotte@gmail.com
   pleb:
     nom: Pleb
-    prenom: Pleb
+    prenom: Test
     role: user
     password: '123456'
     adresse: Rue ici

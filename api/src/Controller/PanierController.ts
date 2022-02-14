@@ -13,13 +13,10 @@ export class PanierController {
     private authentificationService = new AuthentificationService();
 
     async all(request: Request, response: Response, next: NextFunction) {
-        if(request.query.user){
-            let panierListe = await this.panierRepository.find({ relations: ["article", "user"], where: {user: request.query.user} });
-            if(panierListe){
-                return { status: 1, data: panierListe }
-            }else{
-                return { status: 0 };
-            }
+        let panierListe = await this.panierRepository.find({ relations: ["article", "user"] });
+
+        if(panierListe){
+            return { status: 1, data: panierListe }
         }else{
             return { status: 0 };
         }
