@@ -14,7 +14,7 @@ import {ArticleModule} from "./article/article.module";
 import { ConfirmationDialogComponent } from './ui/confirmation-dialog/confirmation-dialog.component';
 import { ConfirmationDialogService } from './ui/confirmation-dialog/confirmation-dialog.service';
 import { PanierModule } from "./panier/panier.module";
-
+import {CommandeModule} from "./commande/commande.module";
 import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
@@ -36,7 +36,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
     FontAwesomeModule,
     ArticleModule,
     PanierModule,
-    NgSelectModule,
+    CommandeModule,
+    NgSelectModule
   ],
   providers: [ConfirmationDialogService],
   bootstrap: [AppComponent]
