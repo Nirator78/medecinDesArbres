@@ -18,7 +18,7 @@ export class QuizReponse {
     @Column()
     bonne: number;
 
-    @OneToOne(() => Image, {cascade: true})
+    @OneToOne(() => Image, {cascade: true, nullable: true})
     @JoinColumn()
     image: Image;
 

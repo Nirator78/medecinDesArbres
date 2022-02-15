@@ -24,7 +24,7 @@ export class Quiz {
     @Column()
     age: number;
 
-    @OneToOne(() => Image, {cascade: true})
+    @OneToOne(() => Image, {cascade: true, nullable: true})
     @JoinColumn()
     image: Image;
 
