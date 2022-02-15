@@ -29,10 +29,15 @@ h2
 }
 
 .nav-item:hover::after {
-  width: 100%
+  width: 100%;
 }
 
 .nav-link {
+  padding: 5px 5px;
+  transition: 0.2s;
+  color: #000000;
+}
+.nav-link:hover {
   padding: 5px 5px;
   transition: 0.2s;
   color: #3e993f;

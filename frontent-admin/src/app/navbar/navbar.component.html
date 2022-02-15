@@ -4,6 +4,7 @@
       <div class="media-body">
         <h1 class="m-0">Medecin Des Arbres</h1>
         <h2>Panneau d'aministration</h2>
+        <h2 class="text-uppercase">{{userConnecter.nom}} {{userConnecter.prenom}}</h2>
       </div>
     </div>
   </div>
@@ -12,14 +13,14 @@
 
   <ul class="nav flex-column bg-white mb-0">
     <li class="nav-item" routerLinkActive = "active">
-      <a [routerLink] = "['utilisateur']" class="nav-link text-dark font-italic bg-white">
+      <a [routerLink] = "['utilisateur']"  routerLinkActive = "active" class="nav-link font-italic bg-white">
         <i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
         Utilisateur
         <!-- Gestion des tables: User -->
       </a>
     </li>
     <li class="nav-item" routerLinkActive = "active">
-      <a [routerLink] = "['password-key']" class="nav-link text-dark font-italic bg-white">
+      <a [routerLink] = "['password-key']"  routerLinkActive = "active" class="nav-link font-italic bg-white">
         <i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
         Demande mot de passe
         <!-- Gestion des tables: PasswordKey -->
@@ -31,28 +32,28 @@
 
   <ul class="nav flex-column bg-white mb-0">
     <li class="nav-item" routerLinkActive = "active">
-      <a [routerLink] = "['article']" class="nav-link text-dark font-italic bg-white">
+      <a [routerLink] = "['article']" routerLinkActive = "active" class="nav-link font-italic bg-white">
         <i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
         Article
         <!-- Gestion des tables: Article -->
       </a>
     </li>
     <li class="nav-item" routerLinkActive = "active">
-      <a [routerLink] = "['#']" class="nav-link text-dark font-italic bg-white">
+      <a [routerLink] = "['#']" class="nav-link font-italic bg-white">
         <i class="fa fa-bar-chart mr-3 text-primary fa-fw"></i>
         Commande
         <!-- Gestion des tables: Commande, CommandeLignes -->
       </a>
     </li>
     <li class="nav-item" routerLinkActive = "active">
-      <a [routerLink] = "['panier']" class="nav-link text-dark font-italic bg-white">
+      <a [routerLink] = "['panier']" routerLinkActive = "active" class="nav-link font-italic bg-white">
         <i class="fa fa-pie-chart mr-3 text-primary fa-fw"></i>
         Panier
         <!-- Gestion des tables: Panier -->
       </a>
     </li>
     <li class="nav-item" routerLinkActive = "active">
-      <a [routerLink] = "['#']" class="nav-link text-dark font-italic bg-white">
+      <a [routerLink] = "['#']" class="nav-link font-italic bg-white">
         <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
         Statistique vente
       </a>
@@ -63,28 +64,28 @@
 
   <ul class="nav flex-column bg-white mb-0">
     <li class="nav-item" routerLinkActive = "active">
-      <a [routerLink] = "['#']" class="nav-link text-dark font-italic bg-white">
+      <a [routerLink] = "['#']" routerLinkActive = "active" class="nav-link font-italic bg-white">
         <i class="fa fa-area-chart mr-3 text-primary fa-fw"></i>
         Fiche pédagogique
         <!-- Gestion des tables: FichePédagogique, SousPartie -->
       </a>
     </li>
     <li class="nav-item" routerLinkActive = "active">
-      <a [routerLink] = "['#']" class="nav-link text-dark font-italic bg-white">
+      <a [routerLink] = "['#']" routerLinkActive = "active" class="nav-link font-italic bg-white">
         <i class="fa fa-pie-chart mr-3 text-primary fa-fw"></i>
         Conférence
         <!-- Gestion des tables: Conférence, ConférenceParticipant -->
       </a>
     </li>
     <li class="nav-item" routerLinkActive = "active">
-      <a [routerLink] = "['#']" class="nav-link text-dark font-italic bg-white">
+      <a [routerLink] = "['#']" routerLinkActive = "active" class="nav-link font-italic bg-white">
         <i class="fa fa-pie-chart mr-3 text-primary fa-fw"></i>
         ParcoursEcolo
         <!-- Gestion des tables: ParcoursEcolo -->
       </a>
     </li>
     <li class="nav-item" routerLinkActive = "active">
-      <a [routerLink] = "['#']" class="nav-link text-dark font-italic bg-white">
+      <a [routerLink] = "['#']" routerLinkActive = "active" class="nav-link font-italic bg-white">
         <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
         Statistique
       </a>
@@ -95,14 +96,14 @@
 
   <ul class="nav flex-column bg-white mb-0">
     <li class="nav-item" routerLinkActive = "active">
-      <a [routerLink] = "['#']" class="nav-link text-dark font-italic bg-white">
+      <a [routerLink] = "['#']" routerLinkActive = "active" class="nav-link font-italic bg-white">
         <i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
         Quiz
         <!-- Gestion des tables: Quiz -->
       </a>
     </li>
     <li class="nav-item" routerLinkActive = "active">
-      <a [routerLink] = "['#']" class="nav-link text-dark font-italic bg-white">
+      <a [routerLink] = "['#']" routerLinkActive = "active" class="nav-link font-italic bg-white">
         <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
         Statistique Quiz
       </a>
@@ -113,14 +114,14 @@
 
   <ul class="nav flex-column bg-white mb-0">
     <li class="nav-item" routerLinkActive = "active">
-      <a [routerLink] = "['#']" class="nav-link text-dark font-italic bg-white">
+      <a [routerLink] = "['#']" routerLinkActive = "active" class="nav-link font-italic bg-white">
         <i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
         Visual Novel
         <!-- Gestion des tables: Visual Novel -->
       </a>
     </li>
     <li class="nav-item" routerLinkActive = "active">
-      <a [routerLink] = "['#']" class="nav-link text-dark font-italic bg-white">
+      <a [routerLink] = "['#']" routerLinkActive = "active" class="nav-link font-italic bg-white">
         <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
         Statistique Visual Novel
       </a>
