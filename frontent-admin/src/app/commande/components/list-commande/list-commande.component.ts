@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import {CommandeService} from "../../services/commande.service";
+import { faSync } from '@fortawesome/free-solid-svg-icons';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { environment } from '../../../../environments/environment';
+import {ConfirmationDialogService} from "../../../ui/confirmation-dialog/confirmation-dialog.service";
 
 @Component({
   selector: 'app-list-commande',
@@ -7,9 +12,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListCommandeComponent implements OnInit {
 
-  constructor() { }
+  faSync = faSync;
+  faTrash = faTrash;
+  confirmation;
+  public commandeList;
+  public environment = environment;
+
+  constructor(private commandeService: CommandeService, private confirmationDialogService: ConfirmationDialogService) {
+    this.commandeList = [];
+    this.refresh();
+  }
 
   ngOnInit(): void {
+  }
+
+  async refresh() {
+    this.commandeList = await this.commandeService.getAllCommande();
+  }
+
+  async deleteCommande(id) {
+    await this.confirmationDialogService.confirm('Suppression', 'Voulez-vous vraiment effacer cet commande ?')
+      .then(confirm => this.confirmation = confirm)
+      .catch(() => {});
+    // Suppression d'une commande
+    if(this.confirmation){
+      await this.commandeService.deleteCommande(id);
+    }
+    // Puis on rafraichi la liste
+    this.refresh();
   }
 
 }

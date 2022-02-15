@@ -19,6 +19,6 @@ export class Commande {
     @JoinTable({ name: "user" })
     user: User;
 
-    @OneToMany(() => CommandeLigne, commandeLignes => commandeLignes.commande, { cascade: true })
+    @OneToMany(() => CommandeLigne, commandeLignes => commandeLignes.commande, { onDelete: 'CASCADE' })
     commandeLignes: CommandeLigne[];
 }
