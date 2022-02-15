@@ -6,7 +6,7 @@ import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
-
+import { NgSelectModule } from '@ng-select/ng-select';
 @NgModule({
   declarations: [
     ModalPanierComponent,
@@ -17,7 +17,8 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
     FormsModule,
     HttpClientModule,
     NgbModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    NgSelectModule
   ],
   exports: [
     ModalPanierComponent,

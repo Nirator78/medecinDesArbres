@@ -3,7 +3,7 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 @import '~bootstrap/dist/css/bootstrap.min.css';
-
+@import "~@ng-select/ng-select/themes/default.theme.css";
 label.required:after {
     content:" *";
     color: #EB5E28!important;

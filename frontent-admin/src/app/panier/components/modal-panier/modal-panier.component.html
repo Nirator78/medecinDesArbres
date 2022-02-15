@@ -1,5 +1,5 @@
 <ng-template #content let-modal>
-  <div class="modal-header">
+  <div class="modal-header" > 
     <h4 *ngIf="mode === 'modal'" class="modal-title" id="modal-basic-title">Création de panier</h4>
     <h4 *ngIf="mode === 'url'" class="modal-title" id="modal-basic-title">Modification de panier</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
@@ -12,20 +12,21 @@
       <div class="form-row">
         <div class="col">
           <label class="required" for="user">Utilisateur</label>
-
-          <select
-            class="form-control"
-            aria-label="user"
-            id="user"
+          <ng-select
+            required
+            placeholder="Choisir un utilisateur"
             name="user"
             #user="ngModel"
-            aria-describedby="inputGroup-sizing-sm"
-            required
-            placeholder="Utilisateur"
-            ngModel="{{panier['user']}}"
-          >
-            <option *ngFor="let user of userList" [ngValue]="user">{{user.nom}}</option>
-          </select>
+            [items]="userList"
+            bindLabel="prenom"
+            [closeOnSelect]="false"
+            [clearable]="false"
+            [closeOnSelect]="true"
+            [(ngModel)]="panier.user">
+            <ng-option [value]="panier.user ? user.id : null"  *ngFor="let user of userList">
+                {{user.nom}}
+            </ng-option>
+          </ng-select>
 
           <div *ngIf="user.invalid  && (user.dirty || user.touched)">
             <div *ngIf="user.errors?.['required']">
@@ -34,22 +35,24 @@
           </div>
         </div>
 
+
         <div class="col">
           <label class="required" for="article">Article</label>
-
-          <select
-            class="form-control"
-            aria-label="article"
-            id="article"
+          <ng-select
+            required
+            placeholder="Choisir un article"
             name="article"
             #article="ngModel"
-            aria-describedby="inputGroup-sizing-sm"
-            required
-            placeholder="Article"
-            ngModel="{{panier['article']}}"
-          >
-            <option *ngFor="let article of articleList" [ngValue]="article">{{article.nom}}</option>
-          </select>
+            [items]="articleList"
+            bindLabel="nom"
+            [closeOnSelect]="false"
+            [clearable]="false"
+            [closeOnSelect]="true"
+            [(ngModel)]="panier.article">
+            <ng-option [value]="panier.article"  *ngFor="let article of articleList">
+                {{article.nom}}
+            </ng-option>
+          </ng-select>
 
           <div *ngIf="article.invalid  && (article.dirty || article.touched)">
             <div *ngIf="article.errors?.['required']">

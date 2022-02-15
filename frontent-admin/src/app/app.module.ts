@@ -15,6 +15,7 @@ import { ConfirmationDialogComponent } from './ui/confirmation-dialog/confirmati
 import { ConfirmationDialogService } from './ui/confirmation-dialog/confirmation-dialog.service';
 import { PanierModule } from "./panier/panier.module";
 
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { PanierModule } from "./panier/panier.module";
     UserModule,
     FontAwesomeModule,
     ArticleModule,
-    PanierModule
+    PanierModule,
+    NgSelectModule,
   ],
   providers: [ConfirmationDialogService],
   bootstrap: [AppComponent]
