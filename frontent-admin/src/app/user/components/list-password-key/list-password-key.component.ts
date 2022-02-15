@@ -30,9 +30,9 @@ export class ListPasswordKeyComponent implements OnInit {
   }
 
   async deletePasswordKey(id) {
-    await this.confirmationDialogService.confirm('Suppression', 'Êtez-vous sur de vouloir supprimer cette demande ?')
+    await this.confirmationDialogService.confirm('Suppression', 'Voulez-vous vraiment effacer cette demande ?')
     .then(confirm => this.confirmation = confirm)
-    .catch(() => console.log('Annuler'));
+    .catch(() => {});
     // Suppression de la demande de mot de passe oublié
     if(this.confirmation){
       await this.passwordKeyService.deletePasswordKey(id);
