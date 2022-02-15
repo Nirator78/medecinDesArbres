@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {PanierService} from "../../services/panier.service";
 import { faSync } from '@fortawesome/free-solid-svg-icons';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { ConfirmationDialogService } from 'src/app/ui/confirmation-dialog/confirmation-dialog.service';
 
 @Component({
   selector: 'app-list-panier',
@@ -12,10 +13,11 @@ export class ListPanierComponent implements OnInit {
 
   faSync = faSync;
   faTrash = faTrash;
+  confirmation;
 
   public panierList;
 
-  constructor(private panierService: PanierService) {
+  constructor(private panierService: PanierService, private confirmationDialogService : ConfirmationDialogService) {
     this.panierList = [];
     this.refresh();
   }
@@ -28,8 +30,13 @@ export class ListPanierComponent implements OnInit {
   }
 
   async deletePanier(id) {
+    await this.confirmationDialogService.confirm('Suppression', 'Voulez-vous vraiment effacer ce panier ?')
+    .then(confirm => this.confirmation = confirm)
+    .catch(() => {});
     // Suppression du panier
-    await this.panierService.deletePanier(id);
+    if (this.confirmation){
+      await this.panierService.deletePanier(id);
+    }
     // Puis on rafraichi la liste
     this.refresh();
   }
