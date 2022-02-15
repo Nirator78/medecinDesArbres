@@ -31,7 +31,7 @@ export default [
     },
     {
         method: "put",
-        route: "/panier",
+        route: "/panier/:id",
         controller: PanierController,
         action: "update"
     },

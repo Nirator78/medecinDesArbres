@@ -32,7 +32,7 @@ export class ListUserComponent implements OnInit {
   async deleteUser(id) {
     await this.confirmationDialogService.confirm('Suppression', 'Êtez-vous sur de vouloir supprimer cette utilisateur ?')
     .then(confirm => this.confirmation = confirm)
-    .catch(() => console.log('Annuler'));
+    .catch(() => {});
     // Suppression de l'utilisateur
     if(this.confirmation){
       await this.userService.deleteUser(id);
