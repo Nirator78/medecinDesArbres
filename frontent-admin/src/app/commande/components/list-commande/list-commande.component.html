@@ -1,0 +1,46 @@
+<div class="card-body">
+  <!-- Commande -->
+  <h3 class="page-header">
+    Commande
+  </h3>
+  <!-- Liste des commandes -->
+  <p class="card-description mb-4">
+    Liste des commandes
+  </p>
+
+  <div class="mb-4">
+    <div class="btn-group" role="group" aria-label="Basic example">
+      <app-modal-commande mode="modal"></app-modal-commande>
+      <button class="btn border-left btn-success btn-sm" (click)="refresh()">
+        <fa-icon [icon]="faSync"></fa-icon>
+      </button>
+    </div>
+  </div>
+  <ng-template [ngIf]="commandeList.length>0" [ngIfElse]="elseBlockTot">
+    <div class="table-responsive">
+      <table class="table table-hover table-sm" style="white-space: nowrap">
+        <thead>
+        <tr>
+          <th scope="col">Numéro</th>
+          <th scope="col">Date</th>
+          <th scope="col">Utilisateur</th>
+          <th scope="col">Nombre de ligne</th>
+          <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let commande of commandeList">
+          <td> <app-modal-commande mode="url" [commande]="commande"></app-modal-commande></td>
+          <td> {{ commande.date | date:'dd/MM/yyyy à HH:mm:ss' }} </td>
+          <td> {{ commande.user.nom }} {{ commande.user.prenom }} </td>
+          <td> {{ commande.commandeLignes.length }} </td>
+          <td> <button type="button" class="btn btn-danger btn-sm" (click)="deleteCommande(commande.id)"><fa-icon [icon]="faTrash"></fa-icon></button> </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </ng-template>
+  <ng-template #elseBlockTot>
+    <p>Pas de commande enregistré.</p>
+  </ng-template>
+</div>

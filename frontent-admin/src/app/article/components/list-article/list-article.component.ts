@@ -3,7 +3,8 @@ import {ArticleService} from "../../services/article.service";
 import { faSync } from '@fortawesome/free-solid-svg-icons';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { environment } from '../../../../environments/environment';
-import { ConfirmationDialogService } from './../../../ui/confirmation-dialog/confirmation-dialog.service';
+import { ConfirmationDialogService } from '../../../ui/confirmation-dialog/confirmation-dialog.service';
+
 @Component({
   selector: 'app-list-article',
   templateUrl: './list-article.component.html',

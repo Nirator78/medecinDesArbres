@@ -1,0 +1,164 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 *ngIf="mode === 'modal'" class="modal-title" id="modal-basic-title">Création de commande</h4>
+    <h4 *ngIf="mode === 'url'" class="modal-title" id="modal-basic-title">Modification de commande</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <form #myform = "ngForm" (ngSubmit) = "onSubmit(myform)" >
+    <div class="modal-body">
+      <!-- Nom -->
+      <div class="form-row">
+        <div class="col-12">
+          <label class="required" for="nom">Nom</label>
+
+          <input
+            type="text"
+            class="form-control"
+            aria-label="nom"
+            name="nom"
+            aria-describedby="inputGroup-sizing-sm"
+            required
+            minlength="4"
+            #nom="ngModel"
+            placeholder="Nom"
+            ngModel="{{commande['nom']}}"
+          >
+
+          <div *ngIf="nom.invalid  && (nom.dirty || nom.touched)">
+            <div *ngIf="nom.errors?.['minlength']">
+              <small id="nomMin" class="text-danger"> Il faut minimum 4 caractéres</small>
+            </div>
+            <div *ngIf="nom.errors?.['required']">
+              <small id="nomRequired" class="text-danger"> Nom est obligatoire</small>
+            </div>
+          </div>
+        </div>
+        <!-- Description -->
+        <div class="col">
+          <label class="required" for="description">Déscription</label>
+
+          <textarea
+            type="textarea"
+            class="form-control"
+            aria-label="description"
+            name="description"
+            aria-describedby="inputGroup-sizing-sm"
+            required
+            #description="ngModel"
+            placeholder="Déscription"
+            ngModel="{{commande['description']}}"
+          ></textarea>
+
+          <div *ngIf="description.invalid  && (description.dirty || description.touched)">
+            <div *ngIf="description.errors?.['required']">
+              <small id="descriptionRequired" class="text-danger"> Déscription est obligatoire</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Email -->
+      <div class="form-row">
+        <div class="col">
+          <label class="required" for="prix">Prix</label>
+
+          <input
+            type="number"
+            class="form-control"
+            aria-label="prix"
+            name="prix"
+            aria-describedby="inputGroup-sizing-sm"
+            required
+            #prix="ngModel"
+            placeholder="Prix"
+            min="0"
+            ngModel="{{commande['prix']}}"
+          >
+
+          <div *ngIf="prix.invalid  && (prix.dirty || prix.touched)">
+            <div *ngIf="prix.errors?.['min']">
+              <small id="prixInvalid" class="text-danger"> Prix invalide </small>
+            </div>
+            <div *ngIf="prix.errors?.['required']">
+              <small id="prix" class="text-danger"> Prix est obligatoire </small>
+            </div>
+          </div>
+        </div>
+        <!-- stock -->
+        <div class="col">
+          <label class="required" for="stock">Stock</label>
+
+          <input
+            type="number"
+            class="form-control"
+            aria-label="stock"
+            name="stock"
+            aria-describedby="inputGroup-sizing-sm"
+            required
+            #stock="ngModel"
+            placeholder="Stock"
+            min="1"
+            ngModel="{{commande['stock']}}"
+          >
+
+          <div *ngIf="stock.invalid  && (stock.dirty || stock.touched)">
+            <div *ngIf="stock.errors?.['required']">
+              <small id="stock" class="text-danger"> Stock est obligatoire </small>
+            </div>
+            <div *ngIf="stock.errors?.['min']">
+              <small id="stock" class="text-danger"> Stock invalide </small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <!-- Tag -->
+        <div class="col">
+          <label class="required" for="tag">Tag</label>
+
+          <input
+            type="text"
+            class="form-control"
+            aria-label="tag"
+            name="tag"
+            aria-describedby="inputGroup-sizing-sm"
+            required
+            #tag="ngModel"
+            placeholder="Tag"
+            ngModel="{{commande['tag']}}"
+          >
+
+          <div *ngIf="tag.invalid  && (tag.dirty || tag.touched)">
+            <div *ngIf="tag.errors?.['required']">
+              <small id="tag" class="text-danger"> Tag est obligatoire</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3 w-96">
+        <label for="formFileSm" class="form-label inline-block mb-2 text-gray-700">Image</label>
+        <input
+          class="form-control"
+          id="formFileSm"
+          type="file"
+          (change)="onFileSelected($event)"
+          accept="image/*"
+        >
+      </div>
+      <small>
+        <span class="star"></span> Obligatoire
+      </small>
+    </div>
+
+    <div class="modal-footer">
+      <input class="btn btn-primary" type="submit" value="Sauvegarder" [disabled]="myform.invalid">
+    </div>
+  </form>
+</ng-template>
+
+<button class="btn btn-success btn-sm font-weight-bold" (click)="open(content)" *ngIf="mode === 'modal'"><fa-icon class="pr-2" [icon]="faPlus"></fa-icon>Nouvelle commande</button>
+<button (click)="open(content)" *ngIf="mode === 'url'" class="btn btn-link p-0">{{commande.numero}}</button>
+
