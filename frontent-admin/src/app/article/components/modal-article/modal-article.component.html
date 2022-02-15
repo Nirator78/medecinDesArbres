@@ -37,7 +37,7 @@
         </div>
         <!-- Description -->
         <div class="col">
-          <label class="required" for="description">Description</label>
+          <label class="required" for="description">Déscription</label>
 
           <textarea
             type="textarea"
@@ -47,13 +47,13 @@
             aria-describedby="inputGroup-sizing-sm"
             required
             #description="ngModel"
-            placeholder="Description"
+            placeholder="Déscription"
             ngModel="{{article['description']}}"
           ></textarea>
 
           <div *ngIf="description.invalid  && (description.dirty || description.touched)">
             <div *ngIf="description.errors?.['required']">
-              <small id="descriptionRequired" class="text-danger"> Description est obligatoire</small>
+              <small id="descriptionRequired" class="text-danger"> Déscription est obligatoire</small>
             </div>
           </div>
         </div>
