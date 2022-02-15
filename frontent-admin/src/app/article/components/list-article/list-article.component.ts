@@ -28,11 +28,11 @@ export class ListArticleComponent implements OnInit {
     this.articleList = await this.articleService.getAllArticle();
   }
 
-  async deleteUser(id) {
+  async deleteArticle(id) {
     await this.confirmationDialogService.confirm('Suppression', 'Êtez-vous sur de vouloir supprimer cette article ?')
     .then(confirm => this.confirmation = confirm)
     .catch(() => console.log('Annuler'));
-    // Suppression de l'utilisateur
+    // Suppression d'un article
     if(this.confirmation){
       await this.articleService.deleteArticle(id);
     }

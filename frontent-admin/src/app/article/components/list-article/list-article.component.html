@@ -1,9 +1,9 @@
 <div class="card-body">
-  <!-- Utilisateurs -->
+  <!-- Article -->
   <h3 class="page-header">
     Article
   </h3>
-  <!-- Liste des utilisateurs -->
+  <!-- Liste des articles -->
   <p class="card-description mb-4">
     Liste des articles
   </p>
@@ -36,13 +36,13 @@
           <td> {{ article.prix }} € </td>
           <td> {{ article.stock }} </td>
           <td> <img src="{{article.image ? (environment.apiUrl + article?.image?.url) : 'https://via.placeholder.com/50' }}" width="50" height="50"/> </td>
-          <td> <button type="button" class="btn btn-danger btn-sm" (click)="deleteUser(article.id)"><fa-icon [icon]="faTrash"></fa-icon></button> </td>
+        <td> <button type="button" class="btn btn-danger btn-sm" (click)="deleteArticle(article.id)"><fa-icon [icon]="faTrash"></fa-icon></button> </td>
         </tr>
         </tbody>
       </table>
     </div>
   </ng-template>
   <ng-template #elseBlockTot>
-    <p>Pas d'utilisateur enregistré.</p>
+    <p>Pas d'article enregistré.</p>
   </ng-template>
 </div>
