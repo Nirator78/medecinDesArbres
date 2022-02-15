@@ -23,12 +23,18 @@ export class ModalPanierComponent{
   articleList;
 
   constructor(private modalService: NgbModal, private panierService: PanierService, private listPanierComponent: ListPanierComponent, private userService: UserService, private articleService: ArticleService) {
-    this.userList = []
+    this.userList = [];
+    this.articleList = [];
   }
 
   async open(content) {
-    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title', size: 'lg'});
-
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title', size: 'lg'}).result.then((result) => {
+    }, (reason) => {
+      this.listPanierComponent.refresh()
+    });
+    if(this.mode === "modal"){
+      this.panier = {}
+    }
     // Récupération des liste pour le formulaire à l'ouverture sinon spam de l'api
     this.userList = await this.userService.getAllUser();
     this.articleList = await this.articleService.getAllArticle();
@@ -45,11 +51,11 @@ export class ModalPanierComponent{
     }
     // Post le panier
     this.panierService[methode](form).then(() => {
-      // Ferme le modal
-      this.modalService.dismissAll();
-      // Refresh la liste des paniers
-      this.listPanierComponent.refresh();
+    // Ferme le modal
+    this.modalService.dismissAll();
+    // Refresh la liste des paniers
+    this.listPanierComponent.refresh();
     });
   }
-
+  
 }
