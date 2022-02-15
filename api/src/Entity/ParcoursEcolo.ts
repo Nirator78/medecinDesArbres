@@ -14,7 +14,7 @@ export class ParcoursEcolo {
     @JoinTable({ name: "user" })
     user: User;
 
-    @OneToOne(() => Image, {cascade: true})
+    @OneToOne(() => Image, {cascade: true, nullable: true})
     @JoinColumn()
     image: Image;
 
