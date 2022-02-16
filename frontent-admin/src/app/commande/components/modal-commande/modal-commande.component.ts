@@ -4,6 +4,8 @@ import {NgForm} from "@angular/forms";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import {ListCommandeComponent} from "../list-commande/list-commande.component";
 import {CommandeService} from "../../services/commande.service";
+import {NgbCalendar} from '@ng-bootstrap/ng-bootstrap';
+import { UserService } from 'src/app/user/services/user.service';
 
 @Component({
   selector: 'app-modal-commande',
@@ -16,12 +18,23 @@ export class ModalCommandeComponent {
   @Input() commande: any = {};
   faPlus = faPlus;
   file;
+  userList;
 
-  constructor(private modalService: NgbModal, private commandeService: CommandeService, private listCommandeComponent: ListCommandeComponent) {
+
+  constructor(private modalService: NgbModal, private calendar: NgbCalendar, private commandeService: CommandeService, private listCommandeComponent: ListCommandeComponent, private userService: UserService) {
+    this.userList = [];
   }
 
-  open(content) {
-    this.modalService.open(content, { ariaLabelledBy: "modal-basic-title", size: "lg"});
+  async open(content) {
+    this.modalService.open(content, { ariaLabelledBy: "modal-basic-title", size: "lg"}).result.then((result) => {
+    }, (reason) => {
+      this.listCommandeComponent.refresh()
+    });
+    if(this.mode === "modal"){
+      this.commande = {}
+    };
+    // Récupération des liste pour le formulaire à l'ouverture sinon spam de l'api
+    this.userList = await this.userService.getAllUser();
   }
 
   onSubmit(form: NgForm){

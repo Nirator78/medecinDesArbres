@@ -37,7 +37,7 @@ export default [
     },
     {
         method: "put",
-        route: "/commande",
+        route: "/commande/:id",
         controller: CommandeController,
         action: "update"
     },

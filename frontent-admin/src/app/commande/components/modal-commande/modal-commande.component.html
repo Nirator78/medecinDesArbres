@@ -8,151 +8,120 @@
   </div>
   <form #myform = "ngForm" (ngSubmit) = "onSubmit(myform)" >
     <div class="modal-body">
-      <!-- Nom -->
+      <!-- Numéro -->
       <div class="form-row">
-        <div class="col-12">
-          <label class="required" for="nom">Nom</label>
+        <div class="col">
+          <label class="required" for="numero">Numéro de commande</label>
 
           <input
             type="text"
             class="form-control"
-            aria-label="nom"
-            name="nom"
+            aria-label="numero"
+            name="numero"
             aria-describedby="inputGroup-sizing-sm"
             required
             minlength="4"
-            #nom="ngModel"
-            placeholder="Nom"
-            ngModel="{{commande['nom']}}"
+            #numero="ngModel"
+            placeholder="Numéro de commande"
+            ngModel="{{commande['numero']}}"
           >
+          
 
-          <div *ngIf="nom.invalid  && (nom.dirty || nom.touched)">
-            <div *ngIf="nom.errors?.['minlength']">
-              <small id="nomMin" class="text-danger"> Il faut minimum 4 caractéres</small>
+          <div *ngIf="numero.invalid  && (numero.dirty || numero.touched)">
+            <div *ngIf="numero.errors?.['minlength']">
+              <small id="numeroMin" class="text-danger"> Il faut minimum 4 caractéres</small>
             </div>
-            <div *ngIf="nom.errors?.['required']">
-              <small id="nomRequired" class="text-danger"> Nom est obligatoire</small>
+            <div *ngIf="numero.errors?.['required']">
+              <small id="numeroRequired" class="text-danger"> Numéro est obligatoire</small>
             </div>
           </div>
         </div>
-        <!-- Description -->
         <div class="col">
-          <label class="required" for="description">Déscription</label>
+          <label class="required" for="dateCommande">Date de la commande</label>
 
-          <textarea
-            type="textarea"
+          <input
+            type="date"
             class="form-control"
-            aria-label="description"
-            name="description"
+            aria-label="date"
+            name="date"
             aria-describedby="inputGroup-sizing-sm"
             required
-            #description="ngModel"
-            placeholder="Déscription"
-            ngModel="{{commande['description']}}"
-          ></textarea>
-
-          <div *ngIf="description.invalid  && (description.dirty || description.touched)">
-            <div *ngIf="description.errors?.['required']">
-              <small id="descriptionRequired" class="text-danger"> Déscription est obligatoire</small>
+            #date="ngModel"
+            placeholder="Date de la commande"
+            [ngModel]="commande['date'] | date:'yyyy-MM-dd'"
+          >
+          <div *ngIf="date.invalid  && (date.dirty || date.touched)">
+            <div *ngIf="date.errors?.['required']">
+              <small id="dateRequired" class="text-danger"> Date de la commande est obligatoire</small>
             </div>
           </div>
         </div>
       </div>
-
-      <!-- Email -->
+      <!-- Utilisateur -->
       <div class="form-row">
         <div class="col">
-          <label class="required" for="prix">Prix</label>
-
-          <input
-            type="number"
-            class="form-control"
-            aria-label="prix"
-            name="prix"
-            aria-describedby="inputGroup-sizing-sm"
+          <label class="required" for="user">Utilisateur</label>
+          <ng-select
             required
-            #prix="ngModel"
-            placeholder="Prix"
-            min="0"
-            ngModel="{{commande['prix']}}"
-          >
+            placeholder="Choisir un utilisateur"
+            name="user"
+            #user="ngModel"
+            [items]="userList"
+            bindLabel="prenom"
+            [closeOnSelect]="false"
+            [clearable]="false"
+            [closeOnSelect]="true"
+            [(ngModel)]="commande.user">
+            <ng-option [value]="commande.user ? user.id : null"  *ngFor="let user of userList">
+                {{user.nom}}
+            </ng-option>
+          </ng-select>
 
-          <div *ngIf="prix.invalid  && (prix.dirty || prix.touched)">
-            <div *ngIf="prix.errors?.['min']">
-              <small id="prixInvalid" class="text-danger"> Prix invalide </small>
-            </div>
-            <div *ngIf="prix.errors?.['required']">
-              <small id="prix" class="text-danger"> Prix est obligatoire </small>
+          <div *ngIf="user.invalid  && (user.dirty || user.touched)">
+            <div *ngIf="user.errors?.['required']">
+              <small id="userRequired" class="text-danger"> Utilisateur est obligatoire</small>
             </div>
           </div>
         </div>
-        <!-- stock -->
-        <div class="col">
-          <label class="required" for="stock">Stock</label>
-
-          <input
-            type="number"
-            class="form-control"
-            aria-label="stock"
-            name="stock"
-            aria-describedby="inputGroup-sizing-sm"
-            required
-            #stock="ngModel"
-            placeholder="Stock"
-            min="1"
-            ngModel="{{commande['stock']}}"
-          >
-
-          <div *ngIf="stock.invalid  && (stock.dirty || stock.touched)">
-            <div *ngIf="stock.errors?.['required']">
-              <small id="stock" class="text-danger"> Stock est obligatoire </small>
-            </div>
-            <div *ngIf="stock.errors?.['min']">
-              <small id="stock" class="text-danger"> Stock invalide </small>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="form-row">
-        <!-- Tag -->
-        <div class="col">
-          <label class="required" for="tag">Tag</label>
-
-          <input
-            type="text"
-            class="form-control"
-            aria-label="tag"
-            name="tag"
-            aria-describedby="inputGroup-sizing-sm"
-            required
-            #tag="ngModel"
-            placeholder="Tag"
-            ngModel="{{commande['tag']}}"
-          >
-
-          <div *ngIf="tag.invalid  && (tag.dirty || tag.touched)">
-            <div *ngIf="tag.errors?.['required']">
-              <small id="tag" class="text-danger"> Tag est obligatoire</small>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="mb-3 w-96">
-        <label for="formFileSm" class="form-label inline-block mb-2 text-gray-700">Image</label>
-        <input
-          class="form-control"
-          id="formFileSm"
-          type="file"
-          (change)="onFileSelected($event)"
-          accept="image/*"
-        >
-      </div>
+      </div>  
+      <br>
+      <!-- Ajouter une ligne de commande -->
+      <button type="button" class="btn btn-link btn-sm float-right"
+      *ngIf="commande.commandeLignes"
+      id="ajouter-ligne-commande"
+      >
+          <i class="fa fa-plus"></i> Ajouter une ligne
+      </button>
+      <table class="table table-hover table-sm">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+            <!-- Ligne -->
+            <th scope="col">Quantité</th>
+            <!-- Poste -->
+            <th scope="col">Article</th>
+        </tr>
+        </thead>
+        <tbody  *ngIf="commande.commandeLignes">
+          <tr *ngFor="let commandeLigne of commande.commandeLignes; let index = index">
+            <td>{{ index + 1 }}</td>
+            <!-- Poste -->
+            <td>{{ commandeLigne.quantite }}</td>
+            <!-- Code Article -->
+            <td>{{ commandeLigne.article.nom }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="text-muted text-center" *ngIf="!commande.commandeLignes">
+        <!-- Ajouter une ligne de commande -->
+        <small>Aucune ligne de commande pour cette commande</small>
+        <br>
+        <small><a href ng-click="cdVm.toggleShowCommandeLigneForm(true)" tabindex=-1>Ajouter une ligne de commande</a></small>
+      </p>
       <small>
         <span class="star"></span> Obligatoire
       </small>
     </div>
-
     <div class="modal-footer">
       <input class="btn btn-primary" type="submit" value="Sauvegarder" [disabled]="myform.invalid">
     </div>
