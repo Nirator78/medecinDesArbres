@@ -1,0 +1,26 @@
+entity: SousPartieFichePedagogique
+items:
+  sousPartieFichePedagogique1:
+    titre: "Les chènes"
+    contenue: "Le chène est un arbre"
+    fichePedagogique: "@fiche1"
+  sousPartieFichePedagogique2:
+    titre: "Les bouleaux"
+    contenue: "Le bouleau est un arbre"
+    fichePedagogique: "@fiche1"
+  sousPartieFichePedagogique3:
+    titre: "Les thuillats"
+    contenue: "Le thuillat est un buisson"
+    fichePedagogique: "@fiche2"
+  sousPartieFichePedagogique4:
+    titre: "Les framboisiers"
+    contenue: "Le framboisier est un arbuste"
+    fichePedagogique: "@fiche2"
+  sousPartieFichePedagogique5:
+    titre: "Les sardines"
+    contenue: "La sardine est un poisson"
+    fichePedagogique: "@fiche3"
+  sousPartieFichePedagogique6:
+    titre: "Les thons"
+    contenue: "Le thon est un poisson"
+    fichePedagogique: "@fiche3"

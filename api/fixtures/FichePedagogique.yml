@@ -1,0 +1,11 @@
+entity: FichePedagogique
+items:
+  fiche1:
+    titre: "Les arbres"
+    theme: "Nature"
+  fiche2:
+    titre: "Les buissons"
+    theme: "Nature"
+  fiche3:
+    titre: "Les poissons"
+    theme: "Nature"
