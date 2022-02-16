@@ -20,7 +20,7 @@ export class Article {
     @Column()
     stock: string;
 
-    @OneToOne(() => Image, {cascade: true, nullable: true, onDelete:"CASCADE"})
+    @OneToOne(() => Image, {cascade: true, nullable: true})
     @JoinColumn()
     image: Image;
 

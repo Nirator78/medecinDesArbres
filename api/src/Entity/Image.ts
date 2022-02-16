@@ -15,7 +15,15 @@ export class Image {
      */
     @BeforeRemove()
     deleteFile() {
-        // supprimmé le fichier lié à l'entité à faire
+        try {
+            const fs = require('fs');
+            const path = require('path');
+
+            const jsonPath = path.join(__dirname, '..', '..', 'uploads', this.url);
+            fs.unlinkSync(jsonPath)
+        } catch(err) {
+            console.error(err)
+        }
     }
 
 }
