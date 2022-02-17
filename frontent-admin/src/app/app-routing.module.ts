@@ -9,6 +9,9 @@ import {ListArticleComponent} from "./article/components/list-article/list-artic
 import {ListPanierComponent} from "./panier/components/list-panier/list-panier.component";
 import {ListCommandeComponent} from "./commande/components/list-commande/list-commande.component";
 import { ListQuizComponent } from './quiz/components/list-quiz/list-quiz.component';
+import {StatistiqueCommandeComponent} from "./statistique/pages/statistique-commande/statistique-commande.component";
+import {StatistiqueQuizComponent} from "./statistique/pages/statistique-quiz/statistique-quiz.component";
+import {StatistiqueVisualNovelComponent} from "./statistique/pages/statistique-visual-novel/statistique-visual-novel.component";
 
 const routes: Routes = [
   { path: '', component: LoginComponent, pathMatch: 'full' },
@@ -19,6 +22,9 @@ const routes: Routes = [
   { path: 'panier', component: ListPanierComponent, canActivate:[LoginGuard] },
   { path: 'commande', component: ListCommandeComponent, canActivate:[LoginGuard] },
   { path: 'quiz', component: ListQuizComponent, canActivate:[LoginGuard] },
+  { path: 'statistique-commande', component: StatistiqueCommandeComponent, canActivate:[LoginGuard] },
+  { path: 'statistique-quiz', component: StatistiqueQuizComponent, canActivate:[LoginGuard] },
+  { path: 'statistique-visual-novel', component: StatistiqueVisualNovelComponent, canActivate:[LoginGuard] },
   { path: '**', redirectTo: '' }
 ];
 
