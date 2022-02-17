@@ -9,13 +9,14 @@ import { MenuAdminComponent } from './menu-admin/menu-admin.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { UserModule } from "./user/user.module";
 import { HttpClientModule } from "@angular/common/http";
-import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
-import {ArticleModule} from "./article/article.module";
+import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
+import { ArticleModule } from "./article/article.module";
 import { ConfirmationDialogComponent } from './ui/confirmation-dialog/confirmation-dialog.component';
 import { ConfirmationDialogService } from './ui/confirmation-dialog/confirmation-dialog.service';
 import { PanierModule } from "./panier/panier.module";
-import {CommandeModule} from "./commande/commande.module";
+import { CommandeModule } from "./commande/commande.module";
 import { NgSelectModule } from '@ng-select/ng-select';
+import { QuizModule } from './quiz/quiz.module';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
     ArticleModule,
     PanierModule,
     CommandeModule,
+    QuizModule,
     NgSelectModule
   ],
   providers: [ConfirmationDialogService],
