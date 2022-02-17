@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {StatistiqueCommandeService} from "../../services/statistique-commande.service";
 
 @Component({
   selector: 'app-commande-top-five',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CommandeTopFiveComponent implements OnInit {
 
-  constructor() { }
+  public topFiveBestSeller;
+
+  constructor(private statistiqueCommandeService: StatistiqueCommandeService) {
+    this.topFiveBestSeller = [];
+    this.refresh();
+  }
 
   ngOnInit(): void {
+  }
+
+  async refresh() {
+    this.topFiveBestSeller = await this.statistiqueCommandeService.getTopFiveBestSeller();
   }
 
 }

@@ -1,1 +1,32 @@
-<p>commande-top-five works!</p>
+<div class="card-body">
+  <!-- Best seller du mois -->
+  <h3 class="page-header">
+    Best seller du mois
+  </h3>
+  <!-- Best seller du mois -->
+  <p class="card-description mb-4">
+    Best seller du mois
+  </p>
+
+  <ng-template [ngIf]="topFiveBestSeller.length>0" [ngIfElse]="elseBlockTot">
+    <div class="table-responsive">
+      <table class="table table-hover table-sm" style="white-space: nowrap">
+        <thead>
+        <tr>
+          <th scope="col">Nom</th>
+          <th scope="col">Quantité</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let article of topFiveBestSeller">
+          <td> {{ article.article }} </td>
+          <td> {{ article.sum }} </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </ng-template>
+  <ng-template #elseBlockTot>
+    <p>Pas de best seller ce mois ci.</p>
+  </ng-template>
+</div>

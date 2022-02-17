@@ -17,6 +17,7 @@ import { PanierModule } from "./panier/panier.module";
 import { CommandeModule } from "./commande/commande.module";
 import { NgSelectModule } from '@ng-select/ng-select';
 import { QuizModule } from './quiz/quiz.module';
+import { StatistiqueModule } from "./statistique/statistique.module";
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { QuizModule } from './quiz/quiz.module';
     PanierModule,
     CommandeModule,
     QuizModule,
-    NgSelectModule
+    NgSelectModule,
+    StatistiqueModule
   ],
   providers: [ConfirmationDialogService],
   bootstrap: [AppComponent]
