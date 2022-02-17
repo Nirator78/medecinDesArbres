@@ -87,7 +87,7 @@
       <br>
       <!-- Ajouter une ligne de commande -->
       <button type="button" class="btn btn-link btn-sm float-right"
-      *ngIf="commande.commandeLignes"
+      (click)="toggleShowCommandeLigneForm(true)"
       id="ajouter-ligne-commande"
       >
           <i class="fa fa-plus"></i> Ajouter une ligne
@@ -96,19 +96,25 @@
         <thead>
         <tr>
           <th scope="col">#</th>
-            <!-- Ligne -->
+            <!-- Quantite -->
             <th scope="col">Quantité</th>
-            <!-- Poste -->
+            <!-- Article -->
             <th scope="col">Article</th>
+            <!-- Action -->
+            <th scope="col">Action</th>
         </tr>
         </thead>
         <tbody  *ngIf="commande.commandeLignes">
           <tr *ngFor="let commandeLigne of commande.commandeLignes; let index = index">
             <td>{{ index + 1 }}</td>
-            <!-- Poste -->
+            <!-- Quantite -->
             <td>{{ commandeLigne.quantite }}</td>
-            <!-- Code Article -->
+            <!-- Article -->
             <td>{{ commandeLigne.article.nom }}</td>
+            <td> 
+              <button type="button" class="btn btn-danger btn-sm" (click)="deleteCommandeLigne(index)"><fa-icon [icon]="faTrash"></fa-icon></button>
+              <button type="button" class="btn btn-success btn-sm ml-2" (click)="selectCommandeLigne(commandeLigne)"><fa-icon [icon]="faClone"></fa-icon></button> 
+            </td>
           </tr>
         </tbody>
       </table>
@@ -116,16 +122,82 @@
         <!-- Ajouter une ligne de commande -->
         <small>Aucune ligne de commande pour cette commande</small>
         <br>
-        <small><a href ng-click="cdVm.toggleShowCommandeLigneForm(true)" tabindex=-1>Ajouter une ligne de commande</a></small>
       </p>
+      <form name="commandeLigneForm"  #commandeLigneForm = "ngForm" (ngSubmit)="addCommandeLigne(commandeLigneForm); commandeLigneForm.resetForm()" *ngIf="showCommandeLigneForm">     
+        <div class="form-row" *ngIf="showCommandeLigneForm">
+          <!-- Quantité -->
+          <div class="col">
+            <label class="required" for="quantite">Quantité</label>
+  
+            <input
+              type="number"
+              class="form-control"
+              aria-label="quantite"
+              name="quantite"
+              aria-describedby="inputGroup-sizing-sm"
+              required
+              #quantite="ngModel"
+              placeholder="Quantité"
+              min="1"
+              ngModel="{{commande['quantite']}}"
+            >
+  
+            <div *ngIf="quantite.invalid  && (quantite.dirty || quantite.touched)">
+              <div *ngIf="quantite.errors?.['required']">
+                <small id="quantite" class="text-danger"> Quantité est obligatoire </small>
+              </div>
+              <div *ngIf="quantite.errors?.['min']">
+                <small id="quantite" class="text-danger"> Quantité invalide </small>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <label class="required" for="article">Article</label>
+            <ng-select
+              required
+              placeholder="Choisir un article"
+              name="article"
+              #article="ngModel"
+              [items]="articleList"
+              bindLabel="nom"
+              [closeOnSelect]="false"
+              [clearable]="false"
+              [closeOnSelect]="true"
+              [(ngModel)]="commande.article">
+              <ng-option [value]="commande.article" *ngFor="let article of articleList">
+                  {{article.nom}}
+              </ng-option>
+            </ng-select>
+  
+            <div *ngIf="article.invalid  && (article.dirty || article.touched)">
+              <div *ngIf="article.errors?.['required']">
+                <small id="nomRequired" class="text-danger"> Article est obligatoire</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-2">
+          <!-- Ajouter ligne commande -->
+          <input class="btn btn-primary btn-sm" type="submit" value="Ajouter une ligne" [disabled]="commandeLigneForm.invalid">
+        </div>
+      </form>     
+      <!-- Fermer -->
+      <button type="button" class="btn btn-sm btn-dark float-right ml-2" (click)="toggleShowCommandeLigneForm(false)" *ngIf="showCommandeLigneForm" tabindex=-1>
+          <i class="fa fa-times"></i> Fermer
+      </button>
       <small>
         <span class="star"></span> Obligatoire
       </small>
     </div>
+    
     <div class="modal-footer">
-      <input class="btn btn-primary" type="submit" value="Sauvegarder" [disabled]="myform.invalid">
+      <input class="btn btn-primary" type="submit" value="Sauvegarder" [disabled]="myform.invalid ||
+      !commande.commandeLignes ||
+      commande.commandeLignes.length === 0">
     </div>
   </form>
+
 </ng-template>
 
 <button class="btn btn-success btn-sm font-weight-bold" (click)="open(content)" *ngIf="mode === 'modal'"><fa-icon class="pr-2" [icon]="faPlus"></fa-icon>Nouvelle commande</button>
