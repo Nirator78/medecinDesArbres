@@ -8,6 +8,7 @@ import {ListPasswordKeyComponent} from "./user/components/list-password-key/list
 import {ListArticleComponent} from "./article/components/list-article/list-article.component";
 import {ListPanierComponent} from "./panier/components/list-panier/list-panier.component";
 import {ListCommandeComponent} from "./commande/components/list-commande/list-commande.component";
+import { ListQuizComponent } from './quiz/components/list-quiz/list-quiz.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent, pathMatch: 'full' },
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'article', component: ListArticleComponent, canActivate:[LoginGuard] },
   { path: 'panier', component: ListPanierComponent, canActivate:[LoginGuard] },
   { path: 'commande', component: ListCommandeComponent, canActivate:[LoginGuard] },
+  { path: 'quiz', component: ListQuizComponent, canActivate:[LoginGuard] },
   { path: '**', redirectTo: '' }
 ];
 
