@@ -7,6 +7,7 @@ import {CommandeService} from "../../services/commande.service";
 import {NgbCalendar} from '@ng-bootstrap/ng-bootstrap';
 import { UserService } from 'src/app/user/services/user.service';
 import { ArticleService } from 'src/app/article/services/article.service';
+
 @Component({
   selector: 'app-modal-commande',
   templateUrl: './modal-commande.component.html',
@@ -86,7 +87,7 @@ export class ModalCommandeComponent {
                 this.commande.commandeLignes.push(commandeLigne);
             }
         }
-        
+
   }
 
   toggleShowCommandeLigneForm(show) {
