@@ -42,18 +42,20 @@ export class ArticleController {
     async remove(request: Request, response: Response, next: NextFunction) {
         try{
             let articleToRemove = await this.articleRepository.findOne(request.params.id, {relations: ['image']});
-            // On stock l'id de l'image
-            const imageId = articleToRemove.image.id;
-            // On set l'image a null
-            articleToRemove.image = null;
-            // On update l'article
-            const article = await this.articleRepository.save(articleToRemove);
-            // On trouve l'image
-            let imageToRemove = await this.imageRepository.findOne(imageId);
-            // On delete l'image
-            await this.imageRepository.remove(imageToRemove);
+            if(articleToRemove.image){
+                // On stock l'id de l'image
+                const imageId = articleToRemove.image.id;
+                // On set l'image a null
+                articleToRemove.image = null;
+                // On update l'article
+                const article = await this.articleRepository.save(articleToRemove);
+                // On trouve l'image
+                let imageToRemove = await this.imageRepository.findOne(imageId);
+                // On delete l'image
+                await this.imageRepository.remove(imageToRemove);
+            }
             // On delete l'article
-            await this.articleRepository.remove(article);
+            await this.articleRepository.remove(articleToRemove);
             return { status: 1 };
         }catch (e){
             console.log(e)

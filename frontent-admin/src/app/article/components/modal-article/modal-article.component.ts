@@ -28,7 +28,7 @@ export class ModalArticleComponent  {
     let methode = "";
     if(this.article.id){
       methode="updateArticle"
-      form.value.id = this.article = JSON.parse(this.article.id);
+      form.value.id = JSON.parse(this.article.id);
     }
     else {
       methode="createArticle"
