@@ -11,6 +11,7 @@ import QuizRoute from "./Route/QuizRoute";
 import UserQuizRoute from "./Route/UserQuizRoute";
 import UserVisualNovelRoute from "./Route/UserVisualNovelRoute";
 import UploadRoute from "./Route/UploadRoute";
+import StatistiqueRoute from "./Route/StatistiqueRoute";
 
 export const Routes = [
     ...ArticleRoute,
@@ -26,4 +27,5 @@ export const Routes = [
     ...UserQuizRoute,
     ...UserVisualNovelRoute,
     ...UploadRoute,
+    ...StatistiqueRoute,
 ];

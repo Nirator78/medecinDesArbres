@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faSync } from '@fortawesome/free-solid-svg-icons';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faSync, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { ConfirmationDialogService } from 'src/app/ui/confirmation-dialog/confirmation-dialog.service';
 import {PasswordKeyService} from "../../services/password-key.service";
 

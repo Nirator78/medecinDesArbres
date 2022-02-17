@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {PanierService} from "../../services/panier.service";
-import { faSync } from '@fortawesome/free-solid-svg-icons';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faSync, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { ConfirmationDialogService } from 'src/app/ui/confirmation-dialog/confirmation-dialog.service';
 
 @Component({
