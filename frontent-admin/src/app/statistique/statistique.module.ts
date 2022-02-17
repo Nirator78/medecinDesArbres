@@ -9,8 +9,6 @@ import { CommandePanierMoyenComponent } from './components/commande-panier-moyen
 import {HttpClientModule} from "@angular/common/http";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 
-
-
 @NgModule({
   declarations: [
     StatistiqueCommandeComponent,
