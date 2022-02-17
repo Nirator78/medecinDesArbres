@@ -21,5 +21,5 @@ label.notrequired:after {
 }
 html {
     overflow-x: hidden; /* les dépassements seront masqués */
-    margin-left:125px;
+    margin-left:135px;
 } 
