@@ -46,7 +46,7 @@ export class ModalPanierComponent{
     let methode = "";
     if(this.panier.id){
       methode="updatePanier"
-      form.value.id = this.panier = JSON.parse(this.panier.id);
+      form.value.id = JSON.parse(this.panier.id);
     }
     else {
       methode="createPanier"
