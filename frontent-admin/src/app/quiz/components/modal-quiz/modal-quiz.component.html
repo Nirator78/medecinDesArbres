@@ -148,6 +148,17 @@
             accept="image/*"
           >
         </div>
+        <div class="form-row">
+          <div class="col">
+            <label class="required" for="role">Difficulté</label>
+            <select class="browser-default custom-select" name="difficulte" required ngModel="{{quiz['difficulte']}}">
+              <option value="" disabled selected>Choisir une difficulté</option>
+              <option value="facile">Facile</option>
+              <option value="moyen">Moyen</option>
+              <option value="difficile">Difficile</option>
+            </select>
+          </div>
+        </div>
         <small>
           <span class="star"></span> Obligatoire
         </small>
