@@ -28,6 +28,7 @@ export class StatistiqueController {
             .leftJoin("article.image", "image")
             .where("MONTH(commande.date)=MONTH(NOW())")
             .groupBy("article.nom")
+            .addGroupBy("image.url")
             .orderBy("SUM(commandeLigne.quantite)", "DESC")
             .limit(5)
             .getRawMany();
@@ -52,7 +53,7 @@ export class StatistiqueController {
         let chiffreAffaireParMois = await createQueryBuilder()
             .select("YEAR(date)", "annee")
             .addSelect("MONTH(date)", "mois")
-            .addSelect("SUM(commandeLigne.quantite*article.prix)", "ChiffreAffaire")
+            .addSelect("SUM(commandeLigne.quantite*article.prix)", "chiffreAffaire")
             .from(Commande, "commande")
             .leftJoin("commande.commandeLignes", "commandeLigne")
             .leftJoin("commandeLigne.article", "article")
