@@ -24,19 +24,25 @@
             <th scope="col">Titre</th>
             <th scope="col">Théme</th>
             <th scope="col">Déscription</th>
-            <th scope="col">Stock</th>
-            <th scope="col">Image</th>
+            <th scope="col">Difficulté</th>
+            <th scope="col">Age requis</th>
             <th scope="col">Action</th>
           </tr>
           </thead>
           <tbody>
           <tr *ngFor="let quiz of quizList">
             <td> <app-modal-quiz mode="url" [quiz]="quiz"></app-modal-quiz></td>
-            <td> {{ quiz.titre }} </td>
-            <td> {{ quiz.theme }}</td>
+            <td> {{ quiz.theme }} </td>
             <td> {{ quiz.description }} </td>
-            <td> <img src="{{quiz.image ? (environment.apiUrl + quiz?.image?.url) : 'https://via.placeholder.com/50' }}" width="50" height="50"/> </td>
-          <td> <button type="button" class="btn btn-danger btn-sm" (click)="deleteQuiz(quiz.id)"><fa-icon [icon]="faTrash"></fa-icon></button> </td>
+            <td>
+              <label class="badge badge-pill" [ngClass]="{
+                'badge-success':quiz.difficulte === 'facile',
+                'badge-warning':quiz.difficulte === 'moyen',
+                'badge-danger':quiz.difficulte === 'difficile'
+              }">{{ quiz.difficulte }}
+              </label> 
+            </td>
+            <td> <button type="button" class="btn btn-danger btn-sm" (click)="deleteQuiz(quiz.id)"><fa-icon [icon]="faTrash"></fa-icon></button> </td>
           </tr>
           </tbody>
         </table>
