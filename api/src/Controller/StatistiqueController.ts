@@ -69,10 +69,45 @@ export class StatistiqueController {
     }
 
     async commandePanierMoyen(request: Request, response: Response, next: NextFunction) {
-        let commandeListe = await this.commandeRepository.find();
+        /**
+         * -- Chiffre d'affaire par mois
+         * SELECT YEAR(date) AS annee, MONTH(date) AS mois, CDEENT.userId, SUM(CDELIG.quantite*ART.prix) AS Panier
+         * FROM test.commande_ligne AS CDELIG
+         * LEFT JOIN test.commande AS CDEENT ON CDEENT.id=CDELIG.commandeId
+         * LEFT JOIN test.article AS ART ON ART.id=CDELIG.articleId
+         * GROUP BY YEAR(date), MONTH(date), CDEENT.userId
+         */
+        let panier = await createQueryBuilder()
+            .select("YEAR(date)", "annee")
+            .addSelect("MONTH(date)", "mois")
+            .addSelect("commande.user", "user")
+            .addSelect("SUM(commandeLigne.quantite*article.prix)", "panier")
+            .from(Commande, "commande")
+            .leftJoin("commande.commandeLignes", "commandeLigne")
+            .leftJoin("commandeLigne.article", "article")
+            .groupBy("YEAR(date)")
+            .addGroupBy("MONTH(date)")
+            .addGroupBy("commande.user");
 
-        if(commandeListe){
-            return { status: 1, data: commandeListe }
+        /**
+         * SELECT annee, mois, AVG(Panier)
+         * FROM (
+         * SOUS REQUETE PRECEDENTE
+         * ) AS X
+         * GROUP BY X.annee, X.mois
+         */
+
+        let panierMoyen = await createQueryBuilder()
+            .select("annee")
+            .addSelect("mois")
+            .addSelect("AVG(panier)", "panierMoyen")
+            .from("(" + panier.getQuery() + ")", "usr")
+            .groupBy("annee")
+            .addGroupBy("mois")
+            .getRawMany();
+
+        if(panierMoyen){
+            return { status: 1, data: panierMoyen }
         }else{
             return { status: 0 };
         }
