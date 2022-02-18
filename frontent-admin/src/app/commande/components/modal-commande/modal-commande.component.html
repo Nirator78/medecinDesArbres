@@ -110,7 +110,10 @@
             <!-- Quantite -->
             <td>{{ commandeLigne.quantite }}</td>
             <!-- Article -->
-            <td>{{ commandeLigne.article.nom }}</td>
+            <td class="flex">
+              <img class="mr-2" src="{{commandeLigne.article.image ? (environment.apiUrl + commandeLigne.article?.image?.url) : 'https://via.placeholder.com/50' }}" width="50" height="50"/>
+              {{ commandeLigne.article.nom }}
+            </td>
             <td> 
               <button type="button" class="btn btn-danger btn-sm" (click)="deleteCommandeLigne(index)"><fa-icon [icon]="faTrash"></fa-icon></button>
               <button type="button" class="btn btn-success btn-sm ml-2" (click)="selectCommandeLigne(commandeLigne)"><fa-icon [icon]="faClone"></fa-icon></button> 
