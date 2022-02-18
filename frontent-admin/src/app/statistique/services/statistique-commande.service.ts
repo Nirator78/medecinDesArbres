@@ -18,4 +18,9 @@ export class StatistiqueCommandeService {
     const response = await this.apiService.getTypeRequest('statistique-commande-chiffre-affaire').toPromise() || {};
     return response["data"];
   }
+
+  async getPanierMoyen(): Promise<any>{
+    const response = await this.apiService.getTypeRequest('statistique-commande-panier-moyen').toPromise() || {};
+    return response["data"];
+  }
 }
