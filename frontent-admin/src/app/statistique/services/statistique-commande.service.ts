@@ -13,4 +13,9 @@ export class StatistiqueCommandeService {
     const response = await this.apiService.getTypeRequest('statistique-commande-top-five').toPromise() || {};
     return response["data"];
   }
+
+  async getChiffreAffaire(): Promise<any>{
+    const response = await this.apiService.getTypeRequest('statistique-commande-chiffre-affaire').toPromise() || {};
+    return response["data"];
+  }
 }

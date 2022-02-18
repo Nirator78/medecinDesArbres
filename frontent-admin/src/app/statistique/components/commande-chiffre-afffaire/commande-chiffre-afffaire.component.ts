@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
+import {StatistiqueCommandeService} from "../../services/statistique-commande.service";
 
 @Component({
   selector: 'app-commande-chiffre-afffaire',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CommandeChiffreAfffaireComponent implements OnInit {
 
-  constructor() { }
+  public chiffreAffaireParMois;
+  public environment = environment;
+
+  constructor(private statistiqueCommandeService: StatistiqueCommandeService) {
+    this.chiffreAffaireParMois = [];
+    this.refresh();
+  }
 
   ngOnInit(): void {
+  }
+
+  async refresh() {
+    this.chiffreAffaireParMois = await this.statistiqueCommandeService.getChiffreAffaire();
   }
 
 }
