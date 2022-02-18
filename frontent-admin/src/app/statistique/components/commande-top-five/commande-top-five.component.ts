@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import {StatistiqueCommandeService} from "../../services/statistique-commande.service";
 
 @Component({
@@ -9,6 +10,7 @@ import {StatistiqueCommandeService} from "../../services/statistique-commande.se
 export class CommandeTopFiveComponent implements OnInit {
 
   public topFiveBestSeller;
+  public environment = environment;
 
   constructor(private statistiqueCommandeService: StatistiqueCommandeService) {
     this.topFiveBestSeller = [];
