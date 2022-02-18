@@ -2,16 +2,16 @@ entity: ParcoursEcolo
 items:
   parcours1:
     user: "@user1"
-    coordonnees: {lat: 30, lon: 33}
+    coordonnees: "{lat: 30, lon: 33}"
     ville: "@ville1"
     description: "Première fois que je cours"
   parcours2:
     user: "@user2"
-    coordonnees: {lat: 20, lon: 22}
+    coordonnees: "{lat: 20, lon: 22}"
     ville: "@ville12"
     description: "Avec mon pote"
   parcours3:
     user: "@user3"
-    coordonnees: {lat: 10, lon: 11}
+    coordonnees: "{lat: 10, lon: 11}"
     ville: "@ville14"
     description: "J'ai mal au pied"
