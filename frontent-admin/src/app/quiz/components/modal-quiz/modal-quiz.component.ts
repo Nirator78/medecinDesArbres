@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-modal-quiz',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./modal-quiz.component.css']
 })
 export class ModalQuizComponent implements OnInit {
+  @Input() mode!: string;
+  @Input() quiz: any = {};
 
   constructor() { }
 

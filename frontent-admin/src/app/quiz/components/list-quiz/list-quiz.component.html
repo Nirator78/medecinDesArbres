@@ -1,1 +1,49 @@
-<p>list-quiz works!</p>
+<div class="card-body">
+    <!-- Quiz -->
+    <h3 class="page-header">
+      Quiz
+    </h3>
+    <!-- Liste des quiz -->
+    <p class="card-description mb-4">
+      Liste des quiz
+    </p>
+  
+    <div class="mb-4">
+      <div class="btn-group" role="group" aria-label="Basic example">
+        <app-modal-quiz mode="modal"></app-modal-quiz>
+        <button class="btn border-left btn-success btn-sm" (click)="refresh()">
+          <fa-icon [icon]="faSync"></fa-icon>
+        </button>
+      </div>
+    </div>
+    <ng-template [ngIf]="quizList.length>0" [ngIfElse]="elseBlockTot">
+      <div class="table-responsive">
+        <table class="table table-hover table-sm" style="white-space: nowrap">
+          <thead>
+          <tr>
+            <th scope="col">Titre</th>
+            <th scope="col">Théme</th>
+            <th scope="col">Déscription</th>
+            <th scope="col">Stock</th>
+            <th scope="col">Image</th>
+            <th scope="col">Action</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let quiz of quizList">
+            <td> <app-modal-quiz mode="url" [quiz]="quiz"></app-modal-quiz></td>
+            <td> {{ quiz.titre }} </td>
+            <td> {{ quiz.theme }}</td>
+            <td> {{ quiz.description }} </td>
+            <td> <img src="{{quiz.image ? (environment.apiUrl + quiz?.image?.url) : 'https://via.placeholder.com/50' }}" width="50" height="50"/> </td>
+          <td> <button type="button" class="btn btn-danger btn-sm" (click)="deleteQuiz(quiz.id)"><fa-icon [icon]="faTrash"></fa-icon></button> </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </ng-template>
+    <ng-template #elseBlockTot>
+      <p>Pas de quiz enregistré.</p>
+    </ng-template>
+  </div>
+  
