@@ -7,6 +7,7 @@ import {CommandeService} from "../../services/commande.service";
 import {NgbCalendar} from '@ng-bootstrap/ng-bootstrap';
 import { UserService } from 'src/app/user/services/user.service';
 import { ArticleService } from 'src/app/article/services/article.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-modal-commande',
@@ -25,6 +26,7 @@ export class ModalCommandeComponent {
   userList;
   articleList;
   currentCommandeLigne = {};
+  public environment = environment;
 
 
   constructor(private modalService: NgbModal, private calendar: NgbCalendar, private commandeService: CommandeService, private listCommandeComponent: ListCommandeComponent, private userService: UserService, private articleService: ArticleService) {

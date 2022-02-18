@@ -1,0 +1,117 @@
+entity: QuizReponse
+items:
+  quizReponse1:
+    reponse: "Clément"
+    ordre: 1
+    quizQuestion: '@quizQuestion1'
+    bonne: false
+  quizReponse2:
+    reponse: "Nolan"
+    ordre: 2
+    quizQuestion: '@quizQuestion1'
+    bonne: true
+  quizReponse3:
+    reponse: "Esteban"
+    ordre: 3
+    quizQuestion: '@quizQuestion1'    
+    bonne: false
+  quizReponse4:
+    reponse: "Charlotte"
+    ordre: 4
+    quizQuestion: '@quizQuestion1'
+    bonne: false
+  quizReponse5:
+    reponse: "21"
+    ordre: 1
+    quizQuestion: '@quizQuestion2'
+    bonne: true
+  quizReponse6:
+    reponse: "22"
+    ordre: 2
+    quizQuestion: '@quizQuestion2'
+    bonne: false
+  quizReponse7:
+    reponse: "29"
+    ordre: 3
+    quizQuestion: '@quizQuestion2'
+    bonne: false
+  quizReponse8:
+    reponse: "Clément"
+    ordre: 1
+    quizQuestion: '@quizQuestion3'
+    bonne: false
+  quizReponse9:
+    reponse: "Nolan"
+    ordre: 2
+    quizQuestion: '@quizQuestion3'
+    bonne: true
+  quizReponse10:
+    reponse: "Esteban"
+    ordre: 3
+    quizQuestion: '@quizQuestion3'    
+    bonne: false
+  quizReponse11:
+    reponse: "Charlotte"
+    ordre: 4
+    quizQuestion: '@quizQuestion3'
+    bonne: false
+  quizReponse12:
+    reponse: "Par ma taille"
+    ordre: 1
+    quizQuestion: '@quizQuestion4'
+    bonne: false
+  quizReponse13:
+    reponse: "Par mon age"
+    ordre: 2
+    quizQuestion: '@quizQuestion4'
+    bonne: true
+  quizReponse14:
+    reponse: "Ma forme"
+    ordre: 1
+    quizQuestion: '@quizQuestion5'
+    bonne: false
+  quizReponse15:
+    reponse: "Mon style"
+    ordre: 2
+    quizQuestion: '@quizQuestion5'
+    bonne: true
+  quizReponse16:
+    reponse: "Oui"
+    ordre: 1
+    quizQuestion: '@quizQuestion6'
+    bonne: false
+  quizReponse17:
+    reponse: "Non"
+    ordre: 2
+    quizQuestion: '@quizQuestion6'
+    bonne: true
+  quizReponse18:
+    reponse: "Par mon age"
+    ordre: 1
+    quizQuestion: '@quizQuestion7'
+    bonne: true
+  quizReponse19:
+    reponse: "Par ma taille"
+    ordre: 2
+    quizQuestion: '@quizQuestion7'
+    bonne: false
+  quizReponse20:
+    reponse: "Ma forme"
+    ordre: 1
+    quizQuestion: '@quizQuestion8'
+    bonne: false
+  quizReponse21:
+    reponse: "Mon style"
+    ordre: 2
+    quizQuestion: '@quizQuestion8'
+    bonne: true
+  quizReponse22:
+    reponse: "Oui"
+    ordre: 1
+    quizQuestion: '@quizQuestion9'
+    bonne: false
+  quizReponse23:
+    reponse: "Non"
+    ordre: 2
+    quizQuestion: '@quizQuestion9'
+    bonne: true

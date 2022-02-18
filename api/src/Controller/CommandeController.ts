@@ -17,7 +17,7 @@ export class CommandeController {
     private authentificationService = new AuthentificationService();
 
     async all(request: Request, response: Response, next: NextFunction) {
-        let commandeListe = await this.commandeRepository.find({ relations: ["user", "commandeLignes", "commandeLignes.article"] });
+        let commandeListe = await this.commandeRepository.find({ relations: ["user", "commandeLignes", "commandeLignes.article", "commandeLignes.article.image"] });
         if(commandeListe){
             return { status: 1, data: commandeListe }
         }else{
@@ -26,7 +26,7 @@ export class CommandeController {
     }
 
     async one(request: Request, response: Response, next: NextFunction) {
-        let commande = await this.commandeRepository.findOne(request.params.id, { relations: ["user", "commandeLignes", "commandeLignes.article"] });
+        let commande = await this.commandeRepository.findOne(request.params.id, { relations: ["user", "commandeLignes", "commandeLignes.article", "commandeLignes.article.image"] });
         if(commande){
             return { status: 1, data: [commande] }
         }else{
@@ -38,7 +38,7 @@ export class CommandeController {
         const verif = await this.authentificationService.getUserInfo(request);
         let commandeListe = [];
         if(verif.userId.id === request.params.id){
-            commandeListe = await this.commandeRepository.find({ where: {user: request.params.id}, relations: ["user", "commandeLignes", "commandeLignes.article"] });
+            commandeListe = await this.commandeRepository.find({ where: {user: request.params.id}, relations: ["user", "commandeLignes", "commandeLignes.article", "commandeLignes.article.image"] });
             if(commandeListe){
                 return { status: 1, data: commandeListe }
             }

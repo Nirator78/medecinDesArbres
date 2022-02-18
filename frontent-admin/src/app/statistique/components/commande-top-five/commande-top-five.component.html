@@ -18,9 +18,12 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let article of topFiveBestSeller">
-          <td> {{ article.article }} </td>
-          <td> {{ article.sum }} </td>
+        <tr *ngFor="let bestSeller of topFiveBestSeller">
+          <td class="flex class">
+            <img class="mr-2" src="{{bestSeller.image ? (environment.apiUrl + bestSeller?.image) : 'https://via.placeholder.com/50' }}" width="50" height="50"/>
+            {{ bestSeller.article }} 
+          </td>
+          <td> {{ bestSeller.sum }} </td>
         </tr>
         </tbody>
       </table>
