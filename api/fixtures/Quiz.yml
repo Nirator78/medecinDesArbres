@@ -4,20 +4,17 @@ items:
     titre: 'Les arbre de 100 ans'
     theme: 'Arbres'
     description: 'Un qui super facile'
-    difficulte: 'Facile'
+    difficulte: 'facile'
     age: 12
-    image: "@image1"
   quiz2:
     titre: 'Les pommes de 2 ans'
     theme: 'Pommes'
     description: 'Un qui super moyen'
-    difficulte: 'Moyen'
+    difficulte: 'moyen'
     age: 15
-    image: "@image2"
   quiz3:
     titre: 'Les chat de 10 ans'
     theme: 'Chat'
     description: 'Un qui super dur'
-    difficulte: 'Dur'
+    difficulte: 'difficile'
     age: 18
-    image: "@image3"
