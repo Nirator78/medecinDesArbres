@@ -40,10 +40,28 @@ export class StatistiqueController {
     }
 
     async commandeChiffreAffaire(request: Request, response: Response, next: NextFunction) {
-        let commandeListe = await this.commandeRepository.find();
+        /**
+         * -- Chiffre d'affaire par mois
+         * SELECT YEAR(date) AS Annee, MONTHNAME(date) AS Mois, SUM(CDELIG.quantite*ART.prix) AS ChiffreAffaire
+         * FROM test.commande_ligne AS CDELIG
+         * LEFT JOIN test.commande AS CDEENT ON CDEENT.id=CDELIG.commandeId
+         * LEFT JOIN test.article AS ART ON ART.id=CDELIG.articleId
+         * GROUP BY YEAR(date), MONTHNAME(date);
+         */
 
-        if(commandeListe){
-            return { status: 1, data: commandeListe }
+        let chiffreAffaireParMois = await createQueryBuilder()
+            .select("YEAR(date)", "annee")
+            .addSelect("MONTH(date)", "mois")
+            .addSelect("SUM(commandeLigne.quantite*article.prix)", "ChiffreAffaire")
+            .from(Commande, "commande")
+            .leftJoin("commande.commandeLignes", "commandeLigne")
+            .leftJoin("commandeLigne.article", "article")
+            .groupBy("YEAR(date)")
+            .addGroupBy("MONTH(date)")
+            .getRawMany();
+
+        if(chiffreAffaireParMois){
+            return { status: 1, data: chiffreAffaireParMois }
         }else{
             return { status: 0 };
         }
