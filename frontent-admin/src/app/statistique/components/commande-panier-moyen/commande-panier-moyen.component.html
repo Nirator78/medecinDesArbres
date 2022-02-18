@@ -1,1 +1,34 @@
-<p>commande-panier-moyen works!</p>
+<div class="card-body">
+  <!-- Panier moyen par mois -->
+  <h3 class="page-header">
+    Panier moyen par mois
+  </h3>
+  <!-- Panier moyen par mois -->
+  <p class="card-description mb-4">
+    Panier moyen par mois
+  </p>
+
+  <ng-template [ngIf]="panierMoyenParMois.length>0" [ngIfElse]="elseBlockTot">
+    <div class="table-responsive">
+      <table class="table table-sm" style="white-space: nowrap">
+        <thead>
+        <tr>
+          <th scope="col">Année</th>
+          <th scope="col">Mois</th>
+          <th scope="col">Panier moyen</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let panier of panierMoyenParMois">
+          <td> {{ panier.annee }} </td>
+          <td> {{ panier.mois }} </td>
+          <td> {{ panier.panierMoyen | number }} € </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </ng-template>
+  <ng-template #elseBlockTot>
+    <p>Pas de panier moyen ce mois ci.</p>
+  </ng-template>
+</div>

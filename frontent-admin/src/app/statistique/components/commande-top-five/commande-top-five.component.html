@@ -10,7 +10,7 @@
 
   <ng-template [ngIf]="topFiveBestSeller.length>0" [ngIfElse]="elseBlockTot">
     <div class="table-responsive">
-      <table class="table table-hover table-sm" style="white-space: nowrap">
+      <table class="table table-sm" style="white-space: nowrap">
         <thead>
         <tr>
           <th scope="col">Nom</th>
@@ -21,7 +21,7 @@
         <tr *ngFor="let bestSeller of topFiveBestSeller">
           <td class="flex class">
             <img class="mr-2" src="{{bestSeller.image ? (environment.apiUrl + bestSeller?.image) : 'https://via.placeholder.com/50' }}" width="50" height="50"/>
-            {{ bestSeller.article }} 
+            {{ bestSeller.article }}
           </td>
           <td> {{ bestSeller.sum }} </td>
         </tr>

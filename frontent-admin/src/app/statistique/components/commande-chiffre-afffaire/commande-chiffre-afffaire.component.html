@@ -1,1 +1,34 @@
-<p>commande-chiffre-afffaire works!</p>
+<div class="card-body">
+  <!-- Chiffre d'affaire par mois -->
+  <h3 class="page-header">
+    Chiffre d'affaire par mois
+  </h3>
+  <!-- Chiffre d'affaire par mois -->
+  <p class="card-description mb-4">
+    Chiffre d'affaire par mois
+  </p>
+
+  <ng-template [ngIf]="chiffreAffaireParMois.length>0" [ngIfElse]="elseBlockTot">
+    <div class="table-responsive">
+      <table class="table table-sm" style="white-space: nowrap">
+        <thead>
+        <tr>
+          <th scope="col">Année</th>
+          <th scope="col">Mois</th>
+          <th scope="col">Chiffre</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let chiffre of chiffreAffaireParMois">
+          <td> {{ chiffre.annee }} </td>
+          <td> {{ chiffre.mois }} </td>
+          <td> {{ chiffre.chiffreAffaire }} € </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </ng-template>
+  <ng-template #elseBlockTot>
+    <p>Pas de chiffre d'affaire ce mois ci.</p>
+  </ng-template>
+</div>
