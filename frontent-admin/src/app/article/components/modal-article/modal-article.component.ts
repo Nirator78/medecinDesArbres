@@ -34,7 +34,7 @@ export class ModalArticleComponent  {
       methode="createArticle"
     }
 
-    // Post l"utilisateur
+    // Post de l'article
     this.articleService[methode](form).then(async (res) => {
       // Upload du fichier après création de l'article
       if(this.file){
