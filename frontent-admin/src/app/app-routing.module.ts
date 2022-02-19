@@ -12,6 +12,7 @@ import { ListQuizComponent } from './quiz/components/list-quiz/list-quiz.compone
 import {StatistiqueCommandeComponent} from "./statistique/pages/statistique-commande/statistique-commande.component";
 import {StatistiqueQuizComponent} from "./statistique/pages/statistique-quiz/statistique-quiz.component";
 import {StatistiqueVisualNovelComponent} from "./statistique/pages/statistique-visual-novel/statistique-visual-novel.component";
+import {ListFichePedagogiqueComponent} from "./fiche-pedagogique/components/list-fiche-pedagogique/list-fiche-pedagogique.component";
 
 const routes: Routes = [
   { path: '', component: LoginComponent, pathMatch: 'full' },
@@ -25,6 +26,7 @@ const routes: Routes = [
   { path: 'statistique-commande', component: StatistiqueCommandeComponent, canActivate:[LoginGuard] },
   { path: 'statistique-quiz', component: StatistiqueQuizComponent, canActivate:[LoginGuard] },
   { path: 'statistique-visual-novel', component: StatistiqueVisualNovelComponent, canActivate:[LoginGuard] },
+  { path: 'fiche-pedagogique', component: ListFichePedagogiqueComponent, canActivate:[LoginGuard] },
   { path: '**', redirectTo: '' }
 ];
 
