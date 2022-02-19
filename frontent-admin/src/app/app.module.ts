@@ -18,6 +18,7 @@ import { CommandeModule } from "./commande/commande.module";
 import { NgSelectModule } from '@ng-select/ng-select';
 import { QuizModule } from './quiz/quiz.module';
 import { StatistiqueModule } from "./statistique/statistique.module";
+import {FichePedagogiqueModule} from "./fiche-pedagogique/fiche-pedagogique.module";
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { StatistiqueModule } from "./statistique/statistique.module";
     CommandeModule,
     QuizModule,
     NgSelectModule,
-    StatistiqueModule
+    StatistiqueModule,
+    FichePedagogiqueModule
   ],
   providers: [ConfirmationDialogService],
   bootstrap: [AppComponent]
