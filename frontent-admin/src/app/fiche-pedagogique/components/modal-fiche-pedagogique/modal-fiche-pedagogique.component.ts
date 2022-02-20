@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faTrash, faClone } from "@fortawesome/free-solid-svg-icons";
 import {NgForm} from "@angular/forms";
 import {FichePedagogiqueService} from "../../services/fiche-pedagogique.service";
 import {ListFichePedagogiqueComponent} from "../list-fiche-pedagogique/list-fiche-pedagogique.component";
@@ -15,7 +15,9 @@ export class ModalFichePedagogiqueComponent {
   @Input() mode!: string;
   @Input() fichePedagogique: any = {};
   faPlus = faPlus;
-  file;
+  faTrash = faTrash;
+  faClone = faClone;
+  showQuizQuestionForm;
 
   constructor(private modalService: NgbModal, private fichePedagogiqueService: FichePedagogiqueService, private listFichePedagogiqueComponent: ListFichePedagogiqueComponent) {
   }
