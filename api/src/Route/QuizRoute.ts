@@ -21,7 +21,7 @@ export default [
     },
     {
         method: "put",
-        route: "/quiz",
+        route: "/quiz/:id",
         controller: QuizController,
         action: "update"
     },

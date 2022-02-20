@@ -42,13 +42,13 @@ export class ModalQuizComponent{
 
     let methode = "";
     if(this.quiz.id){
-      methode="updateCommande"
+      methode="updateQuiz"
       form.value.id = JSON.parse(this.quiz.id);
     }
     else {
-      methode="createCommande"
+      methode="createQuiz"
     }
-    form.value.quizQuestions = this.quiz.quizQuestions
+    form.value.reponses = this.quiz.reponses
     // Post de la quiz
     this.quizService[methode](form).then(async (res) => {
       // Ferme le modal

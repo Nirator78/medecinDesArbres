@@ -132,24 +132,21 @@
             <th scope="col">Action</th>
         </tr>
         </thead>
-        <tbody  *ngIf="quiz.quizQuestions">
-          <tr *ngFor="let quizQuestion of quiz.quizQuestions; let index = index">
-            <td>{{ index + 1 }}</td>
+        <tbody  *ngIf="quiz.questions">
+          <tr *ngFor="let questions of quiz.questions; let index = index">
+            <td>{{ questions.ordre }}</td>
             <!-- Quantite -->
-            <td>{{ quizQuestion.quantite }}</td>
+            <td>{{ questions.question }}</td>
             <!-- Article -->
-            <td class="flex">
-              <img class="mr-2" src="{{quizQuestion.quiz.image ? (environment.apiUrl + quizQuestion.quiz?.image?.url) : 'https://via.placeholder.com/50' }}" width="50" height="50"/>
-              {{ quizQuestion.quiz.nom }}
-            </td>
+
             <td> 
               <button type="button" class="btn btn-danger btn-sm" (click)="deleteQuizQuestion(index)"><fa-icon [icon]="faTrash"></fa-icon></button>
-              <button type="button" class="btn btn-success btn-sm ml-2" (click)="selectQuizQuestion(quizQuestion)"><fa-icon [icon]="faClone"></fa-icon></button> 
+              <button type="button" class="btn btn-success btn-sm ml-2" (click)="selectQuizQuestion(questions)"><fa-icon [icon]="faClone"></fa-icon></button> 
             </td>
           </tr>
         </tbody>
       </table>
-      <p class="text-muted text-center" *ngIf="!quiz.quizQuestions">
+      <p class="text-muted text-center" *ngIf="!quiz.questions">
         <!-- Ajouter une ligne de quiz -->
         <small>Aucune question pour ce quiz</small>
         <br>
@@ -200,8 +197,8 @@
     
     <div class="modal-footer">
       <input class="btn btn-primary" type="submit" value="Sauvegarder" [disabled]="myform.invalid ||
-      !quiz.quizQuestions ||
-      quiz.quizQuestions.length === 0">
+      !quiz.questions ||
+      quiz.questions.length === 0">
     </div>
   </form>
 
