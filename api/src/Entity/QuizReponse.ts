@@ -1,6 +1,5 @@
-import {Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToOne, JoinColumn} from "typeorm";
+import {Entity, PrimaryGeneratedColumn, Column, ManyToOne} from "typeorm";
 
-import {Image} from "./Image";
 import {QuizQuestion} from "./QuizQuestion";
 
 @Entity()
@@ -17,10 +16,6 @@ export class QuizReponse {
 
     @Column()
     bonne: boolean;
-
-    @OneToOne(() => Image, {cascade: true, nullable: true})
-    @JoinColumn()
-    image: Image;
 
     @ManyToOne(() => QuizQuestion, quizQuestion => quizQuestion.id)
     quizQuestion: QuizQuestion;
