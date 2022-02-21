@@ -6,6 +6,7 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import { ListParcoursEcoloComponent } from './components/list-parcours-ecolo/list-parcours-ecolo.component';
 import { ModalParcoursEcoloComponent } from './components/modal-parcours-ecolo/modal-parcours-ecolo.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ModalParcoursEcoloComponent } from './components/modal-parcours-ecolo/m
     FormsModule,
     HttpClientModule,
     NgbModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    NgSelectModule
   ],
   exports: [
     ListParcoursEcoloComponent,
