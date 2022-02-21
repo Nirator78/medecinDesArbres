@@ -25,7 +25,6 @@ export class ModalCommandeComponent {
   showCommandeLigneForm;
   userList;
   articleList;
-  currentCommandeLigne = {};
   public environment = environment;
 
 
@@ -58,9 +57,9 @@ export class ModalCommandeComponent {
     else {
       methode="createCommande"
     }
-    form.value.commandeLignes = this.commande.commandeLignes
-    // Post de la commande
-    this.commandeService[methode](form).then(async (res) => {
+      form.value.commandeLignes = this.commande.commandeLignes
+      // Post de la commande
+      this.commandeService[methode](form).then(async (res) => {
       // Ferme le modal
       this.modalService.dismissAll();
       // Refresh la liste des utilisateurs
@@ -73,7 +72,6 @@ export class ModalCommandeComponent {
   }
 
   addCommandeLigne(formLigne: NgForm){
-        console.log(formLigne.value)
         const commandeLigne = formLigne.value;
 
         // Si on est en création, la commande courante n'a pas encore de ligne de commande du coup cette condition sera vraie
@@ -85,7 +83,6 @@ export class ModalCommandeComponent {
         // Si on est en modification, on unshift le nouvel item (on rajoute le nouvel élément au début de l'array)
         else {
             if (! this.commande.commandeLignes.includes(commandeLigne)) {
-              console.log(commandeLigne)
                 this.commande.commandeLignes.push(commandeLigne);
             }
         }
@@ -104,13 +101,7 @@ export class ModalCommandeComponent {
 
   async deleteCommandeLigne(index) {
     const commandeLignes = this.commande.commandeLignes;
-    /*await this.confirmationDialogService.confirm('Suppression', 'Voulez-vous vraiment effacer cet commande ?')
-      .then(confirm => this.confirmation = confirm)
-      .catch(() => {});*/
-    // Suppression d'une commande
-
     // suppression de l'élément du tableau
     commandeLignes.splice(index, 1);
-    //this.refresh();
   }
 }
