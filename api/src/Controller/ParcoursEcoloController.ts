@@ -9,7 +9,7 @@ export class ParcoursEcoloController {
     private authentificationService = new AuthentificationService();
 
     async all(request: Request, response: Response, next: NextFunction) {
-        let parcoursEcoloListe = await this.parcoursEcoloRepository.find();
+        let parcoursEcoloListe = await this.parcoursEcoloRepository.find({relations: ["user", "ville"]});
 
         if(parcoursEcoloListe){
             return { status: 1, data: parcoursEcoloListe }
@@ -19,7 +19,7 @@ export class ParcoursEcoloController {
     }
 
     async one(request: Request, response: Response, next: NextFunction) {
-        let parcoursEcolo = await this.parcoursEcoloRepository.findOne(request.params.id);
+        let parcoursEcolo = await this.parcoursEcoloRepository.findOne(request.params.id, {relations: ["user", "ville"]});
         if(parcoursEcolo){
             return { status: 1, data: parcoursEcolo }
         }else{
