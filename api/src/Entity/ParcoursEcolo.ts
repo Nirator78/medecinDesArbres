@@ -18,9 +18,6 @@ export class ParcoursEcolo {
     @JoinColumn()
     image: Image;
 
-    @Column()
-    coordonnees: string//{lat: number, lon: number}
-
     @ManyToOne(type => Ville, ville => ville.id)
     @JoinTable({ name: "ville" })
     ville: Ville;
