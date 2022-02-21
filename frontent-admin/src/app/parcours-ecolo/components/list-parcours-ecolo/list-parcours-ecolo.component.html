@@ -1,1 +1,42 @@
-<p>list-parcours-ecolo works!</p>
+<div class="card-body">
+  <!-- Parcours Ecolo -->
+  <h3 class="page-header">
+    Parcours Ecolo
+  </h3>
+  <!-- Liste des parcours ecolo -->
+  <p class="card-description mb-4">
+    Liste des parcours ecolo
+  </p>
+
+  <div class="mb-4">
+    <div class="btn-group" role="group" aria-label="Basic example">
+      <app-modal-parcours-ecolo mode="modal"></app-modal-parcours-ecolo>
+      <button class="btn border-left btn-success btn-sm" (click)="refresh()">
+        <fa-icon [icon]="faSync"></fa-icon>
+      </button>
+    </div>
+  </div>
+  <ng-template [ngIf]="parcoursEcoloList.length>0" [ngIfElse]="elseBlockTot">
+    <div class="table-responsive">
+      <table class="table table-hover table-sm" style="white-space: nowrap">
+        <thead>
+        <tr>
+          <th scope="col">Nom</th>
+          <th scope="col">Ville</th>
+          <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let parcoursecolo of parcoursEcoloList">
+          <td> <app-modal-parcours-ecolo mode="url" [parcoursecolo]="parcoursecolo"></app-modal-parcours-ecolo></td>
+          <td> {{ parcoursecolo.ville.ville }}, {{ parcoursecolo.ville.code_postal }} </td>
+          <td> <button type="button" class="btn btn-danger btn-sm" (click)="deleteParcoursEcolo(parcoursecolo.id)"><fa-icon [icon]="faTrash"></fa-icon></button> </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </ng-template>
+  <ng-template #elseBlockTot>
+    <p>Pas de parcours ecolo enregistré.</p>
+  </ng-template>
+</div>
