@@ -17,7 +17,8 @@ export class ModalFichePedagogiqueComponent {
   faPlus = faPlus;
   faTrash = faTrash;
   faClone = faClone;
-  showQuizQuestionForm;
+  showSousPartieFichePedagogiquesForm;
+  sousPartieFichePedagogique = {};  
 
   constructor(private modalService: NgbModal, private fichePedagogiqueService: FichePedagogiqueService, private listFichePedagogiqueComponent: ListFichePedagogiqueComponent) {
   }
@@ -35,7 +36,7 @@ export class ModalFichePedagogiqueComponent {
     else {
       methode="createFichePedagogique"
     }
-
+    form.value.sousPartieFichePedagogiques = this.fichePedagogique.sousPartieFichePedagogiques
     // Post de la fiche pédagogique
     this.fichePedagogiqueService[methode](form).then(async (res) => {
       // Ferme le modal
@@ -43,5 +44,46 @@ export class ModalFichePedagogiqueComponent {
       // Refresh la liste des utilisateurs
       this.listFichePedagogiqueComponent.refresh();
     });
+  }
+
+  addSousPartieFichePedagogiques(formSousPartieFichePedagogiques: NgForm){
+    const sousPartieFichePedagogiques = formSousPartieFichePedagogiques.value;
+
+    // Si on est en création, la fichePedagogique courante n'a pas encore de ligne de fichePedagogique du coup cette condition sera vraie
+    if (! Array.isArray(this.fichePedagogique.sousPartieFichePedagogiques)) {
+        // On crée alors la ligne de fichePedagogique avec un item;
+        this.fichePedagogique.sousPartieFichePedagogiques = [ sousPartieFichePedagogiques ];
+    }
+
+    // Si on est en modification, on unshift le nouvel item (on rajoute le nouvel élément au début de l'array)
+    else {
+        if (! this.fichePedagogique.sousPartieFichePedagogiques.includes(sousPartieFichePedagogiques)) {
+            this.fichePedagogique.sousPartieFichePedagogiques.push(sousPartieFichePedagogiques);
+        }
+    }
+
+  }
+  
+  toggleShowSousPartieFichePedagogiquesForm(show) {
+    this.showSousPartieFichePedagogiquesForm = show;
+  }
+
+  selectSousPartieFichePedagogiques(sousPartieFichePedagogiques) {
+
+    this.toggleShowSousPartieFichePedagogiquesForm(true);
+    Object.assign(this.fichePedagogique,sousPartieFichePedagogiques)
+  }
+
+  async deleteSousPartieFichePedagogiques(index) {
+    const sousPartieFichePedagogiques = this.fichePedagogique.sousPartieFichePedagogiques;
+
+    /*await this.confirmationDialogService.confirm('Suppression', 'Voulez-vous vraiment effacer cet fichePedagogique ?')
+      .then(confirm => this.confirmation = confirm)
+      .catch(() => {});*/
+    // Suppression d'une fichePedagogique
+
+    // suppression de l'élément du tableau
+    sousPartieFichePedagogiques.splice(index, 1);
+    //this.refresh();
   }
 }
