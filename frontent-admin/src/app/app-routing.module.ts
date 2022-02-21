@@ -11,8 +11,8 @@ import {ListCommandeComponent} from "./commande/components/list-commande/list-co
 import { ListQuizComponent } from './quiz/components/list-quiz/list-quiz.component';
 import {StatistiqueCommandeComponent} from "./statistique/pages/statistique-commande/statistique-commande.component";
 import {StatistiqueQuizComponent} from "./statistique/pages/statistique-quiz/statistique-quiz.component";
-import {StatistiqueVisualNovelComponent} from "./statistique/pages/statistique-visual-novel/statistique-visual-novel.component";
 import {ListFichePedagogiqueComponent} from "./fiche-pedagogique/components/list-fiche-pedagogique/list-fiche-pedagogique.component";
+import {ListParcoursEcoloComponent} from "./parcours-ecolo/components/list-parcours-ecolo/list-parcours-ecolo.component";
 
 const routes: Routes = [
   { path: '', component: LoginComponent, pathMatch: 'full' },
@@ -25,8 +25,8 @@ const routes: Routes = [
   { path: 'quiz', component: ListQuizComponent, canActivate:[LoginGuard] },
   { path: 'statistique-commande', component: StatistiqueCommandeComponent, canActivate:[LoginGuard] },
   { path: 'statistique-quiz', component: StatistiqueQuizComponent, canActivate:[LoginGuard] },
-  { path: 'statistique-visual-novel', component: StatistiqueVisualNovelComponent, canActivate:[LoginGuard] },
   { path: 'fiche-pedagogique', component: ListFichePedagogiqueComponent, canActivate:[LoginGuard] },
+  { path: 'parcours-ecolo', component: ListParcoursEcoloComponent, canActivate:[LoginGuard] },
   { path: '**', redirectTo: '' }
 ];
 

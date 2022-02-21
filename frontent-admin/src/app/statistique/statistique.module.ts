@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StatistiqueCommandeComponent } from './pages/statistique-commande/statistique-commande.component';
 import { StatistiqueQuizComponent } from './pages/statistique-quiz/statistique-quiz.component';
-import { StatistiqueVisualNovelComponent } from './pages/statistique-visual-novel/statistique-visual-novel.component';
 import { CommandeTopFiveComponent } from './components/commande-top-five/commande-top-five.component';
 import { CommandeChiffreAfffaireComponent } from './components/commande-chiffre-afffaire/commande-chiffre-afffaire.component';
 import { CommandePanierMoyenComponent } from './components/commande-panier-moyen/commande-panier-moyen.component';
@@ -13,7 +12,6 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
   declarations: [
     StatistiqueCommandeComponent,
     StatistiqueQuizComponent,
-    StatistiqueVisualNovelComponent,
     CommandeTopFiveComponent,
     CommandeChiffreAfffaireComponent,
     CommandePanierMoyenComponent
@@ -26,7 +24,6 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
   exports: [
     StatistiqueCommandeComponent,
     StatistiqueQuizComponent,
-    StatistiqueVisualNovelComponent,
     CommandeTopFiveComponent,
     CommandeChiffreAfffaireComponent,
     CommandePanierMoyenComponent
