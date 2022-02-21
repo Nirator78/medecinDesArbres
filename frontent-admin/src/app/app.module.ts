@@ -19,6 +19,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { QuizModule } from './quiz/quiz.module';
 import { StatistiqueModule } from "./statistique/statistique.module";
 import {FichePedagogiqueModule} from "./fiche-pedagogique/fiche-pedagogique.module";
+import {ParcoursEcoloModule} from "./parcours-ecolo/parcours-ecolo.module";
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import {FichePedagogiqueModule} from "./fiche-pedagogique/fiche-pedagogique.modu
     QuizModule,
     NgSelectModule,
     StatistiqueModule,
-    FichePedagogiqueModule
+    FichePedagogiqueModule,
+    ParcoursEcoloModule
   ],
   providers: [ConfirmationDialogService],
   bootstrap: [AppComponent]
