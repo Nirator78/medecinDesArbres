@@ -35,7 +35,6 @@ export class ModalPanierComponent{
     if(this.mode === "modal"){
       this.panier = {}
     }
-    console.log(this.panier)
 
     // Récupération des liste pour le formulaire à l'ouverture sinon spam de l'api
     this.userList = await this.userService.getAllUser();
