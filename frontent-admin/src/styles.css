@@ -19,7 +19,12 @@ label.notrequired:after {
     color: #EB5E28!important;
     font-size: 17px;
 }
-html {
+main#login {
     overflow-x: hidden; /* les dépassements seront masqués */
-    margin-left:135px;
+    margin-left:0px;
 } 
+main {
+    overflow-x: hidden; /* les dépassements seront masqués */
+    margin-left:270px;
+} 
+

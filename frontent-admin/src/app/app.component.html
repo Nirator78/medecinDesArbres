@@ -5,11 +5,13 @@
   <title>Medecin des arbres admin</title>
 </head>
 <body>
-  <div class="row">
-    <app-navbar *ngIf="router.url !== '/'"></app-navbar>
-    <div class="col">
-      <router-outlet></router-outlet>
+  <main id="{{(router.url.split('/')[1])||'login'}}">
+    <div class="row">
+      <app-navbar *ngIf="router.url !== '/'"></app-navbar>
+      <div class="col">
+        <router-outlet></router-outlet>
+      </div>
     </div>
-  </div>
+  </main>
 </body>
 </html>

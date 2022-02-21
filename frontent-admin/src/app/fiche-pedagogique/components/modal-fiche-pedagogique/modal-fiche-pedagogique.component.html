@@ -40,8 +40,8 @@
         <div class="col">
           <label class="required" for="theme">Thème</label>
 
-          <textarea
-            type="textarea"
+          <input
+            type="text"
             class="form-control"
             aria-label="theme"
             name="theme"
@@ -51,7 +51,7 @@
             #theme="ngModel"
             placeholder="Thème"
             ngModel="{{fichePedagogique['theme']}}"
-          ></textarea>
+          >
 
           <div *ngIf="theme.invalid  && (theme.dirty || theme.touched)">
             <div *ngIf="theme.errors?.['required']">
@@ -62,10 +62,113 @@
       </div>
 
       <!-- Manque la la liste des sous parties en liste -->
+      <!-- Ajouter d'une page -->
+      <button type="button" class="btn btn-link btn-sm float-right"
+      (click)="toggleShowSousPartieFichePedagogiquesForm(true)"
+      id="ajouter-ligne-fichePedagogique"
+      >
+          <i class="fa fa-plus"></i> Ajouter une page
+      </button>
+      <table class="table table-hover table-sm">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+            <!-- Quantite -->
+            <th scope="col">Titre</th>
+            <!-- Article -->
+            <th scope="col">Contenue</th>
+            <!-- Action -->
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody  *ngIf="fichePedagogique.sousPartieFichePedagogiques">
+          <tr *ngFor="let sousPartieFichePedagogiques of fichePedagogique.sousPartieFichePedagogiques; let index = index">
+            <td>{{ index + 1 }}</td>
+            <!-- Quantite -->
+            <td>{{ sousPartieFichePedagogiques.titre }}</td>
+            <!-- Article -->
+            <td>
+              {{ sousPartieFichePedagogiques.contenue}}
+            </td>
+            <td> 
+              <button type="button" class="btn btn-danger btn-sm" (click)="deleteSousPartieFichePedagogiques(index)"><fa-icon [icon]="faTrash"></fa-icon></button>
+              <button type="button" class="btn btn-success btn-sm ml-2" (click)="selectSousPartieFichePedagogiques(sousPartieFichePedagogiques)"><fa-icon [icon]="faClone"></fa-icon></button> 
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="text-muted text-center" *ngIf="!fichePedagogique.sousPartieFichePedagogiques">
+        <!-- Ajouter une ligne de fichePedagogique -->
+        <small>Aucune page pour cette fiche pédagogique</small>
+        <br>
+      </p>
+      <form name="Form"  #sousPartieFichePedagogiquesForm = "ngForm" (ngSubmit)="addSousPartieFichePedagogiques(sousPartieFichePedagogiquesForm); sousPartieFichePedagogiquesForm.resetForm()" *ngIf="showSousPartieFichePedagogiquesForm">     
+        <div class="form-row" *ngIf="showSousPartieFichePedagogiquesForm">
+          <!-- Titre -->
+          <div class="col">
 
-    <div class="modal-footer">
-      <input class="btn btn-primary" type="submit" value="Sauvegarder" [disabled]="myform.invalid">
+            <label class="required" for="titre">Titre</label>
+
+            <input
+              type="text"
+              class="form-control"
+              aria-label="titre"
+              name="titre"
+              aria-describedby="inputGroup-sizing-sm"
+              required
+              #titre="ngModel"
+              placeholder="Titre"
+              ngModel="{{sousPartieFichePedagogique['titre']}}"
+            />
+
+            <div *ngIf="titre.invalid  && (titre.dirty || titre.touched)">
+              <div *ngIf="titre.errors?.['required']">
+                <small id="titreRequired" class="text-danger"> Titre est obligatoire</small>
+              </div>
+            </div>
+          </div>
+          <!-- Contenue -->
+          <div class="col">
+
+            <label class="required" for="contenue">Contenue</label>
+
+            <textarea
+              type="textarea"
+              class="form-control"
+              aria-label="contenue"
+              name="contenue"
+              aria-describedby="inputGroup-sizing-sm"
+              required
+              #contenue="ngModel"
+              placeholder="Contenue"
+              ngModel="{{sousPartieFichePedagogique['contenue']}}"
+            ></textarea>
+
+            <div *ngIf="contenue.invalid  && (contenue.dirty || contenue.touched)">
+              <div *ngIf="contenue.errors?.['required']">
+                <small id="contenueRequired" class="text-danger"> Contenue est obligatoire</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-2">
+          <!-- Ajouter ligne fichePedagogique -->
+          <input class="btn btn-primary btn-sm" type="submit" value="Ajouter une ligne" [disabled]="sousPartieFichePedagogiquesForm.invalid">
+        </div>
+      </form>     
+      <!-- Fermer -->
+      <button type="button" class="btn btn-sm btn-dark float-right ml-2" (click)="toggleShowSousPartieFichePedagogiquesForm(false)" *ngIf="showSousPartieFichePedagogiquesForm" tabindex=-1>
+          <i class="fa fa-times"></i> Fermer
+      </button>
+      <small>
+        <span class="star"></span> Obligatoire
+      </small>
     </div>
+    <div class="modal-footer">
+      <input class="btn btn-primary" type="submit" value="Sauvegarder" [disabled]="myform.invalid ||
+      !fichePedagogique.sousPartieFichePedagogiques ||
+      fichePedagogique.sousPartieFichePedagogiques.length === 0">
     </div>
   </form>
 </ng-template>

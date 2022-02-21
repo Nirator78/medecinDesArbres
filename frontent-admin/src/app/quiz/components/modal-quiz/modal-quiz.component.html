@@ -123,7 +123,7 @@
       <table class="table table-hover table-sm">
         <thead>
         <tr>
-          <th scope="col">Ordre</th>
+          <th scope="col">#</th>
             <!-- Quantite -->
             <th scope="col">Question</th>
             <!-- Article -->
@@ -134,11 +134,13 @@
         </thead>
         <tbody  *ngIf="quiz.questions">
           <tr *ngFor="let questions of quiz.questions; let index = index">
-            <td>{{ questions.ordre }}</td>
+            <td>{{ index + 1 }}</td>
             <!-- Quantite -->
             <td>{{ questions.question }}</td>
             <!-- Article -->
-
+            <td>
+              {{ questions.reponse.length}}
+            </td>
             <td> 
               <button type="button" class="btn btn-danger btn-sm" (click)="deleteQuizQuestion(index)"><fa-icon [icon]="faTrash"></fa-icon></button>
               <button type="button" class="btn btn-success btn-sm ml-2" (click)="selectQuizQuestion(questions)"><fa-icon [icon]="faClone"></fa-icon></button> 
@@ -153,29 +155,26 @@
       </p>
       <form name="quizQuestionForm"  #quizQuestionForm = "ngForm" (ngSubmit)="addQuizQuestion(quizQuestionForm); quizQuestionForm.resetForm()" *ngIf="showQuizQuestionForm">     
         <div class="form-row" *ngIf="showQuizQuestionForm">
-          <!-- Quantité -->
+          <!-- Question -->
           <div class="col">
-            <label class="required" for="quantite">Quantité</label>
-  
-            <input
-              type="number"
+
+            <label class="required" for="question">Question</label>
+
+            <textarea
+              type="textarea"
               class="form-control"
-              aria-label="quantite"
-              name="quantite"
+              aria-label="question"
+              name="question"
               aria-describedby="inputGroup-sizing-sm"
               required
-              #quantite="ngModel"
-              placeholder="Quantité"
-              min="1"
-              ngModel="{{quiz['quantite']}}"
-            >
+              #question="ngModel"
+              placeholder="Question"
+              ngModel="{{quiz['question']}}"
+            ></textarea>
   
-            <div *ngIf="quantite.invalid  && (quantite.dirty || quantite.touched)">
-              <div *ngIf="quantite.errors?.['required']">
-                <small id="quantite" class="text-danger"> Quantité est obligatoire </small>
-              </div>
-              <div *ngIf="quantite.errors?.['min']">
-                <small id="quantite" class="text-danger"> Quantité invalide </small>
+            <div *ngIf="question.invalid  && (question.dirty || question.touched)">
+              <div *ngIf="question.errors?.['required']">
+                <small id="questionRequired" class="text-danger"> Question est obligatoire</small>
               </div>
             </div>
           </div>

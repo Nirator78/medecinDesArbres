@@ -48,7 +48,7 @@ export class ModalQuizComponent{
     else {
       methode="createQuiz"
     }
-    form.value.reponses = this.quiz.reponses
+    form.value.questions = this.quiz.questions
     // Post de la quiz
     this.quizService[methode](form).then(async (res) => {
       // Ferme le modal
@@ -63,23 +63,20 @@ export class ModalQuizComponent{
   }
 
   addQuizQuestion(formQuestion: NgForm){
-        console.log(formQuestion.value)
         const quizQuestion = formQuestion.value;
 
         // Si on est en création, la quiz courante n'a pas encore de ligne de quiz du coup cette condition sera vraie
-        if (! Array.isArray(this.quiz.quizQuestions)) {
+        if (! Array.isArray(this.quiz.questions)) {
             // On crée alors la ligne de quiz avec un item;
             this.quiz.quizQuestions = [ quizQuestion ];
         }
 
         // Si on est en modification, on unshift le nouvel item (on rajoute le nouvel élément au début de l'array)
         else {
-            if (! this.quiz.quizQuestions.includes(quizQuestion)) {
-              console.log(quizQuestion)
-                this.quiz.quizQuestions.push(quizQuestion);
+            if (! this.quiz.questions.includes(quizQuestion)) {
+                this.quiz.questions.push(quizQuestion);
             }
         }
-
   }
 
   toggleShowQuizQuestionForm(show) {
@@ -93,7 +90,8 @@ export class ModalQuizComponent{
   }
 
   async deleteQuizQuestion(index) {
-    const quizQuestions = this.quiz.quizQuestions;
+    const quizQuestions = this.quiz.questions;
+
     /*await this.confirmationDialogService.confirm('Suppression', 'Voulez-vous vraiment effacer cet quiz ?')
       .then(confirm => this.confirmation = confirm)
       .catch(() => {});*/
