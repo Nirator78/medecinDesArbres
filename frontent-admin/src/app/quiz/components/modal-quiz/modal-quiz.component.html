@@ -138,8 +138,15 @@
             <!-- Quantite -->
             <td>{{ questions.question }}</td>
             <!-- Article -->
-            <td>
-              {{ questions.reponse.length}}
+            <td >
+              <tr *ngFor="let reponses of questions.reponse; let index1 = index">
+                <td style="border:none;">
+                  {{ reponses.reponse}}
+                </td>
+                <td style="border:none;">
+                  <button type="button" class="btn btn-danger btn-sm" (click)="deleteQuizReponse(index1, index)"><fa-icon [icon]="faTrash"></fa-icon></button>
+                </td>
+              </tr>
             </td>
             <td> 
               <button type="button" class="btn btn-danger btn-sm" (click)="deleteQuizQuestion(index)"><fa-icon [icon]="faTrash"></fa-icon></button>
@@ -148,7 +155,7 @@
           </tr>
         </tbody>
       </table>
-      <p class="text-muted text-center" *ngIf="!quiz.questions">
+      <p class="text-muted text-center" *ngIf="!quiz.questions || !quiz.questions.length">
         <!-- Ajouter une ligne de quiz -->
         <small>Aucune question pour ce quiz</small>
         <br>
@@ -178,13 +185,70 @@
               </div>
             </div>
           </div>
-        </div>
+          <div class="col-md-5">
+            <div id="contrainte">
+              <form name="quizReponseForm"  #quizReponseForm = "ngForm" (ngSubmit)="addQuizReponse(quizReponseForm); quizReponseForm.resetForm()" >  
+                  <div class="form-row align-items-center">
+                    <!-- Contraintes -->
+                      <!-- Type contrainte -->
+                      <label>
+                        Type reponse
+                      </label>
+                      <div class="input-group input-group-sm">
+                        <select class="browser-default custom-select" name="bonne" required ngModel="{{quiz['bonne']}}">
+                          <option ngValue="" disabled selected>Choisir type </option>
+                          <option [ngValue]="true">Bonne</option>
+                          <option [ngValue]="false">Mauvaise</option>
+                        </select>
 
+                        <!-- Valeur contrainte -->
+                        <textarea
+                          type="textarea"
+                          class="form-control"
+                          aria-label="reponse"
+                          name="reponse"
+                          aria-describedby="inputGroup-sizing-sm"
+                          required
+                          #reponse="ngModel"
+                          placeholder="Réponse"
+                          [ngModel]="quiz['reponse']"
+                        ></textarea>
+
+                        <!--  Enlever contrainte 
+                        <div class="input-group-append">
+                          <button type="button" class="btn btn-danger btn-sm" ng-disabled="cdVm.contrainteForm.$invalid || !cdVm.contrainte.type || !cdVm.contrainte.value"
+                              title="{{ 'COMMANDE_CONTRAINTES_PLACEHOLDER_ENLEVER' | translate }}"
+                              ng-click="cdVm.resetContrainte(true)"
+                          >
+                            enleve reponse
+                          </button>
+                        </div>-->
+                      <!-- Ajouter contrainte -->
+
+                    </div>      
+                  </div>
+                  <button type="submit" class="btn btn-sm btn-secondary float-right ml-2" >
+                    <i class="fa fa-times"></i> Ajouter réponse
+                </button>
+              </form>
+              <!-- Liste contraintes 
+              <ul class="list-group">
+                <li class="list-group-item d-flex justify-content-between align-items-center" ng-repeat="contrainte in cdVm.currentCommandeLigne.contraintes" ng-click="cdVm.selectContrainte(contrainte)">
+                  {{ contrainte.type.label }} - {{ contrainte.value }}
+                  <span class="badge badge-primary badge-pill lead">
+                  {{ contrainte.type.description }}
+                </span>
+                </li>
+              </ul>-->
+            </div>
+          </div>   
+        </div>
+        
         <div class="mt-2">
           <!-- Ajouter ligne quiz -->
           <input class="btn btn-primary btn-sm" type="submit" value="Ajouter une ligne" [disabled]="quizQuestionForm.invalid">
         </div>
-      </form>     
+      </form>  
       <!-- Fermer -->
       <button type="button" class="btn btn-sm btn-dark float-right ml-2" (click)="toggleShowQuizQuestionForm(false)" *ngIf="showQuizQuestionForm" tabindex=-1>
           <i class="fa fa-times"></i> Fermer
