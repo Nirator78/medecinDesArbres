@@ -21,7 +21,7 @@ export default [
     },
     {
         method: "put",
-        route: "/fiche-pedagogique",
+        route: "/fiche-pedagogique/:id",
         controller: FichePedagogiqueController,
         action: "update"
     },
