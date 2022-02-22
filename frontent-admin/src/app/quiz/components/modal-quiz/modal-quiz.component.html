@@ -139,12 +139,13 @@
             <td>{{ questions.question }}</td>
             <!-- Article -->
             <td >
-              <button type="button" class="btn btn-primary btn-sm" (click)="deleteQuizQuestion(index)">Voir</button>
+              <button type="button" class="btn btn-primary btn-sm" (click)="toggleShowQuizReponse(true)" *ngIf="!showQuizReponse">Voir</button>
+              <button type="button" class="btn btn-primary btn-sm" (click)="toggleShowQuizReponse(false)" *ngIf="showQuizReponse">Fermer</button>
               <tr *ngFor="let reponses of questions.reponse; let index1 = index">
-                <td style="border:none;">
+                <td style="border:none;"  *ngIf="showQuizReponse">
                   {{ reponses.reponse}}
                 </td>
-                <td style="border:none;">
+                <td style="border:none;"  *ngIf="showQuizReponse">
                   <button type="button" class="btn btn-danger btn-sm" (click)="deleteQuizReponse(index1, index)"><fa-icon [icon]="faTrash"></fa-icon></button>
                 </td>
               </tr>

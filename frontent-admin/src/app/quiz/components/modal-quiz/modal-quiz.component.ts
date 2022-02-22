@@ -19,6 +19,7 @@ export class ModalQuizComponent{
   faClone = faClone;
   file;
   showQuizQuestionForm;
+  showQuizReponse;
   public environment = environment;
   reponses: any[] = [];
 
@@ -100,6 +101,10 @@ export class ModalQuizComponent{
 
   toggleShowQuizQuestionForm(show) {
     this.showQuizQuestionForm = show;
+  }
+
+  toggleShowQuizReponse(show){
+    this.showQuizReponse = show;
   }
 
   selectQuizQuestion(quizQuestions) {
