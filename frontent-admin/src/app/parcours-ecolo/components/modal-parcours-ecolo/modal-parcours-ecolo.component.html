@@ -59,6 +59,30 @@
             </div>
           </div>
         </div>
+        <div class="col">
+          <label class="required" for="ville">Ville</label>
+          <ng-select
+            required
+            placeholder="Choisir une ville"
+            name="ville"
+            #ville="ngModel"
+            [items]="villeList"
+            bindLabel="ville"
+            [closeOnSelect]="false"
+            [clearable]="false"
+            [closeOnSelect]="true"
+            [(ngModel)]="parcoursecolo.ville">
+            <ng-option [value]="parcoursecolo.ville ? ville.id : null"  *ngFor="let ville of villeList">
+                {{ville.ville}}
+            </ng-option>
+          </ng-select>
+
+          <div *ngIf="ville.invalid  && (ville.dirty || ville.touched)">
+            <div *ngIf="ville.errors?.['required']">
+              <small id="villeRequired" class="text-danger"> Ville est obligatoire</small>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="mb-3 w-96">
         <label for="formFileSm" class="form-label inline-block mb-2 text-gray-700">Image</label>

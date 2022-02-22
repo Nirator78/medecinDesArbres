@@ -18,9 +18,11 @@ export class ModalParcoursEcoloComponent {
   faPlus = faPlus;
   file;
   userList;
+  villeList;
 
   constructor(private modalService: NgbModal, private parcoursEcoloService: ParcoursEcoloService, private listParcoursEcoloComponent: ListParcoursEcoloComponent, private userService: UserService) {
     this.userList = [];
+    this.villeList = [];
   }
 
   async open(content) {
