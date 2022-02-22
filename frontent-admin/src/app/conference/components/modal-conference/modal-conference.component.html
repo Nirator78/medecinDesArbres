@@ -10,7 +10,7 @@
       <div class="modal-body">
         <!-- Titre -->
         <div class="form-row">
-          <div class="col-12">
+          <div class="col">
             <label class="required" for="titre">Titre</label>
   
             <input
@@ -60,23 +60,45 @@
             </div>
           </div>
         </div>
+        <div class="form-row">
+            <!-- Thème -->
+          <div class="col">
+            <label class="required" for="description">Description</label>
+            <textarea
+              type="textarea"
+              class="form-control"
+              aria-label="description"
+              name="description"
+              id="description"
+              aria-describedby="inputGroup-sizing-sm"
+              required
+              #description="ngModel"
+              placeholder="Description"
+              ngModel="{{conference['description']}}"
+            ></textarea>
+  
+            <div *ngIf="description.invalid  && (description.dirty || description.touched)">
+              <div *ngIf="description.errors?.['required']">
+                <small id="descriptionRequired" class="text-danger"> La description est obligatoire</small>
+              </div>
+            </div>
+          </div>
+        </div>
   
         <!-- Manque la la liste des sous parties en liste -->
-        <!-- Ajouter d'une page -->
+        <!-- Ajouter d'un participant -->
         <button type="button" class="btn btn-link btn-sm float-right"
         (click)="toggleShowConferenceParticipantsForm(true)"
         id="ajouter-ligne-conference"
         >
-            <i class="fa fa-plus"></i> Ajouter une page
+            <i class="fa fa-plus"></i> Ajouter un participant
         </button>
         <table class="table table-hover table-sm">
           <thead>
           <tr>
             <th scope="col">#</th>
-              <!-- Quantite -->
-              <th scope="col">Titre</th>
-              <!-- Article -->
-              <th scope="col">Contenue</th>
+              <!-- Nom -->
+              <th scope="col">Participant</th>
               <!-- Action -->
               <th scope="col">Action</th>
           </tr>
@@ -84,12 +106,8 @@
           <tbody  *ngIf="conference.conferenceParticipants">
             <tr *ngFor="let conferenceParticipants of conference.conferenceParticipants; let index = index">
               <td>{{ index + 1 }}</td>
-              <!-- Quantite -->
-              <td>{{ conferenceParticipants.titre }}</td>
-              <!-- Article -->
-              <td>
-                {{ conferenceParticipants.contenue}}
-              </td>
+              <!-- User -->
+              <td>{{ conferenceParticipants.user.nom }} {{ conferenceParticipants.user.prenom }}</td>
               <td> 
                 <button type="button" class="btn btn-danger btn-sm" (click)="deleteConferenceParticipants(index)"><fa-icon [icon]="faTrash"></fa-icon></button>
                 <button type="button" class="btn btn-success btn-sm ml-2" (click)="selectConferenceParticipants(conferenceParticipants)"><fa-icon [icon]="faClone"></fa-icon></button> 
@@ -99,7 +117,7 @@
         </table>
         <p class="text-muted text-center" *ngIf="!conference.conferenceParticipants">
           <!-- Ajouter une ligne de conference -->
-          <small>Aucune page pour cette fiche pédagogique</small>
+          <small>Aucun participant pour cette conférence</small>
           <br>
         </p>
         <form name="Form"  #conferenceParticipantsForm = "ngForm" (ngSubmit)="addConferenceParticipants(conferenceParticipantsForm); conferenceParticipantsForm.resetForm()" *ngIf="showConferenceParticipantsForm">     
