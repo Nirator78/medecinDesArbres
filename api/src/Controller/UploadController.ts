@@ -3,12 +3,16 @@ import {getRepository} from "typeorm";
 import {Image} from "../Entity/Image";
 import {Article} from "../Entity/Article";
 import {ParcoursEcolo} from "../Entity/ParcoursEcolo";
+import {Quiz} from "../Entity/Quiz";
+import {QuizQuestion} from "../Entity/QuizQuestion";
 
 export class UploadController {
 
     private imageRepository = getRepository(Image);
     private articleRepository = getRepository(Article);
     private parcoursEcoloRepository = getRepository(ParcoursEcolo);
+    private quizRepository = getRepository(Quiz);
+    private quizQuestionRepository = getRepository(QuizQuestion);
 
     async upload(request: Request, response: Response, next: NextFunction) {
         try {
@@ -38,6 +42,16 @@ export class UploadController {
                             const parcoursEcolo = await this.parcoursEcoloRepository.findOne(id);
                             parcoursEcolo.image = newImage
                             await this.parcoursEcoloRepository.save(parcoursEcolo);
+                            break;
+                        case "quiz":
+                            const quiz = await this.quizRepository.findOne(id);
+                            quiz.image = newImage
+                            await this.quizRepository.save(quiz);
+                            break;
+                        case "quiz-question":
+                            const quizQuestion = await this.quizQuestionRepository.findOne(id);
+                            quizQuestion.image = newImage
+                            await this.quizQuestionRepository.save(quizQuestion);
                             break;
                     }
                 }
