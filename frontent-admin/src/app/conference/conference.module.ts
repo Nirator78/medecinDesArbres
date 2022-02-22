@@ -2,6 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ListConferenceComponent } from './components/list-conference/list-conference.component';
 import { ModalConferenceComponent } from './components/modal-conference/modal-conference.component';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 
@@ -11,7 +15,15 @@ import { ModalConferenceComponent } from './components/modal-conference/modal-co
     ModalConferenceComponent
   ],
   imports: [
-    CommonModule
-  ]
+    CommonModule,
+    FormsModule,
+    HttpClientModule,
+    NgbModule,
+    FontAwesomeModule
+  ],
+  exports: [
+    ListConferenceComponent,
+    ModalConferenceComponent
+  ],
 })
 export class ConferenceModule { }
