@@ -112,6 +112,16 @@
             </div>
           </div>
         </div>
+        <div class="mb-3 w-96">
+          <label for="formFileSm" class="form-label inline-block mb-2 text-gray-700">Image</label>
+          <input
+            class="form-control"
+            id="formFileSm"
+            type="file"
+            (change)="onFileSelected($event)"
+            accept="image/*"
+          >
+        </div>
       </div>
       <!-- Ajouter d'une question -->
       <button type="button" class="btn btn-link btn-sm float-right"
@@ -135,9 +145,11 @@
         <tbody  *ngIf="quiz.questions">
           <tr *ngFor="let questions of quiz.questions; let index = index">
             <td>{{ index + 1 }}</td>
-            <!-- Quantite -->
+            <!-- Question -->
             <td>{{ questions.question }}</td>
-            <!-- Article -->
+            <!-- Image -->
+            <td><img src="{{questions.image ? (environment.apiUrl + questions?.image?.url) : 'https://via.placeholder.com/50' }}" width="50" height="50"/></td>
+            <!-- Réponse -->
             <td>
               <button type="button" class="btn btn-primary btn-sm" (click)="toggleShowQuizReponse(index)" *ngIf="!showQuizReponse[index]">Voir</button>
               <button type="button" class="btn btn-primary btn-sm" (click)="toggleDontShowQuizReponse(index)" *ngIf="showQuizReponse[index]">Fermer</button>
@@ -184,6 +196,16 @@
               <div *ngIf="question.errors?.['required']">
                 <small id="questionRequired" class="text-danger"> Question est obligatoire</small>
               </div>
+            </div>
+            <div class="mb-3 w-96">
+              <label for="formFileSmQuestion" class="form-label inline-block mb-2 text-gray-700">Image</label>
+              <input
+                class="form-control"
+                id="formFileSmQuestion"
+                type="file"
+                (change)="onFileQuizQuestionSelected($event)"
+                accept="image/*"
+              >
             </div>
           </div>
           <div class="col-6">

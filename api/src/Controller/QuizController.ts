@@ -9,7 +9,7 @@ export class QuizController {
     private authentificationService = new AuthentificationService();
 
     async all(request: Request, response: Response, next: NextFunction) {
-        let quizListe = await this.quizRepository.find({ relations: ["questions", "questions.reponse"] });
+        let quizListe = await this.quizRepository.find({ relations: ["image", "questions", "questions.image", "questions.reponse"] });
 
         if(quizListe){
             return { status: 1, data: quizListe }
@@ -19,7 +19,7 @@ export class QuizController {
     }
 
     async one(request: Request, response: Response, next: NextFunction) {
-        let quiz = await this.quizRepository.findOne(request.params.id,{ relations: ["questions", "questions.reponse"] });
+        let quiz = await this.quizRepository.findOne(request.params.id,{ relations: ["image", "questions", "questions.image", "questions.reponse"] });
         if(quiz){
             return { status: 1, data: quiz }
         }else{

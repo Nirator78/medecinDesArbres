@@ -32,4 +32,9 @@ export class QuizService {
     const response = await this.apiService.uploadTypeRequest('quiz', id, image).toPromise() || {};
     return response["data"];
   }
+
+  async uploadImageQuizQuestion(id, image) {
+    const response = await this.apiService.uploadTypeRequest('quiz-question', id, image).toPromise() || {};
+    return response["data"];
+  }
 }

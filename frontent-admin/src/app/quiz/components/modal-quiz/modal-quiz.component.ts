@@ -18,13 +18,13 @@ export class ModalQuizComponent{
   faTrash = faTrash;
   faClone = faClone;
   file;
+  filesQuestions: any[] = [];
   showQuizQuestionForm;
   showQuizReponse: boolean[] = [];
   public environment = environment;
   reponses: any[] = [];
 
   constructor(private modalService: NgbModal, private quizService: QuizService, private listQuizComponent: ListQuizComponent) {
-
   }
 
   async open(content) {
@@ -53,8 +53,22 @@ export class ModalQuizComponent{
     }
     form.value.questions = this.quiz.questions
 
+    form.value.questions.map((obj) => {
+      // On vire les images du formulaire
+      this.filesQuestions.push(obj.image)
+      delete obj.image;
+    });
     // Post de la quiz
     this.quizService[methode](form).then(async (res) => {
+      // Upload du fichier après création du quiz
+      if(this.file){
+        const formData = new FormData();
+
+        formData.append("image", this.file);
+
+        await this.quizService.uploadImageQuiz(res.id, formData);
+      }
+
       // Ferme le modal
       this.modalService.dismissAll();
       // Refresh la liste des utilisateurs
@@ -66,9 +80,14 @@ export class ModalQuizComponent{
     this.file = event.target.files[0];
   }
 
+  onFileQuizQuestionSelected(event) {
+    this.filesQuestions.push(event.target.files[0]);
+    console.log(this.filesQuestions);
+  }
+
   addQuizQuestion(formQuestion: NgForm){
         const quizQuestion = formQuestion.value;
-        console.log("addQuestion",formQuestion.value)
+
         quizQuestion.reponse = this.reponses;
         this.reponses = [];
         // Si on est en création, la quiz courante n'a pas encore de ligne de quiz du coup cette condition sera vraie
@@ -87,7 +106,7 @@ export class ModalQuizComponent{
 
   addQuizReponse(formReponse: NgForm){
     const quizReponse = formReponse.value;
-    console.log("addReponse",quizReponse)
+
     // Si on est en création, la quiz courante n'a pas encore de ligne de quiz du coup cette condition sera vraie
     if (! Array.isArray(this.reponses)) {
         // On crée alors la ligne de quiz avec un item;
