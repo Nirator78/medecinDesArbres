@@ -112,6 +112,16 @@
             </div>
           </div>
         </div>
+        <div class="mb-3 w-96">
+          <label for="formFileSm" class="form-label inline-block mb-2 text-gray-700">Image</label>
+          <input
+            class="form-control"
+            id="formFileSm"
+            type="file"
+            (change)="onFileSelected($event)"
+            accept="image/*"
+          >
+        </div>
       </div>
       <!-- Ajouter d'une question -->
       <button type="button" class="btn btn-link btn-sm float-right"

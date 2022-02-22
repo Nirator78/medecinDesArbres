@@ -55,6 +55,15 @@ export class ModalQuizComponent{
 
     // Post de la quiz
     this.quizService[methode](form).then(async (res) => {
+      // Upload du fichier après création du quiz
+      if(this.file){
+        const formData = new FormData();
+
+        formData.append("image", this.file);
+
+        await this.quizService.uploadImageQuiz(res.id, formData);
+      }
+
       // Ferme le modal
       this.modalService.dismissAll();
       // Refresh la liste des utilisateurs
