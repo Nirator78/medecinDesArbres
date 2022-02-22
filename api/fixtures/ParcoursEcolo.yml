@@ -4,14 +4,14 @@ items:
     user: "@user1"
     ville: "@ville1"
     description: "Première fois que je cours"
-    imege: "@image4"
+    image: "@image4"
   parcours2:
     user: "@user2"
     ville: "@ville12"
     description: "Avec mon pote"
-    imege: "@image5"
+    image: "@image5"
   parcours3:
     user: "@user3"
     ville: "@ville14"
     description: "J'ai mal au pied"
-    imege: "@image6"
+    image: "@image6"
