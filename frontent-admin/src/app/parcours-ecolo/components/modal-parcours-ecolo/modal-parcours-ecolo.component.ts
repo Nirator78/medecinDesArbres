@@ -4,6 +4,7 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {NgForm} from "@angular/forms";
 import {ParcoursEcoloService} from "../../services/parcours-ecolo.service";
 import {ListParcoursEcoloComponent} from "../list-parcours-ecolo/list-parcours-ecolo.component";
+import { UserService } from 'src/app/user/services/user.service';
 
 @Component({
   selector: 'app-modal-parcours-ecolo',
@@ -16,12 +17,24 @@ export class ModalParcoursEcoloComponent {
   @Input() parcoursecolo: any = {};
   faPlus = faPlus;
   file;
+  userList;
+  villeList;
 
-  constructor(private modalService: NgbModal, private parcoursEcoloService: ParcoursEcoloService, private listParcoursEcoloComponent: ListParcoursEcoloComponent) {
+  constructor(private modalService: NgbModal, private parcoursEcoloService: ParcoursEcoloService, private listParcoursEcoloComponent: ListParcoursEcoloComponent, private userService: UserService) {
+    this.userList = [];
+    this.villeList = [];
   }
 
-  open(content) {
-    this.modalService.open(content, { ariaLabelledBy: "modal-basic-title", size: "lg"});
+  async open(content) {
+    this.modalService.open(content, { ariaLabelledBy: "modal-basic-title", size: "lg"}).result.then((result) => {
+    }, (reason) => {
+      this.listParcoursEcoloComponent.refresh()
+    });
+    if(this.mode === "modal"){
+      this.parcoursecolo = {}
+    };
+    // Récupération des liste pour le formulaire à l'ouverture sinon spam de l'api
+    this.userList = await this.userService.getAllUser();
   }
 
   onSubmit(form: NgForm){

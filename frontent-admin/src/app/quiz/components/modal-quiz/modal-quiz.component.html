@@ -127,7 +127,7 @@
             <!-- Quantite -->
             <th scope="col">Question</th>
             <!-- Article -->
-            <th scope="col">Nombre de reponse</th>
+            <th scope="col">Réponses</th>
             <!-- Action -->
             <th scope="col">Action</th>
         </tr>
@@ -139,11 +139,13 @@
             <td>{{ questions.question }}</td>
             <!-- Article -->
             <td >
+              <button type="button" class="btn btn-primary btn-sm" (click)="toggleShowQuizReponse(true)" *ngIf="!showQuizReponse">Voir</button>
+              <button type="button" class="btn btn-primary btn-sm" (click)="toggleShowQuizReponse(false)" *ngIf="showQuizReponse">Fermer</button>
               <tr *ngFor="let reponses of questions.reponse; let index1 = index">
-                <td style="border:none;">
+                <td style="border:none;"  *ngIf="showQuizReponse">
                   {{ reponses.reponse}}
                 </td>
-                <td style="border:none;">
+                <td style="border:none;"  *ngIf="showQuizReponse">
                   <button type="button" class="btn btn-danger btn-sm" (click)="deleteQuizReponse(index1, index)"><fa-icon [icon]="faTrash"></fa-icon></button>
                 </td>
               </tr>
@@ -163,8 +165,7 @@
       <form name="quizQuestionForm"  #quizQuestionForm = "ngForm" (ngSubmit)="addQuizQuestion(quizQuestionForm); quizQuestionForm.resetForm()" *ngIf="showQuizQuestionForm">     
         <div class="form-row" *ngIf="showQuizQuestionForm">
           <!-- Question -->
-          <div class="col">
-
+          <div class="col-6">
             <label class="required" for="question">Question</label>
 
             <textarea
@@ -185,63 +186,60 @@
               </div>
             </div>
           </div>
-          <div class="col-md-5">
-            <div id="contrainte">
-              <form name="quizReponseForm"  #quizReponseForm = "ngForm" (ngSubmit)="addQuizReponse(quizReponseForm); quizReponseForm.resetForm()" >  
-                  <div class="form-row align-items-center">
-                    <!-- Contraintes -->
-                      <!-- Type contrainte -->
-                      <label>
-                        Type reponse
-                      </label>
-                      <div class="input-group input-group-sm">
-                        <select class="browser-default custom-select" name="bonne" required ngModel="{{quiz['bonne']}}">
-                          <option ngValue="" disabled selected>Choisir type </option>
-                          <option [ngValue]="true">Bonne</option>
-                          <option [ngValue]="false">Mauvaise</option>
-                        </select>
-
-                        <!-- Valeur contrainte -->
-                        <textarea
-                          type="textarea"
-                          class="form-control"
-                          aria-label="reponse"
-                          name="reponse"
-                          aria-describedby="inputGroup-sizing-sm"
-                          required
-                          #reponse="ngModel"
-                          placeholder="Réponse"
-                          [ngModel]="quiz['reponse']"
-                        ></textarea>
-
-                        <!--  Enlever contrainte 
-                        <div class="input-group-append">
-                          <button type="button" class="btn btn-danger btn-sm" ng-disabled="cdVm.contrainteForm.$invalid || !cdVm.contrainte.type || !cdVm.contrainte.value"
-                              title="{{ 'COMMANDE_CONTRAINTES_PLACEHOLDER_ENLEVER' | translate }}"
-                              ng-click="cdVm.resetContrainte(true)"
-                          >
-                            enleve reponse
-                          </button>
-                        </div>-->
-                      <!-- Ajouter contrainte -->
-
-                    </div>      
+          <div class="col-6">
+            <form name="quizReponseForm"  #quizReponseForm = "ngForm" (ngSubmit)="addQuizReponse(quizReponseForm); quizReponseForm.resetForm()" >  
+            
+              <!-- Contraintes -->
+              <label>
+                Type reponse
+              </label>
+              <!-- Type contrainte -->
+              <div class="form-row">
+                <div class="col-12">
+                  <div class="input-group input-group-sm">
+                    <select class="browser-default custom-select" name="bonne" required ngModel="{{quiz['bonne']}}">
+                      <option ngValue="" selected disabled>Choisir type</option>
+                      <option [ngValue]="true">Bonne</option>
+                      <option [ngValue]="false">Mauvaise</option>
+                    </select>
                   </div>
-                  <button type="submit" class="btn btn-sm btn-secondary float-right ml-2" >
-                    <i class="fa fa-times"></i> Ajouter réponse
-                </button>
-              </form>
-              <!-- Liste contraintes 
-              <ul class="list-group">
-                <li class="list-group-item d-flex justify-content-between align-items-center" ng-repeat="contrainte in cdVm.currentCommandeLigne.contraintes" ng-click="cdVm.selectContrainte(contrainte)">
-                  {{ contrainte.type.label }} - {{ contrainte.value }}
-                  <span class="badge badge-primary badge-pill lead">
-                  {{ contrainte.type.description }}
-                </span>
-                </li>
-              </ul>-->
-            </div>
-          </div>   
+                </div>
+                <div class="col-12 mt-2">
+                  <textarea
+                    type="textarea"
+                    class="form-control"
+                    aria-label="reponse"
+                    name="reponse"
+                    aria-describedby="inputGroup-sizing-sm"
+                    required
+                    #reponse="ngModel"
+                    placeholder="Réponse"
+                    [ngModel]="quiz['reponse']"
+                  ></textarea>
+                </div>
+                <!-- Réponse -->
+              </div>      
+              <div class="form-row">
+                <div class="col-12 mt-2">
+                  <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let reponses of reponses; let index = index">
+                      <span class="badge badge-pill" [ngClass]="{
+                        'badge-success': reponses.bonne == true,
+                        'badge-danger': reponses.bonne == false
+                      }"
+                      > 
+                      <div *ngIf="reponses.bonne">Valide</div> 
+                      <div *ngIf="!reponses.bonne">Incorrect</div>
+                    </span>{{ reponses.reponse }}
+                    </li>
+                  </ul> 
+                </div>
+              </div>
+              <button type="submit" class="btn btn-sm btn-secondary float-right ml-2 mt-2" [disabled]="quizReponseForm.invalid">
+                  <i class="fa fa-times"></i> Ajouter réponse
+              </button>
+            </form>
+          </div>  
         </div>
         
         <div class="mt-2">
