@@ -13,6 +13,7 @@ import {StatistiqueCommandeComponent} from "./statistique/pages/statistique-comm
 import {StatistiqueQuizComponent} from "./statistique/pages/statistique-quiz/statistique-quiz.component";
 import {ListFichePedagogiqueComponent} from "./fiche-pedagogique/components/list-fiche-pedagogique/list-fiche-pedagogique.component";
 import {ListParcoursEcoloComponent} from "./parcours-ecolo/components/list-parcours-ecolo/list-parcours-ecolo.component";
+import { ListConferenceComponent } from './conference/components/list-conference/list-conference.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent, pathMatch: 'full' },
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'statistique-quiz', component: StatistiqueQuizComponent, canActivate:[LoginGuard] },
   { path: 'fiche-pedagogique', component: ListFichePedagogiqueComponent, canActivate:[LoginGuard] },
   { path: 'parcours-ecolo', component: ListParcoursEcoloComponent, canActivate:[LoginGuard] },
+  { path: 'conference', component: ListConferenceComponent, canActivate:[LoginGuard] },
   { path: '**', redirectTo: '' }
 ];
 
