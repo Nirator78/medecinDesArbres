@@ -9,7 +9,7 @@ export class VilleController {
     private authentificationService = new AuthentificationService();
 
     async all(request: Request, response: Response, next: NextFunction) {
-        let villeListe = await this.villeRepository.find();
+        let villeListe = await this.villeRepository.find({take: 10});
 
         if(villeListe){
             return { status: 1, data: villeListe }

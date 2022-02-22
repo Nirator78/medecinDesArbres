@@ -44,7 +44,6 @@
             #user="ngModel"
             [items]="userList"
             bindLabel="prenom"
-            [closeOnSelect]="false"
             [clearable]="false"
             [closeOnSelect]="true"
             [(ngModel)]="parcoursecolo.user">
@@ -68,9 +67,9 @@
             #ville="ngModel"
             [items]="villeList"
             bindLabel="ville"
-            [closeOnSelect]="false"
             [clearable]="false"
             [closeOnSelect]="true"
+            [searchable]="true"
             [(ngModel)]="parcoursecolo.ville">
             <ng-option [value]="parcoursecolo.ville ? ville.id : null"  *ngFor="let ville of villeList">
                 {{ville.ville}}

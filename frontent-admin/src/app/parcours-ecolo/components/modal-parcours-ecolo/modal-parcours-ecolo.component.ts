@@ -36,7 +36,7 @@ export class ModalParcoursEcoloComponent {
     };
     // Récupération des liste pour le formulaire à l'ouverture sinon spam de l'api
     this.userList = await this.userService.getAllUser();
-    this.villeList = await this.villeService.getAllVille();
+    this.villeList = await this.villeService.getAllVille()
   }
 
   onSubmit(form: NgForm){
