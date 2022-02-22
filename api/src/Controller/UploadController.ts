@@ -2,11 +2,13 @@ import {NextFunction, Request, Response} from "express";
 import {getRepository} from "typeorm";
 import {Image} from "../Entity/Image";
 import {Article} from "../Entity/Article";
+import {ParcoursEcolo} from "../Entity/ParcoursEcolo";
 
 export class UploadController {
 
     private imageRepository = getRepository(Image);
     private articleRepository = getRepository(Article);
+    private parcoursEcoloRepository = getRepository(ParcoursEcolo);
 
     async upload(request: Request, response: Response, next: NextFunction) {
         try {
@@ -25,13 +27,19 @@ export class UploadController {
                     newImage.url = `/${type}/${id}.png`;
                     await this.imageRepository.save(newImage);
 
-                    // Ensuite on met à jour l'article qui doit avoir l'image
-                    /**
-                     * @todo changer celon le type d'entité.
-                     */
-                    const article = await this.articleRepository.findOne(id);
-                    article.image = newImage
-                    await this.articleRepository.save(article);
+                    // Ensuite on met à jour l'entité qui doit avoir l'image
+                    switch (type) {
+                        case "article":
+                            const article = await this.articleRepository.findOne(id);
+                            article.image = newImage
+                            await this.articleRepository.save(article);
+                            break;
+                        case "parcours-ecolo":
+                            const parcoursEcolo = await this.parcoursEcoloRepository.findOne(id);
+                            parcoursEcolo.image = newImage
+                            await this.parcoursEcoloRepository.save(parcoursEcolo);
+                            break;
+                    }
                 }
 
                 // On enregistre le fichier au bon endroit

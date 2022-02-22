@@ -25,7 +25,7 @@
             placeholder="Titre du quiz"
             ngModel="{{quiz['titre']}}"
           >
-          
+
           <div *ngIf="titre.invalid  && (titre.dirty || titre.touched)">
             <div *ngIf="titre.errors?.['minlength']">
               <small id="titreMin" class="text-danger"> Il faut minimum 4 caractéres</small>
@@ -138,21 +138,21 @@
             <!-- Quantite -->
             <td>{{ questions.question }}</td>
             <!-- Article -->
-            <td >
-              <button type="button" class="btn btn-primary btn-sm" (click)="toggleShowQuizReponse(true)" *ngIf="!showQuizReponse">Voir</button>
-              <button type="button" class="btn btn-primary btn-sm" (click)="toggleShowQuizReponse(false)" *ngIf="showQuizReponse">Fermer</button>
+            <td>
+              <button type="button" class="btn btn-primary btn-sm" (click)="toggleShowQuizReponse(index)" *ngIf="!showQuizReponse[index]">Voir</button>
+              <button type="button" class="btn btn-primary btn-sm" (click)="toggleDontShowQuizReponse(index)" *ngIf="showQuizReponse[index]">Fermer</button>
               <tr *ngFor="let reponses of questions.reponse; let index1 = index">
-                <td style="border:none;"  *ngIf="showQuizReponse">
+                <td style="border:none;"  *ngIf="showQuizReponse[index]">
                   {{ reponses.reponse}}
                 </td>
-                <td style="border:none;"  *ngIf="showQuizReponse">
+                <td style="border:none;"  *ngIf="showQuizReponse[index]">
                   <button type="button" class="btn btn-danger btn-sm" (click)="deleteQuizReponse(index1, index)"><fa-icon [icon]="faTrash"></fa-icon></button>
                 </td>
               </tr>
             </td>
-            <td> 
+            <td>
               <button type="button" class="btn btn-danger btn-sm" (click)="deleteQuizQuestion(index)"><fa-icon [icon]="faTrash"></fa-icon></button>
-              <button type="button" class="btn btn-success btn-sm ml-2" (click)="selectQuizQuestion(questions)"><fa-icon [icon]="faClone"></fa-icon></button> 
+              <button type="button" class="btn btn-success btn-sm ml-2" (click)="selectQuizQuestion(questions)"><fa-icon [icon]="faClone"></fa-icon></button>
             </td>
           </tr>
         </tbody>
@@ -162,7 +162,7 @@
         <small>Aucune question pour ce quiz</small>
         <br>
       </p>
-      <form name="quizQuestionForm"  #quizQuestionForm = "ngForm" (ngSubmit)="addQuizQuestion(quizQuestionForm); quizQuestionForm.resetForm()" *ngIf="showQuizQuestionForm">     
+      <form name="quizQuestionForm"  #quizQuestionForm = "ngForm" (ngSubmit)="addQuizQuestion(quizQuestionForm); quizQuestionForm.resetForm()" *ngIf="showQuizQuestionForm">
         <div class="form-row" *ngIf="showQuizQuestionForm">
           <!-- Question -->
           <div class="col-6">
@@ -179,7 +179,7 @@
               placeholder="Question"
               ngModel="{{quiz['question']}}"
             ></textarea>
-  
+
             <div *ngIf="question.invalid  && (question.dirty || question.touched)">
               <div *ngIf="question.errors?.['required']">
                 <small id="questionRequired" class="text-danger"> Question est obligatoire</small>
@@ -187,8 +187,8 @@
             </div>
           </div>
           <div class="col-6">
-            <form name="quizReponseForm"  #quizReponseForm = "ngForm" (ngSubmit)="addQuizReponse(quizReponseForm); quizReponseForm.resetForm()" >  
-            
+            <form name="quizReponseForm"  #quizReponseForm = "ngForm" (ngSubmit)="addQuizReponse(quizReponseForm); quizReponseForm.resetForm()" >
+
               <!-- Contraintes -->
               <label>
                 Type reponse
@@ -218,7 +218,7 @@
                   ></textarea>
                 </div>
                 <!-- Réponse -->
-              </div>      
+              </div>
               <div class="form-row">
                 <div class="col-12 mt-2">
                   <ul class="list-group">
@@ -227,26 +227,26 @@
                         'badge-success': reponses.bonne == true,
                         'badge-danger': reponses.bonne == false
                       }"
-                      > 
-                      <div *ngIf="reponses.bonne">Valide</div> 
+                      >
+                      <div *ngIf="reponses.bonne">Valide</div>
                       <div *ngIf="!reponses.bonne">Incorrect</div>
                     </span>{{ reponses.reponse }}
                     </li>
-                  </ul> 
+                  </ul>
                 </div>
               </div>
               <button type="submit" class="btn btn-sm btn-secondary float-right ml-2 mt-2" [disabled]="quizReponseForm.invalid">
                   <i class="fa fa-times"></i> Ajouter réponse
               </button>
             </form>
-          </div>  
+          </div>
         </div>
-        
+
         <div class="mt-2">
           <!-- Ajouter ligne quiz -->
           <input class="btn btn-primary btn-sm" type="submit" value="Ajouter une ligne" [disabled]="quizQuestionForm.invalid">
         </div>
-      </form>  
+      </form>
       <!-- Fermer -->
       <button type="button" class="btn btn-sm btn-dark float-right ml-2" (click)="toggleShowQuizQuestionForm(false)" *ngIf="showQuizQuestionForm" tabindex=-1>
           <i class="fa fa-times"></i> Fermer
@@ -255,7 +255,7 @@
         <span class="star"></span> Obligatoire
       </small>
     </div>
-    
+
     <div class="modal-footer">
       <input class="btn btn-primary" type="submit" value="Sauvegarder" [disabled]="myform.invalid ||
       !quiz.questions ||

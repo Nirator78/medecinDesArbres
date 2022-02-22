@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { faClone, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -19,7 +19,7 @@ export class ModalQuizComponent{
   faClone = faClone;
   file;
   showQuizQuestionForm;
-  showQuizReponse;
+  showQuizReponse: boolean[] = [];
   public environment = environment;
   reponses: any[] = [];
 
@@ -32,9 +32,11 @@ export class ModalQuizComponent{
     }, (reason) => {
       this.listQuizComponent.refresh()
     });
+
     if(this.mode === "modal"){
       this.quiz = {}
-    };
+    }
+
     this.showQuizQuestionForm = !this.quiz.id;
 
   }
@@ -103,8 +105,12 @@ export class ModalQuizComponent{
     this.showQuizQuestionForm = show;
   }
 
-  toggleShowQuizReponse(show){
-    this.showQuizReponse = show;
+  toggleShowQuizReponse(index){
+    this.showQuizReponse[index] = true;
+  }
+
+  toggleDontShowQuizReponse(index){
+    this.showQuizReponse[index] = false;
   }
 
   selectQuizQuestion(quizQuestions) {

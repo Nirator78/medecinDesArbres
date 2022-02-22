@@ -20,6 +20,8 @@ import { QuizModule } from './quiz/quiz.module';
 import { StatistiqueModule } from "./statistique/statistique.module";
 import {FichePedagogiqueModule} from "./fiche-pedagogique/fiche-pedagogique.module";
 import {ParcoursEcoloModule} from "./parcours-ecolo/parcours-ecolo.module";
+import {VilleModule} from "./ville/ville.module";
+import {ConferenceModule} from "./conference/conference.module";
 
 @NgModule({
   declarations: [
@@ -45,7 +47,9 @@ import {ParcoursEcoloModule} from "./parcours-ecolo/parcours-ecolo.module";
     NgSelectModule,
     StatistiqueModule,
     FichePedagogiqueModule,
-    ParcoursEcoloModule
+    ParcoursEcoloModule,
+    VilleModule,
+    ConferenceModule
   ],
   providers: [ConfirmationDialogService],
   bootstrap: [AppComponent]
