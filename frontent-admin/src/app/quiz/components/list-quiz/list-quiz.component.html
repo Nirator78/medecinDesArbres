@@ -7,7 +7,7 @@
     <p class="card-description mb-4">
       Liste des quiz
     </p>
-  
+
     <div class="mb-4">
       <div class="btn-group" role="group" aria-label="Basic example">
         <app-modal-quiz mode="modal"></app-modal-quiz>
@@ -22,6 +22,7 @@
           <thead>
           <tr>
             <th scope="col">Titre</th>
+            <th scope="col">Image</th>
             <th scope="col">Théme</th>
             <th scope="col">Déscription</th>
             <th scope="col">Difficulté</th>
@@ -32,6 +33,9 @@
           <tbody>
           <tr *ngFor="let quiz of quizList">
             <td> <app-modal-quiz mode="url" [quiz]="quiz"></app-modal-quiz></td>
+            <td>
+              <img class="mr-2" src="{{quiz.image ? (environment.apiUrl + quiz?.image?.url) : 'https://via.placeholder.com/50' }}" width="50" height="50"/>
+            </td>
             <td> {{ quiz.theme }} </td>
             <td> {{ quiz.description }} </td>
             <td>
@@ -40,7 +44,7 @@
                 'badge-warning':quiz.difficulte === 'moyen',
                 'badge-danger':quiz.difficulte === 'difficile'
               }">{{ quiz.difficulte }}
-              </label> 
+              </label>
             </td>
             <td> {{ quiz.age }} </td>
             <td> <button type="button" class="btn btn-danger btn-sm" (click)="deleteQuiz(quiz.id)"><fa-icon [icon]="faTrash"></fa-icon></button> </td>
@@ -53,4 +57,3 @@
       <p>Pas de quiz enregistré.</p>
     </ng-template>
   </div>
-  
