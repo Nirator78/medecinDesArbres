@@ -5,6 +5,7 @@ import {NgForm} from "@angular/forms";
 import {ParcoursEcoloService} from "../../services/parcours-ecolo.service";
 import {ListParcoursEcoloComponent} from "../list-parcours-ecolo/list-parcours-ecolo.component";
 import { UserService } from 'src/app/user/services/user.service';
+import {VilleService} from "../../../ville/services/ville.service";
 
 @Component({
   selector: 'app-modal-parcours-ecolo',
@@ -20,7 +21,7 @@ export class ModalParcoursEcoloComponent {
   userList;
   villeList;
 
-  constructor(private modalService: NgbModal, private parcoursEcoloService: ParcoursEcoloService, private listParcoursEcoloComponent: ListParcoursEcoloComponent, private userService: UserService) {
+  constructor(private modalService: NgbModal, private parcoursEcoloService: ParcoursEcoloService, private listParcoursEcoloComponent: ListParcoursEcoloComponent, private userService: UserService, private villeService: VilleService) {
     this.userList = [];
     this.villeList = [];
   }
@@ -35,6 +36,7 @@ export class ModalParcoursEcoloComponent {
     };
     // Récupération des liste pour le formulaire à l'ouverture sinon spam de l'api
     this.userList = await this.userService.getAllUser();
+    this.villeList = await this.villeService.getAllVille();
   }
 
   onSubmit(form: NgForm){
