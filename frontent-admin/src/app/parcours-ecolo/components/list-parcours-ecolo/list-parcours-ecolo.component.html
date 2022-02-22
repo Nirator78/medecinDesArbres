@@ -21,14 +21,17 @@
       <table class="table table-hover table-sm" style="white-space: nowrap">
         <thead>
         <tr>
-          <th scope="col">Nom</th>
+          <th scope="col-2">Nom</th>
           <th scope="col">Ville</th>
           <th scope="col">Action</th>
         </tr>
         </thead>
         <tbody>
         <tr *ngFor="let parcoursecolo of parcoursEcoloList">
-          <td> <app-modal-parcours-ecolo mode="url" [parcoursecolo]="parcoursecolo"></app-modal-parcours-ecolo></td>
+          <td class="flex"> 
+            <img class="mr-2" src="{{parcoursecolo.image ? (environment.apiUrl + parcoursecolo?.image?.url) : 'https://via.placeholder.com/25' }}" width="25" height="25"/>
+            <app-modal-parcours-ecolo mode="url" [parcoursecolo]="parcoursecolo"></app-modal-parcours-ecolo>
+          </td>
           <td> {{ parcoursecolo.ville.ville }}, {{ parcoursecolo.ville.code_postal }} </td>
           <td> <button type="button" class="btn btn-danger btn-sm" (click)="deleteParcoursEcolo(parcoursecolo.id)"><fa-icon [icon]="faTrash"></fa-icon></button> </td>
         </tr>
