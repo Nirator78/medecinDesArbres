@@ -2,37 +2,28 @@ entity: QuizQuestion
 items:
   quizQuestion1:
     question: "Comment je m'appelle ?"
-    ordre: 1
     quiz: '@quiz1'
   quizQuestion2:
     question: "J'ai quel age ?"
-    ordre: 2
     quiz: '@quiz1'
   quizQuestion3:
     question: "Devine qui je suis ?"
-    ordre: 3
     quiz: '@quiz1'
   quizQuestion4:
     question: "Comment me differencier ?"
-    ordre: 1
     quiz: '@quiz2'
   quizQuestion5:
     question: "Quel est ma caractéristique ?"
-    ordre: 2
     quiz: '@quiz2'
   quizQuestion6:
     question: "Suis-je le plus grand ?"
-    ordre: 3
     quiz: '@quiz2'
   quizQuestion7:
     question: "Comment me differencier ?"
-    ordre: 1
     quiz: '@quiz3'
   quizQuestion8:
     question: "Quel est ma caractéristique ?"
-    ordre: 2
     quiz: '@quiz3'
   quizQuestion9:
     question: "Suis-je le plus grand ?"
-    ordre: 3
     quiz: '@quiz3'

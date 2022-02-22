@@ -12,9 +12,6 @@ export class QuizReponse {
     reponse: string;
 
     @Column()
-    ordre: number;
-
-    @Column()
     bonne: boolean;
 
     @ManyToOne(() => QuizQuestion, quizQuestion => quizQuestion.id)
