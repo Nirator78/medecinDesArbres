@@ -30,7 +30,7 @@ export class ListFichePedagogiqueComponent implements OnInit {
   }
 
   async deleteFichePedagogique(id) {
-    await this.confirmationDialogService.confirm('Suppression', 'Voulez-vous vraiment effacer cet fiche pédagogique ?')
+    await this.confirmationDialogService.confirm('Suppression', 'Voulez-vous vraiment effacer cette fiche pédagogique ?')
       .then(confirm => this.confirmation = confirm)
       .catch(() => {});
     // Suppression d'un fichePedagogique
