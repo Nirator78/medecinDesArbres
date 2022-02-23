@@ -29,7 +29,7 @@ export class ListParcoursEcoloComponent implements OnInit {
   }
 
   async deleteParcoursEcolo(id) {
-    await this.confirmationDialogService.confirm('Suppression', 'Voulez-vous vraiment effacer cet parcours ecolo ?')
+    await this.confirmationDialogService.confirm('Suppression', 'Voulez-vous vraiment effacer ce parcours ecolo ?')
       .then(confirm => this.confirmation = confirm)
       .catch(() => {});
     // Suppression d'un parcours ecolo

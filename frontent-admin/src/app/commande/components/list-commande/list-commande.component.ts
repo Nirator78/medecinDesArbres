@@ -30,7 +30,7 @@ export class ListCommandeComponent implements OnInit {
   }
 
   async deleteCommande(id) {
-    await this.confirmationDialogService.confirm('Suppression', 'Voulez-vous vraiment effacer cet commande ?')
+    await this.confirmationDialogService.confirm('Suppression', 'Voulez-vous vraiment effacer cette commande ?')
       .then(confirm => this.confirmation = confirm)
       .catch(() => {});
     // Suppression d'une commande
