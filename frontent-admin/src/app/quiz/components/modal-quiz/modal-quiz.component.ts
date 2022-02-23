@@ -19,6 +19,7 @@ export class ModalQuizComponent{
   faClone = faClone;
   file;
   filesQuestions: any[] = [];
+  currentFileQuestion;
   showQuizQuestionForm;
   showQuizReponse: boolean[] = [];
   public environment = environment;
@@ -69,6 +70,14 @@ export class ModalQuizComponent{
         await this.quizService.uploadImageQuiz(res.id, formData);
       }
 
+      res.questions.map( async (obj, idx) => {
+        if(this.filesQuestions) {
+          const formDataImage = new FormData();
+          formDataImage.append("image", this.filesQuestions[idx]);
+          await this.quizService.uploadImageQuizQuestion(obj.id, formDataImage)
+        }
+      });
+
       // Ferme le modal
       this.modalService.dismissAll();
       // Refresh la liste des utilisateurs
@@ -81,12 +90,14 @@ export class ModalQuizComponent{
   }
 
   onFileQuizQuestionSelected(event) {
+    this.currentFileQuestion = true;
     this.filesQuestions.push(event.target.files[0]);
-    console.log(this.filesQuestions);
   }
 
   addQuizQuestion(formQuestion: NgForm){
         const quizQuestion = formQuestion.value;
+
+        this.currentFileQuestion ? this.currentFileQuestion = false : this.filesQuestions.push(null);
 
         quizQuestion.reponse = this.reponses;
         this.reponses = [];
