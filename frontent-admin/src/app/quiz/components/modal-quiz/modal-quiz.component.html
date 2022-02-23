@@ -134,9 +134,11 @@
         <thead>
         <tr>
           <th scope="col">#</th>
-            <!-- Quantite -->
+            <!-- Question -->
             <th scope="col">Question</th>
-            <!-- Article -->
+            <!-- Image -->
+            <th scope="col">Image</th>
+            <!-- Réponses -->
             <th scope="col">Réponses</th>
             <!-- Action -->
             <th scope="col">Action</th>
@@ -211,11 +213,11 @@
           <div class="col-6">
             <form name="quizReponseForm"  #quizReponseForm = "ngForm" (ngSubmit)="addQuizReponse(quizReponseForm); quizReponseForm.resetForm()" >
 
-              <!-- Contraintes -->
+              <!-- Réponse -->
               <label>
                 Type reponse
               </label>
-              <!-- Type contrainte -->
+              <!-- Type de réponse -->
               <div class="form-row">
                 <div class="col-12">
                   <div class="input-group input-group-sm">
