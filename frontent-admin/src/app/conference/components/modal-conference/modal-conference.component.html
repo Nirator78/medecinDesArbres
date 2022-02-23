@@ -61,7 +61,7 @@
           </div>
         </div>
         <div class="form-row">
-            <!-- Thème -->
+          <!-- Description -->
           <div class="col">
             <label class="required" for="description">Description</label>
             <textarea
@@ -84,7 +84,48 @@
             </div>
           </div>
         </div>
+        <div class="form-row">
+          <div class="col">
+            <label class="required" for="dateDebut">Date de début</label>
   
+            <input
+              type="datetime-local"
+              class="form-control"
+              aria-label="dateDebut"
+              name="dateDebut"
+              aria-describedby="inputGroup-sizing-sm"
+              required
+              #dateDebut="ngModel"
+              placeholder="Date de début"
+              [ngModel]="conference['dateDebut'] | date:'yyyy-MM-dd hh:mm'"
+            >
+            <div *ngIf="dateDebut.invalid  && (dateDebut.dirty || dateDebut.touched)">
+              <div *ngIf="dateDebut.errors?.['required']">
+                <small id="dateDebutRequired" class="text-danger"> Date de début est obligatoire</small>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <label class="required" for="dateFin">Date de fin</label>
+  
+            <input
+              type="datetime-local"
+              class="form-control"
+              aria-label="dateFin"
+              name="dateFin"
+              aria-describedby="inputGroup-sizing-sm"
+              required
+              #dateFin="ngModel"
+              placeholder="Date de fin"
+              [ngModel]="conference['dateFin'] | date:'yyyy-MM-dd hh:mm'"
+            >
+            <div *ngIf="dateFin.invalid  && (dateFin.dirty || dateFin.touched)">
+              <div *ngIf="dateFin.errors?.['required']">
+                <small id="dateFinRequired" class="text-danger"> Date de fin est obligatoire</small>
+              </div>
+            </div>
+          </div>
+        </div>
         <!-- Manque la la liste des sous parties en liste -->
         <!-- Ajouter d'un participant -->
         <button type="button" class="btn btn-link btn-sm float-right"
@@ -122,54 +163,33 @@
         </p>
         <form name="Form"  #conferenceParticipantsForm = "ngForm" (ngSubmit)="addConferenceParticipants(conferenceParticipantsForm); conferenceParticipantsForm.resetForm()" *ngIf="showConferenceParticipantsForm">     
           <div class="form-row" *ngIf="showConferenceParticipantsForm">
-            <!-- Titre -->
+          <!-- Utilisateur -->
             <div class="col">
-  
-              <label class="required" for="titre">Titre</label>
-  
-              <input
-                type="text"
-                class="form-control"
-                aria-label="titre"
-                name="titre"
-                aria-describedby="inputGroup-sizing-sm"
+              <label class="required" for="user">Utilisateur</label>
+              <ng-select
                 required
-                #titre="ngModel"
-                placeholder="Titre"
-                ngModel="{{conferenceParticipants['titre']}}"
-              />
-  
-              <div *ngIf="titre.invalid  && (titre.dirty || titre.touched)">
-                <div *ngIf="titre.errors?.['required']">
-                  <small id="titreRequired" class="text-danger"> Titre est obligatoire</small>
+                placeholder="Choisir un utilisateur"
+                name="user"
+                #user="ngModel"
+                [items]="userList"
+                bindLabel="prenom"
+                [closeOnSelect]="false"
+                [clearable]="false"
+                [closeOnSelect]="true"
+                [(ngModel)]="conference.user">
+                <ng-option [value]="conference.user ? user.id : null"  *ngFor="let user of userList">
+                    {{user.nom}}
+                </ng-option>
+              </ng-select>
+
+              <div *ngIf="user.invalid  && (user.dirty || user.touched)">
+                <div *ngIf="user.errors?.['required']">
+                  <small id="userRequired" class="text-danger"> Utilisateur est obligatoire</small>
                 </div>
               </div>
             </div>
-            <!-- Contenue -->
-            <div class="col">
   
-              <label class="required" for="contenue">Contenue</label>
-  
-              <textarea
-                type="textarea"
-                class="form-control"
-                aria-label="contenue"
-                name="contenue"
-                aria-describedby="inputGroup-sizing-sm"
-                required
-                #contenue="ngModel"
-                placeholder="Contenue"
-                ngModel="{{conferenceParticipants['contenue']}}"
-              ></textarea>
-  
-              <div *ngIf="contenue.invalid  && (contenue.dirty || contenue.touched)">
-                <div *ngIf="contenue.errors?.['required']">
-                  <small id="contenueRequired" class="text-danger"> Contenue est obligatoire</small>
-                </div>
-              </div>
-            </div>
-          </div>
-  
+          </div>         
           <div class="mt-2">
             <!-- Ajouter ligne conference -->
             <input class="btn btn-primary btn-sm" type="submit" value="Ajouter une ligne" [disabled]="conferenceParticipantsForm.invalid">

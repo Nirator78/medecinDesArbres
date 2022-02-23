@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { faClone, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { UserService } from 'src/app/user/services/user.service';
 import { ConferenceService } from '../../services/conference.service';
 import { ListConferenceComponent } from '../list-conference/list-conference.component';
 
@@ -19,29 +20,39 @@ export class ModalConferenceComponent implements OnInit {
   faClone = faClone;
   showConferenceParticipantsForm;
   conferenceParticipants = {};  
+  userList;
 
-  constructor(private modalService: NgbModal, private conferenceService: ConferenceService, private listConferenceComponent: ListConferenceComponent) {
+  constructor(private modalService: NgbModal, private conferenceService: ConferenceService, private listConferenceComponent: ListConferenceComponent, private userService: UserService) {
+    this.userList = []
   }
 
   ngOnInit(): void {
   }
 
-  open(content) {
-    this.modalService.open(content, { ariaLabelledBy: "modal-basic-title", size: "lg"});
+  async open(content) {
+    this.modalService.open(content, { ariaLabelledBy: "modal-basic-title", size: "lg"}).result.then((result) => {
+    }, (reason) => {
+      this.listConferenceComponent.refresh()
+    });
+    if(this.mode === "modal"){
+      this.conference = {}
+    };
+
+    this.userList = await this.userService.getAllUser();
   }
 
   onSubmit(form: NgForm){
     let methode = "";
     if(this.conference.id){
-      methode="updateFichePedagogique"
+      methode="updateConference"
       form.value.id = JSON.parse(this.conference.id);
     }
     else {
-      methode="createFichePedagogique"
+      methode="createConference"
     }
-    form.value.conferenceParticipants = this.conference.conferenceParticipants
-    // Post de la fiche pédagogique
-    this.conferenceService[methode](form).then(async (res) => {
+      form.value.conferenceParticipants = this.conference.conferenceParticipants
+      // Post de la fiche pédagogique
+      this.conferenceService[methode](form).then(async (res) => {
       // Ferme le modal
       this.modalService.dismissAll();
       // Refresh la liste des utilisateurs
