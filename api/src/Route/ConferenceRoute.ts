@@ -21,7 +21,7 @@ export default [
     },
     {
         method: "put",
-        route: "/conference",
+        route: "/conference/:id",
         controller: ConferenceController,
         action: "update"
     },
