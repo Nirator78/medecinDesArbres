@@ -154,11 +154,11 @@ export class StatistiqueController {
             SUM(CASE 
                 WHEN QR.bonne = 1 THEN 1
                 ELSE 0
-            END) AS NbBonneRéponse,
+            END) AS nbBonneReponse,
             SUM(CASE 
                 WHEN QR.bonne = 0 THEN 1
                 ELSE 0
-            END) AS NbMauvaiseRéponse
+            END) AS nbMauvaiseReponse
             FROM user_reponse AS UR
             LEFT JOIN user_question AS UQ ON UQ.ID=UR.userQuestionId
             LEFT JOIN quiz_question AS QQ ON QQ.id=UQ.questionId
