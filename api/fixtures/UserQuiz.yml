@@ -6,13 +6,13 @@ items:
     fini: true
   userquiz2:
     user: "@user2"
-    quiz: "@quiz2"
+    quiz: "@quiz1"
     fini: true
   userquiz3:
-    user: "@user3"
+    user: "@user2"
     quiz: "@quiz2"
     fini: true
   userquiz4:
-    user: "@user2"
-    quiz: "@quiz1"
+    user: "@user3"
+    quiz: "@quiz2"
     fini: true
