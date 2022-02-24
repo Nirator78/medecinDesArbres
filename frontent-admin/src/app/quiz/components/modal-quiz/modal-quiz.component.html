@@ -81,16 +81,14 @@
         </div>
       </div>
       <div class="form-row">
-        <div class="form-row">
-          <div class="col">
-            <label class="required" for="difficulte">Difficulté</label>
-            <select class="browser-default custom-select" name="difficulte" required ngModel="{{quiz['difficulte']}}">
-              <option value="" disabled selected>Choisir une difficulté</option>
-              <option value="facile">Facile</option>
-              <option value="moyen">Moyen</option>
-              <option value="difficile">Difficile</option>
-            </select>
-          </div>
+        <div class="col">
+          <label class="required" for="difficulte">Difficulté</label>
+          <select class="browser-default custom-select" name="difficulte" required ngModel="{{quiz['difficulte']}}">
+            <option value="" disabled selected>Choisir une difficulté</option>
+            <option value="facile">Facile</option>
+            <option value="moyen">Moyen</option>
+            <option value="difficile">Difficile</option>
+          </select>
         </div>
         <div class="col">
           <label class="required" for="age">Age requis</label>
@@ -148,7 +146,7 @@
           <tr *ngFor="let questions of quiz.questions; let index = index">
             <td>{{ index + 1 }}</td>
             <!-- Question -->
-            <td>{{ questions.question }}</td>
+            <td style="max-width: 300px;">{{ questions.question }}</td>
             <!-- Image -->
             <td><img src="{{questions.image ? (environment.apiUrl + questions?.image?.url) : 'https://via.placeholder.com/50' }}" width="50" height="50"/></td>
             <!-- Réponse -->
