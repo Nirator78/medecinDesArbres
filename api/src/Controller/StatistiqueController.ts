@@ -176,7 +176,30 @@ export class StatistiqueController {
     }
 
     async quizScoreMoyen(request: Request, response: Response, next: NextFunction) {
-        let quizScoreMoyenList = {};
+        let quizScoreMoyenList = await this.entityManager.query(`
+            SELECT 
+            titre,
+            (NbBonneRéponse/(NbBonneRéponse+NbMauvaiseRéponse))*100 AS TauxRéussite 
+            FROM (
+                SELECT 
+                QUIZ.titre AS titre,
+                SUM(CASE 
+                WHEN QR.bonne = 1 THEN 1
+                ELSE 0
+                END) AS NbBonneRéponse,
+                SUM(CASE 
+                WHEN QR.bonne = 0 THEN 1
+                ELSE 0
+                END) AS NbMauvaiseRéponse
+                FROM test.quiz AS QUIZ
+                LEFT JOIN test.quiz_question AS QQ ON QQ.quizId=QUIZ.id
+                LEFT JOIN test.quiz_reponse AS QR ON QR.quizQuestionId=QQ.id
+                LEFT JOIN test.user_reponse AS UR ON UR.reponseId=QR.id
+                WHERE UR.id IS NOT NULL
+                GROUP BY QUIZ.titre
+            ) AS X
+        ;
+        `);
 
         if(quizScoreMoyenList){
             return { status: 1, data: quizScoreMoyenList }
