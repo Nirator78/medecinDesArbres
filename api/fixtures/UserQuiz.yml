@@ -10,7 +10,7 @@ items:
     fini: true
   userquiz3:
     user: "@user3"
-    quiz: "@quiz3"
+    quiz: "@quiz2"
     fini: true
   userquiz4:
     user: "@user2"

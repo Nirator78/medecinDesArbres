@@ -1,94 +1,150 @@
 entity: QuizReponse
 items:
   quizReponse1:
-    reponse: "Clément"
+    reponse: "3 fois la hauteur de l’arbre"
     quizQuestion: '@quizQuestion1'
     bonne: false
   quizReponse2:
-    reponse: "Nolan"
+    reponse: "1 fois la hauteur de l’arbre"
     quizQuestion: '@quizQuestion1'
-    bonne: true
-  quizReponse3:
-    reponse: "Esteban"
-    quizQuestion: '@quizQuestion1'    
     bonne: false
+  quizReponse3:
+    reponse: "3 mètres"
+    quizQuestion: '@quizQuestion1'    
+    bonne: true
   quizReponse4:
-    reponse: "Charlotte"
+    reponse: "10 mètres"
     quizQuestion: '@quizQuestion1'
     bonne: false
   quizReponse5:
-    reponse: "21"
+    reponse: "700"
     quizQuestion: '@quizQuestion2'
-    bonne: true
+    bonne: false
   quizReponse6:
-    reponse: "22"
+    reponse: "1500"
     quizQuestion: '@quizQuestion2'
     bonne: false
   quizReponse7:
-    reponse: "29"
+    reponse: "5000"
     quizQuestion: '@quizQuestion2'
     bonne: false
   quizReponse8:
-    reponse: "Clément"
-    quizQuestion: '@quizQuestion3'
-    bonne: false
+    reponse: "7000"
+    quizQuestion: '@quizQuestion2'
+    bonne: true
   quizReponse9:
-    reponse: "Nolan"
+    reponse: "Vrai"
     quizQuestion: '@quizQuestion3'
     bonne: true
   quizReponse10:
-    reponse: "Esteban"
+    reponse: "Faux"
     quizQuestion: '@quizQuestion3'    
     bonne: false
   quizReponse11:
-    reponse: "Charlotte"
-    quizQuestion: '@quizQuestion3'
+    reponse: "2000 ans"
+    quizQuestion: '@quizQuestion4'
     bonne: false
   quizReponse12:
-    reponse: "Par ma taille"
+    reponse: "4000 ans"
     quizQuestion: '@quizQuestion4'
     bonne: false
   quizReponse13:
-    reponse: "Par mon age"
+    reponse: "7500 ans "
+    quizQuestion: '@quizQuestion4'
+    bonne: false
+  quizReponse14:
+    reponse: "9500 ans"
     quizQuestion: '@quizQuestion4'
     bonne: true
-  quizReponse14:
-    reponse: "Ma forme"
-    quizQuestion: '@quizQuestion5'
-    bonne: false
   quizReponse15:
-    reponse: "Mon style"
+    reponse: "Vrai"
     quizQuestion: '@quizQuestion5'
     bonne: true
   quizReponse16:
-    reponse: "Oui"
-    quizQuestion: '@quizQuestion6'
+    reponse: "Faux"
+    quizQuestion: '@quizQuestion5'
     bonne: false
   quizReponse17:
-    reponse: "Non"
+    reponse: "autant"
+    quizQuestion: '@quizQuestion6'
+    bonne: false
+  quizReponse18:
+    reponse: "3 fois plus"
+    quizQuestion: '@quizQuestion6'
+    bonne: false
+  quizReponse19:
+    reponse: "35 fois plus"
     quizQuestion: '@quizQuestion6'
     bonne: true
-  quizReponse18:
-    reponse: "Par mon age"
-    quizQuestion: '@quizQuestion7'
-    bonne: true
-  quizReponse19:
-    reponse: "Par ma taille"
-    quizQuestion: '@quizQuestion7'
-    bonne: false
   quizReponse20:
-    reponse: "Ma forme"
-    quizQuestion: '@quizQuestion8'
+    reponse: "3 fois moins"
+    quizQuestion: '@quizQuestion6'
     bonne: false
   quizReponse21:
-    reponse: "Mon style"
-    quizQuestion: '@quizQuestion8'
-    bonne: true
+    reponse: "35 fois moins"
+    quizQuestion: '@quizQuestion6'
+    bonne: false
   quizReponse22:
-    reponse: "Oui"
-    quizQuestion: '@quizQuestion9'
+    reponse: "5 mètres de hauteur"
+    quizQuestion: '@quizQuestion7'
     bonne: false
   quizReponse23:
-    reponse: "Non"
+    reponse: "10 mètres de hauteur"
+    quizQuestion: '@quizQuestion7'
+    bonne: false
+  quizReponse24:
+    reponse: "30 mètres de hauteur"
+    quizQuestion: '@quizQuestion7'
+    bonne: true
+  quizReponse25:
+    reponse: "50 mètres de hauteur"
+    quizQuestion: '@quizQuestion7'
+    bonne: false
+  quizReponse26:
+    reponse: "Vrai"
+    quizQuestion: '@quizQuestion8'
+    bonne: true
+  quizReponse27:
+    reponse: "Faux"
+    quizQuestion: '@quizQuestion8'
+    bonne: false
+  quizReponse28:
+    reponse: "Dragon de feu"
+    quizQuestion: '@quizQuestion9'
+    bonne: false
+  quizReponse29:
+    reponse: "Oiseau de feu"
+    quizQuestion: '@quizQuestion9'
+    bonne: false
+  quizReponse30:
+    reponse: "Dragon de l’enfer"
+    quizQuestion: '@quizQuestion9'
+    bonne: false
+  quizReponse31:
+    reponse: "Oiseau du paradis"
     quizQuestion: '@quizQuestion9'
     bonne: true
+  quizReponse32:
+    reponse: "Vrai"
+    quizQuestion: '@quizQuestion10'
+    bonne: true
+  quizReponse33:
+    reponse: "Faux"
+    quizQuestion: '@quizQuestion10'
+    bonne: false
+  quizReponse34:
+    reponse: "La plus grande fleur du monde"
+    quizQuestion: '@quizQuestion11'
+    bonne: true
+  quizReponse35:
+    reponse: "La plus petite fleur du monde"
+    quizQuestion: '@quizQuestion11'
+    bonne: false
+  quizReponse36:
+    reponse: "Une fleur comme un autre"
+    quizQuestion: '@quizQuestion11'
+    bonne: false
+  quizReponse37:
+    reponse: "Un légume"
+    quizQuestion: '@quizQuestion11'
+    bonne: false
