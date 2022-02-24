@@ -1,15 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import {StatistiqueQuizService} from "../../services/statistique-quiz.service";
 
 @Component({
   selector: 'app-quiz-meilleur-joueur',
   templateUrl: './quiz-meilleur-joueur.component.html',
   styleUrls: ['./quiz-meilleur-joueur.component.css']
 })
-export class QuizMeilleurJoueurComponent implements OnInit {
+export class QuizMeilleurJoueurComponent {
 
-  constructor() { }
+  public meilleurJoueurs;
 
-  ngOnInit(): void {
+  constructor(private statistiqueQuizService: StatistiqueQuizService) {
+    this.meilleurJoueurs = [];
+    this.refresh();
+  }
+
+  async refresh() {
+    this.meilleurJoueurs = await this.statistiqueQuizService.getQuizMeilleurJoueur();
   }
 
 }
