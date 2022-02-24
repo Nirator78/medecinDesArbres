@@ -1,0 +1,38 @@
+entity: UserReponse
+items:
+  userreponse1:
+    reponse: "@quizReponse1"
+    userQuestion: "@userquestion1"
+  userreponse2:
+    reponse: "@quizReponse5"
+    userQuestion: "@userquestion2"
+  userreponse3:
+    reponse: "@quizReponse8"
+    userQuestion: "@userquestion3"
+  userreponse4:
+    reponse: "@quizReponse12"
+    userQuestion: "@userquestion4"
+  userreponse5:
+    reponse: "@quizReponse14"
+    userQuestion: "@userquestion5"
+  userreponse6:
+    reponse: "@quizReponse17"
+    userQuestion: "@userquestion6"
+  userreponse7:
+    reponse: "@quizReponse18"
+    userQuestion: "@userquestion7"
+  userreponse8:
+    reponse: "@quizReponse21"
+    userQuestion: "@userquestion8"
+  userreponse9:
+    reponse: "@quizReponse9"
+    userQuestion: "@userquestion9"
+  userreponse10:
+    reponse: "@quizReponse5"
+    userQuestion: "@userquestion10"
+  userreponse11:
+    reponse: "@quizReponse6"
+    userQuestion: "@userquestion11"
+  userreponse12:
+    reponse: "@quizReponse9"
+    userQuestion: "@userquestion12"

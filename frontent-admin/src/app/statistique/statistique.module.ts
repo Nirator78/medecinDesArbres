@@ -7,6 +7,9 @@ import { CommandeChiffreAfffaireComponent } from './components/commande-chiffre-
 import { CommandePanierMoyenComponent } from './components/commande-panier-moyen/commande-panier-moyen.component';
 import {HttpClientModule} from "@angular/common/http";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
+import { QuizScoreMoyenComponent } from './components/quiz-score-moyen/quiz-score-moyen.component';
+import { QuizMeilleurJoueurComponent } from './components/quiz-meilleur-joueur/quiz-meilleur-joueur.component';
+import { QuizRatioReponseTopComponent } from './components/quiz-ratio-reponse-top/quiz-ratio-reponse-top.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +17,10 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
     StatistiqueQuizComponent,
     CommandeTopFiveComponent,
     CommandeChiffreAfffaireComponent,
-    CommandePanierMoyenComponent
+    CommandePanierMoyenComponent,
+    QuizScoreMoyenComponent,
+    QuizMeilleurJoueurComponent,
+    QuizRatioReponseTopComponent
   ],
   imports: [
     CommonModule,

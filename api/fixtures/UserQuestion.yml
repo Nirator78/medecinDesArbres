@@ -1,0 +1,50 @@
+entity: UserQuestion
+items:
+  userquestion1:
+    question: "@quizQuestion1"
+    userQuiz: "@userquiz1"
+    fini: true
+  userquestion2:
+    question: "@quizQuestion2"
+    userQuiz: "@userquiz1"
+    fini: true
+  userquestion3:
+    question: "@quizQuestion3"
+    userQuiz: "@userquiz1"
+    fini: true
+  userquestion4:
+    question: "@quizQuestion4"
+    userQuiz: "@userquiz2"
+    fini: true
+  userquestion5:
+    question: "@quizQuestion5"
+    userQuiz: "@userquiz2"
+    fini: true
+  userquestion6:
+    question: "@quizQuestion6"
+    userQuiz: "@userquiz2"
+    fini: true
+  userquestion7:
+    question: "@quizQuestion7"
+    userQuiz: "@userquiz3"
+    fini: true
+  userquestion8:
+    question: "@quizQuestion8"
+    userQuiz: "@userquiz3"
+    fini: true
+  userquestion9:
+    question: "@quizQuestion9"
+    userQuiz: "@userquiz3"
+    fini: true
+  userquestion10:
+    question: "@quizQuestion1"
+    userQuiz: "@userquiz4"
+    fini: true
+  userquestion11:
+    question: "@quizQuestion2"
+    userQuiz: "@userquiz4"
+    fini: true
+  userquestion12:
+    question: "@quizQuestion3"
+    userQuiz: "@userquiz4"
+    fini: true
