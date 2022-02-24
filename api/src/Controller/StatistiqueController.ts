@@ -3,6 +3,7 @@ import {NextFunction, Request, Response} from "express";
 import {Commande} from "../Entity/Commande";
 
 export class StatistiqueController {
+    entityManager = getManager();
 
     async commandeTopFive(request: Request, response: Response, next: NextFunction) {
         /**
@@ -142,9 +143,7 @@ export class StatistiqueController {
          * GROUP BY USER.nom, USER.prenom;
          */
 
-
-        const entityManager = getManager();
-        const quizRatioReponseTopList = await entityManager.query(`
+        const quizRatioReponseTopList = await this.entityManager.query(`
             SELECT 
             USER.nom AS nom, USER.prenom AS prenom,
             SUM(CASE 
