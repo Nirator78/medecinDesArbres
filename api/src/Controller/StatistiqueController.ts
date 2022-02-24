@@ -1,10 +1,8 @@
-import {createQueryBuilder, getRepository} from "typeorm";
+import {createQueryBuilder, getManager} from "typeorm";
 import {NextFunction, Request, Response} from "express";
 import {Commande} from "../Entity/Commande";
 
 export class StatistiqueController {
-
-    private commandeRepository = getRepository(Commande);
 
     async commandeTopFive(request: Request, response: Response, next: NextFunction) {
         /**
@@ -108,6 +106,76 @@ export class StatistiqueController {
 
         if(panierMoyen){
             return { status: 1, data: panierMoyen }
+        }else{
+            return { status: 0 };
+        }
+    }
+
+    async quizMeilleurJoueur(request: Request, response: Response, next: NextFunction) {
+        let quizMeilleurJoueurList = {};
+
+        if(quizMeilleurJoueurList){
+            return { status: 1, data: quizMeilleurJoueurList }
+        }else{
+            return { status: 0 };
+        }
+    }
+
+    async quizRatioReponseTop(request: Request, response: Response, next: NextFunction) {
+        /**
+         * SELECT
+         * USER.nom AS nom, USER.prenom AS prenom,
+         * SUM(CASE
+         * WHEN QR.bonne=1 THEN 1
+         * ELSE 0
+         * END) AS NbBonneRéponse,
+         * SUM(CASE
+         * WHEN QR.bonne=0 THEN 1
+         * ELSE 0
+         * END) AS NbMauvaiseRéponse
+         * FROM test.user_reponse AS UR
+         * LEFT JOIN test.user_question AS UQ ON UQ.ID=UR.userQuestionId
+         * LEFT JOIN test.quiz_question AS QQ ON QQ.id=UQ.questionId
+         * LEFT JOIN test.quiz_reponse AS QR ON QR.id=UR.reponseId
+         * LEFT JOIN test.user_quiz AS UQZ ON UQZ.id=UQ.userQuizId
+         * LEFT JOIN test.user AS USER ON USER.id=UQZ.userId
+         * GROUP BY USER.nom, USER.prenom;
+         */
+
+
+        const entityManager = getManager();
+        const quizRatioReponseTopList = await entityManager.query(`
+            SELECT 
+            USER.nom AS nom, USER.prenom AS prenom,
+            SUM(CASE 
+                WHEN QR.bonne = 1 THEN 1
+                ELSE 0
+            END) AS NbBonneRéponse,
+            SUM(CASE 
+                WHEN QR.bonne = 0 THEN 1
+                ELSE 0
+            END) AS NbMauvaiseRéponse
+            FROM user_reponse AS UR
+            LEFT JOIN user_question AS UQ ON UQ.ID=UR.userQuestionId
+            LEFT JOIN quiz_question AS QQ ON QQ.id=UQ.questionId
+            LEFT JOIN quiz_reponse AS QR ON QR.id=UR.reponseId
+            LEFT JOIN user_quiz AS UQZ ON UQZ.id=UQ.userQuizId
+            LEFT JOIN user AS USER ON USER.id=UQZ.userId
+            GROUP BY USER.nom, USER.prenom
+        `);
+
+        if(quizRatioReponseTopList){
+            return { status: 1, data: quizRatioReponseTopList }
+        }else{
+            return { status: 0 };
+        }
+    }
+
+    async quizScoreMoyen(request: Request, response: Response, next: NextFunction) {
+        let quizScoreMoyenList = {};
+
+        if(quizScoreMoyenList){
+            return { status: 1, data: quizScoreMoyenList }
         }else{
             return { status: 0 };
         }
