@@ -117,7 +117,7 @@ export class StatistiqueController {
         const quizMeilleurJoueurList = await this.entityManager.query(`
             SELECT 
             nom, prenom,
-            (NbBonneRéponse/(NbBonneRéponse+NbMauvaiseRéponse))*100 AS TauxRéussite 
+            (NbBonneRéponse/(NbBonneRéponse+NbMauvaiseRéponse))*100 AS tauxReussite 
             FROM (
             SELECT 
             USER.nom AS nom, USER.prenom AS prenom,
@@ -136,7 +136,7 @@ export class StatistiqueController {
             LEFT JOIN user_quiz AS UQZ ON UQZ.id=UQ.userQuizId
             LEFT JOIN user AS USER ON USER.id=UQZ.userId
             GROUP BY USER.nom, USER.prenom) AS X
-            ORDER BY TauxRéussite DESC
+            ORDER BY tauxReussite DESC
         `);
 
         if(quizMeilleurJoueurList){
