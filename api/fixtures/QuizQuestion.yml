@@ -25,5 +25,11 @@ items:
     question: "Les cactus sont menacés d’extinction ?"
     quiz: '@quiz2'
   quizQuestion9:
-    question: "Suis-je le plus grand ?"
+    question: "La fleur appelée Strelitzia est aussi appelée ?"
+    quiz: '@quiz2'
+  quizQuestion10:
+    question: "L’arbre sur lequel pousse le kaki est appelé plaqueminier ?"
+    quiz: '@quiz2'
+  quizQuestion11:
+    question: "Rafflesia arnoldii est ?"
     quiz: '@quiz2'
