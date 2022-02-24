@@ -3,7 +3,7 @@ items:
   commande1:
     numero: 0001
     date: "2022-01-01"
-    user: '@pleb'
+    user: '@user1'
     commandeLignes:
       - "@commandeLigne10"
       - "@commandeLigne11"
