@@ -108,3 +108,43 @@ items:
     reponse: "Faux"
     quizQuestion: '@quizQuestion8'
     bonne: false
+  quizReponse28:
+    reponse: "Dragon de feu"
+    quizQuestion: '@quizQuestion9'
+    bonne: false
+  quizReponse29:
+    reponse: "Oiseau de feu"
+    quizQuestion: '@quizQuestion9'
+    bonne: false
+  quizReponse30:
+    reponse: "Dragon de l’enfer"
+    quizQuestion: '@quizQuestion9'
+    bonne: false
+  quizReponse31:
+    reponse: "Oiseau du paradis"
+    quizQuestion: '@quizQuestion9'
+    bonne: true
+  quizReponse32:
+    reponse: "Vrai"
+    quizQuestion: '@quizQuestion10'
+    bonne: true
+  quizReponse33:
+    reponse: "Faux"
+    quizQuestion: '@quizQuestion10'
+    bonne: false
+  quizReponse34:
+    reponse: "La plus grande fleur du monde"
+    quizQuestion: '@quizQuestion11'
+    bonne: true
+  quizReponse35:
+    reponse: "La plus petite fleur du monde"
+    quizQuestion: '@quizQuestion11'
+    bonne: false
+  quizReponse36:
+    reponse: "Une fleur comme un autre"
+    quizQuestion: '@quizQuestion11'
+    bonne: false
+  quizReponse37:
+    reponse: "Un légume"
+    quizQuestion: '@quizQuestion11'
+    bonne: false
