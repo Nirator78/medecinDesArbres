@@ -1,29 +1,35 @@
 entity: QuizQuestion
 items:
   quizQuestion1:
-    question: "Comment je m'appelle ?"
+    question: "Les racines des arbres feuillus s’enfoncent dans le sol à l’équivalent de ?"
     quiz: '@quiz1'
   quizQuestion2:
-    question: "J'ai quel age ?"
+    question: "Combien de variétés de pommes existe dans le monde ?"
     quiz: '@quiz1'
   quizQuestion3:
-    question: "Devine qui je suis ?"
+    question: "La localisation du plus grand arbre du monde est gardée secrète ?"
     quiz: '@quiz1'
   quizQuestion4:
-    question: "Comment me differencier ?"
-    quiz: '@quiz2'
+    question: "Old Tjikko aurait plus de ?"
+    quiz: '@quiz1'
   quizQuestion5:
-    question: "Quel est ma caractéristique ?"
-    quiz: '@quiz2'
+    question: "Avec son tronc de 1487 m³, le séquoia est l’arbre à un seul tronc le plus imposant du monde ?"
+    quiz: '@quiz1'
   quizQuestion6:
-    question: "Suis-je le plus grand ?"
-    quiz: '@quiz2'
+    question: "Il y a à peu près ... d’arbres qu’il y a d’humains sur la Terre."
+    quiz: '@quiz1'
   quizQuestion7:
-    question: "Comment me differencier ?"
-    quiz: '@quiz3'
+    question: "Certains bambous peuvent mesurer jusqu’à ?"
+    quiz: '@quiz2'
   quizQuestion8:
-    question: "Quel est ma caractéristique ?"
-    quiz: '@quiz3'
+    question: "Les cactus sont menacés d’extinction ?"
+    quiz: '@quiz2'
   quizQuestion9:
-    question: "Suis-je le plus grand ?"
-    quiz: '@quiz3'
+    question: "La fleur appelée Strelitzia est aussi appelée ?"
+    quiz: '@quiz2'
+  quizQuestion10:
+    question: "L’arbre sur lequel pousse le kaki est appelé plaqueminier ?"
+    quiz: '@quiz2'
+  quizQuestion11:
+    question: "Rafflesia arnoldii est ?"
+    quiz: '@quiz2'

@@ -1,23 +1,16 @@
 entity: Quiz
 items:
   quiz1:
-    titre: 'Les arbre de 100 ans'
+    titre: 'Les arbres de notre monde'
     theme: 'Arbres'
-    description: 'Un qui super facile'
-    difficulte: 'facile'
+    description: 'Quiz général sur les arbres de notre monde'
+    difficulte: 'moyen'
     age: 12
     image: "@image7"
   quiz2:
-    titre: 'Les pommes de 2 ans'
-    theme: 'Pommes'
-    description: 'Un qui super moyen'
+    titre: 'Les plantes'
+    theme: 'Plantes'
+    description: 'Quiz général sur les plantes qui nous entoure'
     difficulte: 'moyen'
     age: 15
     image: "@image8"
-  quiz3:
-    titre: 'Les chat de 10 ans'
-    theme: 'Chat'
-    description: 'Un qui super dur'
-    difficulte: 'difficile'
-    age: 18
-    image: "@image9"
