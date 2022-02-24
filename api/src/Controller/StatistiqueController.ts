@@ -179,7 +179,7 @@ export class StatistiqueController {
         let quizScoreMoyenList = await this.entityManager.query(`
             SELECT 
             titre,
-            (NbBonneRéponse/(NbBonneRéponse+NbMauvaiseRéponse))*100 AS TauxRéussite 
+            (NbBonneRéponse/(NbBonneRéponse+NbMauvaiseRéponse))*100 AS tauxReussite 
             FROM (
                 SELECT 
                 QUIZ.titre AS titre,
