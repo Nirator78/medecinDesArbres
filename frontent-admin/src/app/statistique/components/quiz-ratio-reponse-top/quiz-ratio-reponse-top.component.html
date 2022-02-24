@@ -1,1 +1,36 @@
-<p>quiz-ratio-reponse-top works!</p>
+<div class="card-body">
+  <!-- Meilleur ratio -->
+  <h3 class="page-header">
+    Meilleur ratio
+  </h3>
+  <!-- Meilleur ratio -->
+  <p class="card-description mb-4">
+    Meilleur ratio
+  </p>
+
+  <ng-template [ngIf]="ratioReponseTop.length>0" [ngIfElse]="elseBlockTot">
+    <div class="table-responsive">
+      <table class="table table-sm" style="white-space: nowrap">
+        <thead>
+        <tr>
+          <th scope="col">Nom</th>
+          <th scope="col">Prénom</th>
+          <th scope="col">Nombre bonne réponse</th>
+          <th scope="col">Nombre mauvaise réponse</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let rrt of ratioReponseTop">
+          <td> {{ rrt.nom }} </td>
+          <td> {{ rrt.prenom }} </td>
+          <td> {{ rrt.nbBonneReponse }} </td>
+          <td> {{ rrt.nbMauvaiseReponse }} </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </ng-template>
+  <ng-template #elseBlockTot>
+    <p>Pas de meilleur ratio.</p>
+  </ng-template>
+</div>

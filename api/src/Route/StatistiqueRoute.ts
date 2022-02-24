@@ -19,4 +19,22 @@ export default [
         controller: StatistiqueController,
         action: "commandePanierMoyen"
     },
+    {
+        method: "get",
+        route: "/statistique-quiz-meilleur-joueur",
+        controller: StatistiqueController,
+        action: "quizMeilleurJoueur"
+    },
+    {
+        method: "get",
+        route: "/statistique-quiz-ratio-reponse-top",
+        controller: StatistiqueController,
+        action: "quizRatioReponseTop"
+    },
+    {
+        method: "get",
+        route: "/statistique-quiz-score-moyen",
+        controller: StatistiqueController,
+        action: "quizScoreMoyen"
+    },
 ];

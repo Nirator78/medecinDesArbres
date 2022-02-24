@@ -1,15 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import {StatistiqueQuizService} from "../../services/statistique-quiz.service";
 
 @Component({
   selector: 'app-quiz-ratio-reponse-top',
   templateUrl: './quiz-ratio-reponse-top.component.html',
   styleUrls: ['./quiz-ratio-reponse-top.component.css']
 })
-export class QuizRatioReponseTopComponent implements OnInit {
+export class QuizRatioReponseTopComponent {
 
-  constructor() { }
+  public ratioReponseTop;
 
-  ngOnInit(): void {
+  constructor(private statistiqueQuizService: StatistiqueQuizService) {
+    this.ratioReponseTop = [];
+    this.refresh();
+  }
+
+  async refresh() {
+    this.ratioReponseTop = await this.statistiqueQuizService.getQuizRatioReponseTop();
   }
 
 }

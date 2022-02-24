@@ -1,1 +1,32 @@
-<p>quiz-score-moyen works!</p>
+<div class="card-body">
+  <!-- Taux réussite par quiz -->
+  <h3 class="page-header">
+    Taux réussite par quiz
+  </h3>
+  <!-- Taux réussite par quiz -->
+  <p class="card-description mb-4">
+    Taux réussite par quiz
+  </p>
+
+  <ng-template [ngIf]="scoreMoyenQuiz.length>0" [ngIfElse]="elseBlockTot">
+    <div class="table-responsive">
+      <table class="table table-sm" style="white-space: nowrap">
+        <thead>
+        <tr>
+          <th scope="col">Titre</th>
+          <th scope="col">Taux de Réussite</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let rrt of scoreMoyenQuiz">
+          <td> {{ rrt.titre }} </td>
+          <td> {{ rrt.tauxReussite }} </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </ng-template>
+  <ng-template #elseBlockTot>
+    <p>Pas de taux réussite par quiz.</p>
+  </ng-template>
+</div>

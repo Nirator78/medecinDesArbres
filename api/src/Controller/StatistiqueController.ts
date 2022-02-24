@@ -1,10 +1,9 @@
-import {createQueryBuilder, getRepository} from "typeorm";
+import {createQueryBuilder, getManager} from "typeorm";
 import {NextFunction, Request, Response} from "express";
 import {Commande} from "../Entity/Commande";
 
 export class StatistiqueController {
-
-    private commandeRepository = getRepository(Commande);
+    entityManager = getManager();
 
     async commandeTopFive(request: Request, response: Response, next: NextFunction) {
         /**
@@ -108,6 +107,102 @@ export class StatistiqueController {
 
         if(panierMoyen){
             return { status: 1, data: panierMoyen }
+        }else{
+            return { status: 0 };
+        }
+    }
+
+    async quizMeilleurJoueur(request: Request, response: Response, next: NextFunction) {
+
+        const quizMeilleurJoueurList = await this.entityManager.query(`
+            SELECT 
+            nom, prenom,
+            (NbBonneRéponse/(NbBonneRéponse+NbMauvaiseRéponse))*100 AS tauxReussite 
+            FROM (
+            SELECT 
+            USER.nom AS nom, USER.prenom AS prenom,
+            SUM(CASE 
+            WHEN QR.bonne=1 THEN 1
+                ELSE 0
+            END) AS NbBonneRéponse,
+            SUM(CASE 
+            WHEN QR.bonne=0 THEN 1
+                ELSE 0
+            END) AS NbMauvaiseRéponse
+            FROM user_reponse AS UR
+            LEFT JOIN user_question AS UQ ON UQ.ID=UR.userQuestionId
+            LEFT JOIN quiz_question AS QQ ON QQ.id=UQ.questionId
+            LEFT JOIN quiz_reponse AS QR ON QR.id=UR.reponseId
+            LEFT JOIN user_quiz AS UQZ ON UQZ.id=UQ.userQuizId
+            LEFT JOIN user AS USER ON USER.id=UQZ.userId
+            GROUP BY USER.nom, USER.prenom) AS X
+            ORDER BY tauxReussite DESC
+        `);
+
+        if(quizMeilleurJoueurList){
+            return { status: 1, data: quizMeilleurJoueurList }
+        }else{
+            return { status: 0 };
+        }
+    }
+
+    async quizRatioReponseTop(request: Request, response: Response, next: NextFunction) {
+
+        const quizRatioReponseTopList = await this.entityManager.query(`
+            SELECT 
+            USER.nom AS nom, USER.prenom AS prenom,
+            SUM(CASE 
+                WHEN QR.bonne = 1 THEN 1
+                ELSE 0
+            END) AS nbBonneReponse,
+            SUM(CASE 
+                WHEN QR.bonne = 0 THEN 1
+                ELSE 0
+            END) AS nbMauvaiseReponse
+            FROM user_reponse AS UR
+            LEFT JOIN user_question AS UQ ON UQ.ID=UR.userQuestionId
+            LEFT JOIN quiz_question AS QQ ON QQ.id=UQ.questionId
+            LEFT JOIN quiz_reponse AS QR ON QR.id=UR.reponseId
+            LEFT JOIN user_quiz AS UQZ ON UQZ.id=UQ.userQuizId
+            LEFT JOIN user AS USER ON USER.id=UQZ.userId
+            GROUP BY USER.nom, USER.prenom
+        `);
+
+        if(quizRatioReponseTopList){
+            return { status: 1, data: quizRatioReponseTopList }
+        }else{
+            return { status: 0 };
+        }
+    }
+
+    async quizScoreMoyen(request: Request, response: Response, next: NextFunction) {
+        let quizScoreMoyenList = await this.entityManager.query(`
+            SELECT 
+            titre,
+            (NbBonneRéponse/(NbBonneRéponse+NbMauvaiseRéponse))*100 AS tauxReussite 
+            FROM (
+                SELECT 
+                QUIZ.titre AS titre,
+                SUM(CASE 
+                WHEN QR.bonne = 1 THEN 1
+                ELSE 0
+                END) AS NbBonneRéponse,
+                SUM(CASE 
+                WHEN QR.bonne = 0 THEN 1
+                ELSE 0
+                END) AS NbMauvaiseRéponse
+                FROM test.quiz AS QUIZ
+                LEFT JOIN test.quiz_question AS QQ ON QQ.quizId=QUIZ.id
+                LEFT JOIN test.quiz_reponse AS QR ON QR.quizQuestionId=QQ.id
+                LEFT JOIN test.user_reponse AS UR ON UR.reponseId=QR.id
+                WHERE UR.id IS NOT NULL
+                GROUP BY QUIZ.titre
+            ) AS X
+        ;
+        `);
+
+        if(quizScoreMoyenList){
+            return { status: 1, data: quizScoreMoyenList }
         }else{
             return { status: 0 };
         }

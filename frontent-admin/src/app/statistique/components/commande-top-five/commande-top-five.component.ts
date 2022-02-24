@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import {StatistiqueCommandeService} from "../../services/statistique-commande.service";
 
@@ -7,7 +7,7 @@ import {StatistiqueCommandeService} from "../../services/statistique-commande.se
   templateUrl: './commande-top-five.component.html',
   styleUrls: ['./commande-top-five.component.css']
 })
-export class CommandeTopFiveComponent implements OnInit {
+export class CommandeTopFiveComponent {
 
   public topFiveBestSeller;
   public environment = environment;
@@ -15,9 +15,6 @@ export class CommandeTopFiveComponent implements OnInit {
   constructor(private statistiqueCommandeService: StatistiqueCommandeService) {
     this.topFiveBestSeller = [];
     this.refresh();
-  }
-
-  ngOnInit(): void {
   }
 
   async refresh() {
