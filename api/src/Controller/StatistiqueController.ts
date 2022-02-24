@@ -113,7 +113,31 @@ export class StatistiqueController {
     }
 
     async quizMeilleurJoueur(request: Request, response: Response, next: NextFunction) {
-        let quizMeilleurJoueurList = {};
+
+        const quizMeilleurJoueurList = await this.entityManager.query(`
+            SELECT 
+            nom, prenom,
+            (NbBonneRéponse/(NbBonneRéponse+NbMauvaiseRéponse))*100 AS TauxRéussite 
+            FROM (
+            SELECT 
+            USER.nom AS nom, USER.prenom AS prenom,
+            SUM(CASE 
+            WHEN QR.bonne=1 THEN 1
+                ELSE 0
+            END) AS NbBonneRéponse,
+            SUM(CASE 
+            WHEN QR.bonne=0 THEN 1
+                ELSE 0
+            END) AS NbMauvaiseRéponse
+            FROM user_reponse AS UR
+            LEFT JOIN user_question AS UQ ON UQ.ID=UR.userQuestionId
+            LEFT JOIN quiz_question AS QQ ON QQ.id=UQ.questionId
+            LEFT JOIN quiz_reponse AS QR ON QR.id=UR.reponseId
+            LEFT JOIN user_quiz AS UQZ ON UQZ.id=UQ.userQuizId
+            LEFT JOIN user AS USER ON USER.id=UQZ.userId
+            GROUP BY USER.nom, USER.prenom) AS X
+            ORDER BY TauxRéussite DESC
+        `);
 
         if(quizMeilleurJoueurList){
             return { status: 1, data: quizMeilleurJoueurList }
@@ -123,25 +147,6 @@ export class StatistiqueController {
     }
 
     async quizRatioReponseTop(request: Request, response: Response, next: NextFunction) {
-        /**
-         * SELECT
-         * USER.nom AS nom, USER.prenom AS prenom,
-         * SUM(CASE
-         * WHEN QR.bonne=1 THEN 1
-         * ELSE 0
-         * END) AS NbBonneRéponse,
-         * SUM(CASE
-         * WHEN QR.bonne=0 THEN 1
-         * ELSE 0
-         * END) AS NbMauvaiseRéponse
-         * FROM test.user_reponse AS UR
-         * LEFT JOIN test.user_question AS UQ ON UQ.ID=UR.userQuestionId
-         * LEFT JOIN test.quiz_question AS QQ ON QQ.id=UQ.questionId
-         * LEFT JOIN test.quiz_reponse AS QR ON QR.id=UR.reponseId
-         * LEFT JOIN test.user_quiz AS UQZ ON UQZ.id=UQ.userQuizId
-         * LEFT JOIN test.user AS USER ON USER.id=UQZ.userId
-         * GROUP BY USER.nom, USER.prenom;
-         */
 
         const quizRatioReponseTopList = await this.entityManager.query(`
             SELECT 
