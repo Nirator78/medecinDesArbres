@@ -16,3 +16,25 @@ items:
     url: "/quiz/1.png"
   image8:
     url: "/quiz/2.png"
+  image9:
+    url: "/quiz-question/1.png"
+  image10:
+    url: "/quiz-question/2.png"
+  image11:
+    url: "/quiz-question/3.png"
+  image12:
+    url: "/quiz-question/4.png"
+  image13:
+    url: "/quiz-question/5.png"
+  image14:
+    url: "/quiz-question/6.png"
+  image15:
+    url: "/quiz-question/7.png"
+  image16:
+    url: "/quiz-question/8.png"
+  image17:
+    url: "/quiz-question/9.png"
+  image18:
+    url: "/quiz-question/10.png"
+  image19:
+    url: "/quiz-question/11.png"
