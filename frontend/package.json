@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-<<<<<<< HEAD
     "@emotion/react": "^11.8.1",
     "@emotion/styled": "^11.8.1",
     "@mui/icons-material": "^5.4.2",
@@ -13,18 +12,6 @@
     "@testing-library/user-event": "^13.5.0",
     "graphql": "^16.3.0",
     "history": "^5.3.0",
-=======
-    "@craco/craco": "^6.4.0",
-    "@emotion/react": "^11.5.0",
-    "@emotion/styled": "^11.3.0",
-    "@mui/icons-material": "^5.0.5",
-    "@mui/material": "^5.0.6",
-    "@mui/styled-engine-sc": "^5.0.4",
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
-    "axios": "^0.24.0",
->>>>>>> abc53e2fa506c0411a0ad9495572dcc939202b01
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-router-dom": "^6.2.1",
@@ -32,15 +19,9 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-<<<<<<< HEAD
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-=======
-    "start": "set PORT=8000 && craco start",
-    "build": "craco build",
-    "test": "craco test",
->>>>>>> abc53e2fa506c0411a0ad9495572dcc939202b01
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
