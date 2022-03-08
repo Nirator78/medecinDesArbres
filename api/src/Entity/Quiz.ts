@@ -3,6 +3,11 @@ import {Entity, PrimaryGeneratedColumn, Column, OneToMany, OneToOne, JoinColumn}
 import {Image} from "./Image";
 import {QuizQuestion} from "./QuizQuestion";
 
+export enum QuizDifficulte {
+    FACILE = "facile",
+    MOYEN = "moyen",
+    DIFFICILE = "difficile",
+}
 @Entity()
 export class Quiz {
 
@@ -18,13 +23,16 @@ export class Quiz {
     @Column()
     description: string;
 
-    @Column()
-    difficulte: string;
+    @Column({
+        type: "enum",
+        enum: QuizDifficulte,
+    })
+    difficulte: QuizDifficulte;
 
     @Column()
     age: number;
 
-    @OneToOne(() => Image, {cascade: true})
+    @OneToOne(() => Image, {cascade: true, nullable: true})
     @JoinColumn()
     image: Image;
 

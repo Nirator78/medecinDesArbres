@@ -1,0 +1,34 @@
+<div class="card-body">
+  <!-- Dépense moyenne par mois -->
+  <h3 class="page-header">
+    Dépense moyenne par mois
+  </h3>
+  <!-- Dépense moyenne par mois -->
+  <p class="card-description mb-4">
+    Dépense moyenne par mois
+  </p>
+
+  <ng-template [ngIf]="panierMoyenParMois.length>0" [ngIfElse]="elseBlockTot">
+    <div class="table-responsive">
+      <table class="table table-sm" style="white-space: nowrap">
+        <thead>
+        <tr>
+          <th scope="col">Année</th>
+          <th scope="col">Mois</th>
+          <th scope="col">Panier moyen</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let panier of panierMoyenParMois">
+          <td> {{ panier.annee }} </td>
+          <td> {{ panier.mois }} </td>
+          <td> {{ panier.panierMoyen | number }} € </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </ng-template>
+  <ng-template #elseBlockTot>
+    <p>Pas dépense moyenne ce mois ci.</p>
+  </ng-template>
+</div>

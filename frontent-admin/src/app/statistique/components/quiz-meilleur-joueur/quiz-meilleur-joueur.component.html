@@ -1,0 +1,34 @@
+<div class="card-body">
+  <!-- Meilleur joueur -->
+  <h3 class="page-header">
+    Meilleur joueur
+  </h3>
+  <!-- Meilleur joueur -->
+  <p class="card-description mb-4">
+    Meilleur joueur
+  </p>
+
+  <ng-template [ngIf]="meilleurJoueurs.length>0" [ngIfElse]="elseBlockTot">
+    <div class="table-responsive">
+      <table class="table table-sm" style="white-space: nowrap">
+        <thead>
+        <tr>
+          <th scope="col">Nom</th>
+          <th scope="col">Prénom</th>
+          <th scope="col">Taux de réussite</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let meilleurJoueur of meilleurJoueurs">
+          <td> {{ meilleurJoueur.nom }} </td>
+          <td> {{ meilleurJoueur.prenom }} </td>
+          <td> {{ meilleurJoueur.tauxReussite }} %</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </ng-template>
+  <ng-template #elseBlockTot>
+    <p>Pas de meilleur joueur.</p>
+  </ng-template>
+</div>

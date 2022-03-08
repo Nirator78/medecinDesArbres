@@ -1,0 +1,46 @@
+entity: QuizQuestion
+items:
+  quizQuestion1:
+    question: "Les racines des arbres feuillus s’enfoncent dans le sol à l’équivalent de ?"
+    quiz: '@quiz1'
+    image: '@image9'
+  quizQuestion2:
+    question: "Combien de variétés de pommes existe dans le monde ?"
+    quiz: '@quiz1'
+    image: '@image10'
+  quizQuestion3:
+    question: "La localisation du plus grand arbre du monde est gardée secrète ?"
+    quiz: '@quiz1'
+    image: '@image11'
+  quizQuestion4:
+    question: "Old Tjikko aurait plus de ?"
+    quiz: '@quiz1'
+    image: '@image12'
+  quizQuestion5:
+    question: "Avec son tronc de 1487 m³, le séquoia est l’arbre à un seul tronc le plus imposant du monde ?"
+    quiz: '@quiz1'
+    image: '@image13'
+  quizQuestion6:
+    question: "Il y a à peu près ... d’arbres qu’il y a d’humains sur la Terre."
+    quiz: '@quiz1'
+    image: '@image14'
+  quizQuestion7:
+    question: "Certains bambous peuvent mesurer jusqu’à ?"
+    quiz: '@quiz2'
+    image: '@image15'
+  quizQuestion8:
+    question: "Les cactus sont menacés d’extinction ?"
+    quiz: '@quiz2'
+    image: '@image16'
+  quizQuestion9:
+    question: "La fleur appelée Strelitzia est aussi appelée ?"
+    quiz: '@quiz2'
+    image: '@image17'
+  quizQuestion10:
+    question: "L’arbre sur lequel pousse le kaki est appelé plaqueminier ?"
+    quiz: '@quiz2'
+    image: '@image18'
+  quizQuestion11:
+    question: "Rafflesia arnoldii est ?"
+    quiz: '@quiz2'
+    image: '@image19'

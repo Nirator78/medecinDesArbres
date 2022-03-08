@@ -1,0 +1,292 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 *ngIf="mode === 'modal'" class="modal-title" id="modal-basic-title">Création de quiz</h4>
+    <h4 *ngIf="mode === 'url'" class="modal-title" id="modal-basic-title">Modification de quiz</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <form #myform = "ngForm" (ngSubmit) = "onSubmit(myform)" >
+    <div class="modal-body">
+      <!-- Titre -->
+      <div class="form-row">
+        <div class="col">
+          <label class="required" for="titre">Titre du quiz</label>
+
+          <input
+            type="text"
+            class="form-control"
+            aria-label="titre"
+            name="titre"
+            aria-describedby="inputGroup-sizing-sm"
+            required
+            minlength="4"
+            #titre="ngModel"
+            placeholder="Titre du quiz"
+            ngModel="{{quiz['titre']}}"
+          >
+
+          <div *ngIf="titre.invalid  && (titre.dirty || titre.touched)">
+            <div *ngIf="titre.errors?.['minlength']">
+              <small id="titreMin" class="text-danger"> Il faut minimum 4 caractéres</small>
+            </div>
+            <div *ngIf="titre.errors?.['required']">
+              <small id="titreRequired" class="text-danger"> Titre est obligatoire</small>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <label class="required" for="theme">Theme</label>
+
+          <input
+            type="theme"
+            class="form-control"
+            aria-label="theme"
+            name="theme"
+            aria-describedby="inputGroup-sizing-sm"
+            required
+            #theme="ngModel"
+            placeholder="Theme"
+            [ngModel]="quiz['theme']"
+          >
+          <div *ngIf="theme.invalid  && (theme.dirty || theme.touched)">
+            <div *ngIf="theme.errors?.['required']">
+              <small id="themeRequired" class="text-danger"> Theme est obligatoire</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <!-- Description -->
+        <div class="col">
+          <label class="required" for="description">Description</label>
+
+          <textarea
+            type="textarea"
+            class="form-control"
+            aria-label="description"
+            name="description"
+            aria-describedby="inputGroup-sizing-sm"
+            required
+            #description="ngModel"
+            placeholder="Description"
+            ngModel="{{quiz['description']}}"
+          ></textarea>
+
+          <div *ngIf="description.invalid  && (description.dirty || description.touched)">
+            <div *ngIf="description.errors?.['required']">
+              <small id="descriptionRequired" class="text-danger"> Description est obligatoire</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col">
+          <label class="required" for="difficulte">Difficulté</label>
+          <select class="browser-default custom-select" name="difficulte" required ngModel="{{quiz['difficulte']}}">
+            <option value="" disabled selected>Choisir une difficulté</option>
+            <option value="facile">Facile</option>
+            <option value="moyen">Moyen</option>
+            <option value="difficile">Difficile</option>
+          </select>
+        </div>
+        <div class="col">
+          <label class="required" for="age">Age requis</label>
+
+          <input
+            type="age"
+            class="form-control"
+            aria-label="age"
+            name="age"
+            aria-describedby="inputGroup-sizing-sm"
+            required
+            #age="ngModel"
+            placeholder="Age requis"
+            [ngModel]="quiz['age']"
+          >
+          <div *ngIf="age.invalid  && (age.dirty || age.touched)">
+            <div *ngIf="age.errors?.['required']">
+              <small id="themeRequired" class="text-danger"> Age est obligatoire</small>
+            </div>
+          </div>
+        </div>
+        <div class="mb-3 w-96">
+          <label for="formFileSm" class="form-label inline-block mb-2 text-gray-700">Image</label>
+          <input
+            class="form-control"
+            id="formFileSm"
+            type="file"
+            (change)="onFileSelected($event)"
+            accept="image/*"
+          >
+        </div>
+      </div>
+      <!-- Ajouter d'une question -->
+      <button type="button" class="btn btn-link btn-sm float-right"
+      (click)="toggleShowQuizQuestionForm(true)"
+      id="ajouter-ligne-quiz"
+      >
+          <i class="fa fa-plus"></i> Ajouter une question
+      </button>
+      <table class="table table-hover table-sm">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+            <!-- Question -->
+            <th scope="col">Question</th>
+            <!-- Image -->
+            <th scope="col">Image</th>
+            <!-- Réponses -->
+            <th scope="col">Réponses</th>
+            <!-- Action -->
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody  *ngIf="quiz.questions">
+          <tr *ngFor="let questions of quiz.questions; let index = index">
+            <td>{{ index + 1 }}</td>
+            <!-- Question -->
+            <td style="max-width: 300px;">{{ questions.question }}</td>
+            <!-- Image -->
+            <td><img src="{{questions.image ? (environment.apiUrl + questions?.image?.url) : 'https://via.placeholder.com/50' }}" width="50" height="50"/></td>
+            <!-- Réponse -->
+            <td>
+              <button type="button" class="btn btn-primary btn-sm" (click)="toggleShowQuizReponse(index)" *ngIf="!showQuizReponse[index]">Voir</button>
+              <button type="button" class="btn btn-primary btn-sm" (click)="toggleDontShowQuizReponse(index)" *ngIf="showQuizReponse[index]">Fermer</button>
+              <tr *ngFor="let reponses of questions.reponse; let index1 = index">
+                <td style="border:none;"  *ngIf="showQuizReponse[index]">
+                  {{ reponses.reponse}}
+                </td>
+                <td style="border:none;"  *ngIf="showQuizReponse[index]">
+                  <button type="button" class="btn btn-danger btn-sm" (click)="deleteQuizReponse(index1, index)"><fa-icon [icon]="faTrash"></fa-icon></button>
+                </td>
+              </tr>
+            </td>
+            <td>
+              <button type="button" class="btn btn-danger btn-sm" (click)="deleteQuizQuestion(index)"><fa-icon [icon]="faTrash"></fa-icon></button>
+              <button type="button" class="btn btn-success btn-sm ml-2" (click)="selectQuizQuestion(questions)"><fa-icon [icon]="faClone"></fa-icon></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="text-muted text-center" *ngIf="!quiz.questions || !quiz.questions.length">
+        <!-- Ajouter une ligne de quiz -->
+        <small>Aucune question pour ce quiz</small>
+        <br>
+      </p>
+      <form name="quizQuestionForm"  #quizQuestionForm = "ngForm" (ngSubmit)="addQuizQuestion(quizQuestionForm); quizQuestionForm.resetForm()" *ngIf="showQuizQuestionForm">
+        <div class="form-row" *ngIf="showQuizQuestionForm">
+          <!-- Question -->
+          <div class="col-6">
+            <label class="required" for="question">Question</label>
+
+            <textarea
+              type="textarea"
+              class="form-control"
+              aria-label="question"
+              name="question"
+              aria-describedby="inputGroup-sizing-sm"
+              required
+              #question="ngModel"
+              placeholder="Question"
+              ngModel="{{quiz['question']}}"
+            ></textarea>
+
+            <div *ngIf="question.invalid  && (question.dirty || question.touched)">
+              <div *ngIf="question.errors?.['required']">
+                <small id="questionRequired" class="text-danger"> Question est obligatoire</small>
+              </div>
+            </div>
+            <div class="mb-3 w-96">
+              <label for="formFileSmQuestion" class="form-label inline-block mb-2 text-gray-700">Image</label>
+              <input
+                class="form-control"
+                id="formFileSmQuestion"
+                type="file"
+                (change)="onFileQuizQuestionSelected($event)"
+                accept="image/*"
+              >
+            </div>
+          </div>
+          <div class="col-6">
+            <form name="quizReponseForm"  #quizReponseForm = "ngForm" (ngSubmit)="addQuizReponse(quizReponseForm); quizReponseForm.resetForm()" >
+
+              <!-- Réponse -->
+              <label>
+                Type reponse
+              </label>
+              <!-- Type de réponse -->
+              <div class="form-row">
+                <div class="col-12">
+                  <div class="input-group input-group-sm">
+                    <select class="browser-default custom-select" name="bonne" required ngModel="{{quiz['bonne']}}">
+                      <option ngValue="" selected disabled>Choisir type</option>
+                      <option [ngValue]="true">Bonne</option>
+                      <option [ngValue]="false">Mauvaise</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-12 mt-2">
+                  <textarea
+                    type="textarea"
+                    class="form-control"
+                    aria-label="reponse"
+                    name="reponse"
+                    aria-describedby="inputGroup-sizing-sm"
+                    required
+                    #reponse="ngModel"
+                    placeholder="Réponse"
+                    [ngModel]="quiz['reponse']"
+                  ></textarea>
+                </div>
+                <!-- Réponse -->
+              </div>
+              <div class="form-row">
+                <div class="col-12 mt-2">
+                  <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let reponses of reponses; let index = index">
+                      <span class="badge badge-pill" [ngClass]="{
+                        'badge-success': reponses.bonne == true,
+                        'badge-danger': reponses.bonne == false
+                      }"
+                      >
+                      <div *ngIf="reponses.bonne">Valide</div>
+                      <div *ngIf="!reponses.bonne">Incorrect</div>
+                    </span>{{ reponses.reponse }}
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-sm btn-secondary float-right ml-2 mt-2" [disabled]="quizReponseForm.invalid">
+                  <i class="fa fa-times"></i> Ajouter réponse
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <div class="mt-2">
+          <!-- Ajouter ligne quiz -->
+          <input class="btn btn-primary btn-sm" type="submit" value="Ajouter une ligne" [disabled]="quizQuestionForm.invalid">
+        </div>
+      </form>
+      <!-- Fermer -->
+      <button type="button" class="btn btn-sm btn-dark float-right ml-2" (click)="toggleShowQuizQuestionForm(false)" *ngIf="showQuizQuestionForm" tabindex=-1>
+          <i class="fa fa-times"></i> Fermer
+      </button>
+      <small>
+        <span class="star"></span> Obligatoire
+      </small>
+    </div>
+
+    <div class="modal-footer">
+      <input class="btn btn-primary" type="submit" value="Sauvegarder" [disabled]="myform.invalid ||
+      !quiz.questions ||
+      quiz.questions.length === 0">
+    </div>
+  </form>
+
+</ng-template>
+
+<button class="btn btn-success btn-sm font-weight-bold" (click)="open(content)" *ngIf="mode === 'modal'"><fa-icon class="pr-2" [icon]="faPlus"></fa-icon>Nouveau quiz</button>
+<button (click)="open(content)" *ngIf="mode === 'url'" class="btn btn-link p-0">{{quiz.titre}}</button>
+

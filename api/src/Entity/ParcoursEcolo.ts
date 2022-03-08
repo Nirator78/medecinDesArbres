@@ -14,12 +14,9 @@ export class ParcoursEcolo {
     @JoinTable({ name: "user" })
     user: User;
 
-    @OneToOne(() => Image, {cascade: true})
+    @OneToOne(() => Image, {cascade: true, nullable: true})
     @JoinColumn()
     image: Image;
-
-    @Column({type: "json"})
-    coordonnees: {lat: number, lon: number}
 
     @ManyToOne(type => Ville, ville => ville.id)
     @JoinTable({ name: "ville" })

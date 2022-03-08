@@ -19,10 +19,6 @@ export class SousPartieFichePedagogique {
     @Column()
     contenue: string;
 
-    @OneToOne(() => Image, {cascade: true})
-    @JoinColumn()
-    image: Image;
-
     @ManyToOne(() => FichePedagogique, fichePedagogique => fichePedagogique.id)
     fichePedagogique: FichePedagogique;
 }

@@ -1,0 +1,52 @@
+.vertical-nav {
+  top: 0;
+  left: 0;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+  height: 100vh;
+  overflow-y: scroll;
+  position: fixed;
+}
+
+h1
+{
+  font-size: 20px;
+  font-family: "Segoe print";
+  font-weight: bold;
+  color: #3e993f;
+}
+
+h2
+{
+  font-size: 15px;
+  font-family: "Segoe print";
+  color: #3e993f;
+}
+
+.nav-item::after {
+  content: '';
+  display: block;
+  width: 0px;
+  height: 2px;
+  background: #3e993f;
+  transition: 0.4s;
+}
+
+.nav-item:hover::after {
+  width: 100%;
+}
+
+.nav-link {
+  padding: 5px 5px;
+  transition: 0.2s;
+  color: #000000;
+}
+.nav-link:hover {
+  padding: 5px 5px;
+  transition: 0.2s;
+  color: #3e993f;
+}
+
+.active{
+  background-color: #3e993f;
+  color: #3e993f;
+}

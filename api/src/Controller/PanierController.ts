@@ -13,13 +13,10 @@ export class PanierController {
     private authentificationService = new AuthentificationService();
 
     async all(request: Request, response: Response, next: NextFunction) {
-        if(request.query.user){
-            let panierListe = await this.panierRepository.find({ relations: ["article", "user"], where: {user: request.query.user} });
-            if(panierListe){
-                return { status: 1, data: panierListe }
-            }else{
-                return { status: 0 };
-            }
+        let panierListe = await this.panierRepository.find({ relations: ["article", "user"] });
+
+        if(panierListe){
+            return { status: 1, data: panierListe }
         }else{
             return { status: 0 };
         }
@@ -37,7 +34,7 @@ export class PanierController {
     async getPanierByUser(request: Request, response: Response, next: NextFunction) {
         const verif = await this.authentificationService.getUserInfo(request);
         let paniers = [];
-        if(verif.userId = request.params.id){
+        if(verif.userId.id === request.params.id){
             paniers = await this.panierRepository.find({ where: {user: request.params.id}, relations: ["article", "user"]});
             if(paniers){
                 return { status: 1, data: paniers }

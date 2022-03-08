@@ -18,9 +18,9 @@ export class Article {
     prix: number;
 
     @Column()
-    stock: string;
+    stock: number;
 
-    @OneToOne(() => Image, {cascade: true})
+    @OneToOne(() => Image, {cascade: true, nullable: true})
     @JoinColumn()
     image: Image;
 

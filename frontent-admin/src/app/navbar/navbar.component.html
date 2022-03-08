@@ -1,0 +1,111 @@
+<div class="vertical-nav bg-white ml-2" id="sidebar">
+  <div class="py-4 px-3 mb-4 bg-light">
+    <div class="media d-flex align-items-center">
+      <div class="media-body">
+        <h1 class="m-0">Medecin Des Arbres</h1>
+        <h2>Panneau d'aministration</h2>
+        <h2 class="text-uppercase">{{userConnecter.nom}} {{userConnecter.prenom}}</h2>
+      </div>
+    </div>
+  </div>
+
+  <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">Général</p>
+
+  <ul class="nav flex-column bg-white mb-0">
+    <li class="nav-item" routerLinkActive = "active">
+      <a [routerLink] = "['utilisateur']"  routerLinkActive = "active" class="nav-link font-italic bg-white">
+        <i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
+        Utilisateur
+        <!-- Gestion des tables: User -->
+      </a>
+    </li>
+    <li class="nav-item" routerLinkActive = "active">
+      <a [routerLink] = "['password-key']"  routerLinkActive = "active" class="nav-link font-italic bg-white">
+        <i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
+        Demande mot de passe
+        <!-- Gestion des tables: PasswordKey -->
+      </a>
+    </li>
+  </ul>
+
+  <p class="text-gray font-weight-bold text-uppercase px-3 small py-4 mb-0">Magasin</p>
+
+  <ul class="nav flex-column bg-white mb-0">
+    <li class="nav-item" routerLinkActive = "active">
+      <a [routerLink] = "['article']" routerLinkActive = "active" class="nav-link font-italic bg-white">
+        <i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
+        Article
+        <!-- Gestion des tables: Article -->
+      </a>
+    </li>
+    <li class="nav-item" routerLinkActive = "active">
+      <a [routerLink] = "['commande']" class="nav-link font-italic bg-white">
+        <i class="fa fa-bar-chart mr-3 text-primary fa-fw"></i>
+        Commande
+        <!-- Gestion des tables: Commande, CommandeLignes -->
+      </a>
+    </li>
+    <li class="nav-item" routerLinkActive = "active">
+      <a [routerLink] = "['panier']" routerLinkActive = "active" class="nav-link font-italic bg-white">
+        <i class="fa fa-pie-chart mr-3 text-primary fa-fw"></i>
+        Panier
+        <!-- Gestion des tables: Panier -->
+      </a>
+    </li>
+    <li class="nav-item" routerLinkActive = "active">
+      <a [routerLink] = "['statistique-commande']" class="nav-link font-italic bg-white">
+        <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
+        Statistique vente
+      </a>
+    </li>
+  </ul>
+
+  <p class="text-gray font-weight-bold text-uppercase px-3 small py-4 mb-0">Apprentissage</p>
+
+  <ul class="nav flex-column bg-white mb-0">
+    <li class="nav-item" routerLinkActive = "active">
+      <a [routerLink] = "['fiche-pedagogique']" routerLinkActive = "active" class="nav-link font-italic bg-white">
+        <i class="fa fa-area-chart mr-3 text-primary fa-fw"></i>
+        Fiche pédagogique
+        <!-- Gestion des tables: FichePédagogique, SousPartie -->
+      </a>
+    </li>
+    <li class="nav-item" routerLinkActive = "active">
+      <a [routerLink] = "['conference']" routerLinkActive = "active" class="nav-link font-italic bg-white">
+        <i class="fa fa-pie-chart mr-3 text-primary fa-fw"></i>
+        Conférence
+        <!-- Gestion des tables: Conférence, ConférenceParticipant -->
+      </a>
+    </li>
+    <li class="nav-item" routerLinkActive = "active">
+      <a [routerLink] = "['parcours-ecolo']" routerLinkActive = "active" class="nav-link font-italic bg-white">
+        <i class="fa fa-pie-chart mr-3 text-primary fa-fw"></i>
+        ParcoursEcolo
+        <!-- Gestion des tables: ParcoursEcolo -->
+      </a>
+    </li>
+  </ul>
+
+  <p class="text-gray font-weight-bold text-uppercase px-3 small py-4 mb-0">Quiz</p>
+
+  <ul class="nav flex-column bg-white mb-0">
+    <li class="nav-item" routerLinkActive = "active">
+      <a [routerLink] = "['quiz']" routerLinkActive = "active" class="nav-link font-italic bg-white">
+        <i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
+        Quiz
+        <!-- Gestion des tables: Quiz -->
+      </a>
+    </li>
+    <li class="nav-item" routerLinkActive = "active">
+      <a [routerLink] = "['statistique-quiz']" routerLinkActive = "active" class="nav-link font-italic bg-white">
+        <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
+        Statistique Quiz
+      </a>
+    </li>
+  </ul>
+  <hr>
+  <!-- Déconnexion -->
+  <fa-icon class="ml-3 text-danger" [icon]="faPowerOff"></fa-icon>
+  <button class="text-danger font-weight-bold text-uppercase px-3 small pb-4 mb-0" (click)="logout()">Déconnexion</button>
+
+</div>

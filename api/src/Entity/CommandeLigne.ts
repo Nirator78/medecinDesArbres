@@ -16,6 +16,6 @@ export class CommandeLigne {
     @JoinTable({ name: "article" })
     article: Article;
 
-    @ManyToOne(() => Commande, commande => commande.id)
+    @ManyToOne(() => Commande, commande => commande.id, { onDelete: 'CASCADE' })
     commande: Commande;
 }

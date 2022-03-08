@@ -1,0 +1,16 @@
+entity: Quiz
+items:
+  quiz1:
+    titre: 'Les arbres de notre monde'
+    theme: 'Arbres'
+    description: 'Quiz général sur les arbres de notre monde'
+    difficulte: 'moyen'
+    age: 12
+    image: "@image7"
+  quiz2:
+    titre: 'Les plantes'
+    theme: 'Plantes'
+    description: 'Quiz général sur les plantes qui nous entoure'
+    difficulte: 'moyen'
+    age: 15
+    image: "@image8"

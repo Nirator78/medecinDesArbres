@@ -4,6 +4,7 @@ import * as express from "express";
 import * as bodyParser from "body-parser";
 import {Request, Response} from "express";
 import {Routes} from "./Routes";
+import * as expressFileupload from "express-fileupload";
 
 // Logging system
 import * as morgan from 'morgan';
@@ -12,9 +13,18 @@ import * as path from 'path';
 import * as cors from 'cors';
 
 createConnection().then(async connection => {
-
     // create express app
     const app = express();
+
+    // enable file upload
+    app.use(expressFileupload({
+        createParentPath: true
+    }));
+
+    // add static file routes
+    app.use(express.static('uploads'));
+
+    // add middleware
     app.use(bodyParser.json());
     app.use(cors());
 
@@ -58,7 +68,7 @@ createConnection().then(async connection => {
     dotenv.config();
 
     // start express server
-    app.listen(3000);
-    console.log("Express server has started on port 3000. Open http://localhost:3000 to see results");
+    app.listen(process.env.PORT);
+    console.log(`Serveur démarré sur le port ${process.env.PORT}. Adresse http://localhost:${process.env.PORT}`);
 
 }).catch(error => console.log(error));

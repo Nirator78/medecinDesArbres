@@ -1,0 +1,90 @@
+entity: UserQuestion
+items:
+  userquestion1:
+    question: "@quizQuestion1"
+    userQuiz: "@userquiz1"
+    fini: true
+  userquestion2:
+    question: "@quizQuestion2"
+    userQuiz: "@userquiz1"
+    fini: true
+  userquestion3:
+    question: "@quizQuestion3"
+    userQuiz: "@userquiz1"
+    fini: true
+  userquestion4:
+    question: "@quizQuestion4"
+    userQuiz: "@userquiz1"
+    fini: true
+  userquestion5:
+    question: "@quizQuestion5"
+    userQuiz: "@userquiz1"
+    fini: true
+  userquestion6:
+    question: "@quizQuestion6"
+    userQuiz: "@userquiz1"
+    fini: true
+  userquestion7:
+    question: "@quizQuestion1"
+    userQuiz: "@userquiz2"
+    fini: true
+  userquestion8:
+    question: "@quizQuestion2"
+    userQuiz: "@userquiz2"
+    fini: true
+  userquestion9:
+    question: "@quizQuestion3"
+    userQuiz: "@userquiz2"
+    fini: true
+  userquestion10:
+    question: "@quizQuestion4"
+    userQuiz: "@userquiz2"
+    fini: true
+  userquestion11:
+    question: "@quizQuestion5"
+    userQuiz: "@userquiz2"
+    fini: true
+  userquestion12:
+    question: "@quizQuestion6"
+    userQuiz: "@userquiz2"
+    fini: true
+  userquestion13:
+    question: "@quizQuestion7"
+    userQuiz: "@userquiz3"
+    fini: true
+  userquestion14:
+    question: "@quizQuestion8"
+    userQuiz: "@userquiz3"
+    fini: true
+  userquestion15:
+    question: "@quizQuestion9"
+    userQuiz: "@userquiz3"
+    fini: true
+  userquestion16:
+    question: "@quizQuestion10"
+    userQuiz: "@userquiz3"
+    fini: true
+  userquestion17:
+    question: "@quizQuestion11"
+    userQuiz: "@userquiz3"
+    fini: true
+  userquestion18:
+    question: "@quizQuestion7"
+    userQuiz: "@userquiz4"
+    fini: true
+  userquestion19:
+    question: "@quizQuestion8"
+    userQuiz: "@userquiz4"
+    fini: true
+  userquestion20:
+    question: "@quizQuestion9"
+    userQuiz: "@userquiz4"
+    fini: true
+  userquestion21:
+    question: "@quizQuestion10"
+    userQuiz: "@userquiz4"
+    fini: true
+  userquestion22:
+    question: "@quizQuestion11"
+    userQuiz: "@userquiz4"
+    fini: true

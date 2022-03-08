@@ -9,8 +9,8 @@ items:
     adresse: 5 rue ici
     pays: France
     ville: St Cyr
-    code_postal: 78210
-    telephone: 0102030405
+    codePostal: 78210
+    telephone: "0120202020"
     email: nirator.game@gmail.com
   user2:
     nom: Serre
@@ -20,8 +20,8 @@ items:
     adresse: 80 rue ici
     pays: France
     ville: Versailles
-    code_postal: 78000
-    telephone: 0102030405
+    codePostal: 78000
+    telephone: "0120202020"
     email: noguizeweb@gmail.com
   user3:
     nom: Gonzalez
@@ -31,8 +31,8 @@ items:
     adresse: Rue ici
     pays: France
     ville: Paris
-    code_postal: 75000
-    telephone: 0102030405
+    codePostal: 75000
+    telephone: "0120202020"
     email: esteban@gmail.com
   user4:
     nom: Brisson
@@ -42,6 +42,17 @@ items:
     adresse: Rue ici
     pays: France
     ville: Paris
-    code_postal: 75000
-    telephone: 0102030405
+    codePostal: 75000
+    telephone: "0120202020"
     email: charlotte@gmail.com
+  pleb:
+    nom: Pleb
+    prenom: Test
+    role: user
+    password: '123456'
+    adresse: Rue ici
+    pays: France
+    ville: Paris
+    codePostal: 75000
+    telephone: "0120202020"
+    email: test@test.com

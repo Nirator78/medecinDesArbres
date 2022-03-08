@@ -1,0 +1,109 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 *ngIf="mode === 'modal'" class="modal-title" id="modal-basic-title">Création d'un parcours ecolo</h4>
+    <h4 *ngIf="mode === 'url'" class="modal-title" id="modal-basic-title">Modification d'un parcours ecolo</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <form #myform = "ngForm" (ngSubmit) = "onSubmit(myform)" >
+    <div class="modal-body">
+      <!-- Nom -->
+      <div class="form-row">
+        <!-- Description -->
+        <div class="col">
+          <label class="required" for="description">Description</label>
+
+          <textarea
+            type="textarea"
+            class="form-control"
+            aria-label="description"
+            name="description"
+            aria-describedby="inputGroup-sizing-sm"
+            required
+            #description="ngModel"
+            placeholder="Description"
+            ngModel="{{parcoursecolo['description']}}"
+          ></textarea>
+
+          <div *ngIf="description.invalid  && (description.dirty || description.touched)">
+            <div *ngIf="description.errors?.['required']">
+              <small id="descriptionRequired" class="text-danger"> Description est obligatoire</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Utilisateur -->
+      <div class="form-row">
+        <div class="col">
+          <label class="required" for="user">Utilisateur</label>
+          <ng-select
+            required
+            placeholder="Choisir un utilisateur"
+            name="user"
+            #user="ngModel"
+            [items]="userList"
+            bindLabel="prenom"
+            [clearable]="false"
+            [closeOnSelect]="true"
+            [(ngModel)]="parcoursecolo.user">
+            <ng-option [value]="parcoursecolo.user ? user.id : null"  *ngFor="let user of userList">
+                {{user.nom}}
+            </ng-option>
+          </ng-select>
+
+          <div *ngIf="user.invalid  && (user.dirty || user.touched)">
+            <div *ngIf="user.errors?.['required']">
+              <small id="userRequired" class="text-danger"> Utilisateur est obligatoire</small>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <label class="required" for="ville">Ville</label>
+          <ng-select
+            required
+            placeholder="Choisir une ville"
+            name="ville"
+            #ville="ngModel"
+            [items]="villeList"
+            bindLabel="ville"
+            [clearable]="false"
+            [closeOnSelect]="true"
+            [searchable]="true"
+            [(ngModel)]="parcoursecolo.ville">
+            <ng-option [value]="parcoursecolo.ville ? ville.id : null"  *ngFor="let ville of villeList">
+                {{ville.ville}}
+            </ng-option>
+          </ng-select>
+
+          <div *ngIf="ville.invalid  && (ville.dirty || ville.touched)">
+            <div *ngIf="ville.errors?.['required']">
+              <small id="villeRequired" class="text-danger"> Ville est obligatoire</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mb-3 w-96">
+        <label for="formFileSm" class="form-label inline-block mb-2 text-gray-700">Image</label>
+        <input
+          class="form-control"
+          id="formFileSm"
+          type="file"
+          (change)="onFileSelected($event)"
+          accept="image/*"
+        >
+      </div>
+      <small>
+        <span class="star"></span> Obligatoire
+      </small>
+    </div>
+
+    <div class="modal-footer">
+      <input class="btn btn-primary" type="submit" value="Sauvegarder" [disabled]="myform.invalid">
+    </div>
+  </form>
+</ng-template>
+
+<button class="btn btn-success btn-sm font-weight-bold" (click)="open(content)" *ngIf="mode === 'modal'"><fa-icon class="pr-2" [icon]="faPlus"></fa-icon>Nouveau parcours ecolo</button>
+<button (click)="open(content)" *ngIf="mode === 'url'" class="btn btn-link p-0">{{parcoursecolo.user.nom}}</button>
+

@@ -13,9 +13,6 @@ export class ConferenceParticipant {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column()
-    titre: string;
-
     @ManyToOne(() => Conference, conference => conference.id)
     conference: Conference;
 

@@ -1,9 +1,10 @@
 import {getRepository} from "typeorm";
 import {NextFunction, Request, Response} from "express";
-import {User} from "../Entity/User";
+import {User, UserRole} from "../Entity/User";
 
 import {PasswordKey} from '../Entity/PasswordKey';
 import {MailService} from '../Service/MailService';
+import {AuthentificationService} from "../Service/AuthentificationService";
 
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
@@ -12,9 +13,16 @@ export class UserController {
 
     private userRepository = getRepository(User);
     private passwordKeyRepository = getRepository(PasswordKey);
+    private authentificationService = new AuthentificationService();
 
     async all(request: Request, response: Response, next: NextFunction) {
-        const users = await this.userRepository.find();
+        const verif = await this.authentificationService.getUserInfo(request);
+        let filtre = {};
+        // Si admin on ne renvoie que les utilisateurs
+        if(verif.userId.role === "admin"){
+            Object.assign(filtre, {role: "user"});
+        }
+        const users = await this.userRepository.find(filtre);
         return { status: 1, data: users } ;
     }
 
@@ -25,8 +33,10 @@ export class UserController {
     async save(request: Request, response: Response, next: NextFunction) {
         const salt = bcrypt.genSaltSync(10);
         request.body.password = bcrypt.hashSync(request.body.password, salt);
+
         const user = await this.userRepository.save(request.body);
         let token = jwt.sign({ data: user },process.env.SECRET_TOKEN, { expiresIn: '1h' });
+
         return { status: 1, data: user, token: token };
     }
 
@@ -59,6 +69,19 @@ export class UserController {
             }
         }else{
             return { status: 0 };
+        }
+    }
+
+    async loginAdmin(request: Request, response: Response, next: NextFunction) {
+        const login = await this.login(request, response, next);
+        if(login.status === 1) {
+            if(login.data.role === UserRole.USER) {
+                return { status: 2 };
+            }else{
+                return login
+            }
+        }else{
+            return login
         }
     }
 
@@ -107,6 +130,21 @@ export class UserController {
             return { status: 1, data: user} ;
         }else{
             return { status: 0 };
+        }
+    }
+
+    async getAllPasswordKey(request: Request, response: Response, next: NextFunction) {
+        const passwordKeys = await this.passwordKeyRepository.find();
+        return { status: 1, data: passwordKeys } ;
+    }
+
+    async removePasswordKeysToRemove(request: Request, response: Response, next: NextFunction) {
+        try{
+            let passwordKeyToRemove = await this.passwordKeyRepository.findOne(request.params.id);
+            await this.passwordKeyRepository.remove(passwordKeyToRemove);
+            return { status: 1 }
+        }catch (e){
+            return { status: 0, error: e }
         }
     }
 }

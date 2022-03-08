@@ -1,0 +1,8 @@
+entity: ConferenceParticipant
+items:
+  conferenceParticipant1:
+    user: "@user1"
+  conferenceParticipant2:
+    user: "@user2"
+  conferenceParticipant3:
+    user: "@user1"

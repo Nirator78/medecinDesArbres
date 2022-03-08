@@ -21,7 +21,7 @@ export default [
     },
     {
         method: "put",
-        route: "/parcours-ecolo",
+        route: "/parcours-ecolo/:id",
         controller: ParcoursEcoloController,
         action: "update"
     },

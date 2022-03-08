@@ -1,0 +1,49 @@
+<div class="card-body">
+    <!-- Conférence -->
+    <h3 class="page-header">
+      Conférence
+    </h3>
+    <!-- Liste des conférence -->
+    <p class="card-description mb-4">
+      Liste des conférences
+    </p>
+  
+    <div class="mb-4">
+      <div class="btn-group" role="group" aria-label="Basic example">
+        <app-modal-conference mode="modal"></app-modal-conference>
+        <button class="btn border-left btn-success btn-sm" (click)="refresh()">
+          <fa-icon [icon]="faSync"></fa-icon>
+        </button>
+      </div>
+    </div>
+    <ng-template [ngIf]="conferenceList.length>0" [ngIfElse]="elseBlockTot">
+      <div class="table-responsive">
+        <table class="table table-hover table-sm" style="white-space: nowrap">
+          <thead>
+          <tr>
+            <th scope="col">Titre</th>
+            <th scope="col">Thème</th>
+            <th scope="col">Début</th>
+            <th scope="col">Fin</th>
+            <th scope="col">Nombre participant</th>
+            <th scope="col">Action</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let conference of conferenceList">
+            <td> <app-modal-conference mode="url" [conference]="conference"></app-modal-conference></td>
+            <td> {{ conference.theme }} </td>
+            <td> {{ conference.dateDebut | date:'dd/MM/yyyy à HH:mm:ss' }} </td>
+            <td> {{ conference.dateFin | date:'dd/MM/yyyy à HH:mm:ss' }} </td>
+            <td> {{ conference.conferenceParticipants.length }} </td>
+            <td> <button type="button" class="btn btn-danger btn-sm" (click)="deleteConference(conference.id)"><fa-icon [icon]="faTrash"></fa-icon></button> </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </ng-template>
+    <ng-template #elseBlockTot>
+      <p>Pas de conférence enregistrée.</p>
+    </ng-template>
+  </div>
+  

@@ -1,0 +1,19 @@
+entity: Conference
+items:
+  conference1:
+    titre: "Les gestes pour la planète"
+    theme: "Protection"
+    description: "Les gestes pour la planète"
+    dateDebut: "2022-01-01"
+    dateFin: "2022-01-02"
+    conferenceParticipants:
+      - "@conferenceParticipant1"
+      - "@conferenceParticipant2"
+  conference2:
+      titre: "Les gestes pour la planète"
+      theme: "Protection"
+      description: "Les gestes pour la planète"
+      dateDebut: "2022-01-03"
+      dateFin: "2022-01-04"
+      conferenceParticipants:
+        - "@conferenceParticipant3"

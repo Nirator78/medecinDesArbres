@@ -37,8 +37,14 @@ export default [
     },
     {
         method: "put",
-        route: "/commande",
+        route: "/commande/:id",
         controller: CommandeController,
         action: "update"
+    },
+    {
+        method: "delete",
+        route: "/commande/:id",
+        controller: CommandeController,
+        action: "remove"
     }
 ];

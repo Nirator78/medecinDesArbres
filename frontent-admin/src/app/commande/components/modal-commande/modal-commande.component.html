@@ -1,0 +1,208 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 *ngIf="mode === 'modal'" class="modal-title" id="modal-basic-title">Création de commande</h4>
+    <h4 *ngIf="mode === 'url'" class="modal-title" id="modal-basic-title">Modification de commande</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <form #myform = "ngForm" (ngSubmit) = "onSubmit(myform)" >
+    <div class="modal-body">
+      <!-- Numéro -->
+      <div class="form-row">
+        <div class="col">
+          <label class="required" for="numero">Numéro de commande</label>
+
+          <input
+            type="text"
+            class="form-control"
+            aria-label="numero"
+            name="numero"
+            aria-describedby="inputGroup-sizing-sm"
+            required
+            minlength="4"
+            #numero="ngModel"
+            placeholder="Numéro de commande"
+            ngModel="{{commande['numero']}}"
+          >
+          
+
+          <div *ngIf="numero.invalid  && (numero.dirty || numero.touched)">
+            <div *ngIf="numero.errors?.['minlength']">
+              <small id="numeroMin" class="text-danger"> Il faut minimum 4 caractéres</small>
+            </div>
+            <div *ngIf="numero.errors?.['required']">
+              <small id="numeroRequired" class="text-danger"> Numéro est obligatoire</small>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <label class="required" for="dateCommande">Date de la commande</label>
+
+          <input
+            type="date"
+            class="form-control"
+            aria-label="date"
+            name="date"
+            aria-describedby="inputGroup-sizing-sm"
+            required
+            #date="ngModel"
+            placeholder="Date de la commande"
+            [ngModel]="commande['date'] | date:'yyyy-MM-dd'"
+          >
+          <div *ngIf="date.invalid  && (date.dirty || date.touched)">
+            <div *ngIf="date.errors?.['required']">
+              <small id="dateRequired" class="text-danger"> Date de la commande est obligatoire</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Utilisateur -->
+      <div class="form-row">
+        <div class="col">
+          <label class="required" for="user">Utilisateur</label>
+          <ng-select
+            required
+            placeholder="Choisir un utilisateur"
+            name="user"
+            #user="ngModel"
+            [items]="userList"
+            bindLabel="prenom"
+            [closeOnSelect]="false"
+            [clearable]="false"
+            [closeOnSelect]="true"
+            [(ngModel)]="commande.user">
+            <ng-option [value]="commande.user ? user.id : null"  *ngFor="let user of userList">
+                {{user.nom}}
+            </ng-option>
+          </ng-select>
+
+          <div *ngIf="user.invalid  && (user.dirty || user.touched)">
+            <div *ngIf="user.errors?.['required']">
+              <small id="userRequired" class="text-danger"> Utilisateur est obligatoire</small>
+            </div>
+          </div>
+        </div>
+      </div>  
+      <br>
+      <!-- Ajouter une ligne de commande -->
+      <button type="button" class="btn btn-link btn-sm float-right"
+      (click)="toggleShowCommandeLigneForm(true)"
+      id="ajouter-ligne-commande"
+      >
+          <i class="fa fa-plus"></i> Ajouter une ligne
+      </button>
+      <table class="table table-hover table-sm">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+            <!-- Quantite -->
+            <th scope="col">Quantité</th>
+            <!-- Article -->
+            <th scope="col">Article</th>
+            <!-- Action -->
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody  *ngIf="commande.commandeLignes">
+          <tr *ngFor="let commandeLigne of commande.commandeLignes; let index = index">
+            <td>{{ index + 1 }}</td>
+            <!-- Quantite -->
+            <td>{{ commandeLigne.quantite }}</td>
+            <!-- Article -->
+            <td class="flex">
+              <img class="mr-2" src="{{commandeLigne.article.image ? (environment.apiUrl + commandeLigne.article?.image?.url) : 'https://via.placeholder.com/50' }}" width="50" height="50"/>
+              {{ commandeLigne.article.nom }}
+            </td>
+            <td> 
+              <button type="button" class="btn btn-danger btn-sm" (click)="deleteCommandeLigne(index)"><fa-icon [icon]="faTrash"></fa-icon></button>
+              <button type="button" class="btn btn-success btn-sm ml-2" (click)="selectCommandeLigne(commandeLigne)"><fa-icon [icon]="faClone"></fa-icon></button> 
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="text-muted text-center" *ngIf="!commande.commandeLignes">
+        <!-- Ajouter une ligne de commande -->
+        <small>Aucune ligne de commande pour cette commande</small>
+        <br>
+      </p>
+      <form name="commandeLigneForm"  #commandeLigneForm = "ngForm" (ngSubmit)="addCommandeLigne(commandeLigneForm); commandeLigneForm.resetForm()" *ngIf="showCommandeLigneForm">     
+        <div class="form-row" *ngIf="showCommandeLigneForm">
+          <!-- Quantité -->
+          <div class="col">
+            <label class="required" for="quantite">Quantité</label>
+  
+            <input
+              type="number"
+              class="form-control"
+              aria-label="quantite"
+              name="quantite"
+              aria-describedby="inputGroup-sizing-sm"
+              required
+              #quantite="ngModel"
+              placeholder="Quantité"
+              min="1"
+              ngModel="{{commande['quantite']}}"
+            >
+  
+            <div *ngIf="quantite.invalid  && (quantite.dirty || quantite.touched)">
+              <div *ngIf="quantite.errors?.['required']">
+                <small id="quantite" class="text-danger"> Quantité est obligatoire </small>
+              </div>
+              <div *ngIf="quantite.errors?.['min']">
+                <small id="quantite" class="text-danger"> Quantité invalide </small>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <label class="required" for="article">Article</label>
+            <ng-select
+              required
+              placeholder="Choisir un article"
+              name="article"
+              #article="ngModel"
+              [items]="articleList"
+              bindLabel="nom"
+              [closeOnSelect]="false"
+              [clearable]="false"
+              [closeOnSelect]="true"
+              [(ngModel)]="commande.article">
+              <ng-option [value]="commande.article" *ngFor="let article of articleList">
+                  {{article.nom}}
+              </ng-option>
+            </ng-select>
+  
+            <div *ngIf="article.invalid  && (article.dirty || article.touched)">
+              <div *ngIf="article.errors?.['required']">
+                <small id="nomRequired" class="text-danger"> Article est obligatoire</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-2">
+          <!-- Ajouter ligne commande -->
+          <input class="btn btn-primary btn-sm" type="submit" value="Ajouter une ligne" [disabled]="commandeLigneForm.invalid">
+        </div>
+      </form>     
+      <!-- Fermer -->
+      <button type="button" class="btn btn-sm btn-dark float-right ml-2" (click)="toggleShowCommandeLigneForm(false)" *ngIf="showCommandeLigneForm" tabindex=-1>
+          <i class="fa fa-times"></i> Fermer
+      </button>
+      <small>
+        <span class="star"></span> Obligatoire
+      </small>
+    </div>
+    
+    <div class="modal-footer">
+      <input class="btn btn-primary" type="submit" value="Sauvegarder" [disabled]="myform.invalid ||
+      !commande.commandeLignes ||
+      commande.commandeLignes.length === 0">
+    </div>
+  </form>
+
+</ng-template>
+
+<button class="btn btn-success btn-sm font-weight-bold" (click)="open(content)" *ngIf="mode === 'modal'"><fa-icon class="pr-2" [icon]="faPlus"></fa-icon>Nouvelle commande</button>
+<button (click)="open(content)" *ngIf="mode === 'url'" class="btn btn-link p-0">{{commande.numero}}</button>
+
