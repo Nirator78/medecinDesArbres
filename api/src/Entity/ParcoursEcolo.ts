@@ -24,4 +24,7 @@ export class ParcoursEcolo {
 
     @Column()
     description: string;
+
+    @Column()
+    nbSac: number;
 }
