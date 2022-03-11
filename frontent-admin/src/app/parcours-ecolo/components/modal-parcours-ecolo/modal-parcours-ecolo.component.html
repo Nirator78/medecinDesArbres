@@ -83,15 +83,42 @@
           </div>
         </div>
       </div>
-      <div class="mb-3 w-96">
-        <label for="formFileSm" class="form-label inline-block mb-2 text-gray-700">Image</label>
-        <input
-          class="form-control"
-          id="formFileSm"
-          type="file"
-          (change)="onFileSelected($event)"
-          accept="image/*"
-        >
+      <div class="form-row">
+        <div class="col">
+          <label for="formFileSm" class="form-label inline-block mb-2 text-gray-700">Image</label>
+          <input
+            class="form-control"
+            id="formFileSm"
+            type="file"
+            (change)="onFileSelected($event)"
+            accept="image/*"
+          >
+        </div>
+        <div class="col">
+          <label class="required" for="nbSac">Nombre de sac</label>
+
+          <input
+            type="number"
+            class="form-control"
+            aria-label="nbSac"
+            name="nbSac"
+            aria-describedby="inputGroup-sizing-sm"
+            required
+            #nbSac="ngModel"
+            placeholder="Nombre de sac"
+            min="0"
+            ngModel="{{parcoursecolo['nbSac']}}"
+          >
+
+          <div *ngIf="nbSac.invalid  && (nbSac.dirty || nbSac.touched)">
+            <div *ngIf="nbSac.errors?.['min']">
+              <small id="nbSacInvalid" class="text-danger"> Nombre de sac invalide </small>
+            </div>
+            <div *ngIf="nbSac.errors?.['required']">
+              <small id="prix" class="text-danger"> Nombre de sac est obligatoire </small>
+            </div>
+          </div>
+        </div>
       </div>
       <small>
         <span class="star"></span> Obligatoire

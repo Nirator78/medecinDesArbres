@@ -8,6 +8,7 @@ export enum QuizDifficulte {
     MOYEN = "moyen",
     DIFFICILE = "difficile",
 }
+
 @Entity()
 export class Quiz {
 
@@ -36,6 +37,6 @@ export class Quiz {
     @JoinColumn()
     image: Image;
 
-    @OneToMany(() => QuizQuestion, questions => questions.quiz, { cascade: true })
+    @OneToMany(() => QuizQuestion, questions => questions.quiz, { cascade: true, onDelete: 'CASCADE' })
     questions: QuizQuestion[];
 }
