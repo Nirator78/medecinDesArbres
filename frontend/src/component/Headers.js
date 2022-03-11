@@ -43,7 +43,7 @@ export default function Headers() {
                             <Inscription />
                         </>
                     )}
-                    {!user && (
+                    {user && (
                         <>
                             <Profile user={user} />
                         </>
