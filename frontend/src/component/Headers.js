@@ -43,9 +43,9 @@ export default function Headers() {
                             <Inscription />
                         </>
                     )}
-                    {user && (
+                    {!user && (
                         <>
-                            <Profile />
+                            <Profile user={user} />
                         </>
                     )}
                 </Toolbar>

@@ -7,7 +7,6 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
-import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 import LogoutIcon from '@mui/icons-material/Logout';
@@ -40,7 +39,7 @@ const PaperProps = {
 	}
 }
 
-export default function AccountMenu() {
+export default function AccountMenu({ user }) {
 	const [anchorEl, setAnchorEl] = React.useState(null);
 	const open = Boolean(anchorEl);
 
@@ -60,7 +59,6 @@ export default function AccountMenu() {
 	return (
 		<>
 			<Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
-				<button onClick={handleClickLogout}><LogoutIcon /></button>
 				<Tooltip title="Account settings">
 					<IconButton onClick={handleClick} size="small" sx={{ ml: 2 }}>
 						<Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
@@ -79,16 +77,7 @@ export default function AccountMenu() {
 				<MenuItem>
 					<Avatar /> Profile
 				</MenuItem>
-				<MenuItem>
-					<Avatar /> My account
-				</MenuItem>
 				<Divider />
-				<MenuItem>
-					<ListItemIcon>
-						<PersonAdd fontSize="small" />
-					</ListItemIcon>
-					Add another account
-				</MenuItem>
 				<MenuItem>
 					<ListItemIcon>
 						<Settings fontSize="small" />
