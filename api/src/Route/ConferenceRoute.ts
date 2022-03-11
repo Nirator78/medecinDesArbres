@@ -30,5 +30,11 @@ export default [
         route: "/conference/:id",
         controller: ConferenceController,
         action: "remove"
+    },
+    {
+        method: "post",
+        route: "/conference/:conferenceId/user/:userId",
+        controller: ConferenceController,
+        action: "addUserToConference"
     }
 ];

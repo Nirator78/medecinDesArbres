@@ -5,11 +5,15 @@
 import {getRepository} from "typeorm";
 import {NextFunction, Request, Response} from "express";
 import {Conference} from "../Entity/Conference";
+import {ConferenceParticipant} from "../Entity/ConferenceParticipant";
+import {User} from "../Entity/User";
 import {AuthentificationService} from '../Service/AuthentificationService';
 
 export class ConferenceController {
 
     private conferenceRepository = getRepository(Conference);
+    private conferenceParticipantRepository = getRepository(ConferenceParticipant);
+    private userRepository = getRepository(User);
     private authentificationService = new AuthentificationService();
 
     async all(request: Request, response: Response, next: NextFunction) {
@@ -45,6 +49,30 @@ export class ConferenceController {
             let conferenceToRemove = await this.conferenceRepository.findOne(request.params.id);
             await this.conferenceRepository.remove(conferenceToRemove);
             return { status: 1 }
+        }catch (e){
+            return { status: 0, error: e }
+        }
+    }
+
+    async addUserToConference(request: Request, response: Response, next: NextFunction) {
+        try{
+            const {conferenceId, userId} = request.params;
+            // Recherche de la conférence sur laquelle travailler
+            let conference = await this.conferenceRepository.findOne(request.params.id, { relations: [ "conferenceParticipants" , "conferenceParticipants.user"] });
+
+            // Recherche de l'utilisateur à ajouter à la conférence
+            let userToAdd = await this.userRepository.findOne(userId);
+
+            // Création d'un conférence participant
+            let newConferenceParticipant = new ConferenceParticipant();
+            newConferenceParticipant.conference = conferenceId;
+            newConferenceParticipant.user = userToAdd;
+            const newConferenceParticipantSaved = await this.conferenceParticipantRepository.save(newConferenceParticipant);
+
+            // Ajout du participant à la conférence
+            conference.conferenceParticipants.push(newConferenceParticipantSaved)
+            const conferenceUpdated = await this.conferenceRepository.save(conference);
+            return { status: 1, data: conferenceUpdated }
         }catch (e){
             return { status: 0, error: e }
         }
