@@ -32,35 +32,6 @@ npm install
 npm start
 ```
 Initialisation fichier api
-- Avant tout chose il faut ajouter le ormconfig.json si cela n'est pas fait
-- Voici un exemple
-```bash
-{
-   "name": "default",
-   "type": "mysql",
-   "host": "127.0.0.1",
-   "port": 3306,
-   "username": "root",
-   "database": "test",
-   "password": "",
-   "synchronize": true,
-   "logging": false,
-   "entities": [
-      "src/Entity/**/*.ts"
-   ],
-   "migrations": [
-      "src/migration/**/*.ts"
-   ],
-   "subscribers": [
-      "src/subscriber/**/*.ts"
-   ],
-   "cli": {
-      "entitiesDir": "src/Entity",
-      "migrationsDir": "src/migration",
-      "subscribersDir": "src/subscriber"
-   }
-}
-```
 ```bash
 cd api
 npm install
