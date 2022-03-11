@@ -14,6 +14,6 @@ export class QuizReponse {
     @Column()
     bonne: boolean;
 
-    @ManyToOne(() => QuizQuestion, quizQuestion => quizQuestion.id)
+    @ManyToOne(() => QuizQuestion, quizQuestion => quizQuestion.id, { onDelete: 'CASCADE' })
     quizQuestion: QuizQuestion;
 }

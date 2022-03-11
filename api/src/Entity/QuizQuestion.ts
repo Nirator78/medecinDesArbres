@@ -17,9 +17,9 @@ export class QuizQuestion {
     @JoinColumn()
     image: Image;
 
-    @ManyToOne(() => Quiz, quiz => quiz.id)
+    @ManyToOne(() => Quiz, quiz => quiz.id, { onDelete: 'CASCADE' })
     quiz: Quiz;
 
-    @OneToMany(() => QuizReponse, quizReponse => quizReponse.quizQuestion, { cascade: true })
+    @OneToMany(() => QuizReponse, quizReponse => quizReponse.quizQuestion, { cascade: true, onDelete: 'CASCADE' })
     reponse: QuizReponse[];
 }
