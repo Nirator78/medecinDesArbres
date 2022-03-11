@@ -32,8 +32,8 @@ npm install
 npm start
 ```
 Initialisation fichier api
-   Avant tout chose il faut ajouter le ormconfig.json si cela n'est pas fait
-   Voici un exemple
+- Avant tout chose il faut ajouter le ormconfig.json si cela n'est pas fait
+- Voici un exemple
 ```bash
 {
    "name": "default",
