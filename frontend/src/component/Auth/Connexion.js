@@ -1,11 +1,10 @@
-import React, { useRef } from "react";
+import React from "react";
 import AuthService from "../../services/auth.service"
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import { FormControl, IconButton, Input, InputAdornment, InputLabel } from "@mui/material";
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-
 
 const style = {
 	position: 'absolute',
@@ -18,18 +17,17 @@ const style = {
 	boxShadow: 24,
 	p: 4,
 };
-function Inscription() {
-	const handleChange = (prop) => (event) => {
-		setValues({ ...values, [prop]: event.target.value });
-	};
 
+function Connexion() {
 	const [values, setValues] = React.useState({
 		email: '',
 		password: '',
-		prenom: '',
-		nom: '',
 		showPassword: false,
 	});
+
+	const handleChange = (prop) => (event) => {
+		setValues({ ...values, [prop]: event.target.value });
+	};
 
 	const handleClickShowPassword = () => {
 		setValues({
@@ -41,8 +39,9 @@ function Inscription() {
 	const handleMouseDownPassword = (event) => {
 		event.preventDefault();
 	};
+
 	async function postData() {
-		AuthService.register(values.nom, values.prenom, values.email, values.password).then(
+		AuthService.login(values.email, values.password).then(
 			() => {
 				window.location.reload();
 			},
@@ -52,20 +51,19 @@ function Inscription() {
 		);
 	}
 
-
 	const [open, setOpen] = React.useState(false);
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => setOpen(false);
-	return (
 
+	return (
 		<>
 			<div>
-				<a
+				<button
 					onClick={handleOpen}
-					className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-green-500 hover:bg-green-600 ml-1"
+					className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-green-500 hover:bg-green-600"
 				>
-					Inscription
-				</a>
+					Connexion
+				</button>
 				<Modal
 					open={open}
 					onClose={handleClose}
@@ -81,28 +79,8 @@ function Inscription() {
 										src="logo.png"
 										alt=""
 									/>
-									<h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Inscription a Médecins des arbres</h2>
+									<h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Connexion a votre compte</h2>
 								</div>
-
-
-								<FormControl fullWidth variant="standard">
-									<InputLabel htmlFor="standard-adornment-nom">Nom</InputLabel>
-									<Input
-										id="standard-adornment-nom"
-										type="nom"
-										value={values.nom}
-										onChange={handleChange('nom')}
-									/>
-								</FormControl>
-								<FormControl fullWidth variant="standard">
-									<InputLabel htmlFor="standard-adornment-prenom">Prénom</InputLabel>
-									<Input
-										id="standard-adornment-prenom"
-										type="prenom"
-										value={values.prenom}
-										onChange={handleChange('prenom')}
-									/>
-								</FormControl>
 								<FormControl fullWidth variant="standard">
 									<InputLabel htmlFor="standard-adornment-email">Email</InputLabel>
 									<Input
@@ -119,6 +97,7 @@ function Inscription() {
 										type={values.showPassword ? 'text' : 'password'}
 										value={values.password}
 										onChange={handleChange('password')}
+										sx={{ width: 1 }}
 										endAdornment={
 											<InputAdornment position="end">
 												<IconButton
@@ -132,8 +111,6 @@ function Inscription() {
 										}
 									/>
 								</FormControl>
-
-
 								<div className="flex items-center justify-between">
 									<div className="flex items-center">
 										<input
@@ -143,12 +120,16 @@ function Inscription() {
 											className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
 										/>
 										<label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
-											J'ai lu et j'accepte les termes et conditions
+											Remember me
 										</label>
 									</div>
 
+									<div className="text-sm">
+										<button className="font-medium text-indigo-600 hover:text-indigo-500">
+											Mot de passe oublié?
+										</button>
+									</div>
 								</div>
-
 								<div>
 									<button
 										onClick={postData}
@@ -157,18 +138,17 @@ function Inscription() {
 										<span className="absolute left-0 inset-y-0 flex items-center pl-3">
 
 										</span>
-										S'inscrire
+										Connexion
 									</button>
 								</div>
+
 							</div>
 						</div>
 					</Box>
 				</Modal>
 			</div>
-
-
 		</>
 	);
 }
 
-export default Inscription;
+export default Connexion;

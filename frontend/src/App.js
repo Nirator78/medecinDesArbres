@@ -1,4 +1,5 @@
 import React from "react";
+import "@material-tailwind/react/tailwind.css";
 import { unstable_HistoryRouter as HistoryRouter, useRoutes } from "react-router-dom";
 import { createBrowserHistory } from 'history';
 import MAP_ROUTES from "./routes";

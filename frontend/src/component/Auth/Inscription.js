@@ -17,8 +17,7 @@ const style = {
 	boxShadow: 24,
 	p: 4,
 };
-function Connexion() {
-
+function Inscription() {
 	const handleChange = (prop) => (event) => {
 		setValues({ ...values, [prop]: event.target.value });
 	};
@@ -26,6 +25,8 @@ function Connexion() {
 	const [values, setValues] = React.useState({
 		email: '',
 		password: '',
+		prenom: '',
+		nom: '',
 		showPassword: false,
 	});
 
@@ -39,9 +40,8 @@ function Connexion() {
 	const handleMouseDownPassword = (event) => {
 		event.preventDefault();
 	};
-
 	async function postData() {
-		AuthService.login(values.email, values.password).then(
+		AuthService.register(values.nom, values.prenom, values.email, values.password).then(
 			() => {
 				window.location.reload();
 			},
@@ -51,19 +51,20 @@ function Connexion() {
 		);
 	}
 
+
 	const [open, setOpen] = React.useState(false);
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => setOpen(false);
-
 	return (
+
 		<>
 			<div>
-				<a
+				<button
 					onClick={handleOpen}
-					className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-green-500 hover:bg-green-600"
+					className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-green-500 hover:bg-green-600 ml-1"
 				>
-					Connexion
-				</a>
+					Inscription
+				</button>
 				<Modal
 					open={open}
 					onClose={handleClose}
@@ -79,8 +80,28 @@ function Connexion() {
 										src="logo.png"
 										alt=""
 									/>
-									<h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Connexion a votre compte</h2>
+									<h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Inscription a Médecins des arbres</h2>
 								</div>
+
+
+								<FormControl fullWidth variant="standard">
+									<InputLabel htmlFor="standard-adornment-nom">Nom</InputLabel>
+									<Input
+										id="standard-adornment-nom"
+										type="nom"
+										value={values.nom}
+										onChange={handleChange('nom')}
+									/>
+								</FormControl>
+								<FormControl fullWidth variant="standard">
+									<InputLabel htmlFor="standard-adornment-prenom">Prénom</InputLabel>
+									<Input
+										id="standard-adornment-prenom"
+										type="prenom"
+										value={values.prenom}
+										onChange={handleChange('prenom')}
+									/>
+								</FormControl>
 								<FormControl fullWidth variant="standard">
 									<InputLabel htmlFor="standard-adornment-email">Email</InputLabel>
 									<Input
@@ -97,7 +118,6 @@ function Connexion() {
 										type={values.showPassword ? 'text' : 'password'}
 										value={values.password}
 										onChange={handleChange('password')}
-										sx={{ width: 1 }}
 										endAdornment={
 											<InputAdornment position="end">
 												<IconButton
@@ -111,6 +131,8 @@ function Connexion() {
 										}
 									/>
 								</FormControl>
+
+
 								<div className="flex items-center justify-between">
 									<div className="flex items-center">
 										<input
@@ -120,16 +142,12 @@ function Connexion() {
 											className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
 										/>
 										<label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
-											Remember me
+											J'ai lu et j'accepte les termes et conditions
 										</label>
 									</div>
 
-									<div className="text-sm">
-										<a href="" className="font-medium text-indigo-600 hover:text-indigo-500">
-											Mot de passe oublié?
-										</a>
-									</div>
 								</div>
+
 								<div>
 									<button
 										onClick={postData}
@@ -138,17 +156,18 @@ function Connexion() {
 										<span className="absolute left-0 inset-y-0 flex items-center pl-3">
 
 										</span>
-										Connexion
+										S'inscrire
 									</button>
 								</div>
-
 							</div>
 						</div>
 					</Box>
 				</Modal>
 			</div>
+
+
 		</>
 	);
 }
 
-export default Connexion;
+export default Inscription;
