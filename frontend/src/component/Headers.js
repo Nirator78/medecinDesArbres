@@ -1,6 +1,7 @@
 import React from "react";
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
 import Toolbar from '@mui/material/Toolbar';
 import { Link as RouterLink } from 'react-router-dom';
 import Connexion from "./Auth/Connexion";
@@ -19,19 +20,23 @@ export default function Headers() {
     const user = AuthService.getUser();
 
     return (
-        <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="static">
+        <Box sx={{ flexGrow: 1, justifyContent: 'space-around' }}>
+            <AppBar position="static" color="inherit">
                 <Toolbar>
-                    {
-                        // important for mapping
-                        links.map((link, index) => {
-                            return (
-                                <RouterLink to={link.link} key={index}>
-                                    {link.name}
-                                </RouterLink>
-                            )
-                        })
-                    }
+                    <Grid container>
+                        {
+                            // important for mapping
+                            links.map((link, index) => {
+                                return (
+                                    <Grid item xs={1}>
+                                        <RouterLink to={link.link} key={index}>
+                                            {link.name}
+                                        </RouterLink>
+                                    </Grid>
+                                )
+                            })
+                        }
+                    </Grid>
                     {!user && (
                         <>
                             <Connexion />
