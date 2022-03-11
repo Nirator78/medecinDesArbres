@@ -1,7 +1,7 @@
 <div class="vertical-nav bg-white ml-2" id="sidebar">
   <div class="py-4 px-3 mb-4 bg-light">
     <div class="media d-flex align-items-center">
-      <div class="media-body">
+      <div class="media-body" [routerLink] = "['home']">
         <h1 class="m-0">Medecin Des Arbres</h1>
         <h2>Panneau d'aministration</h2>
         <h2 class="text-uppercase">{{userConnecter.nom}} {{userConnecter.prenom}}</h2>
