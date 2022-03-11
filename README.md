@@ -10,6 +10,9 @@ Ecologie
 - [Reactjs](https://fr.reactjs.org/)
 - [Tailwindcss](https://tailwindcss.com/)
 - [MaterialUi](https://mui.com/)
+### Frontend-Admin
+- [Angular](https://angular.io/)
+- [Bootstrap](https://getbootstrap.com/)
 ### Backend
 - [Nodejs](https://nodejs.org/fr/)
 - [TypeORM](https://typeorm.io/#/)
