@@ -5,13 +5,16 @@ items:
     ville: "@ville1"
     description: "Première fois que je cours"
     image: "@image4"
+    nbSac: 3
   parcours2:
     user: "@user2"
     ville: "@ville12"
     description: "Avec mon pote"
     image: "@image5"
+    nbSac: 2
   parcours3:
     user: "@user3"
     ville: "@ville14"
     description: "J'ai mal au pied"
     image: "@image6"
+    nbSac: 4
