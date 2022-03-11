@@ -3,6 +3,7 @@ import Accueil from "./pages/Accueil";
 import Boutique from "./pages/Boutique";
 import Interface from "./pages/Interface"
 import NotFound from "./pages/NotFound";
+import ParcoursEcolo from "./pages/ParcoursEcolo";
 import Quiz from "./pages/Quiz";
 
 const MAP_ROUTES = [
@@ -13,6 +14,7 @@ const MAP_ROUTES = [
             { index: true, element: <Accueil /> },
             { path: "boutique", element: <Boutique /> },
             { path: "quiz", element: <Quiz /> },
+            { path: "parcoursecolo", element: <ParcoursEcolo /> },
         ]
     },
 ];

@@ -56,7 +56,6 @@ function Connexion() {
 	const handleClose = () => setOpen(false);
 
 	return (
-
 		<>
 			<div>
 				<a
@@ -148,8 +147,6 @@ function Connexion() {
 					</Box>
 				</Modal>
 			</div>
-
-
 		</>
 	);
 }
