@@ -3,7 +3,7 @@ import {createConnection} from "typeorm";
 import * as express from "express";
 import * as bodyParser from "body-parser";
 import {Request, Response} from "express";
-import {Routes} from "./Routes";
+import {Routes} from "./routes";
 import * as expressFileupload from "express-fileupload";
 
 // Logging system
