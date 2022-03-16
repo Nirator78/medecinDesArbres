@@ -1,0 +1,64 @@
+.frontent-admin_rules: &frontent-admin_rules
+  extends: .login
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main"'
+      changes:
+      - frontent-admin/**/*
+  cache:
+    paths:
+    - frontent-admin/node_modules
+    policy: pull
+
+install-frontent-admin:
+  <<: *frontent-admin_rules
+  stage: install
+  cache:
+    paths:
+    - frontent-admin/node_modules
+    policy: push
+  script: 
+    - cd frontent-admin
+    - npm install
+
+unit-test-frontent-admin:
+  <<: *frontent-admin_rules
+  stage: test
+  script: 
+    - cd frontent-admin
+    - npm run test-unit
+
+functional-test-frontent-admin:
+  <<: *frontent-admin_rules
+  stage: test
+  script: 
+    - cd frontent-admin
+    - npm run test-functional
+
+build-frontent-admin:
+  <<: *frontent-admin_rules
+  stage: build
+  script: 
+    - cd frontent-admin
+    - ls
+    - npm run build
+  artifacts:
+      expire_in: 1 hour
+      paths:
+        - frontent-admin/dist/frontent-admin
+
+deploy-staging-frontent-admin:
+  <<: *frontent-admin_rules
+  stage: deploy-staging
+  script:
+    - cd frontent-admin
+    - echo deploy to staging
+    - ls
+
+deploy-production-frontent-admin:
+  <<: *frontent-admin_rules
+  stage: deploy-production
+  script:
+    - cd frontent-admin
+    - npm install
+    - npm run build
+    - npx netlify-cli deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_AUTH_TOKEN --prod --dir=dist/frontent-admin
