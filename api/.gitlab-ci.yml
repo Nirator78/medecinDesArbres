@@ -1,0 +1,55 @@
+.api_rules: &api_rules
+  extends: .login
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main"'
+      changes:
+      - api/**/*
+  cache:
+    paths:
+    - api/node_modules
+    policy: pull
+
+install-api:
+  <<: *api_rules
+  stage: install
+  script: 
+    - cd api
+    - npm install
+  cache:
+    paths:
+    - api/node_modules
+    policy: push
+
+unit-test-api:
+  <<: *api_rules
+  stage: test
+  script: 
+    - cd api
+    - npm run test-unit
+
+functional-test-api:
+  <<: *api_rules
+  stage: test
+  script: 
+    - cd api
+    - npm run test-functional
+
+deploy-staging-api:
+  <<: *api_rules
+  stage: deploy-staging
+  script:
+    - cd api
+    - echo deploy to staging
+
+
+deploy-production-api:
+    image: ruby:latest
+    stage: deploy-production
+    <<: *api_rules
+    extends: .login
+    script:
+      - cd api
+      - apt-get update -qy
+      - apt-get install -y ruby-dev
+      - gem install dpl
+      - dpl --provider=heroku --app=$HEROKU_APP_NAME --api-key=$HEROKU_API_KEY
