@@ -14,7 +14,7 @@ export class NavbarComponent implements OnInit {
   userConnecter;
   isActive:boolean = true;
 
-  constructor(private authService: AuthService, private router:Router ) { 
+  constructor(private authService: AuthService, private router: Router ) {
     this.userConnecter = this.authService.getUserDetails();
     this.userConnecter = JSON.parse(this.userConnecter);
   }

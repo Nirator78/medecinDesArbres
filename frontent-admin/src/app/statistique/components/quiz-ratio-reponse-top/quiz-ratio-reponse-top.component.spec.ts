@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientModule } from "@angular/common/http";
+import { ConfirmationDialogService } from "../../../ui/confirmation-dialog/confirmation-dialog.service";
 import { QuizRatioReponseTopComponent } from './quiz-ratio-reponse-top.component';
 
 describe('QuizRatioReponseTopComponent', () => {
@@ -8,7 +10,14 @@ describe('QuizRatioReponseTopComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ QuizRatioReponseTopComponent ]
+      imports: [
+        RouterTestingModule,
+        HttpClientModule
+      ],
+      declarations: [ QuizRatioReponseTopComponent ],
+      providers: [
+        ConfirmationDialogService
+      ]
     })
     .compileComponents();
   });

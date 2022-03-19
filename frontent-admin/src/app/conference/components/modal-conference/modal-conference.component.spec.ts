@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ModalConferenceComponent } from './modal-conference.component';
+import { ListConferenceComponent } from "../list-conference/list-conference.component";
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientModule } from "@angular/common/http";
+import { ConfirmationDialogService } from "../../../ui/confirmation-dialog/confirmation-dialog.service";
 
 describe('ModalConferenceComponent', () => {
   let component: ModalConferenceComponent;
@@ -8,7 +11,15 @@ describe('ModalConferenceComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ModalConferenceComponent ]
+      imports: [
+        RouterTestingModule,
+        HttpClientModule
+      ],
+      declarations: [ ModalConferenceComponent ],
+      providers: [
+        ConfirmationDialogService,
+        ListConferenceComponent
+      ]
     })
     .compileComponents();
   });

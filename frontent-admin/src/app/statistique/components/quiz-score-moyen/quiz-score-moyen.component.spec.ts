@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientModule } from "@angular/common/http";
+import { ConfirmationDialogService } from "../../../ui/confirmation-dialog/confirmation-dialog.service";
 import { QuizScoreMoyenComponent } from './quiz-score-moyen.component';
 
 describe('QuizScoreMoyenComponent', () => {
@@ -8,7 +10,14 @@ describe('QuizScoreMoyenComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ QuizScoreMoyenComponent ]
+      imports: [
+        RouterTestingModule,
+        HttpClientModule
+      ],
+      declarations: [ QuizScoreMoyenComponent ],
+      providers: [
+        ConfirmationDialogService
+      ]
     })
     .compileComponents();
   });

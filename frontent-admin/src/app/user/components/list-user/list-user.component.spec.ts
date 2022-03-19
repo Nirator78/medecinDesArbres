@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientModule } from "@angular/common/http";
+import { ConfirmationDialogService } from "../../../ui/confirmation-dialog/confirmation-dialog.service";
 import { ListUserComponent } from './list-user.component';
 
 describe('ListUserComponent', () => {
@@ -8,7 +10,14 @@ describe('ListUserComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ListUserComponent ]
+      imports: [
+        RouterTestingModule,
+        HttpClientModule
+      ],
+      declarations: [ ListUserComponent ],
+      providers: [
+        ConfirmationDialogService
+      ]
     })
     .compileComponents();
   });
