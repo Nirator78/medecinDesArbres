@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientModule } from "@angular/common/http";
+import { ConfirmationDialogService } from "../../../ui/confirmation-dialog/confirmation-dialog.service";
 import { ModalPanierComponent } from './modal-panier.component';
+import { ListPanierComponent } from "../list-panier/list-panier.component";
 
 describe('ModalPanierComponent', () => {
   let component: ModalPanierComponent;
@@ -8,7 +11,15 @@ describe('ModalPanierComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ModalPanierComponent ]
+      imports: [
+        RouterTestingModule,
+        HttpClientModule
+      ],
+      declarations: [ ModalPanierComponent ],
+      providers: [
+        ConfirmationDialogService,
+        ListPanierComponent
+      ]
     })
     .compileComponents();
   });

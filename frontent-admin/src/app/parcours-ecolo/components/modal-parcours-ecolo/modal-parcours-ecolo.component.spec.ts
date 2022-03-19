@@ -1,4 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientModule } from "@angular/common/http";
+import { ConfirmationDialogService } from "../../../ui/confirmation-dialog/confirmation-dialog.service";
+import {ListParcoursEcoloComponent } from "../list-parcours-ecolo/list-parcours-ecolo.component";
 
 import { ModalParcoursEcoloComponent } from './modal-parcours-ecolo.component';
 
@@ -8,7 +12,15 @@ describe('ModalParcoursEcoloComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ModalParcoursEcoloComponent ]
+      imports: [
+        RouterTestingModule,
+        HttpClientModule
+      ],
+      declarations: [ ModalParcoursEcoloComponent ],
+      providers: [
+        ConfirmationDialogService,
+        ListParcoursEcoloComponent
+      ]
     })
     .compileComponents();
   });

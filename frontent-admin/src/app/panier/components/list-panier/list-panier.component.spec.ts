@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientModule } from "@angular/common/http";
+import { ConfirmationDialogService } from "../../../ui/confirmation-dialog/confirmation-dialog.service";
 import { ListPanierComponent } from './list-panier.component';
 
 describe('ListPanierComponent', () => {
@@ -8,7 +10,14 @@ describe('ListPanierComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ListPanierComponent ]
+      imports: [
+        RouterTestingModule,
+        HttpClientModule
+      ],
+      declarations: [ ListPanierComponent ],
+      providers: [
+        ConfirmationDialogService
+      ]
     })
     .compileComponents();
   });
