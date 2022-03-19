@@ -1,10 +1,12 @@
 # Workflow de test pour le frontent-admin dévelloppé en Angular 13.x
 name: Frontent Admin CI
 
-# Déclenchement en push / pull request sur le main
+# Déclenchement en push sur le main et changement dans l'arborescence frontent-admin
 on:
   push:
     branches: [ main ]
+    paths:
+      - 'frontent-admin/**'
 
 # Job qui installe, test et build l'application dans un environement ubuntu et sous 4 version de nodejs
 jobs:
