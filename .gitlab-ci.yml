@@ -1,0 +1,16 @@
+image: node:alpine
+
+stages:
+  - install
+  - test
+  - build
+  - deploy-staging
+  - deploy-production
+
+.login:
+  before_script:
+    - echo login from extends
+
+include:
+  - "/frontent-admin/.gitlab-ci.yml"
+  - "/api/.gitlab-ci.yml"
