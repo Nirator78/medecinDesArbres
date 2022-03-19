@@ -5,8 +5,6 @@ name: Frontent Admin CI
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
 
 # Job qui installe, test et build l'application dans un environement ubuntu et sous 4 version de nodejs
 jobs:
