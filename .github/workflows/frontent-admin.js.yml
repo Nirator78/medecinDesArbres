@@ -1,0 +1,40 @@
+# Workflow de test pour le frontent-admin dévelloppé en Angular 13.x
+name: Frontent Admin CI
+
+# Déclenchement en push / pull request sur le main
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+# Job qui installe, test et build l'application dans un environement ubuntu et sous 4 version de nodejs
+jobs:
+  build:
+
+    if: "!contains(github.event.commits[0].message, '[skip ci]')"
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    
+    defaults:
+      run:
+        working-directory: ./frontent-admin
+
+    strategy:
+      matrix:
+        node-version: [12.x, 14.x, 16.x, 17.x]
+
+    steps:
+    - name: Checkout des infos github
+      uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    - name: Installation des dépendances de l'application
+      run: npm ci
+    - name: Lancement des test
+      run: npm test
+    - name: Build de l'application
+      run: npm run build --if-present
