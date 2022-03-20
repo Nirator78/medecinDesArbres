@@ -8,6 +8,7 @@ export default function FichePedagogiques(props) {
                 <Typography>
                     Fiches Pédagogiques
                 </Typography>
+                test
             </Paper>
         </>
     )
