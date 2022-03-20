@@ -9,7 +9,6 @@ import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
-import LogoutIcon from '@mui/icons-material/Logout';
 import AuthService from '../../services/auth.service';
 
 const PaperProps = {
@@ -52,7 +51,6 @@ export default function AccountMenu({ user }) {
 	};
 
 	function handleClickLogout(e) {
-		e.preventDefault();
 		AuthService.logout();
 	}
 
@@ -85,9 +83,9 @@ export default function AccountMenu({ user }) {
 					Settings
 				</MenuItem>
 				<MenuItem>
-					<ListItemIcon>
+					<IconButton onClick={handleClickLogout}>
 						<Logout fontSize="small" />
-					</ListItemIcon>
+					</IconButton>
 					Logout
 				</MenuItem>
 			</Menu>
