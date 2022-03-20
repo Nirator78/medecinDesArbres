@@ -1,0 +1,38 @@
+# Workflow de test pour l'api développé avec TypeORM en NodeJS
+name: Api CI
+
+# Déclenchement en push sur le main et changement dans l'arborescence api
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'api/**'
+
+# Job qui installe, test et build l'application dans un environement ubuntu et sous 4 version de nodejs
+jobs:
+  build:
+
+    if: "!contains(github.event.commits[0].message, '[skip ci]')"
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    defaults:
+      run:
+        working-directory: ./api
+
+    strategy:
+      matrix:
+        node-version: [12.x, 14.x, 16.x, 17.x]
+
+    steps:
+      - name: Checkout des infos github
+        uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      - name: Installation des dépendances de l'application
+        run: npm ci
+      - name: Lancement des test
+        run: npm test
