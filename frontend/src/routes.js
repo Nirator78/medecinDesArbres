@@ -1,6 +1,7 @@
 import { Navigate } from "react-router-dom";
 import Accueil from "./pages/Accueil";
 import Boutique from "./pages/Boutique";
+import FichePedagogiques from "./pages/FichePedagogiques";
 import Interface from "./pages/Interface"
 import NotFound from "./pages/NotFound";
 import ParcoursEcolo from "./pages/ParcoursEcolo";
@@ -14,7 +15,8 @@ const MAP_ROUTES = [
             { index: true, element: <Accueil /> },
             { path: "boutique", element: <Boutique /> },
             { path: "quiz", element: <Quiz /> },
-            { path: "parcoursecolo", element: <ParcoursEcolo /> },
+            { path: "parcours-ecolo", element: <ParcoursEcolo /> },
+            { path: "fiche-pedagogique", element: <FichePedagogiques /> },
         ]
     },
 ];

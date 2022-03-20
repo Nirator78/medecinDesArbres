@@ -2,7 +2,7 @@ import React from 'react';
 import { Paper, Typography, Grid } from '@mui/material';
 import GreenButton from '../../component/GreenButton';
 
-export default function FichePedagogique(props) {
+export default function FichePedagogiques(props) {
     const data = [
         { name: "fiche 1" },
         { name: "fiche 2" },

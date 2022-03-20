@@ -25,7 +25,7 @@ export default function Boutique(props) {
                     data.map((item) => {
                         return (
                             <Grid item xs={4}>
-                                <a href={"/app/boutique/" + item.id}>
+                                <a href={"/app/boutique/"}>
                                     <CardBoutique data={item} />
                                 </a>
                             </Grid>

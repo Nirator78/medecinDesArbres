@@ -11,7 +11,8 @@ import AuthService from "../services/auth.service"
 
 const links = [
     { name: "Accueil", link: "/app" },
-    { name: "Parcours Ecolo", link: "/app/parcoursecolo" },
+    { name: "Fiche Pédagogique", link: "/app/fiche-pedagogique" },
+    { name: "Parcours Ecolo", link: "/app/parcours-ecolo" },
     { name: "Quiz", link: "/app/quiz" },
     { name: "Boutique", link: "/app/boutique" },
 ];

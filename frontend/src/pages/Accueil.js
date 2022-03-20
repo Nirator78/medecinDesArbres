@@ -1,7 +1,7 @@
 import React from 'react';
 import { Paper, Typography, Grid } from '@mui/material';
 import Operation from './subAccueil/Operation';
-import FichePedagogique from './subAccueil/FichePedagogiques';
+import FichePedagogiques from './subAccueil/FichePedagogiques';
 import Quiz from './subAccueil/Quiz';
 import Boutique from './subAccueil/Boutique';
 
@@ -28,7 +28,7 @@ export default function Accueil(props) {
                 </Grid>
             </Paper>
             <Operation />
-            <FichePedagogique />
+            <FichePedagogiques />
             <Quiz />
             <Boutique />
         </>
