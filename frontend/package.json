@@ -25,7 +25,7 @@
   "scripts": {
     "start": "set PORT=8000 && react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --watchAll=false",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -48,6 +48,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.2",
+    "jest-watch-typeahead": "^0.6.5",
     "postcss": "^8.4.8",
     "tailwindcss": "^3.0.23"
   }
