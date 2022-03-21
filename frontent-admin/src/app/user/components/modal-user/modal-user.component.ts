@@ -17,7 +17,8 @@ export class ModalUserComponent {
   @Input() user: any = {};
   faPlus = faPlus;
   userConnecter ;
-  constructor(private modalService: NgbModal, private userService: UserService, private listUserComponent: ListUserComponent, private authService:AuthService) {
+
+  constructor(private modalService: NgbModal, private userService: UserService, private listUserComponent: ListUserComponent, private authService: AuthService) {
     this.userConnecter = this.authService.getUserDetails();
     this.userConnecter = JSON.parse(this.userConnecter);
   }
@@ -34,6 +35,8 @@ export class ModalUserComponent {
     }
     else {
       methode="createUser"
+      // On encrypt le mot de passe avant de l'envoyé à l'api
+      form.value.password = this.authService.encryptPassword(form.value.password);
     }
     // Post l'utilisateur
     this.userService[methode](form).then(() => {

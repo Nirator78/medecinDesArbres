@@ -32,6 +32,9 @@ export class UserController {
 
     async save(request: Request, response: Response, next: NextFunction) {
         const salt = bcrypt.genSaltSync(10);
+        // On décrypte le mot de passe de l'envoie
+        request.body.password = this.authentificationService.decryptPassword(request.body.password);
+        // On crypte le mot de passe pour le bdd
         request.body.password = bcrypt.hashSync(request.body.password, salt);
 
         const user = await this.userRepository.save(request.body);
@@ -58,10 +61,12 @@ export class UserController {
     async login(request: Request, response: Response, next: NextFunction) {
         let userLogin = await this.userRepository.findOne({ email: request.body.email});
         if(userLogin){
-            const testPassword = await bcrypt.compare(request.body.password, userLogin.password);
+            console.log("password-crypted", request.body.password);
+            const passwordDecrypted = this.authentificationService.decryptPassword(request.body.password);
+            console.log("password-decrypted", passwordDecrypted);
+            const testPassword = await bcrypt.compare(passwordDecrypted, userLogin.password);
             if(testPassword){
-                let data;
-                data = {user: userLogin};
+                let data = {user: userLogin};
                 let token = jwt.sign({ data }, process.env.SECRET_TOKEN);
                 return { status: 1, data: userLogin, token: token }
             }else{
