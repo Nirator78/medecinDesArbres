@@ -3,8 +3,11 @@
  * Created At 19:08
  */
 const jwt = require('jsonwebtoken');
+const cryptoJS = require("crypto-js");
 
 export class AuthentificationService {
+
+    private cryptedKey = 'd6F3Efeq';
 
     async getUserInfo(req){
         const authHeader = req.headers.authorization;
@@ -19,4 +22,12 @@ export class AuthentificationService {
         return infoReturn;
     }
 
+    encryptPassword(password){
+        return cryptoJS.AES.encrypt(password, this.cryptedKey).toString();
+    }
+
+    decryptPassword(password){
+        const bytes  = cryptoJS.AES.decrypt(password, this.cryptedKey);
+        return bytes.toString(cryptoJS.enc.Utf8);
+    }
 }
