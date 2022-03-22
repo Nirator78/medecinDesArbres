@@ -30,7 +30,6 @@ export class EventDatabaseService {
                 connection.end();
             });
         }catch (err){
-            console.log(err);
         }
     }
 }

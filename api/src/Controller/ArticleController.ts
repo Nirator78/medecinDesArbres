@@ -58,7 +58,6 @@ export class ArticleController {
             await this.articleRepository.remove(articleToRemove);
             return { status: 1 };
         }catch (e){
-            console.log(e)
             return { status: 0, error: e };
         }
     }

@@ -58,7 +58,6 @@ export class ParcoursEcoloController {
             await this.parcoursEcoloRepository.remove(parcoursEcoloToRemove);
             return { status: 1 };
         }catch (e){
-            console.log(e)
             return { status: 0, error: e };
         }
     }

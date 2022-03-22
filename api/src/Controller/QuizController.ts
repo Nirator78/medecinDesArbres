@@ -75,7 +75,6 @@ export class QuizController {
             await this.quizRepository.remove(quizToRemove);
             return { status: 1 };
         }catch (e){
-            console.log(e)
             return { status: 0, error: e };
         }
     }
