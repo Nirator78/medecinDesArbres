@@ -207,4 +207,23 @@ export class StatistiqueController {
             return { status: 0 };
         }
     }
+
+    async parcoursEcoloSac(request: Request, response: Response, next: NextFunction) {
+        let parcoursEcoloSacList = await this.entityManager.query(`
+            SELECT 
+            CONCAT(U.nom, ' ', U.prenom) AS user,
+            SUM(PE.nbSac) AS nbSac
+            FROM test.parcours_ecolo PE
+            LEFT JOIN test.user AS U ON PE.userId=U.id
+            GROUP BY CONCAT(U.nom, ' ', U.prenom)
+            ORDER BY nbSac DESC;
+        ;
+        `);
+
+        if(parcoursEcoloSacList){
+            return { status: 1, data: parcoursEcoloSacList }
+        }else{
+            return { status: 0 };
+        }
+    }
 }
