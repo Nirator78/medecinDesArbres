@@ -37,4 +37,10 @@ export default [
         controller: StatistiqueController,
         action: "quizScoreMoyen"
     },
+    {
+        method: "get",
+        route: "/statistique-parcours-ecolo",
+        controller: StatistiqueController,
+        action: "parcoursEcoloSac"
+    }
 ];
