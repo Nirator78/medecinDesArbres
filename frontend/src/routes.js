@@ -17,6 +17,7 @@ const MAP_ROUTES = [
             { path: "quiz", element: <Quiz /> },
             { path: "parcours-ecolo", element: <ParcoursEcolo /> },
             { path: "fiche-pedagogique", element: <FichePedagogiques /> },
+            // ajout enfant ici
         ]
     },
 ];
