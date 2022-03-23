@@ -8,6 +8,9 @@ on:
     paths:
       - 'frontend/**'
 
+env:
+  CI: false
+  
 # Job qui installe, test et build l'application dans un environement ubuntu et sous 4 version de nodejs
 jobs:
   build:
