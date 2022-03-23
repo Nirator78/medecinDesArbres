@@ -22,9 +22,9 @@ export default function Boutique(props) {
             </Typography>
             <Grid container spacing={5} alignItems="center" justifyContent="center">
                 {
-                    data.map((item) => {
+                    data.map((item, index) => {
                         return (
-                            <Grid item xs={4}>
+                            <Grid item xs={4} key={index}>
                                 <a href={"/app/boutique/"}>
                                     <CardBoutique data={item} />
                                 </a>
