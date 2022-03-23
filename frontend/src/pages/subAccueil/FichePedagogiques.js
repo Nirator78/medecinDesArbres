@@ -23,7 +23,7 @@ export default function FichePedagogiques(props) {
                 {fichePedagogiqueList.map((fiche, index) => {
                     return (
                         <Grid item xs={4} key={index}>
-                            <GreenButton title={fiche.titre} handleClick={() => { console.log(index) }} />
+                            <GreenButton title={fiche.titre} handleClick={() => { console.log(fiche.id) }} />
                         </Grid>
                     )
                 })}
