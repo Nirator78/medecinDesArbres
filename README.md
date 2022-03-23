@@ -1,4 +1,7 @@
 # MedecinDesArbres
+[![Api CI](https://github.com/Nirator78/medecinDesArbres/actions/workflows/api.js.yml/badge.svg?branch=main)](https://github.com/Nirator78/medecinDesArbres/actions/workflows/api.js.yml)
+[![Frontend CI](https://github.com/Nirator78/medecinDesArbres/actions/workflows/frontend.js.yml/badge.svg?branch=main)](https://github.com/Nirator78/medecinDesArbres/actions/workflows/frontend.js.yml)
+[![Frontent Admin CI](https://github.com/Nirator78/medecinDesArbres/actions/workflows/frontent-admin.js.yml/badge.svg?branch=main)](https://github.com/Nirator78/medecinDesArbres/actions/workflows/frontent-admin.js.yml)
 Ecologie
 - Site documentaire (consultation de fiches) => but éducatif
 - Mini jeux type quiz, jeu de roles
