@@ -29,8 +29,8 @@ export default function Headers() {
                             // important for mapping
                             links.map((link, index) => {
                                 return (
-                                    <Grid item xs={1}>
-                                        <RouterLink to={link.link} key={index}>
+                                    <Grid item xs={1} key={index}>
+                                        <RouterLink to={link.link}>
                                             {link.name}
                                         </RouterLink>
                                     </Grid>
