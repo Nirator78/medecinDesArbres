@@ -2,25 +2,27 @@ entity: SousPartieFichePedagogique
 items:
   sousPartieFichePedagogique1:
     titre: "Les chènes"
-    contenue: "Le chène est un arbre"
+    contenue: "Chêne est le nom vernaculaire de nombreuses espèces d'arbres et d'arbustes appartenant au genre Quercus, et à certains genres apparentés de la famille des fagacées, notamment Cyclobalanopsis et Lithocarpus. Ce genre, présent dans tout l'hémisphère nord et dont l'aire de répartition s'étend depuis les froides latitudes jusqu'aux zones tropicales de l'Asie et de l'Amérique, comprend à la fois des espèces à feuilles caduques et d'autres à feuilles persistantes. Là où il est naturellement présent dans son aire de répartition, le chêne abrite des centaines d'autres espèces (notamment après sa vie dans son bois mort) ; au point que certains écologues le qualifient de Point chaud de biodiversité."
     fichePedagogique: "@fiche1"
   sousPartieFichePedagogique2:
     titre: "Les bouleaux"
-    contenue: "Le bouleau est un arbre"
+    contenue: "Les bouleaux font partie de la famille des bétulacées et du genre Betula. La plupart des espèces sont des arbres ; quelques-unes, comme Betula nana, sont des chaméphytes. Les bouleaux poussent en général sur les terres pauvres et souvent siliceuses, jusqu'à 2 000 m d'altitude, ainsi que dans les régions arctiques. Les bouleaux sont des plantes pionnières qui constituent souvent la première formation arborée lors de la reconquête ou de la colonisation de landes par la forêt. Ils apprécient les sols plutôt acides et humides. Les bouleaux forment des futaies appelées boulaies ou boulinières ou encore des bétulaies. Il existe quatre espèces de bouleaux en Europe, dont deux arbres largement répandus : Betula pendula, le bouleau verruqueux, et Betula pubescens, le bouleau pubescent, et deux arbrisseaux des régions arctiques : Betula nana, le bouleau nain, et Betula humilis. De nombreuses autres espèces se rencontrent en Asie et en Amérique du Nord. En climat tempéré, les bouleaux vivent moins longtemps (30-40 ans), mais plus au nord (Suède, Finlande, Russie, etc.) ils peuvent vivre jusqu’à 100 ans et plus. Cet arbre caduc de la famille des betulaceae fleurit d'avril à mai. Le bouleau est très connu pour son écorce blanche, lisse et brillante, ses petites feuilles colorées de teintes vert clair au printemps et jaune à l’automne. Sa couleur blanche est due à la bétuline (en), son principal constituant. Le port du branchage est souvent dressé et relativement aéré, filtrant la lumière en été sans la bloquer. Le bouleau est donc considéré comme un bel arbre d'ornement et ses caractéristiques lui permettent de s'adapter à tous les types de jardin. Ses inflorescences sont des chatons allongés de 10 cm de longueur, dressés puis pendants pour les mâles et de 3 cm dressés pour les femelles. Ses fruits sont des samares groupées en chatons. Cet arbre à l'écorce blanche écaillée peut atteindre 20 à 30 m de hauteur et jusqu'à 60 cm de diamètre à la base. Les racines des bouleaux sont peu profondes. On attribue à sa sève, ainsi qu'à son écorce, de nombreuses propriétés médicinales et autres"
     fichePedagogique: "@fiche1"
+
   sousPartieFichePedagogique3:
-    titre: "Les thuillats"
-    contenue: "Le thuillat est un buisson"
+    titre: "Les thuya"
+    contenue: "Les thuyas (Thuja), appelés aussi cèdres au Canada, sont un genre de conifères de la famille des cupressacées, originaires des régions tempérées de l'hémisphère nord. Plusieurs espèces sont cultivées comme arbres d'ornement. Ces arbres sont surnommés, en Amérique du Nord, Arbor vitae (« arbre de la vie » en latin) pour leur feuillage pérenne."
     fichePedagogique: "@fiche2"
   sousPartieFichePedagogique4:
     titre: "Les framboisiers"
-    contenue: "Le framboisier est un arbuste"
+    contenue: "Le framboisier est un arbrisseau et aussi un arbre sous forme de plante à tiges dressées, cylindriques pouvant atteindre 1,5 à 2 m de haut. Ces tiges sont bisannuelles et meurent la deuxième année après fructification. La souche drageonnante, vivace, émet de nouvelles tiges chaque année. Les tiges sont armées d'aiguillons peu piquants. Les feuilles sont pennées, celles de la base comportent 5 à 7 folioles dentées, les feuilles supérieures sont trifoliolées. Elles sont tomenteuses, blanchâtres sur leur face inférieure. Les fleurs blanches sont réunies par groupes de 5 à 10. Le pisti est formé de nombreux carpelles. Les fruits sont composés, formés d'un ensemble de petites drupes. Non adhérentes au cône du réceptacle, elles s'en détachent facilement à maturité. Cette non-adhérence est d'ailleurs un critère distinguant les framboisiers au sens large par rapport aux ronces dont le réceptacle reste sur le fruit. "
     fichePedagogique: "@fiche2"
+
   sousPartieFichePedagogique5:
     titre: "Les sardines"
-    contenue: "La sardine est un poisson"
+    contenue: "La sardine (Sardina pilchardus) est une espèce de poissons de la famille des clupéidés (qui comprend également le hareng, l'alose, l'ethmalose, le rasoir et les sardinelles). Selon la région, elle prend les noms de célan, célerin, pilchard, royan, sarda, sardinyola ou magne. C'est la seule espèce de son genre. Son nom provient de la Sardaigne car les Grecs avaient remarqué qu'elle abondait dans ses eaux côtières. Ce n'est pas une espèce considérée comme menacée, mais, conséquence de la surpêche elle a fortement régressé dans une grande partie de son aire de répartition où elle a été très abondante jusqu'au début du XXe siècle. Entre 2006 et 2016, en Méditerranée, la biomasse des sardines a été divisée par trois, passant de 200 000 à moins de 67 000 tonnes 2. La régression des sardines a des effets sur les réseaux trophiques et la structure des écosystèmes. Sa disparition pourrait contribuer à l'extension des zones marines mortes. De plus, certains scientifiques pensent que restaurer leurs populations pourrait contribuer à améliorer l'état des eaux, et notamment limiter les émissions de méthane (puissant gaz à effet de serre) des zones très dégradées (dystrophisées). "
     fichePedagogique: "@fiche3"
   sousPartieFichePedagogique6:
     titre: "Les thons"
-    contenue: "Le thon est un poisson"
+    contenue: "Les thons sont des poissons océaniques de la famille des scombridés : thons rouges, thon blanc — ou germon —, Thon jaune — ou albacore —, thon patudo et thon listao. Ces trois derniers sont des thons tropicaux. Le thon est très largement disponible mais le risque de surpêche est grand. La capture mondiale de thonidés est de l'ordre de 4,5 millions de tonnes par an. "
     fichePedagogique: "@fiche3"
