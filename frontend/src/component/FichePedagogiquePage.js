@@ -20,19 +20,22 @@ export default function FichePedagogiquePage(props) {
 
     return (
         <>
-            <Paper>
-                <Typography align="center" variant="h4" gutterBottom component="div">
+            <Paper align="center">
+                <Typography variant="h4" gutterBottom component="div">
                     Informez vous grâce à nos supers fiches pédagogiques, adaptées a tous !
                 </Typography>
-                <p> {fichePedagogique?.titre} </p>
-                <p> {fichePedagogique?.theme} </p>
+                <Typography variant="h5"> {fichePedagogique?.titre} - {fichePedagogique?.theme} </Typography>
                 {
                     fichePedagogique && fichePedagogique.sousPartieFichePedagogiques.map((obj, idx) => {
                         return (
-                            <div key={idx}>
-                                {obj?.titre}
-                                {obj?.contenue}
-                            </div>
+                            <Paper key={idx}>
+                                <Typography variant="h6">
+                                    {obj?.titre}
+                                </Typography>
+                                <Typography>
+                                    {obj?.contenue}
+                                </Typography>
+                            </Paper>
                         )
                     })
                 }
