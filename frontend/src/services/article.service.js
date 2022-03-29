@@ -12,9 +12,13 @@ class ArticleService {
         articleId,
         quantity
     ) {
-        console.log(userId)
-        console.log(articleId)
-        console.log(quantity)
+        return axios
+            .post(API_URL + "/panier", {
+                user: userId,
+                article: articleId,
+                quantite: quantity
+            })
+            .then((response) => { return response.status })
     }
 }
 

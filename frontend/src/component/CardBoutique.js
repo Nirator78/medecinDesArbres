@@ -14,8 +14,6 @@ function CardBoutique({ data }) {
 
     const user = AuthService.getUser();
 
-    console.log(user)
-
     const handleRemoveArticle = () => {
         if (quantity > 0) {
             setQuantity(quantity - 1)
