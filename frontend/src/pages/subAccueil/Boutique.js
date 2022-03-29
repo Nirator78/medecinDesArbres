@@ -1,8 +1,11 @@
 import React from 'react';
 import { Paper, Typography, Grid } from '@mui/material';
 import CardBoutique from '../../component/CardBoutique';
+import GreenButton from '../../component/GreenButton';
+import { useNavigate } from 'react-router-dom';
 
 export default function Boutique(props) {
+    const navigate = useNavigate()
     const data = [
         { id: 0, name: "test", img: "logo.png" },
         { id: 1, name: "azertéarearf", img: "logo.png" },
@@ -11,6 +14,10 @@ export default function Boutique(props) {
         { id: 4, name: "iuyjntbhtrfdsvrezg", img: "logo.png" },
         { id: 5, name: "oliukyjthregfds", img: "logo.png" },
     ];
+
+    const handleClick = () => {
+        navigate("/app/boutique")
+    }
 
     return (
         <Paper elevation={3} sx={{ p: 4, ml: 4, mr: 4, mb: 2, borderRadius: 7 }}>
@@ -25,13 +32,14 @@ export default function Boutique(props) {
                     data.map((item) => {
                         return (
                             <Grid item xs={4}>
-                                <a href={"/app/boutique/"}>
-                                    <CardBoutique data={item} />
-                                </a>
+                                <CardBoutique data={item} />
                             </Grid>
                         )
                     })
                 }
+                <Grid item xs={12}>
+                    <GreenButton title="Accédé a tous nos produits" handleClick={handleClick} />
+                </Grid>
             </Grid>
         </Paper>
     )
