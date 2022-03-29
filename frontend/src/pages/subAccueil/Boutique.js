@@ -1,22 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Paper, Typography, Grid } from '@mui/material';
 import CardBoutique from '../../component/CardBoutique';
 import GreenButton from '../../component/GreenButton';
 import { useNavigate } from 'react-router-dom';
+import ArticleService from '../../services/article.service';
 
 export default function Boutique(props) {
-    const navigate = useNavigate()
-    const data = [
-        { id: 0, name: "test", img: "logo.png" },
-        { id: 1, name: "azertéarearf", img: "logo.png" },
-        { id: 2, name: "ezrafdscxw", img: "logo.png" },
-        { id: 3, name: "b ezgesdfcdaze", img: "logo.png" },
-        { id: 4, name: "iuyjntbhtrfdsvrezg", img: "logo.png" },
-        { id: 5, name: "oliukyjthregfds", img: "logo.png" },
-    ];
+    const navigate = useNavigate();
+    const [articles, setArticles] = useState([]);
+
+    useEffect(() => {
+        async function fetchData() {
+            const response = await ArticleService.getArticles();
+            setArticles(response);
+        }
+        fetchData();
+    }, [])
 
     const handleClick = () => {
-        navigate("/app/boutique")
+        navigate("/app/boutique");
     }
 
     return (
@@ -29,16 +31,16 @@ export default function Boutique(props) {
             </Typography>
             <Grid container spacing={5} alignItems="center" justifyContent="center">
                 {
-                    data.map((item) => {
+                    articles.map((item) => {
                         return (
-                            <Grid item xs={4}>
+                            <Grid item xs={4} key={item.id}>
                                 <CardBoutique data={item} />
                             </Grid>
                         )
                     })
                 }
                 <Grid item xs={12}>
-                    <GreenButton title="Accédé a tous nos produits" handleClick={handleClick} />
+                    <GreenButton title="Accéder a tous nos produits" handleClick={handleClick} />
                 </Grid>
             </Grid>
         </Paper>
