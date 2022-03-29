@@ -11,7 +11,15 @@ export class ArticleController {
     private authentificationService = new AuthentificationService();
 
     async all(request: Request, response: Response, next: NextFunction) {
-        let articleListe = await this.articleRepository.find({ relations: ["image"] });
+        const option = {
+            relations: ["image"]
+        };
+
+        if(request.query.limit){
+            Object.assign(option, {take: request.query.limit});
+        }
+
+        let articleListe = await this.articleRepository.find(option);
 
         if(articleListe){
             return { status: 1, data: articleListe }
