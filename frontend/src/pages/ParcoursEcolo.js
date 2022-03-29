@@ -1,13 +1,61 @@
-import React from 'react';
-import { Paper, Typography } from '@mui/material';
+import React, {useEffect, useState} from 'react';
+import { Paper, Typography, Grid, Modal, Box, Button } from '@mui/material';
+import ParcoursEcoloService from "../services/parcours-ecolo.service";
+import AuthService from "../services/auth.service";
+import FormParcoursEcolo from "../component/FormParcoursEcolo";
 
 export default function ParcoursEcolo(props) {
+    const [parcoursEcoloList, setParcoursEcoloList] = useState([]);
+
+    useEffect(async () => {
+        const response = await ParcoursEcoloService.getAllParcoursEcolos();
+        setParcoursEcoloList(response);
+    }, [])
+
+    const [open, setOpen] = useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+
     return (
         <>
             <Paper>
-                <Typography>
-                    ParcoursEcolo
+                <Typography align="center" variant="h4" gutterBottom component="div">
+                    Liste des parcours écolos de nos utilisateurs
                 </Typography>
+                {
+                    AuthService.isLogin() ?
+                        <div>
+                            <Button variant="contained" onClick={handleOpen}>Partager son parcours écolo</Button>
+                            <Modal
+                                open={open}
+                                onClose={handleClose}
+                                aria-labelledby="modal-modal-title"
+                                aria-describedby="modal-modal-description"
+                            >
+                                <FormParcoursEcolo handleClose={handleClose}></FormParcoursEcolo>
+                            </Modal>
+                        </div>
+                        : <></>
+                }
+                <Grid container spacing={2}>
+                    {parcoursEcoloList.map((parcoursEcolo, index) => {
+                        return (
+                            <Grid item xs={4} key={index}>
+                                <Typography variant="h6">
+                                    {parcoursEcolo.description} {parcoursEcolo.user.nom} {parcoursEcolo.user.prenom}
+                                </Typography>
+                                <img
+                                    src={"http://localhost:3000/" + parcoursEcolo?.image?.url}
+                                    alt={parcoursEcolo.description}
+                                    width="200"
+                                />
+                                <Typography>
+                                    Nombre de sac ramassés: {parcoursEcolo.nbSac}
+                                </Typography>
+                            </Grid>
+                        )
+                    })}
+                </Grid>
             </Paper>
         </>
     )
