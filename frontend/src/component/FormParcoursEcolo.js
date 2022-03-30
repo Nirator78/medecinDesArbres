@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import FormError from '../component/FormError';
 import AuthService from "../services/auth.service";
 
-export default function FormParcoursEcolo({handleClose}) {
+export default function FormParcoursEcolo({handleClose, handleRefresh}) {
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const onSubmit = async (data) => {
@@ -15,8 +15,9 @@ export default function FormParcoursEcolo({handleClose}) {
         Object.assign(data, {user: user.id});
         const newParcoursEcolo = await ParcoursEcoloService.createParcoursEcolo(data);
 
-        ParcoursEcoloService.uplaodParcoursEcoloImage(image, newParcoursEcolo.data.id)
-        handleClose(false)
+        ParcoursEcoloService.uplaodParcoursEcoloImage(image, newParcoursEcolo.data.id);
+        handleClose();
+        handleRefresh();
     };
 
     const style = {
