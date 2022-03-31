@@ -1,22 +1,31 @@
 import React, {useEffect, useState} from 'react';
-import { Paper, Typography, Grid, Modal, Box, Button } from '@mui/material';
+import { Typography,  Box } from '@mui/material';
 import ParcoursEcoloService from "../services/parcours-ecolo.service";
 import { useForm } from "react-hook-form";
 import FormError from '../component/FormError';
 import AuthService from "../services/auth.service";
+import VilleService from "../services/ville.service";
 
-export default function FormParcoursEcolo({handleClose}) {
+export default function FormParcoursEcolo({handleClose, handleRefresh}) {
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const [villesList, setVillesList] = useState([]);
+
+    useEffect(async () => {
+        const response = await VilleService.getAllVilles();
+        setVillesList(response);
+    }, [])
 
     const onSubmit = async (data) => {
         const user = AuthService.getUser();
         const image = data.image ? data.image[0] : null;
         delete data.image;
         Object.assign(data, {user: user.id});
+
         const newParcoursEcolo = await ParcoursEcoloService.createParcoursEcolo(data);
 
-        ParcoursEcoloService.uplaodParcoursEcoloImage(image, newParcoursEcolo.data.id)
-        handleClose(false)
+        ParcoursEcoloService.uplaodParcoursEcoloImage(image, newParcoursEcolo.data.id);
+        handleClose();
+        handleRefresh();
     };
 
     const style = {
@@ -72,6 +81,20 @@ export default function FormParcoursEcolo({handleClose}) {
                         errors.nbSac?.type === 'required' &&
                         <FormError text="Le nom de sac est un champ obligatoire"/>
                     }
+                    <br></br>
+                    <label className="block text-gray-700 text-md font-bold mb-2" htmlFor="nbSac">
+                        Ville
+                    </label>
+                    <select {...register("ville")}
+                        className="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat
+                        border border-solid border-gray-300 rounded transition ease-in-out m-0">
+                        <option selected>Sélectionné une ville</option>
+                        {
+                            villesList?.map((ville, idx) => {
+                                return <option key={idx} value={ville.id}>{ville.ville}</option>
+                            })
+                        }
+                    </select>
                     <br></br>
                     <label className="block text-gray-700 text-md font-bold mb-2" htmlFor="image">
                        Image

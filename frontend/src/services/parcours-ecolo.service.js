@@ -21,6 +21,12 @@ class ParcoursEcoloService {
         return response.status ? parcoursEcolo.data : false;
     }
 
+    async deleteParcoursEcolo(id) {
+        const response = await axios.delete(API_URL+'/parcours-ecolo/'+id);
+        const parcoursEcolo = await response;
+        return response.status ? parcoursEcolo.statut : false;
+    }
+
     async uplaodParcoursEcoloImage(image, id) {
         const formData = new FormData();
         formData.append("image", image);

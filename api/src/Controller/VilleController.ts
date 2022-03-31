@@ -1,4 +1,4 @@
-import {getRepository} from "typeorm";
+import {getRepository, Like} from "typeorm";
 import {NextFunction, Request, Response} from "express";
 import {Ville} from "../Entity/Ville";
 import {AuthentificationService} from '../Service/AuthentificationService';
@@ -9,7 +9,13 @@ export class VilleController {
     private authentificationService = new AuthentificationService();
 
     async all(request: Request, response: Response, next: NextFunction) {
-        let villeListe = await this.villeRepository.find({take: 10});
+        const option = {};
+
+        if(request.query.limit){
+            Object.assign(option, {take: request.query.limit});
+        }
+
+        let villeListe = await this.villeRepository.find(option);
 
         if(villeListe){
             return { status: 1, data: villeListe }

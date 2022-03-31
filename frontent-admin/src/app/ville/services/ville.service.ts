@@ -10,7 +10,7 @@ export class VilleService {
   }
 
   async getAllVille(): Promise<any>{
-    const response = await this.apiService.getTypeRequest('villes').toPromise() || {};
+    const response = await this.apiService.getTypeRequest('villes?limit=10').toPromise() || {};
     return response["data"];
   }
 }
