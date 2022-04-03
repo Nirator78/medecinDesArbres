@@ -1,4 +1,5 @@
 import axios from "axios"
+import AuthService from '../services/auth.service';
 const API_URL = "http://localhost:3000/api"
 
 class ParcoursEcoloService {
@@ -13,6 +14,12 @@ class ParcoursEcoloService {
         const response = await axios.get(API_URL+'/parcours-ecolo/'+id);
         const parcoursEcolo = await response;
         return response.status ? parcoursEcolo.data : false;
+    }
+
+    async getParcoursEcoloByUser(userId) {
+        const response = await axios.get(`${API_URL}/user/${userId}/parcours-ecolo`, { headers: {"Authorization" : `Bearer ${AuthService.getToken()}`} });
+        const parcoursEcoloList = await response.data;
+        return response.status ? parcoursEcoloList.data : false;
     }
 
     async createParcoursEcolo(payload) {
