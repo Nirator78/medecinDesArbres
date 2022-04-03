@@ -14,6 +14,12 @@ export default [
         action: "one"
     },
     {
+        method: "get",
+        route: "/user/:id/parcours-ecolo",
+        controller: ParcoursEcoloController,
+        action: "getByUser"
+    },
+    {
         method: "post",
         route: "/parcours-ecolo",
         controller: ParcoursEcoloController,

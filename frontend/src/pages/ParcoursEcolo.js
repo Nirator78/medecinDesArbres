@@ -49,7 +49,7 @@ export default function ParcoursEcolo(props) {
                         return (
                             <Grid item xs={4} key={index}>
                                 {
-                                    connectedUser.id === parcoursEcolo.user.id ?
+                                    connectedUser?.id === parcoursEcolo.user.id ?
                                         <Button variant="contained" onClick={() => {
                                             ParcoursEcoloService.deleteParcoursEcolo(parcoursEcolo.id);
                                             setTimeout(

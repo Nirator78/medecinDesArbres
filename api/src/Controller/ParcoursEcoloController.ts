@@ -61,5 +61,20 @@ export class ParcoursEcoloController {
             return { status: 0, error: e };
         }
     }
+    
+    async getByUser(request: Request, response: Response, next: NextFunction) {
+        const verif = await this.authentificationService.getUserInfo(request);
+        let parcoursEcoloListe = [];
+        if(verif.userId.id == request.params.id){
+            parcoursEcoloListe = await this.parcoursEcoloRepository.find({ where: {user: request.params.id}, relations: ["user", "ville", "image"] });
+            if(parcoursEcoloListe){
+                return { status: 1, data: parcoursEcoloListe }
+            }else{
+                return { status: 0 };
+            }
+        }else{
+            return { status: 0 };
+        }
+    }
 
 }

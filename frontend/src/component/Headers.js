@@ -15,6 +15,7 @@ const links = [
     { name: "Parcours Ecolo", link: "/app/parcours-ecolo" },
     { name: "Quiz", link: "/app/quiz" },
     { name: "Boutique", link: "/app/boutique" },
+    { name: "Conférence", link: "/app/conference" }
 ];
 
 export default function Headers() {
