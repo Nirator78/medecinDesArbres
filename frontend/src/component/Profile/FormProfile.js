@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import { Typography,  Box } from '@mui/material';
-import UserService from "../services/user.service";
+import UserService from "../../services/user.service";
 import { useForm } from "react-hook-form";
-import FormError from '../component/FormError';
-import AuthService from "../services/auth.service";
+import FormError from '../FormError';
+import AuthService from "../../services/auth.service";
 
 export default function FormProfile({}) {
     const { register, handleSubmit, formState: { errors }, setValue } = useForm({ mode: 'onBlur' });

@@ -3,7 +3,9 @@ import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
-import FormProfile from '../component/FormProfile';
+import FormProfile from '../component/Profile/FormProfile';
+import CommandeProfileList from '../component/Profile/CommandeProfileList';
+import ParcoursEcoloProfileList from '../component/Profile/ParcoursEcoloProfileList';
 import { Paper, Typography, Box } from '@mui/material';
 
 export default function Profile() {
@@ -32,10 +34,10 @@ export default function Profile() {
                             <FormProfile/>
                         </TabPanel>
                         <TabPanel value="2">
-                            Mes parcours écolos
+                            <ParcoursEcoloProfileList/>
                         </TabPanel>
                         <TabPanel value="3">
-                            Mes commandes
+                            <CommandeProfileList/>
                         </TabPanel>
                     </TabContext>
                 </Box>
