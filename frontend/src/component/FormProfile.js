@@ -7,7 +7,7 @@ import FormError from '../component/FormError';
 import AuthService from "../services/auth.service";
 
 export default function FormProfile({}) {
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors }, setValue } = useForm({ mode: 'onBlur' });
     const [user, setUser] = useState({});
     const navigate = useNavigate();
 
@@ -16,6 +16,15 @@ export default function FormProfile({}) {
         // Si pas d'utilisateur connecter on retourne à l'accueil
         if(userConnected){
             setUser(userConnected);
+            setValue('nom', userConnected.nom)
+            setValue('prenom', userConnected.prenom)
+            setValue('email', userConnected.email)
+            setValue('telephone', userConnected.telephone)
+            setValue('adresse', userConnected.adresse)
+            setValue('codePostal', userConnected.codePostal)
+            setValue('ville', userConnected.ville)
+            setValue('pays', userConnected.pays)
+            setValue('password', userConnected.password)
         }
         else {
             navigate('/app');
@@ -50,7 +59,6 @@ export default function FormProfile({}) {
                     className="form-control w-full py-2 px-3 text-base font-normal text-gray-700 bg-white bg-clip-padding
                                     border border-solid border-gray-300 rounded transition ease-in-out m-0"
                     placeholder="Nom"
-                    defaultValue={user.nom ? user.nom : null}
                     {...register("nom", { required: true, maxLength: 150 })}
                 />
                 {
@@ -66,7 +74,6 @@ export default function FormProfile({}) {
                     className="form-control w-full py-2 px-3 text-base font-normal text-gray-700 bg-white bg-clip-padding
                                     border border-solid border-gray-300 rounded transition ease-in-out m-0"
                     placeholder="Prenom"
-                    defaultValue={user.prenom ? user.prenom : null}
                     {...register("prenom", { required: true, maxLength: 150 })}
                 />
                 {
@@ -82,7 +89,6 @@ export default function FormProfile({}) {
                     className="form-control w-full py-2 px-3 text-base font-normal text-gray-700 bg-white bg-clip-padding
                                     border border-solid border-gray-300 rounded transition ease-in-out m-0"
                     placeholder="Email"
-                    defaultValue={user.email ? user.email : null}
                     {...register("email", { required: true, maxLength: 150 })}
                 />
                 {
@@ -98,7 +104,6 @@ export default function FormProfile({}) {
                     className="form-control w-full py-2 px-3 text-base font-normal text-gray-700 bg-white bg-clip-padding
                                     border border-solid border-gray-300 rounded transition ease-in-out m-0"
                     placeholder="Téléphone"
-                    defaultValue={user.telephone ? user.telephone : null}
                     {...register("telephone", { required: true, maxLength: 150 })}
                 />
                 {
@@ -114,7 +119,6 @@ export default function FormProfile({}) {
                     className="form-control w-full py-2 px-3 text-base font-normal text-gray-700 bg-white bg-clip-padding
                                     border border-solid border-gray-300 rounded transition ease-in-out m-0"
                     placeholder="Adresse"
-                    defaultValue={user.adresse ? user.adresse : null}
                     {...register("adresse", { required: true, maxLength: 150 })}
                 />
                 {
@@ -130,7 +134,6 @@ export default function FormProfile({}) {
                     className="form-control w-full py-2 px-3 text-base font-normal text-gray-700 bg-white bg-clip-padding
                                     border border-solid border-gray-300 rounded transition ease-in-out m-0"
                     placeholder="Ville"
-                    defaultValue={user.ville ? user.ville : null}
                     {...register("ville", { required: true, maxLength: 150 })}
                 />
                 {
@@ -146,7 +149,6 @@ export default function FormProfile({}) {
                     className="form-control w-full py-2 px-3 text-base font-normal text-gray-700 bg-white bg-clip-padding
                                     border border-solid border-gray-300 rounded transition ease-in-out m-0"
                     placeholder="Code postal"
-                    defaultValue={user.codePostal ? user.codePostal : null}
                     {...register("codePostal", { required: true, maxLength: 150 })}
                 />
                 {
@@ -162,7 +164,6 @@ export default function FormProfile({}) {
                     className="form-control w-full py-2 px-3 text-base font-normal text-gray-700 bg-white bg-clip-padding
                                     border border-solid border-gray-300 rounded transition ease-in-out m-0"
                     placeholder="Pays"
-                    defaultValue={user.pays ? user.pays : null}
                     {...register("pays", { required: true, maxLength: 150 })}
                 />
                 {
@@ -178,7 +179,6 @@ export default function FormProfile({}) {
                     className="form-control w-full py-2 px-3 text-base font-normal text-gray-700 bg-white bg-clip-padding
                                     border border-solid border-gray-300 rounded transition ease-in-out m-0"
                     placeholder="Mot de passe"
-                    defaultValue={user.password ? user.password : null}
                     {...register("password", { required: true, maxLength: 150 })}
                 />
                 {
