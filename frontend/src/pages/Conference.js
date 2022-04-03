@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import { Paper, Typography, Grid, Button } from '@mui/material';
-import GreenButton from '../component/GreenButton';
 import ConferenceService from "../services/conference.service";
 import AuthService from "../services/auth.service";
 import AddIcon from '@mui/icons-material/Add';
