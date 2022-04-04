@@ -46,13 +46,10 @@ class AuthService {
     }
     getUser() {
         return JSON.parse(localStorage.getItem("user"));
-<<<<<<< HEAD
-=======
     }
 
     isLogin() {
-        return localStorage.getItem("token")&&localStorage.getItem("user") ? true : false
->>>>>>> 2f3d0de8c787c6fb23466611642bd6644d3e97bb
+        return localStorage.getItem("token") && localStorage.getItem("user") ? true : false
     }
 
 }
