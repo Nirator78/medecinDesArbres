@@ -44,6 +44,13 @@ class ArticleService {
         const command = await response.data;
         return command
     }
+    async getCommand(
+        userId
+    ) {
+        const response = await axios.get(API_URL + '/user/' + userId + '/commandes', { headers: { "Authorization": `Bearer ${AuthService.getToken()}` } });
+        const command = await response.data.data;
+        return command
+    }
 }
 
 export default new ArticleService();
