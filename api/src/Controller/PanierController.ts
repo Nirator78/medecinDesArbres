@@ -34,7 +34,7 @@ export class PanierController {
     async getPanierByUser(request: Request, response: Response, next: NextFunction) {
         const verif = await this.authentificationService.getUserInfo(request);
         let paniers = [];
-        if(verif.userId.id === request.params.id){
+        if(verif.userId.id == request.params.id){
             paniers = await this.panierRepository.find({ where: {user: request.params.id}, relations: ["article", "user"]});
             if(paniers){
                 return { status: 1, data: paniers }
