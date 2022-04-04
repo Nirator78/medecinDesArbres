@@ -28,6 +28,13 @@ class ArticleService {
         const paniers = await response.data.data;
         return paniers
     }
+    async postCommand(
+        userId
+    ) {
+        const response = await axios.post(API_URL + '/user/' + userId + '/panier', { headers: { "Authorization": `Bearer ${AuthService.getToken()}` } });
+        const command = await response.data;
+        return command
+    }
 }
 
 export default new ArticleService();
