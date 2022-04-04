@@ -37,7 +37,7 @@ export class CommandeController {
     async getCommandeByUser(request: Request, response: Response, next: NextFunction) {
         const verif = await this.authentificationService.getUserInfo(request);
         let commandeListe = [];
-        if(verif.userId.id === request.params.id){
+        if(verif.userId.id == request.params.id){
             commandeListe = await this.commandeRepository.find({ where: {user: request.params.id}, relations: ["user", "commandeLignes", "commandeLignes.article", "commandeLignes.article.image"] });
             if(commandeListe){
                 return { status: 1, data: commandeListe }
