@@ -1,6 +1,10 @@
 import { Container, Grid, Typography } from '@mui/material';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/main
 const footers = [
     {
       title: 'Entreprise',
@@ -27,7 +31,6 @@ const footers = [
   ];
 export default function Footer(props) {
     return (
-
     <Container
         maxWidth="md"
         component="footer"
