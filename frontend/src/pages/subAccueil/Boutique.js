@@ -11,7 +11,7 @@ export default function Boutique(props) {
 
     useEffect(() => {
         async function fetchData() {
-            const response = await ArticleService.getArticles();
+            const response = await ArticleService.getArticles(6);
             setArticles(response);
         }
         fetchData();
