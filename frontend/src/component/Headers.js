@@ -1,7 +1,7 @@
 import React from "react";
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
-
+import "../css/header.css"
 import Toolbar from '@mui/material/Toolbar';
 import { Link as RouterLink, NavLink } from 'react-router-dom';
 import Connexion from "./Auth/Connexion";
