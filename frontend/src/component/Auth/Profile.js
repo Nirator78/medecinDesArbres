@@ -61,7 +61,7 @@ export default function AccountMenu({ user }) {
 			<Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
 				<Tooltip title="Account settings">
 					<IconButton onClick={handleClick} size="small" sx={{ ml: 2 }}>
-						<Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
+						<Avatar sx={{ width: 32, height: 32 }}>{user.prenom.substr(0, 1)}{user.nom.substr(0, 1)}</Avatar>
 					</IconButton>
 				</Tooltip>
 			</Box>

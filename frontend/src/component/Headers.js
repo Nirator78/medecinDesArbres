@@ -1,7 +1,7 @@
 import React from "react";
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
-
+import "../css/header.css"
 import Toolbar from '@mui/material/Toolbar';
 import { Link as RouterLink, NavLink } from 'react-router-dom';
 import Connexion from "./Auth/Connexion";
@@ -9,7 +9,7 @@ import Inscription from "./Auth/Inscription";
 import Profile from "./Auth/Profile";
 import AuthService from "../services/auth.service"
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { Button, Container } from "@mui/material";
+import { Badge, Button, Container, IconButton } from "@mui/material";
 
 const links = [
     { name: "Accueil", link: "/app" },
@@ -50,7 +50,11 @@ export default function Headers() {
                         {user && (
                             <>
                                 <RouterLink to="/app/panier">
-                                    <ShoppingCartIcon style={{color: '#4caf50'}} />
+                                    <IconButton aria-label="cart">
+                                        <Badge badgeContent={1} color="secondary">
+                                            <ShoppingCartIcon style={{color: '#4caf50'}} />
+                                        </Badge>
+                                    </IconButton>
                                 </RouterLink>
                                 <Profile user={user} />
                             </>
