@@ -1,8 +1,17 @@
 import axios from "axios"
+import cryptoJS from "crypto-js";
 const API_URL = "http://localhost:3000/api"
 
 class AuthService {
+
+    encryptPassword(password) {
+        return cryptoJS.AES.encrypt(password, 'd6F3Efeq').toString();
+    }
+
     login(email, password) {
+        // On crypte le mot de passe avant envoei api
+        password = this.encryptPassword(password);
+
         return axios
             .post(API_URL + "/user/login", {
                 email,
@@ -11,7 +20,7 @@ class AuthService {
             .then(response => {
                 if (response.data.token) {
                     localStorage.setItem("user", JSON.stringify(response.data.data));
-                    localStorage.setItem("token", response.data.token);
+                    localStorage.setItem("token", JSON.stringify(response.data.token));
                 }
                 return response.data;
             });
@@ -21,6 +30,9 @@ class AuthService {
         window.location.reload();
     }
     register(nom, prenom, email, password) {
+        // On crypte le mot de passe avant envoei api
+        password = this.encryptPassword(password);
+
         return axios.post(API_URL + '/user', {
             nom, prenom, email, password
 
@@ -30,10 +42,17 @@ class AuthService {
             });
     }
     getToken() {
-        return localStorage.getItem("token");
+        return JSON.parse(localStorage.getItem("token"));
     }
     getUser() {
         return JSON.parse(localStorage.getItem("user"));
+<<<<<<< HEAD
+=======
+    }
+
+    isLogin() {
+        return localStorage.getItem("token")&&localStorage.getItem("user") ? true : false
+>>>>>>> 2f3d0de8c787c6fb23466611642bd6644d3e97bb
     }
 
 }

@@ -31,10 +31,19 @@ export default function Boutique(props) {
             </Typography>
             <Grid container spacing={5} alignItems="center" justifyContent="center">
                 {
+<<<<<<< HEAD
                     articles.map((item) => {
                         return (
                             <Grid item xs={4} key={item.id}>
                                 <CardBoutique data={item} />
+=======
+                    data.map((item, index) => {
+                        return (
+                            <Grid item xs={4} key={index}>
+                                <a href={"/app/boutique/"}>
+                                    <CardBoutique data={item} />
+                                </a>
+>>>>>>> 2f3d0de8c787c6fb23466611642bd6644d3e97bb
                             </Grid>
                         )
                     })

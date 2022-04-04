@@ -34,6 +34,9 @@ export class LoginComponent implements OnInit {
     onSubmit(form: NgForm) {
         this.pasAdmin = false;
         this.pasUser = false;
+        // On encrypt le mot de passe avant de l'envoyé à l'api
+        form.value.password = this._auth.encryptPassword(form.value.password);
+
         this._api.postTypeRequest('user/login-admin', form.value).subscribe((res: any) => {
             if (res.status === 1) {
                 this._auth.setDataInLocalStorage('userData', JSON.stringify(res.data));

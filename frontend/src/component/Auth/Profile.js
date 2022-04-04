@@ -10,6 +10,7 @@ import Tooltip from '@mui/material/Tooltip';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 import AuthService from '../../services/auth.service';
+import { useNavigate } from "react-router-dom"
 
 const PaperProps = {
 	elevation: 0,
@@ -41,6 +42,7 @@ const PaperProps = {
 export default function AccountMenu({ user }) {
 	const [anchorEl, setAnchorEl] = React.useState(null);
 	const open = Boolean(anchorEl);
+	const navigate = useNavigate();
 
 	const handleClick = (event) => {
 		setAnchorEl(event.currentTarget);
@@ -52,7 +54,7 @@ export default function AccountMenu({ user }) {
 
 	function handleClickLogout(e) {
 		AuthService.logout();
-	}
+	};
 
 	return (
 		<>
@@ -72,7 +74,7 @@ export default function AccountMenu({ user }) {
 				transformOrigin={{ horizontal: 'right', vertical: 'top' }}
 				anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
 			>
-				<MenuItem>
+				<MenuItem onClick={() => navigate('/app/profile')}>
 					<Avatar /> Profile
 				</MenuItem>
 				<Divider />
@@ -82,8 +84,8 @@ export default function AccountMenu({ user }) {
 					</ListItemIcon>
 					Settings
 				</MenuItem>
-				<MenuItem>
-					<IconButton onClick={handleClickLogout}>
+				<MenuItem onClick={handleClickLogout}>
+					<IconButton>
 						<Logout fontSize="small" />
 					</IconButton>
 					Logout

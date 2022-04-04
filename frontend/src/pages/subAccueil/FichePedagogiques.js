@@ -1,16 +1,17 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import { useNavigate } from "react-router-dom"
 import { Paper, Typography, Grid } from '@mui/material';
 import GreenButton from '../../component/GreenButton';
+import FichePedagogiqueService from "../../services/fiche-pedagogique.service";
 
 export default function FichePedagogiques(props) {
-    const data = [
-        { name: "fiche 1" },
-        { name: "fiche 2" },
-        { name: "fiche 3" },
-        { name: "fiche 4" },
-        { name: "fiche 5" },
-        { name: "fiche 6" },
-    ];
+    const [fichePedagogiqueList, setFichePedagogiqueList] = useState([]);
+    const navigate = useNavigate();
+
+    useEffect(async () => {
+        const response = await FichePedagogiqueService.getAllFichePedagogiques();
+        setFichePedagogiqueList(response);
+    }, [])
 
     return (
         <Paper elevation={3} sx={{ p: 4, ml: 4, mr: 4, mb: 2, borderRadius: 7 }}>
@@ -21,10 +22,10 @@ export default function FichePedagogiques(props) {
                 Informez vous grâce à nos supers fiches pédagogiques, adaptées a tous !
             </Typography>
             <Grid container spacing={2}>
-                {data.map((fiche, index) => {
+                {fichePedagogiqueList.map((fiche, index) => {
                     return (
                         <Grid item xs={4} key={index}>
-                            <GreenButton title={fiche.name} handleClick={() => { console.log(index) }} />
+                            <GreenButton title={fiche.titre} handleClick={() => navigate(`/app/fiche-pedagogique/${fiche.id}`)} />
                         </Grid>
                     )
                 })}

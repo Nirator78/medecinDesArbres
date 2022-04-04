@@ -8,6 +8,9 @@ on:
     paths:
       - 'frontend/**'
 
+env:
+  CI: false
+  
 # Job qui installe, test et build l'application dans un environement ubuntu et sous 4 version de nodejs
 jobs:
   build:
@@ -36,5 +39,6 @@ jobs:
         run: npm ci
       - name: Lancement des test
         run: npm test
+      # Attention un warning et ça plante
       - name: Build de l'application
         run: npm run build --if-present

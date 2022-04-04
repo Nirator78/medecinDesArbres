@@ -25,7 +25,7 @@ export default [
     },
     {
         method: "post",
-        route: "/user/:userId/boutique/:boutiqueId/panier",
+        route: "/user/:userId/panier",
         controller: CommandeController,
         action: "createCommandeByPanier"
     },

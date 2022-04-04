@@ -32,6 +32,9 @@ export class UserController {
 
     async save(request: Request, response: Response, next: NextFunction) {
         const salt = bcrypt.genSaltSync(10);
+        // On décrypte le mot de passe de l'envoie
+        request.body.password = this.authentificationService.decryptPassword(request.body.password);
+        // On crypte le mot de passe pour le bdd
         request.body.password = bcrypt.hashSync(request.body.password, salt);
 
         const user = await this.userRepository.save(request.body);
@@ -41,6 +44,13 @@ export class UserController {
     }
 
     async update(request: Request, response: Response, next: NextFunction) {
+        const modifiedUser = await this.userRepository.findOne(request.params.id);
+        // Si le mot de passe à été modifié alors on le décrypt du body pour le re crypté pour la bdd
+        if(modifiedUser.password != request.body.password) {
+            const decryptedPassword = this.authentificationService.decryptPassword(request.body.password);
+            const salt = bcrypt.genSaltSync(10);
+            request.body.password = bcrypt.hashSync(decryptedPassword, salt);
+        }
         const user = await this.userRepository.save(request.body);
         return { status: 1, data: user } ;
     }
@@ -58,10 +68,10 @@ export class UserController {
     async login(request: Request, response: Response, next: NextFunction) {
         let userLogin = await this.userRepository.findOne({ email: request.body.email});
         if(userLogin){
-            const testPassword = await bcrypt.compare(request.body.password, userLogin.password);
+            const passwordDecrypted = this.authentificationService.decryptPassword(request.body.password);
+            const testPassword = await bcrypt.compare(passwordDecrypted, userLogin.password);
             if(testPassword){
-                let data;
-                data = {user: userLogin};
+                let data = {user: userLogin};
                 let token = jwt.sign({ data }, process.env.SECRET_TOKEN);
                 return { status: 1, data: userLogin, token: token }
             }else{
@@ -120,12 +130,13 @@ export class UserController {
             // On trouve l'utilisateur à modifer
             const userUpdatePassword = await this.userRepository.find({where: {email: passwordKeyVerif[0].email}});
             // On hash le nouveau mot de passe
+            const passwordDecrypted = await this.authentificationService.decryptPassword(request.body.password);
             const salt = await bcrypt.genSalt(10);
-            userUpdatePassword[0].password = await bcrypt.hash(request.body.password,salt);
+            userUpdatePassword[0].password = await bcrypt.hash(passwordDecrypted, salt);
             // On update dans la base avec le nouveau mot de passe
             const user = await this.userRepository.save(userUpdatePassword[0]);
             // Suppression de la clé unique de modification de mot de passe
-            await this.passwordKeyRepository.remove(passwordKeyVerif[0]);
+            //await this.passwordKeyRepository.remove(passwordKeyVerif[0]);
 
             return { status: 1, data: user} ;
         }else{

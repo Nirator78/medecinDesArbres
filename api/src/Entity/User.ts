@@ -34,23 +34,23 @@ export class User {
     password: string;
 
     @IsNotEmpty()
-    @Column()
+    @Column({default: ""})
     adresse: string;
 
     @IsNotEmpty()
-    @Column()
+    @Column({default: ""})
     pays: string;
 
     @IsNotEmpty()
-    @Column()
+    @Column({default: ""})
     ville: string;
 
     @IsNotEmpty()
-    @Column()
+    @Column({default: ""})
     codePostal: string;
 
     @IsNotEmpty()
-    @Column()
+    @Column({default: ""})
     telephone: string;
 
     @IsNotEmpty()

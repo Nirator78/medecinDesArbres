@@ -16,7 +16,7 @@ export class SousPartieFichePedagogique {
     @Column()
     titre: string;
 
-    @Column()
+    @Column({ type: "text" })
     contenue: string;
 
     @ManyToOne(() => FichePedagogique, fichePedagogique => fichePedagogique.id)

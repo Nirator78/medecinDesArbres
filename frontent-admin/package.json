@@ -26,6 +26,7 @@
     "@ng-select/ng-select": "^8.1.1",
     "autoprefixer": "^10.4.0",
     "bootstrap": "^4.5.0",
+    "crypto-js": "^4.1.1",
     "postcss": "^8.4.5",
     "rxjs": "~7.4.0",
     "tslib": "^2.3.0",

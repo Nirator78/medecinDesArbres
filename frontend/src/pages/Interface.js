@@ -7,7 +7,7 @@ import Footer from "../component/Footer";
 function Interface(props) {
     // add footer and menu here too add it to every pages
     return (
-        <Box sx={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
+        <Box sx={{ flexDirection: "column", minHeight: "100vh" }}>
             <Headers />
             <Outlet />
             <Footer />
