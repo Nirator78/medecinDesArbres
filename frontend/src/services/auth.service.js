@@ -4,7 +4,7 @@ const API_URL = "http://localhost:3000/api"
 
 class AuthService {
 
-    encryptPassword(password){
+    encryptPassword(password) {
         return cryptoJS.AES.encrypt(password, 'd6F3Efeq').toString();
     }
 
@@ -49,7 +49,7 @@ class AuthService {
     }
 
     isLogin() {
-        return localStorage.getItem("token")&&localStorage.getItem("user") ? true : false
+        return localStorage.getItem("token") && localStorage.getItem("user") ? true : false
     }
 
 }

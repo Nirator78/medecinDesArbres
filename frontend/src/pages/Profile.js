@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
@@ -9,7 +9,7 @@ import ParcoursEcoloProfileList from '../component/Profile/ParcoursEcoloProfileL
 import { Paper, Typography, Box } from '@mui/material';
 
 export default function Profile() {
-    const [value, setValue] = React.useState('1');
+    const [value, setValue] = useState('1');
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -21,7 +21,7 @@ export default function Profile() {
                 <Typography variant="h4" gutterBottom component="div">
                     Mon compte
                 </Typography>
-                <Box sx={{ width: '100%', typography: 'body1',  alignItems: 'flex-start' }}>
+                <Box sx={{ width: '100%', typography: 'body1', alignItems: 'flex-start' }}>
                     <TabContext value={value}>
                         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                             <TabList onChange={handleChange} aria-label="lab API tabs example">
@@ -31,13 +31,13 @@ export default function Profile() {
                             </TabList>
                         </Box>
                         <TabPanel value="1">
-                            <FormProfile/>
+                            <FormProfile />
                         </TabPanel>
                         <TabPanel value="2">
-                            <ParcoursEcoloProfileList/>
+                            <ParcoursEcoloProfileList />
                         </TabPanel>
                         <TabPanel value="3">
-                            <CommandeProfileList/>
+                            <CommandeProfileList />
                         </TabPanel>
                     </TabContext>
                 </Box>

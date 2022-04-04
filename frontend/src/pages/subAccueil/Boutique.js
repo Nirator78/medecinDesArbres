@@ -1,16 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Paper, Typography, Grid } from '@mui/material';
 import CardBoutique from '../../component/CardBoutique';
+import GreenButton from '../../component/GreenButton';
+import { useNavigate } from 'react-router-dom';
+import ArticleService from '../../services/article.service';
 
 export default function Boutique(props) {
-    const data = [
-        { id: 0, name: "test", img: "logo.png" },
-        { id: 1, name: "azertéarearf", img: "logo.png" },
-        { id: 2, name: "ezrafdscxw", img: "logo.png" },
-        { id: 3, name: "b ezgesdfcdaze", img: "logo.png" },
-        { id: 4, name: "iuyjntbhtrfdsvrezg", img: "logo.png" },
-        { id: 5, name: "oliukyjthregfds", img: "logo.png" },
-    ];
+    const navigate = useNavigate();
+    const [articles, setArticles] = useState([]);
+
+    useEffect(() => {
+        async function fetchData() {
+            const response = await ArticleService.getArticles(6);
+            setArticles(response);
+        }
+        fetchData();
+    }, [])
+
+    const handleClick = () => {
+        navigate("/app/boutique");
+    }
 
     return (
         <Paper elevation={3} sx={{ p: 4, ml: 4, mr: 4, mb: 2, borderRadius: 7 }}>
@@ -22,16 +31,17 @@ export default function Boutique(props) {
             </Typography>
             <Grid container spacing={5} alignItems="center" justifyContent="center">
                 {
-                    data.map((item, index) => {
+                    articles.map((item) => {
                         return (
-                            <Grid item xs={4} key={index}>
-                                <a href={"/app/boutique/"}>
-                                    <CardBoutique data={item} />
-                                </a>
+                            <Grid item xs={4} key={item.id}>
+                                <CardBoutique data={item} />
                             </Grid>
                         )
                     })
                 }
+                <Grid item xs={12}>
+                    <GreenButton title="Accéder a tous nos produits" handleClick={handleClick} />
+                </Grid>
             </Grid>
         </Paper>
     )

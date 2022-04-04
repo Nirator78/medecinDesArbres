@@ -8,6 +8,7 @@ import Connexion from "./Auth/Connexion";
 import Inscription from "./Auth/Inscription";
 import Profile from "./Auth/Profile";
 import AuthService from "../services/auth.service"
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 const links = [
     { name: "Accueil", link: "/app" },
@@ -47,6 +48,9 @@ export default function Headers() {
                     )}
                     {user && (
                         <>
+                            <RouterLink to="/app/panier">
+                                <ShoppingCartIcon />
+                            </RouterLink>
                             <Profile user={user} />
                         </>
                     )}

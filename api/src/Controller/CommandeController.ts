@@ -2,12 +2,12 @@
  * Created by Clement on 20/07/2021
  * Created At 09:56
  */
-import {getRepository} from "typeorm";
-import {NextFunction, Request, Response} from "express";
-import {Commande} from "../Entity/Commande";
-import {Panier} from '../Entity/Panier';
-import {PanierToCommandeService} from '../Service/PanierToCommandeService';
-import {AuthentificationService} from '../Service/AuthentificationService';
+import { getRepository } from "typeorm";
+import { NextFunction, Request, Response } from "express";
+import { Commande } from "../Entity/Commande";
+import { Panier } from '../Entity/Panier';
+import { PanierToCommandeService } from '../Service/PanierToCommandeService';
+import { AuthentificationService } from '../Service/AuthentificationService';
 
 export class CommandeController {
 
@@ -18,18 +18,18 @@ export class CommandeController {
 
     async all(request: Request, response: Response, next: NextFunction) {
         let commandeListe = await this.commandeRepository.find({ relations: ["user", "commandeLignes", "commandeLignes.article", "commandeLignes.article.image"] });
-        if(commandeListe){
+        if (commandeListe) {
             return { status: 1, data: commandeListe }
-        }else{
+        } else {
             return { status: 0 };
         }
     }
 
     async one(request: Request, response: Response, next: NextFunction) {
         let commande = await this.commandeRepository.findOne(request.params.id, { relations: ["user", "commandeLignes", "commandeLignes.article", "commandeLignes.article.image"] });
-        if(commande){
+        if (commande) {
             return { status: 1, data: [commande] }
-        }else{
+        } else {
             return { status: 0 };
         }
     }
@@ -37,9 +37,9 @@ export class CommandeController {
     async getCommandeByUser(request: Request, response: Response, next: NextFunction) {
         const verif = await this.authentificationService.getUserInfo(request);
         let commandeListe = [];
-        if(verif.userId.id == request.params.id){
-            commandeListe = await this.commandeRepository.find({ where: {user: request.params.id}, relations: ["user", "commandeLignes", "commandeLignes.article", "commandeLignes.article.image"] });
-            if(commandeListe){
+        if (verif.userId.id == request.params.id) {
+            commandeListe = await this.commandeRepository.find({ where: { user: request.params.id }, relations: ["user", "commandeLignes", "commandeLignes.article", "commandeLignes.article.image"] });
+            if (commandeListe) {
                 return { status: 1, data: commandeListe }
             }
         }
@@ -48,20 +48,20 @@ export class CommandeController {
 
     async save(request: Request, response: Response, next: NextFunction) {
         const commande = await this.commandeRepository.save(request.body);
-        return {status: 1, data: commande };
+        return { status: 1, data: commande };
     }
 
     async update(request: Request, response: Response, next: NextFunction) {
         const commande = await this.commandeRepository.save(request.body);
-        return { status: 1, data: commande } ;
+        return { status: 1, data: commande };
     }
 
     async remove(request: Request, response: Response, next: NextFunction) {
-        try{
+        try {
             let commandeToRemove = await this.commandeRepository.findOne(request.params.id);
             await this.commandeRepository.remove(commandeToRemove);
             return { status: 1 }
-        }catch (e){
+        } catch (e) {
             return { status: 0, error: e }
         }
     }
@@ -69,15 +69,15 @@ export class CommandeController {
     async createCommandeByPanier(request: Request, response: Response, next: NextFunction) {
         const { userId } = request.params;
         const verif = await this.authentificationService.getUserInfo(request);
-        if(verif.userId.id  === userId){
+        if (verif.userId.id == userId) {
             // Recherche des paniers que l'utilisateur viens de valider
-            let panierUtilisateur = await this.panierRepository.find({ where: {user: userId}, relations: ["user", "article"] });
+            let panierUtilisateur = await this.panierRepository.find({ where: { user: userId }, relations: ["user", "article"] });
 
             // Création de la commande et des lignes de commande
             let newCommande = await this.panierToCommandeService.create(userId, panierUtilisateur);
 
             return { status: 1, data: newCommande };
-        }else{
+        } else {
             return { status: 0 };
         }
     }
