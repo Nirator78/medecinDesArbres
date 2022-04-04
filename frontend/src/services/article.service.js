@@ -1,4 +1,5 @@
 import axios from "axios"
+import AuthService from "./auth.service";
 const API_URL = "http://localhost:3000/api"
 
 class ArticleService {
@@ -19,6 +20,13 @@ class ArticleService {
                 quantite: quantity
             })
             .then((response) => { return response.status })
+    }
+    async getPanier(
+        userId
+    ) {
+        const response = await axios.get(API_URL + '/user/' + userId + '/paniers', { headers: { "Authorization": `Bearer ${AuthService.getToken()}` } });
+        const paniers = await response.data.data;
+        return paniers
     }
 }
 
