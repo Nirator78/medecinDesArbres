@@ -59,7 +59,7 @@ export default function AccountMenu({ user }) {
 	return (
 		<>
 			<Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
-				<Tooltip title="Account settings">
+				<Tooltip title="Compte">
 					<IconButton onClick={handleClick} size="small" sx={{ ml: 2 }}>
 						<Avatar sx={{ width: 32, height: 32 }}>{user.prenom.substr(0, 1)}{user.nom.substr(0, 1)}</Avatar>
 					</IconButton>
@@ -78,17 +78,11 @@ export default function AccountMenu({ user }) {
 					<Avatar /> Profile
 				</MenuItem>
 				<Divider />
-				<MenuItem>
-					<ListItemIcon>
-						<Settings fontSize="small" />
-					</ListItemIcon>
-					Settings
-				</MenuItem>
 				<MenuItem onClick={handleClickLogout}>
 					<IconButton>
 						<Logout fontSize="small" />
 					</IconButton>
-					Logout
+					Déconnexion
 				</MenuItem>
 			</Menu>
 		</>
