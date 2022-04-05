@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { useNavigate } from "react-router-dom"
-import { Paper, Typography, Grid, Button, CardActions, CardContent, CardMedia, Card } from '@mui/material';
+import { Paper, Typography, Grid, CardActions, CardContent, CardMedia, Card } from '@mui/material';
 import GreenButton from '../component/GreenButton';
 import FichePedagogiqueService from "../services/fiche-pedagogique.service";
 
