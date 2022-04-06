@@ -28,10 +28,10 @@ export default function Headers() {
     useEffect(() => {
         async function fetchData() {
             const response = await ArticleService.getPanier(user.id);
-            setPanierTaille(response.length?response.length:0);
+            setPanierTaille(response.length ? response.length : 0);
         }
         fetchData();
-    }, [])
+    }, [user.id])
 
 
     return (
@@ -43,33 +43,33 @@ export default function Headers() {
                             // important for mapping
                             links.map((link, index) => {
                                 return (
-                                    <Button style={{color: '#4caf50'}} item key={index}>
+                                    <Button style={{ color: '#4caf50' }} item key={index}>
                                         <NavLink className={({ isActive }) => (isActive ? 'activer' : 'inactive')} to={link.link}>
-                                            {link.name} 
+                                            {link.name}
                                         </NavLink>
                                     </Button>
                                 )
                             })
                         }
                     </Box>
-                        {!user && (
-                            <>
-                                <Connexion />
-                                <Inscription />
-                            </>
-                        )}
-                        {user && (
-                            <>
-                                <RouterLink to="/app/panier">
-                                    <IconButton aria-label="cart">
-                                        <Badge badgeContent={panierTaille} color="secondary">
-                                            <ShoppingCartIcon style={{color: '#4caf50'}} />
-                                        </Badge>
-                                    </IconButton>
-                                </RouterLink>
-                                <Profile user={user} />
-                            </>
-                        )}
+                    {!user && (
+                        <>
+                            <Connexion />
+                            <Inscription />
+                        </>
+                    )}
+                    {user && (
+                        <>
+                            <RouterLink to="/app/panier">
+                                <IconButton aria-label="cart">
+                                    <Badge badgeContent={panierTaille} color="secondary">
+                                        <ShoppingCartIcon style={{ color: '#4caf50' }} />
+                                    </Badge>
+                                </IconButton>
+                            </RouterLink>
+                            <Profile user={user} />
+                        </>
+                    )}
                 </Toolbar>
             </Container>
         </AppBar>

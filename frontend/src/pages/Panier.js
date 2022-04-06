@@ -18,7 +18,7 @@ export default function Panier(props) {
             setPaniers(response);
         }
         fetchData();
-    }, [])
+    }, [user.id])
 
     const handleCommande = () => {
         async function fetchData() {
