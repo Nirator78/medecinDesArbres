@@ -27,11 +27,13 @@ export default function Headers() {
 
     useEffect(() => {
         async function fetchData() {
-            const response = await ArticleService.getPanier(user.id);
-            setPanierTaille(response.length ? response.length : 0);
+            if(user){
+                const response = await ArticleService.getPanier(user.id);
+                setPanierTaille(response.length ? response.length : 0);
+            }
         }
         fetchData();
-    }, [user.id])
+    }, [])
 
 
     return (
