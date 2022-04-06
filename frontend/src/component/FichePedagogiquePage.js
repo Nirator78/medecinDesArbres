@@ -20,15 +20,17 @@ export default function FichePedagogiquePage(props) {
 
     return (
         <>
-            <Paper align="center">
-                <Typography variant="h4" gutterBottom component="div">
+            <Paper  sx={{ p: 4, mt: 5, ml: 4, mr: 4, mb: 2, borderRadius: 2}}>
+                <Typography  sx={{ p: 2, mt: 2, ml: 2, mr: 2}} variant="h4" align="center" gutterBottom component="div">
                     Informez vous grâce à nos supers fiches pédagogiques, adaptées a tous !
                 </Typography>
-                <Typography variant="h5"> {fichePedagogique?.titre} - {fichePedagogique?.theme} </Typography>
+                <Typography variant="h4" align="center" color={'#3e993f'}> {fichePedagogique?.titre}</Typography>
+                <Typography variant="h5" align="center" color={'gray'}> {fichePedagogique?.theme}</Typography>
+                
                 {
                     fichePedagogique && fichePedagogique.sousPartieFichePedagogiques.map((obj, idx) => {
                         return (
-                            <Paper key={idx}>
+                            <Paper  sx={{ p: 4, mt: 5, ml: 4, mr: 4, mb: 2, borderRadius: 2}} key={idx}>
                                 <Typography variant="h6">
                                     {obj?.titre}
                                 </Typography>
