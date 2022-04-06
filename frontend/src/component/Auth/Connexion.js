@@ -2,7 +2,7 @@ import React from "react";
 import AuthService from "../../services/auth.service"
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
-import { FormControl, IconButton, Input, InputAdornment, InputLabel } from "@mui/material";
+import { Button, FormControl, IconButton, Input, InputAdornment, InputLabel } from "@mui/material";
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import GreenButton from "../GreenButton";
@@ -59,12 +59,14 @@ function Connexion() {
 	return (
 		<>
 			<div>
-				<button
+
+				<Button
 					onClick={handleOpen}
-					className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-green-500 hover:bg-green-600"
+					variant="contained"
+					style={{marginRight: 2, backgroundColor: '#3e993f' }}
 				>
 					Connexion
-				</button>
+				</Button>
 				<Modal
 					open={open}
 					onClose={handleClose}
@@ -77,7 +79,7 @@ function Connexion() {
 								<div>
 									<img
 										className="mx-auto h-12 w-auto"
-										src="logo.png"
+										src="/logo.png"
 										alt=""
 									/>
 									<h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Connexion a votre compte</h2>
@@ -112,7 +114,7 @@ function Connexion() {
 										}
 									/>
 								</FormControl>
-								<div className="flex items-center justify-between">
+								<div className="flex items-center justify-between pt-6 pb-6">
 									<div className="flex items-center">
 										<input
 											id="remember-me"
@@ -121,7 +123,7 @@ function Connexion() {
 											className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
 										/>
 										<label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
-											Remember me
+											Se souvenir de moi
 										</label>
 									</div>
 
