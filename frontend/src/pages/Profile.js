@@ -6,7 +6,7 @@ import TabPanel from '@mui/lab/TabPanel';
 import FormProfile from '../component/Profile/FormProfile';
 import CommandeProfileList from '../component/Profile/CommandeProfileList';
 import ParcoursEcoloProfileList from '../component/Profile/ParcoursEcoloProfileList';
-import { Paper, Typography, Box } from '@mui/material';
+import { Typography, Box } from '@mui/material';
 
 export default function Profile() {
     const [value, setValue] = useState('1');

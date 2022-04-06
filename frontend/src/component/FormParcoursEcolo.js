@@ -1,25 +1,28 @@
-import React, {useEffect, useState} from 'react';
-import { Typography,  Box } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { Typography, Box } from '@mui/material';
 import ParcoursEcoloService from "../services/parcours-ecolo.service";
 import { useForm } from "react-hook-form";
 import FormError from '../component/FormError';
 import AuthService from "../services/auth.service";
 import VilleService from "../services/ville.service";
 
-export default function FormParcoursEcolo({handleClose, handleRefresh}) {
+export default function FormParcoursEcolo({ handleClose, handleRefresh }) {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [villesList, setVillesList] = useState([]);
 
-    useEffect(async () => {
-        const response = await VilleService.getAllVilles();
-        setVillesList(response);
+    useEffect(() => {
+        async function fetchData() {
+            const response = await VilleService.getAllVilles();
+            setVillesList(response);
+        }
+        fetchData();
     }, [])
 
     const onSubmit = async (data) => {
         const user = AuthService.getUser();
         const image = data.image ? data.image[0] : null;
         delete data.image;
-        Object.assign(data, {user: user.id});
+        Object.assign(data, { user: user.id });
 
         const newParcoursEcolo = await ParcoursEcoloService.createParcoursEcolo(data);
 
@@ -59,11 +62,11 @@ export default function FormParcoursEcolo({handleClose, handleRefresh}) {
                     />
                     {
                         errors.description?.type === 'required' &&
-                        <FormError text="La description du mail est un champs obligatoire"/>
+                        <FormError text="La description du mail est un champs obligatoire" />
                     }
                     {
                         errors.description?.type === 'maxLength' &&
-                        <FormError text="La description du mail ne doit pas dépasser les 150 caractères"/>
+                        <FormError text="La description du mail ne doit pas dépasser les 150 caractères" />
                     }
 
                     <br></br>
@@ -79,7 +82,7 @@ export default function FormParcoursEcolo({handleClose, handleRefresh}) {
                     />
                     {
                         errors.nbSac?.type === 'required' &&
-                        <FormError text="Le nom de sac est un champ obligatoire"/>
+                        <FormError text="Le nom de sac est un champ obligatoire" />
                     }
                     <br></br>
                     <label className="block text-gray-700 text-md font-bold mb-2" htmlFor="nbSac">
@@ -97,13 +100,13 @@ export default function FormParcoursEcolo({handleClose, handleRefresh}) {
                     </select>
                     <br></br>
                     <label className="block text-gray-700 text-md font-bold mb-2" htmlFor="image">
-                       Image
+                        Image
                     </label>
                     <input
                         ref={register}
                         name="image"
                         type="file"
-                        {...register("image", { required: true })}/>
+                        {...register("image", { required: true })} />
                     <br></br>
                     <input className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" type="submit" />
                 </form>

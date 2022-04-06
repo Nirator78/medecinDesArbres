@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom"
 import { Paper, Typography, Grid } from '@mui/material';
 import GreenButton from '../../component/GreenButton';
@@ -8,9 +8,12 @@ export default function FichePedagogiques(props) {
     const [fichePedagogiqueList, setFichePedagogiqueList] = useState([]);
     const navigate = useNavigate();
 
-    useEffect(async () => {
-        const response = await FichePedagogiqueService.getAllFichePedagogiques();
-        setFichePedagogiqueList(response);
+    useEffect(() => {
+        async function fetchData() {
+            const response = await FichePedagogiqueService.getAllFichePedagogiques();
+            setFichePedagogiqueList(response);
+        }
+        fetchData();
     }, [])
 
     return (

@@ -13,7 +13,7 @@ export default function CommandeProfileList() {
             setCommands(response);
         }
         fetchData();
-    }, [])
+    }, [user.id])
 
     return (
         <>
