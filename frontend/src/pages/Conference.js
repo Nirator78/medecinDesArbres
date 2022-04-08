@@ -3,6 +3,7 @@ import { Paper, Typography, Grid, Button, CardActions, CardContent, Card, Avatar
 import ConferenceService from "../services/conference.service";
 import AuthService from "../services/auth.service";
 import AddIcon from '@mui/icons-material/Add';
+import moment from 'moment';
 
 export default function Conference(props) {
     const [conferenceList, setConferenceList] = useState([]);
@@ -40,7 +41,7 @@ export default function Conference(props) {
                                             {conf?.description}
                                         </Typography>
                                         <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                                            {conf?.dateDebut} - {conf?.dateFin}
+                                            {moment(conf?.dateDebut).format('DD/MM/yyyy')} - {moment(conf?.dateFin).format('DD/MM/yyyy')}
                                         </Typography>
                                         <Typography variant="body2">
                                             Nombre de participants <Avatar sx={{ width: 32, height: 32, bgcolor: 'green' }}> {conf?.conferenceParticipants?.length}</Avatar>
