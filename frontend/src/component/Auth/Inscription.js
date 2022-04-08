@@ -2,7 +2,7 @@ import React from "react";
 import AuthService from "../../services/auth.service"
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
-import { FormControl, IconButton, Input, InputAdornment, InputLabel } from "@mui/material";
+import { Button, Checkbox, FormControl, IconButton, Input, InputAdornment, InputLabel } from "@mui/material";
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import GreenButton from "../GreenButton";
@@ -60,12 +60,14 @@ function Inscription() {
 
 		<>
 			<div>
-				<button
+		
+				<Button
 					onClick={handleOpen}
-					className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-green-500 hover:bg-green-600 ml-1"
+					variant="contained"
+					style={{backgroundColor: '#3e993f' }}
 				>
 					Inscription
-				</button>
+				</Button>
 				<Modal
 					open={open}
 					onClose={handleClose}
@@ -78,7 +80,7 @@ function Inscription() {
 								<div>
 									<img
 										className="mx-auto h-12 w-auto"
-										src="logo.png"
+										src="/logo.png"
 										alt=""
 									/>
 									<h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Inscription a Médecins des arbres</h2>
@@ -134,7 +136,7 @@ function Inscription() {
 								</FormControl>
 
 
-								<div className="flex items-center justify-between">
+								<div className="flex items-center justify-between pt-6 pb-6">
 									<div className="flex items-center">
 										<input
 											id="remember-me"

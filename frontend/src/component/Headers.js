@@ -9,8 +9,10 @@ import Inscription from "./Auth/Inscription";
 import Profile from "./Auth/Profile";
 import AuthService from "../services/auth.service"
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { Badge, Button, Container, IconButton } from "@mui/material";
+import { Badge, BottomNavigationAction, Button, Container, IconButton } from "@mui/material";
 import ArticleService from "../services/article.service";
+import ThreeDRotation from '@mui/icons-material/ThreeDRotation';
+
 
 const links = [
     { name: "Accueil", link: "/app" },
@@ -40,6 +42,7 @@ export default function Headers() {
         <AppBar position="static" style={{ background: '#FFFFFF' }} >
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
+
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'flex' } }}>
                         {
                             // important for mapping
