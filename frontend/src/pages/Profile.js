@@ -23,7 +23,7 @@ export default function Profile() {
             <Box sx={{ width: '100%', typography: 'body1', alignItems: 'flex-start' }}>
                 <TabContext value={value}>
                     <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                        <TabList onChange={handleChange} aria-label="lab API tabs example">
+                        <TabList onChange={handleChange} aria-label="">
                             <Tab label="Profile" value="1" />
                             <Tab label="Mes parcours écolos" value="2" />
                             <Tab label="Mes commandes" value="3" />
