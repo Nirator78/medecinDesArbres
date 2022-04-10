@@ -4,6 +4,7 @@ import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import moment from 'moment'
 
 export default function Command({ data }) {
     let total = 0;
@@ -20,57 +21,102 @@ export default function Command({ data }) {
                 id="command"
             >
                 <Grid container>
+                    <Grid item xs={3}>
+                        <Typography>
+                            Numéro de commande : {data.numero}
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={3}>
+                        <Typography>
+                        {moment(data.date).format('DD/MM/yyyy à HH:mm:ss')}
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={2}></Grid>
                     <Grid item xs={2}>
                         <Typography>
-                            {data.numero}
+                            Nombre d'article : {data.commandeLignes.length}
                         </Typography>
                     </Grid>
                     <Grid item xs={2}>
                         <Typography>
-                            {data.date}
-                        </Typography>
-                    </Grid>
-                    <Grid item xs={6}></Grid>
-                    <Grid item xs={2}>
-                        <Typography>
-                            {total}€
+                            Total : {total}€
                         </Typography>
                     </Grid>
                 </Grid>
             </AccordionSummary>
             <AccordionDetails>
-                {
-                    data.commandeLignes.map((panier, index) => {
-                        return (
-                            <Box sx={{ p: 2, border: 1, borderColor: "green", borderRadius: 4 }} key={index}>
-                                <Grid container>
-                                    <Grid item xs={2}>
-                                        <Typography variant="h6">
-                                            {panier.article.nom}
-                                        </Typography>
+                <Box sx={{ p: 2, borderRadius: 4}}>
+                    <Grid container sx={{borderBottom: 1, borderColor: "#3e993f", mb: 2 }}>
+                        <Grid item xs={2}>
+                            <Typography style={{ fontWeight: 600 }}>
+                                Nom
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={2}>
+                            <Typography style={{ fontWeight: 600 }}>
+                                Prix
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={2}>
+                            <Typography style={{ fontWeight: 600 }}>
+                                Quantité
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={4}>
+                        </Grid>
+                        <Grid item xs={2}>
+                            <Typography style={{ fontWeight: 600 }}>
+                                Prix total article
+                            </Typography>
+                        </Grid>
+                    </Grid>
+              
+                    {
+                        data.commandeLignes.map((panier, index) => {
+                            return (
+                            
+                                    <Grid container sx={{ mb: 2 }}>
+                                        <Grid item xs={2}>
+                                            <Typography style={{ fontWeight: 600 }}>
+                                                {panier.article.nom}
+                                            </Typography>
+                                        </Grid>
+                                        <Grid item xs={2}>
+                                            <Typography style={{ fontWeight: 600 }}>
+                                                {panier.article.prix}€
+                                            </Typography>
+                                        </Grid>
+                                        <Grid item xs={2}>
+                                            <Typography style={{ fontWeight: 600 }}>
+                                                {panier.quantite}x
+                                            </Typography>
+                                        </Grid>
+                                        <Grid item xs={5}>
+                                        </Grid>
+                                        <Grid item xs={1}>
+                                            <Typography style={{ fontWeight: 600 }}>
+                                                {panier.article.prix * panier.quantite}€
+                                            </Typography>
+                                        </Grid>
                                     </Grid>
-                                    <Grid item xs={2}>
-                                        <Typography variant="h6">
-                                            {panier.article.prix}€
-                                        </Typography>
-                                    </Grid>
-                                    <Grid item xs={2}>
-                                        <Typography variant="h6">
-                                            {panier.quantite}x
-                                        </Typography>
-                                    </Grid>
-                                    <Grid item xs={5}>
-                                    </Grid>
-                                    <Grid item xs={1}>
-                                        <Typography variant="h6">
-                                            {panier.article.prix * panier.quantite}€
-                                        </Typography>
-                                    </Grid>
-                                </Grid>
-                            </Box>
-                        )
-                    })
-                }
+                            )
+                        })
+                    }
+                    <Grid container sx={{borderTop: 1, borderColor: "#3e993f", pt: 2}}>
+                        <Grid item xs={2}>
+                            <Typography style={{ fontWeight: 600 }}>
+                                Total
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={9}>
+                        </Grid>
+                        <Grid item xs={1}>
+                            <Typography style={{ fontWeight: 600 }}>
+                            {total}€
+                            </Typography>
+                        </Grid>
+                    </Grid>
+                </Box>
             </AccordionDetails>
         </Accordion>
     )
