@@ -9,9 +9,10 @@ import Inscription from "./Auth/Inscription";
 import Profile from "./Auth/Profile";
 import AuthService from "../services/auth.service"
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { Badge, BottomNavigationAction, Button, Container, IconButton } from "@mui/material";
+import {Badge, Button, Container, IconButton, Menu, MenuItem } from "@mui/material";
 import ArticleService from "../services/article.service";
-import ThreeDRotation from '@mui/icons-material/ThreeDRotation';
+import DensityMediumIcon from '@mui/icons-material/DensityMedium';
+import { green } from "@mui/material/colors";
 
 
 const links = [
@@ -22,6 +23,10 @@ const links = [
     { name: "Boutique", link: "/app/boutique" },
     { name: "Conférence", link: "/app/conference" }
 ];
+
+
+
+
 
 export default function Headers() {
     const [panierTaille, setPanierTaille] = useState(0);
@@ -37,32 +42,86 @@ export default function Headers() {
         fetchData();
     }, [])
 
+    const [anchorElNav, setAnchorElNav] = React.useState(null);
+
+  
+    const handleOpenNavMenu = (event) => {
+      setAnchorElNav(event.currentTarget);
+    };
+  
+    const handleCloseNavMenu = () => {
+      setAnchorElNav(null);
+    };
 
     return (
         <AppBar position="static" style={{ background: '#FFFFFF' }} >
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
 
-                    <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'flex' } }}>
+                <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+                    <IconButton
+                    size="large"
+                    aria-label="account of current user"
+                    aria-controls="menu-appbar"
+                    aria-haspopup="true"
+                    onClick={handleOpenNavMenu}
+                    color="inherit"
+                    >
+                    <DensityMediumIcon sx={{ color: green[700] }}/>
+                    </IconButton>
+                    <Menu
+                    id="menu-appbar"
+                    anchorEl={anchorElNav}
+                    anchorOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'left',
+                    }}
+                    keepMounted
+                    transformOrigin={{
+                        vertical: 'top',
+                        horizontal: 'left',
+                    }}
+                    open={Boolean(anchorElNav)}
+                    onClose={handleCloseNavMenu}
+                    sx={{
+                        display: { xs: 'block', md: 'none' },
+                    }}
+                    >
                         {
                             // important for mapping
                             links.map((link, index) => {
                                 return (
-                                    <Button style={{ color: '#4caf50' }} item key={index}>
+                                    <MenuItem style={{ color: '#4caf50' }} item key={index} onClick={handleCloseNavMenu}>
                                         <NavLink className={({ isActive }) => (isActive ? 'activer' : 'inactive')} to={link.link}>
                                             {link.name}
                                         </NavLink>
-                                    </Button>
+                                    </MenuItem>
                                 )
                             })
                         }
-                    </Box>
+                    </Menu>
+                </Box>
+                <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                    {
+                        // important for mapping
+                        links.map((link, index) => {
+                            return (
+                                <Button style={{ color: '#4caf50' }} item key={index}>
+                                    <NavLink className={({ isActive }) => (isActive ? 'activer' : 'inactive')} to={link.link}>
+                                        {link.name}
+                                    </NavLink>
+                                </Button>
+                            )
+                        })
+                    }
+                </Box>
+
                     {!user && (
-                        <>
-                            <Connexion />
-                            <Inscription />
-                        </>
-                    )}
+                            <>
+                                <Connexion />
+                                <Inscription />
+                            </>
+                        )}
                     {user && (
                         <>
                             <RouterLink to="/app/panier">
@@ -75,6 +134,7 @@ export default function Headers() {
                             <Profile user={user} />
                         </>
                     )}
+
                 </Toolbar>
             </Container>
         </AppBar>
