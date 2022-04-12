@@ -45,7 +45,7 @@ export default function FormProfile({ }) {
             <form onSubmit={handleSubmit(onSubmit)}>
                 <Paper sx={{ p: 4, mt: 5, ml: 4, mr: 4, mb: 2, borderRadius: 2 }}>
                     <Grid container>
-                        <Grid xs={6} >
+                        <Grid item xs={6} >
                             <label className="text-gray-700 text-md font-bold mb-2" htmlFor="nom">
                                 Nom
                             </label>
@@ -62,7 +62,7 @@ export default function FormProfile({ }) {
                             }
 
                         </Grid>
-                        <Grid xs={6} pl={1}>
+                        <Grid item xs={6} pl={1}>
                             <label className="text-gray-700 text-md font-bold mb-2" htmlFor="prenom">
                                 Prenom
                             </label>
@@ -80,7 +80,7 @@ export default function FormProfile({ }) {
                         </Grid>
                     </Grid>
                     <Grid container>
-                        <Grid xs={6}>
+                        <Grid item xs={6}>
                             <label className="text-gray-700 text-md font-bold mb-2" htmlFor="email">
                                 Email
                             </label>
@@ -96,7 +96,7 @@ export default function FormProfile({ }) {
                                 <FormError text="L'email est un champs obligatoire" />
                             }
                         </Grid>
-                        <Grid xs={6} pl={1}>
+                        <Grid item xs={6} pl={1}>
                             <label className="text-gray-700 text-md font-bold mb-2" htmlFor="telephone">
                                 Téléphone
                             </label>
@@ -114,7 +114,7 @@ export default function FormProfile({ }) {
                         </Grid>
                     </Grid>
                     <Grid container>
-                        <Grid xs={12}>
+                        <Grid item xs={12}>
                             <label className="text-gray-700 text-md font-bold mb-2" htmlFor="adresse">
                                 Adresse
                             </label>
@@ -132,7 +132,7 @@ export default function FormProfile({ }) {
                         </Grid>
                     </Grid>
                     <Grid container>
-                        <Grid xs={4}>
+                        <Grid item xs={4}>
                             <label className="text-gray-700 text-md font-bold mb-2" htmlFor="ville">
                                 Ville
                             </label>
@@ -148,7 +148,7 @@ export default function FormProfile({ }) {
                                 <FormError text="La ville est un champs obligatoire" />
                             }
                         </Grid>
-                        <Grid xs={4} pl={1}>
+                        <Grid item xs={4} pl={1}>
                             <label className="text-gray-700 text-md font-bold mb-2" htmlFor="codePostal">
                                 Code postal
                             </label>
@@ -164,7 +164,7 @@ export default function FormProfile({ }) {
                                 <FormError text="Le code postal est un champs obligatoire" />
                             }
                         </Grid>
-                        <Grid xs={4} pl={1}>
+                        <Grid item xs={4} pl={1}>
                             <label className="text-gray-700 text-md font-bold mb-2" htmlFor="pays">
                                 Pays
                             </label>
@@ -182,7 +182,7 @@ export default function FormProfile({ }) {
                         </Grid>
                     </Grid>
                     <Grid container>
-                        <Grid xs={12}>
+                        <Grid item xs={12}>
                             <label className="text-gray-700 text-md font-bold mb-2" htmlFor="password">
                                 Mot de passe
                             </label>
