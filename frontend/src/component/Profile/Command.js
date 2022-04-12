@@ -6,7 +6,7 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import moment from 'moment'
 
-export default function Command({ data }) {
+export default function Command({ data, index }) {
     let total = 0;
 
     data.commandeLignes.forEach(article => {
@@ -21,12 +21,12 @@ export default function Command({ data }) {
                 id="command"
             >
                 <Grid container>
-                    <Grid item xs={3}>
+                    <Grid item key={index} xs={3}>
                         <Typography>
                             Numéro de commande : {data.numero}
                         </Typography>
                     </Grid>
-                    <Grid item xs={3}>
+                    <Grid item key={index} xs={3}>
                         <Typography>
                         {moment(data.date).format('DD/MM/yyyy à HH:mm:ss')}
                         </Typography>
