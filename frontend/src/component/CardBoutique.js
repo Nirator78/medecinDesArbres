@@ -57,7 +57,7 @@ function CardBoutique({ data }) {
                     </Grid>
                     <Grid item xs={3}>
                         <Typography variant="h6" color="textSecondary" >
-                            {data.prix }00000€ 
+                            {data.prix }€ 
                         </Typography>
                     </Grid>
                 </Grid>
