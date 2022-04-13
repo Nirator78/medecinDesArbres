@@ -34,16 +34,16 @@ export default function Conference(props) {
                             <Grid item xs={4} key={index}>
                                 <Card sx={{ maxWidth: 345 }}>
                                     <CardContent>
-                                        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                                        <Typography component={'span'} sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
                                             {conf?.titre} - {conf?.theme}
                                         </Typography>
                                         <Typography variant="h5" component="div">
                                             {conf?.description}
                                         </Typography>
-                                        <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                                        <Typography component={'span'} sx={{ mb: 1.5 }} color="text.secondary">
                                             {moment(conf?.dateDebut).format('DD/MM/yyyy')} - {moment(conf?.dateFin).format('DD/MM/yyyy')}
                                         </Typography>
-                                        <Typography variant="body2">
+                                        <Typography component={'div'} variant="body2">
                                             Nombre de participants <Avatar sx={{ width: 32, height: 32, bgcolor: 'green' }}> {conf?.conferenceParticipants?.length}</Avatar>
                                         </Typography>
                                     </CardContent>

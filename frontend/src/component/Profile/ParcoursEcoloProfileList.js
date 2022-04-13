@@ -87,7 +87,7 @@ export default function ParcoursEcoloProfileList() {
                                 </Grid>
                             )
                         }) :
-                        <Grid xs={12} pt={4} align="center">
+                        <Grid item xs={12} pt={4} align="center">
                             <Typography variant="body2" color="text.secondary" pb={2}>
                                 Vous n'avez pas de parcours écolos partager avec la communauté
                             </Typography>
