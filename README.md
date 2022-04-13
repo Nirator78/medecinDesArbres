@@ -3,11 +3,16 @@
 [![Frontend CI](https://github.com/Nirator78/medecinDesArbres/actions/workflows/frontend.js.yml/badge.svg?branch=main)](https://github.com/Nirator78/medecinDesArbres/actions/workflows/frontend.js.yml)
 [![Frontent Admin CI](https://github.com/Nirator78/medecinDesArbres/actions/workflows/frontent-admin.js.yml/badge.svg?branch=main)](https://github.com/Nirator78/medecinDesArbres/actions/workflows/frontent-admin.js.yml)
 <br/><br/>
+
 Ecologie
 - Site documentaire (consultation de fiches) => but éducatif
 - Mini jeux type quiz, jeu de roles
 - Vente de produits dérivés
 - Plein de mini projet avec pour finalité l'écologie
+
+## Membres
+| Clément Duval | Nolan Serre | Esteban Gonzalez  | Charlotte Brisson |
+|:--------------|:-------------:|:-------------:|--------------:|
 
 ## Technologie utilisée
 ### Frontend
@@ -23,7 +28,7 @@ Ecologie
 ### Basse de données
 - [Mysql](https://www.mysql.com/fr/)
 ## Version du projet
-**1.0.0**
+Version **1.0.0**
 ## Installation
 Récuperation du projet git.
 ```bash
