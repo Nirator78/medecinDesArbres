@@ -6,6 +6,8 @@ import { Button, FormControl, IconButton, Input, InputAdornment, InputLabel } fr
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import GreenButton from "../GreenButton";
+import { useForm } from "react-hook-form";
+import FormError from "../FormError";
 
 const style = {
 	position: 'absolute',
@@ -20,32 +22,27 @@ const style = {
 };
 
 function Connexion() {
-	const [values, setValues] = React.useState({
-		email: '',
-		password: '',
-		showPassword: false,
-	});
-
-	const handleChange = (prop) => (event) => {
-		setValues({ ...values, [prop]: event.target.value });
-	};
-
+	const { register, handleSubmit, formState: { errors } } = useForm();
+	const [showPassword, setShowPassword] = React.useState(false)
+	const [erreur, setErreur] = React.useState()
 	const handleClickShowPassword = () => {
-		setValues({
-			...values,
-			showPassword: !values.showPassword,
-		});
+		setShowPassword(!showPassword)
 	};
 
 	const handleMouseDownPassword = (event) => {
 		event.preventDefault();
 	};
 
-	async function postData() {
-		AuthService.login(values.email, values.password).then(
-			() => {
-				window.location.reload();
-			},
+	async function postData(data) {
+		AuthService.login(data).then(
+			response => {
+                if (response.status) {
+                    window.location.reload()
+                }
+				else {
+					setErreur("Mot de passe ou email incorrect");
+				}
+            },
 			error => {
 				console.log(error);
 			}
@@ -73,73 +70,87 @@ function Connexion() {
 					aria-labelledby="modal-modal-title"
 					aria-describedby="modal-modal-description"
 				>
-					<Box sx={style}>
-						<div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-							<div className="max-w-md w-full space-y-8">
-								<div>
-									<img
-										className="mx-auto h-12 w-auto"
-										src="/logo.png"
-										alt=""
-									/>
-									<h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Connexion a votre compte</h2>
-								</div>
-								<FormControl fullWidth variant="standard">
-									<InputLabel htmlFor="standard-adornment-email">Email</InputLabel>
-									<Input
-										id="standard-adornment-email"
-										type="email"
-										value={values.email}
-										onChange={handleChange('email')}
-									/>
-								</FormControl>
-								<FormControl fullWidth variant="standard">
-									<InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
-									<Input
-										id="standard-adornment-password"
-										type={values.showPassword ? 'text' : 'password'}
-										value={values.password}
-										onChange={handleChange('password')}
-										sx={{ width: 1 }}
-										endAdornment={
-											<InputAdornment position="end">
-												<IconButton
-													aria-label="toggle password visibility"
-													onClick={handleClickShowPassword}
-													onMouseDown={handleMouseDownPassword}
-												>
-													{values.showPassword ? <VisibilityOff /> : <Visibility />}
-												</IconButton>
-											</InputAdornment>
-										}
-									/>
-								</FormControl>
-								<div className="flex items-center justify-between pt-6 pb-6">
-									<div className="flex items-center">
-										<input
-											id="remember-me"
-											name="remember-me"
-											type="checkbox"
-											className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+						<Box sx={style}>
+					<form onSubmit={handleSubmit(postData)}>
+
+							<div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+								<div className="max-w-md w-full space-y-8">
+									<div>
+										<img
+											className="mx-auto h-12 w-auto"
+											src="/logo.png"
+											alt=""
 										/>
-										<label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
-											Se souvenir de moi
-										</label>
+										<h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Connexion a votre compte</h2>
+										
+									</div>
+									<h2 className="mt-6 mb-6 text-center text-red-600"> {erreur} </h2>
+									<FormControl fullWidth variant="standard">
+										<InputLabel htmlFor="standard-adornment-email">Email</InputLabel>
+										<Input
+											id="standard-adornment-email"
+											type="email"
+											name="email"
+											{...register("email", { required: true })}
+										/>
+											{
+												errors.email?.type === 'required' &&
+												<FormError text="Le email est un champ obligatoire" />
+											}
+									</FormControl>
+									<FormControl fullWidth variant="standard">
+										<InputLabel htmlFor="standard-adornment-password">Mot de passe</InputLabel>
+										<Input
+											id="standard-adornment-password"
+											type={showPassword ? 'text' : 'password'}
+											name="password"
+											sx={{ width: 1 }}
+											endAdornment={
+												<InputAdornment position="end">
+													<IconButton
+														aria-label="toggle password visibility"
+														onClick={handleClickShowPassword}
+														onMouseDown={handleMouseDownPassword}
+													>
+														{showPassword ? <VisibilityOff /> : <Visibility />}
+													</IconButton>
+												</InputAdornment>
+											}
+											{...register("password", { required: true })}
+										/>
+										{
+											errors.password?.type === 'required' &&
+											<FormError text="Le mot de passe  est un champ obligatoire" />
+										}
+									</FormControl>
+									<div className="flex items-center justify-between pt-6 pb-6">
+										<div className="flex items-center">
+											<input
+												id="remember-me"
+												name="remember-me"
+												type="checkbox"
+												className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+											/>
+											<label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
+												Se souvenir de moi
+											</label>
+										</div>
+
+										<div className="text-sm">
+											<button className="font-medium text-indigo-600 hover:text-indigo-500">
+												Mot de passe oublié?
+											</button>
+										</div>
+									</div>
+									<div>
+										<GreenButton title="Connexion" handleClick={postData} />
 									</div>
 
-									<div className="text-sm">
-										<button className="font-medium text-indigo-600 hover:text-indigo-500">
-											Mot de passe oublié?
-										</button>
-									</div>
 								</div>
-								<div>
-									<GreenButton title="Connexion" handleClick={postData} />
-								</div>
-
 							</div>
-						</div>
-					</Box>
+					</form>
+
+						</Box>
 				</Modal>
 			</div>
 		</>

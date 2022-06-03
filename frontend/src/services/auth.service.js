@@ -8,15 +8,12 @@ class AuthService {
         return cryptoJS.AES.encrypt(password, 'd6F3Efeq').toString();
     }
 
-    login(email, password) {
+    login(data) {
         // On crypte le mot de passe avant envoei api
-        password = this.encryptPassword(password);
+        data.password = this.encryptPassword(data.password);
 
         return axios
-            .post(API_URL + "/user/login", {
-                email,
-                password
-            })
+            .post(API_URL + "/user/login", data)
             .then(response => {
                 if (response.data.token) {
                     localStorage.setItem("user", JSON.stringify(response.data.data));
@@ -29,14 +26,11 @@ class AuthService {
         localStorage.clear();
         window.location.reload();
     }
-    register(nom, prenom, email, password) {
+    register(data) {
         // On crypte le mot de passe avant envoei api
-        password = this.encryptPassword(password);
-
-        return axios.post(API_URL + '/user', {
-            nom, prenom, email, password
-
-        })
+        data.password = this.encryptPassword(data.password);
+        
+        return axios.post(API_URL + '/user', data)
             .then(response => {
                 return response.data;
             });
