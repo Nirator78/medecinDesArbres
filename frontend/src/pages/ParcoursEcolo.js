@@ -96,7 +96,6 @@ export default function ParcoursEcolo(props) {
                                             }
                                         </CardActions>
                                     </CardContent>
-
                                 </Card>
                             </Grid>
                         )

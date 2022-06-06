@@ -6,7 +6,8 @@ import Interface from "./pages/Interface"
 import NotFound from "./pages/NotFound";
 import ParcoursEcolo from "./pages/ParcoursEcolo";
 import Conference from "./pages/Conference";
-import Quiz from "./pages/Quiz";
+import Quizs from "./pages/Quizs";
+import QuizPage from "./pages/QuizPage";
 import Profile from "./pages/Profile";
 import Panier from "./pages/Panier";
 import FichePedagogiquePage from "../src/component/FichePedagogiquePage";
@@ -19,7 +20,12 @@ const MAP_ROUTES = [
             { index: true, element: <Accueil /> },
             { path: "boutique", element: <Boutique /> },
             { path: "conference", element: <Conference /> },
-            { path: "quiz", element: <Quiz /> },
+            {
+                path: "quiz", children: [
+                    { index: true, element: <Quizs /> },
+                    { path: ":id", element: <QuizPage /> }
+                ]
+            },
             { path: "parcours-ecolo", element: <ParcoursEcolo /> },
             { path: "profile", element: <Profile /> },
             { path: "panier", element: <Panier /> },
