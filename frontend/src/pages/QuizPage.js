@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import QuizService from '../services/quiz.service';
 import GreenButton from '../component/GreenButton';
 import { Paper, Typography, CircularProgress, Card, CardHeader, CardMedia, CardContent, FormControl, RadioGroup, FormControlLabel, Radio, Divider } from '@mui/material';
+import AuthService from "../services/auth.service"
+import UserQuizService from '../services/user-quiz.service';
 
 
 function Question({ question, getValue }) {
@@ -10,7 +12,13 @@ function Question({ question, getValue }) {
 
     const handleChange = (event) => {
         setValue(event.target.value);
-        getValue({ id: question.id, answer: event.target.value })
+        getValue({
+            fini: 1,
+            question: question.id,
+            userReponse: [{
+                reponse: event.target.value
+            }]
+        })
     };
 
     return (
@@ -52,8 +60,11 @@ function Question({ question, getValue }) {
 
 export default function QuizPage(props) {
     const { id } = useParams();
+    const navigate = useNavigate();
+    const user = AuthService.getUser();
     const [quiz, setQuiz] = useState(null);
     const [answers, setAnswers] = useState([])
+    const [error, setError] = useState(false);
 
     useEffect(() => {
         async function fetchData() {
@@ -61,7 +72,17 @@ export default function QuizPage(props) {
             setQuiz(response);
         }
         fetchData();
-    }, [])
+    }, [id])
+
+    if (!user) {
+        return (
+            <Paper sx={{ p: 2 }}>
+                <Typography>
+                    Veuillez vous connecter pour accedez à cette page.
+                </Typography>
+            </Paper>
+        )
+    }
 
     if (!quiz) {
         return (
@@ -75,21 +96,43 @@ export default function QuizPage(props) {
         let index = 0;
         for (let answer of temp) {
             alreadyExist = false;
-            if (answer.id === value.id && answer.answer === value.answer) {
+            if (answer.question === value.question && answer.userReponse[0].reponse === value.userReponse[0].reponse) {
                 alreadyExist = true;
                 break
-            } else if (answer.id === value.id) {
-                temp.splice(index)
+            } else if (answer.question === value.question) {
+                temp.splice(index, 1)
                 break;
             }
             index = index + 1;
         }
+
         if (!alreadyExist) {
             temp.push(value)
             setAnswers(temp)
         }
     }
 
+    const handleClick = () => {
+        let exist = true;
+        quiz.questions.forEach((question) => {
+            let answerExist = false;
+            answers.forEach((answer) => {
+                if (answer.question === question.id) {
+                    answerExist = true;
+                }
+            })
+            if (!answerExist) {
+                exist = false;
+            }
+        })
+
+        setError(!exist);
+
+        if (exist) {
+            UserQuizService.postAnswers(user.id, quiz.id, answers);
+            navigate("/app/quiz")
+        }
+    };
 
     return (
         <Paper sx={{ p: 2 }}>
@@ -105,7 +148,10 @@ export default function QuizPage(props) {
                 )
             })}
             <Divider sx={{ m: 2 }} />
-            <GreenButton title="Envoyer vos réponses" />
+            {error && (
+                <Typography color="error">Le formulaire n'est pas complet, vous avez oubliez une ou plusieurs question !</Typography>
+            )}
+            <GreenButton title="Envoyer vos réponses" handleClick={handleClick} />
         </Paper>
     )
 }
