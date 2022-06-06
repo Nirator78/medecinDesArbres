@@ -2,10 +2,12 @@ import React from "react";
 import AuthService from "../../services/auth.service"
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
-import { Button, Checkbox, FormControl, IconButton, Input, InputAdornment, InputLabel } from "@mui/material";
+import { Button, FormControl, IconButton, Input, InputAdornment, InputLabel } from "@mui/material";
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import GreenButton from "../GreenButton";
+import { useForm } from "react-hook-form";
+import FormError from "../FormError";
 
 const style = {
 	position: 'absolute',
@@ -19,30 +21,20 @@ const style = {
 	p: 4,
 };
 function Inscription() {
-	const handleChange = (prop) => (event) => {
-		setValues({ ...values, [prop]: event.target.value });
-	};
+	const { register, handleSubmit, formState: { errors } } = useForm();
 
-	const [values, setValues] = React.useState({
-		email: '',
-		password: '',
-		prenom: '',
-		nom: '',
-		showPassword: false,
-	});
+	const [showPassword, setShowPassword] = React.useState(false)
 
 	const handleClickShowPassword = () => {
-		setValues({
-			...values,
-			showPassword: !values.showPassword,
-		});
+		setShowPassword(!showPassword)
 	};
 
 	const handleMouseDownPassword = (event) => {
 		event.preventDefault();
 	};
-	async function postData() {
-		AuthService.register(values.nom, values.prenom, values.email, values.password).then(
+	async function postData(data) {
+		console.log(data)
+		AuthService.register(data).then(
 			() => {
 				window.location.reload();
 			},
@@ -59,6 +51,7 @@ function Inscription() {
 	return (
 
 		<>
+			
 			<div>
 		
 				<Button
@@ -74,7 +67,9 @@ function Inscription() {
 					aria-labelledby="modal-modal-title"
 					aria-describedby="modal-modal-description"
 				>
+					
 					<Box sx={style}>
+					<form onSubmit={handleSubmit(postData)}>
 						<div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
 							<div className="max-w-md w-full space-y-8">
 								<div>
@@ -91,36 +86,47 @@ function Inscription() {
 									<InputLabel htmlFor="standard-adornment-nom">Nom</InputLabel>
 									<Input
 										id="standard-adornment-nom"
-										type="nom"
-										value={values.nom}
-										onChange={handleChange('nom')}
+										type="text"
+										name="nom"
+										{...register("nom", { required: true })}
 									/>
+									{
+										errors.nom?.type === 'required' &&
+										<FormError text="Le nom est un champ obligatoire" />
+									}
 								</FormControl>
 								<FormControl fullWidth variant="standard">
 									<InputLabel htmlFor="standard-adornment-prenom">Prénom</InputLabel>
 									<Input
 										id="standard-adornment-prenom"
 										type="prenom"
-										value={values.prenom}
-										onChange={handleChange('prenom')}
+										name="prenom"
+										{...register("prenom", { required: true })}
 									/>
+									{
+										errors.prenom?.type === 'required' &&
+										<FormError text="Le prénom est un champ obligatoire" />
+									}
 								</FormControl>
 								<FormControl fullWidth variant="standard">
 									<InputLabel htmlFor="standard-adornment-email">Email</InputLabel>
 									<Input
 										id="standard-adornment-email"
 										type="email"
-										value={values.email}
-										onChange={handleChange('email')}
+										name="email"
+										{...register("email", { required: true })}
 									/>
+									{
+										errors.email?.type === 'required' &&
+										<FormError text="L'email est un champ obligatoire" />
+									}
 								</FormControl>
 								<FormControl fullWidth variant="standard">
-									<InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
+									<InputLabel htmlFor="standard-adornment-password">Mot de passe</InputLabel>
 									<Input
 										id="standard-adornment-password"
-										type={values.showPassword ? 'text' : 'password'}
-										value={values.password}
-										onChange={handleChange('password')}
+										name="password"
+										type={showPassword ? 'text' : 'password'}
 										endAdornment={
 											<InputAdornment position="end">
 												<IconButton
@@ -128,11 +134,20 @@ function Inscription() {
 													onClick={handleClickShowPassword}
 													onMouseDown={handleMouseDownPassword}
 												>
-													{values.showPassword ? <VisibilityOff /> : <Visibility />}
+													{showPassword ? <VisibilityOff /> : <Visibility />}
 												</IconButton>
 											</InputAdornment>
 										}
+										{...register("password", { required: true, minLength: 6 })}
 									/>
+									{
+										errors.password?.type === 'required' &&
+										<FormError text="Le mot de passe est un champ obligatoire" />
+									}
+									{
+										errors.password?.type === 'minLength' &&
+										<FormError text="Le mot de passe doit pas avoir minimum 6 caractères" />
+									}
 								</FormControl>
 
 
@@ -152,15 +167,14 @@ function Inscription() {
 								</div>
 
 								<div>
-									<GreenButton title="S'inscrire" handleClick={postData} />
+									<GreenButton title="S'inscrire" type="submit" />
 								</div>
 							</div>
 						</div>
+						</form>
 					</Box>
 				</Modal>
 			</div>
-
-
 		</>
 	);
 }

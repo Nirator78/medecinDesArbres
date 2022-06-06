@@ -108,7 +108,9 @@ export default function FormParcoursEcolo({ handleClose, handleRefresh }) {
                         type="file"
                         {...register("image", { required: true })} />
                     <br></br>
-                    <input className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" type="submit" />
+                    <div className="h-56 grid grid-cols-3 gap-4 content-evenly ...">
+                        <input className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full mt-4" type="submit" />
+                    </div>
                 </form>
             </>
         </Box>
