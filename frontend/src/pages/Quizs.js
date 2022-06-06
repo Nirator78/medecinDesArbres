@@ -28,30 +28,28 @@ function Quiz({ quiz }) {
     };
 
     return (
-        <>
-            <Card>
-                <CardHeader
-                    title={quiz.titre}
-                    subheader={<SubHeader quiz={quiz} />}
-                />
+        <Card>
+            <CardHeader
+                title={quiz.titre}
+                subheader={<SubHeader quiz={quiz} />}
+            />
 
-                <CardMedia
-                    component="img"
-                    height="194"
-                    style={{
-                        maxWidth: 500,
-                        maxHeight: 180,
-                    }}
-                    image={"http://localhost:3000/" + quiz?.image?.url}
-                    alt={quiz.description}
-                />
-                <CardContent>
-                    <CardActions>
-                        <GreenButton title="Faire le Quiz" handleClick={handleClick} />
-                    </CardActions>
-                </CardContent>
-            </Card>
-        </>
+            <CardMedia
+                component="img"
+                height="194"
+                style={{
+                    maxWidth: 500,
+                    maxHeight: 180,
+                }}
+                image={"http://localhost:3000/" + quiz?.image?.url}
+                alt={quiz.description}
+            />
+            <CardContent>
+                <CardActions>
+                    <GreenButton title="Faire le Quiz" handleClick={handleClick} />
+                </CardActions>
+            </CardContent>
+        </Card>
     )
 }
 
