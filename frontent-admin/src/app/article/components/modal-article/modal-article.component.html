@@ -21,6 +21,7 @@
             aria-describedby="inputGroup-sizing-sm"
             required
             minlength="4"
+            maxlength="40"
             #nom="ngModel"
             placeholder="Nom"
             ngModel="{{article['nom']}}"
@@ -29,6 +30,9 @@
           <div *ngIf="nom.invalid  && (nom.dirty || nom.touched)">
             <div *ngIf="nom.errors?.['minlength']">
               <small id="nomMin" class="text-danger"> Il faut minimum 4 caractéres</small>
+            </div>
+            <div *ngIf="nom.errors?.['maxlength']">
+              <small id="nomMax" class="text-danger"> Il faut au maximum 40 caractéres</small>
             </div>
             <div *ngIf="nom.errors?.['required']">
               <small id="nomRequired" class="text-danger"> Nom est obligatoire</small>
@@ -47,11 +51,15 @@
             aria-describedby="inputGroup-sizing-sm"
             required
             #description="ngModel"
+            maxlength="500"
             placeholder="Description"
             ngModel="{{article['description']}}"
           ></textarea>
 
           <div *ngIf="description.invalid  && (description.dirty || description.touched)">
+            <div *ngIf="description.errors?.['maxlength']">
+              <small id="descriptionMax" class="text-danger"> Il faut au maximum 500 caractéres</small>
+            </div>
             <div *ngIf="description.errors?.['required']">
               <small id="descriptionRequired" class="text-danger"> Description est obligatoire</small>
             </div>
@@ -74,7 +82,8 @@
             #prix="ngModel"
             placeholder="Prix"
             min="0"
-            ngModel="{{article['prix']}}"
+            [(ngModel)]="article['prix']"
+            step="0.01"
           >
 
           <div *ngIf="prix.invalid  && (prix.dirty || prix.touched)">
@@ -99,8 +108,8 @@
             required
             #stock="ngModel"
             placeholder="Stock"
-            min="1"
-            ngModel="{{article['stock']}}"
+            min="0"
+            [(ngModel)]="article['stock']"
           >
 
           <div *ngIf="stock.invalid  && (stock.dirty || stock.touched)">
@@ -126,6 +135,8 @@
             aria-describedby="inputGroup-sizing-sm"
             required
             #tag="ngModel"
+            minlength="3"
+            maxlength="30"
             placeholder="Tag"
             ngModel="{{article['tag']}}"
           >
@@ -133,6 +144,12 @@
           <div *ngIf="tag.invalid  && (tag.dirty || tag.touched)">
             <div *ngIf="tag.errors?.['required']">
               <small id="tag" class="text-danger"> Tag est obligatoire</small>
+            </div>
+            <div *ngIf="tag.errors?.['minlength']">
+              <small id="tagMin" class="text-danger"> Il faut minimum 3 caractéres</small>
+            </div>
+            <div *ngIf="tag.errors?.['maxlength']">
+              <small id="tagMax" class="text-danger"> Il faut au maximum 30 caractéres</small>
             </div>
           </div>
         </div>
