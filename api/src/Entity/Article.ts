@@ -1,5 +1,5 @@
 import {Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn} from "typeorm";
-import {IsInt, Length, Min} from "class-validator";
+import {IsInt, IsString, Length, Min} from "class-validator";
 import {Image} from "./Image";
 
 @Entity()
@@ -31,5 +31,6 @@ export class Article {
     image: Image;
 
     @Column()
+    @IsString()
     tag: string;
 }
