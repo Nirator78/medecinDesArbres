@@ -44,7 +44,7 @@
           <label class="required" for="dateCommande">Date de la commande</label>
 
           <input
-            type="date"
+            type="datetime-local"
             class="form-control"
             aria-label="date"
             name="date"
@@ -52,7 +52,7 @@
             required
             #date="ngModel"
             placeholder="Date de la commande"
-            [ngModel]="commande['date'] | date:'yyyy-MM-dd'"
+            [ngModel]="commande['date'] | date:'yyyy-MM-dd hh:mm'"
           >
           <div *ngIf="date.invalid  && (date.dirty || date.touched)">
             <div *ngIf="date.errors?.['required']">
