@@ -21,6 +21,7 @@
             aria-describedby="inputGroup-sizing-sm"
             required
             minlength="4"
+            maxlength="25"
             #numero="ngModel"
             placeholder="Numéro de commande"
             ngModel="{{commande['numero']}}"
@@ -30,6 +31,9 @@
           <div *ngIf="numero.invalid  && (numero.dirty || numero.touched)">
             <div *ngIf="numero.errors?.['minlength']">
               <small id="numeroMin" class="text-danger"> Il faut minimum 4 caractéres</small>
+            </div>
+            <div *ngIf="numero.errors?.['maxlength']">
+              <small id="numeroMax" class="text-danger"> Il faut au maximum 25 caractéres</small>
             </div>
             <div *ngIf="numero.errors?.['required']">
               <small id="numeroRequired" class="text-danger"> Numéro est obligatoire</small>

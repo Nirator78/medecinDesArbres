@@ -2,7 +2,7 @@ import {Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinTable, OneToMany}
 
 import { User } from "./User";
 import {CommandeLigne} from './CommandeLigne';
-import { ArrayMinSize, IsDate, IsInt } from 'class-validator';
+import { ArrayMinSize, IsDate, IsDateString, IsInt, IsString, MaxLength, MinLength } from 'class-validator';
 
 @Entity()
 export class Commande {
@@ -11,11 +11,13 @@ export class Commande {
     id: number;
 
     @Column()
-    @IsInt()
+    @IsString()
+    @MinLength(4)
+    @MaxLength(25)
     numero: number;
 
     @Column()
-    @IsDate()
+    @IsDateString()
     date: Date;
 
     @ManyToOne(type => User, user => user.id)
