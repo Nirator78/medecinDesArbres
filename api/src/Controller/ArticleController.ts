@@ -3,6 +3,7 @@ import {NextFunction, Request, Response} from "express";
 import {Article} from "../Entity/Article";
 import {AuthentificationService} from '../Service/AuthentificationService';
 import {Image} from "../Entity/Image";
+import { validate } from "class-validator";
 
 export class ArticleController {
 
@@ -38,13 +39,27 @@ export class ArticleController {
     }
 
     async save(request: Request, response: Response, next: NextFunction) {
-        const article = await this.articleRepository.save(request.body);
-        return { status: 1, data: article };
+        let article = new Article();
+        Object.assign(article, {...article, ...request.body});
+        const errors = await validate(article);
+        if(errors.length > 0){
+            return { status: 0, error: errors };
+        }else{
+            const articleSaved = await this.articleRepository.save(request.body);
+            return { status: 1, data: articleSaved };
+        }
     }
 
     async update(request: Request, response: Response, next: NextFunction) {
-        const article = await this.articleRepository.save(request.body);
-        return { status: 1, data: article };
+        let article = new Article();
+        Object.assign(article, {...article, ...request.body});
+        const errors = await validate(article);
+        if(errors.length > 0){
+            return { status: 0, error: errors };
+        }else{
+            const articleSaved = await this.articleRepository.save(request.body);
+            return { status: 1, data: articleSaved };
+        }
     }
 
     async remove(request: Request, response: Response, next: NextFunction) {

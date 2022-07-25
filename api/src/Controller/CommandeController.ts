@@ -8,6 +8,7 @@ import { Commande } from "../Entity/Commande";
 import { Panier } from '../Entity/Panier';
 import { PanierToCommandeService } from '../Service/PanierToCommandeService';
 import { AuthentificationService } from '../Service/AuthentificationService';
+import { validate } from "class-validator";
 
 export class CommandeController {
 
@@ -47,13 +48,27 @@ export class CommandeController {
     }
 
     async save(request: Request, response: Response, next: NextFunction) {
-        const commande = await this.commandeRepository.save(request.body);
-        return { status: 1, data: commande };
+        let commande = new Commande();
+        Object.assign(commande, {...commande, ...request.body});
+        const errors = await validate(commande);
+        if(errors.length > 0){
+            return { status: 0, error: errors };
+        }else{
+            const commandeSaved = await this.commandeRepository.save(request.body);
+            return { status: 1, data: commandeSaved };
+        }
     }
 
     async update(request: Request, response: Response, next: NextFunction) {
-        const commande = await this.commandeRepository.save(request.body);
-        return { status: 1, data: commande };
+        let commande = new Commande();
+        Object.assign(commande, {...commande, ...request.body});
+        const errors = await validate(commande);
+        if(errors.length > 0){
+            return { status: 0, error: errors };
+        }else{
+            const commandeSaved = await this.commandeRepository.save(request.body);
+            return { status: 1, data: commandeSaved };
+        }
     }
 
     async remove(request: Request, response: Response, next: NextFunction) {
@@ -74,9 +89,7 @@ export class CommandeController {
             let panierUtilisateur = await this.panierRepository.find({ where: { user: userId }, relations: ["user", "article"] });
 
             // Création de la commande et des lignes de commande
-            let newCommande = await this.panierToCommandeService.create(userId, panierUtilisateur);
-
-            return { status: 1, data: newCommande };
+            return await this.panierToCommandeService.create(userId, panierUtilisateur);
         } else {
             return { status: 0 };
         }

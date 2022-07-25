@@ -2,6 +2,7 @@ import {Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinTable, OneToMany}
 
 import { User } from "./User";
 import {CommandeLigne} from './CommandeLigne';
+import { ArrayMinSize, IsDate, IsInt } from 'class-validator';
 
 @Entity()
 export class Commande {
@@ -10,9 +11,11 @@ export class Commande {
     id: number;
 
     @Column()
+    @IsInt()
     numero: number;
 
     @Column()
+    @IsDate()
     date: Date;
 
     @ManyToOne(type => User, user => user.id)
@@ -20,5 +23,6 @@ export class Commande {
     user: User;
 
     @OneToMany(() => CommandeLigne, commandeLignes => commandeLignes.commande, { cascade: true, onDelete: 'CASCADE' })
+    @ArrayMinSize(1)
     commandeLignes: CommandeLigne[];
 }
