@@ -1,3 +1,4 @@
+import { validate } from 'class-validator';
 import {getRepository} from 'typeorm';
 import {Commande} from '../Entity/Commande';
 import {CommandeLigne} from '../Entity/CommandeLigne';
@@ -32,26 +33,23 @@ export class PanierToCommandeService {
         newCommande.numero = await this.getLastNoCommande();
         newCommande.date = new Date();
         newCommande.user = userId;
-        await this.commandeRepository.save(newCommande);
-
+        newCommande.commandeLignes = [];
         // Création des lignes de commande
-        let newCommandeLigne;
-        for (let i = 0; i < panierList.length; i++) {
-            newCommandeLigne = new CommandeLigne();
-            newCommandeLigne.quantite = panierList[i].quantite;
-            newCommandeLigne.article = panierList[i].article;
-            newCommandeLigne = {
-                quantite: panierList[i].quantite,
-                article: panierList[i].article,
-                commande: newCommande,
-            };
-            await this.commandeLigneRepository.save(newCommandeLigne);
-
-            // Suppression des lignes de panier
-            this.deletePanierById(panierList[i].id);
+        for(const panierLigne of panierList){
+            let newCommandeLigne = new CommandeLigne();
+            newCommandeLigne.quantite = panierLigne.quantite;
+            newCommandeLigne.article = panierLigne.article;
+            newCommande.commandeLignes.push(newCommandeLigne);
+            this.deletePanierById(panierLigne.id);
         }
 
-        return await this.commandeRepository.findOne(newCommande.id, { relations: ["user", "commandeLignes", "commandeLignes.article"] });
+        const errors = await validate(newCommande);
+        if(errors.length > 0){
+            return { status: 0, error: errors };
+        }else{
+            const commandeSaved = await this.commandeRepository.save(newCommande);
+            return { status: 1, data: commandeSaved };
+        }
     }
 
     async deletePanierById(id){

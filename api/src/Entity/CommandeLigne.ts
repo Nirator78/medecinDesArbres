@@ -1,3 +1,4 @@
+import { IsInt } from "class-validator";
 import {Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinTable} from "typeorm";
 
 import { Article } from "./Article";
@@ -10,6 +11,7 @@ export class CommandeLigne {
     id: number;
 
     @Column()
+    @IsInt()
     quantite: number;
 
     @ManyToOne(type => Article, article => article.id)
