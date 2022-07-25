@@ -21,7 +21,8 @@
               id="titre"
               aria-describedby="inputGroup-sizing-sm"
               required
-              minlength="4"
+              minlength="3"
+              maxlength="100"
               #titre="ngModel"
               placeholder="Titre"
               ngModel="{{conference['titre']}}"
@@ -29,10 +30,13 @@
   
             <div *ngIf="titre.invalid  && (titre.dirty || titre.touched)">
               <div *ngIf="titre.errors?.['minlength']">
-                <small id="nomMin" class="text-danger"> Il faut minimum 4 caractéres</small>
+                <small id="titreMin" class="text-danger"> Il faut minimum 3 caractéres</small>
+              </div>
+              <div *ngIf="titre.errors?.['maxlength']">
+                <small id="titreMax" class="text-danger"> Il faut au maximum 100 caractéres</small>
               </div>
               <div *ngIf="titre.errors?.['required']">
-                <small id="nomRequired" class="text-danger"> Titre est obligatoire</small>
+                <small id="titreRequired" class="text-danger"> Titre est obligatoire</small>
               </div>
             </div>
           </div>
@@ -47,6 +51,8 @@
               name="theme"
               id="theme"
               aria-describedby="inputGroup-sizing-sm"
+              minlength="3"
+              maxlength="100"
               required
               #theme="ngModel"
               placeholder="Thème"
@@ -56,6 +62,12 @@
             <div *ngIf="theme.invalid  && (theme.dirty || theme.touched)">
               <div *ngIf="theme.errors?.['required']">
                 <small id="descriptionRequired" class="text-danger"> Le thème est obligatoire</small>
+              </div>
+              <div *ngIf="theme.errors?.['minlength']">
+                <small id="themeMin" class="text-danger"> Il faut minimum 3 caractéres</small>
+              </div>
+              <div *ngIf="theme.errors?.['maxlength']">
+                <small id="themeMax" class="text-danger"> Il faut au maximum 100 caractéres</small>
               </div>
             </div>
           </div>
@@ -71,6 +83,8 @@
               name="description"
               id="description"
               aria-describedby="inputGroup-sizing-sm"
+              minlength="5"
+              maxlength="800"
               required
               #description="ngModel"
               placeholder="Description"
@@ -80,6 +94,12 @@
             <div *ngIf="description.invalid  && (description.dirty || description.touched)">
               <div *ngIf="description.errors?.['required']">
                 <small id="descriptionRequired" class="text-danger"> La description est obligatoire</small>
+              </div>
+              <div *ngIf="description.errors?.['minlength']">
+                <small id="descriptionMin" class="text-danger"> Il faut minimum 5 caractéres</small>
+              </div>
+              <div *ngIf="description.errors?.['maxlength']">
+                <small id="descriptionMax" class="text-danger"> Il faut au maximum 800 caractéres</small>
               </div>
             </div>
           </div>
