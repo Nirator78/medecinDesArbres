@@ -1,3 +1,4 @@
+import { IsInt, IsString, MaxLength, Min, MinLength } from "class-validator";
 import {Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn, ManyToOne, JoinTable} from "typeorm";
 
 import {Image} from "./Image";
@@ -23,8 +24,13 @@ export class ParcoursEcolo {
     ville: Ville;
 
     @Column()
+    @IsString()
+    @MinLength(5)
+    @MaxLength(800)
     description: string;
 
     @Column()
+    @IsInt()
+    @Min(1)
     nbSac: number;
 }
