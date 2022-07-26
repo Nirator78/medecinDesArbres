@@ -86,7 +86,7 @@ export default function Headers() {
                                 // important for mapping
                                 links.map((link, index) => {
                                     return (
-                                        <MenuItem style={{ color: '#4caf50' }} item key={index} onClick={handleCloseNavMenu}>
+                                        <MenuItem style={{ color: '#4caf50' }} key={index} onClick={handleCloseNavMenu}>
                                             <NavLink className={({ isActive }) => (isActive ? 'activer' : 'inactive')} to={link.link}>
                                                 {link.name}
                                             </NavLink>
@@ -101,7 +101,7 @@ export default function Headers() {
                             // important for mapping
                             links.map((link, index) => {
                                 return (
-                                    <Button style={{ color: '#4caf50' }} item key={index}>
+                                    <Button style={{ color: '#4caf50' }} key={index}>
                                         <NavLink className={({ isActive }) => (isActive ? 'activer' : 'inactive')} to={link.link}>
                                             {link.name}
                                         </NavLink>
