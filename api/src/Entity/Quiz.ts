@@ -1,3 +1,4 @@
+import { IsNumber, IsString, MaxLength, Min, MinLength } from "class-validator";
 import {Entity, PrimaryGeneratedColumn, Column, OneToMany, OneToOne, JoinColumn} from "typeorm";
 
 import {Image} from "./Image";
@@ -16,12 +17,21 @@ export class Quiz {
     id: number;
 
     @Column()
+    @IsString()
+    @MinLength(5)
+    @MaxLength(50)
     titre: string;
 
     @Column()
+    @IsString()
+    @MinLength(5)
+    @MaxLength(30)
     theme: string;
 
     @Column()
+    @IsString()
+    @MinLength(5)
+    @MaxLength(800)
     description: string;
 
     @Column({
@@ -31,6 +41,8 @@ export class Quiz {
     difficulte: QuizDifficulte;
 
     @Column()
+    @IsNumber()
+    @Min(3)
     age: number;
 
     @OneToOne(() => Image, {cascade: true, nullable: true})

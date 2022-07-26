@@ -39,6 +39,6 @@ export class Conference {
     @IsISO8601()
     dateFin: Date;
 
-    @OneToMany(() => ConferenceParticipant, conferenceParticipants => conferenceParticipants.conference, { cascade: true })
+    @OneToMany(() => ConferenceParticipant, conferenceParticipants => conferenceParticipants.conference, { cascade: true, onDelete: 'CASCADE' })
     conferenceParticipants: ConferenceParticipant[];
 }

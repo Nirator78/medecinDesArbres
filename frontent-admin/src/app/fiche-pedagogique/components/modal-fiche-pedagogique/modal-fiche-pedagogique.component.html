@@ -21,7 +21,8 @@
             id="titre"
             aria-describedby="inputGroup-sizing-sm"
             required
-            minlength="4"
+            minlength="5"
+            maxlength="100"
             #titre="ngModel"
             placeholder="Titre"
             ngModel="{{fichePedagogique['titre']}}"
@@ -29,7 +30,10 @@
 
           <div *ngIf="titre.invalid  && (titre.dirty || titre.touched)">
             <div *ngIf="titre.errors?.['minlength']">
-              <small id="nomMin" class="text-danger"> Il faut minimum 4 caractéres</small>
+              <small id="titreMin" class="text-danger"> Il faut minimum 5 caractéres</small>
+            </div>
+            <div *ngIf="titre.errors?.['maxlength']">
+              <small id="titreMax" class="text-danger"> Il faut au maximum 100 caractéres</small>
             </div>
             <div *ngIf="titre.errors?.['required']">
               <small id="nomRequired" class="text-danger"> Titre est obligatoire</small>
@@ -48,6 +52,8 @@
             id="theme"
             aria-describedby="inputGroup-sizing-sm"
             required
+            minlength="5"
+            maxlength="30"
             #theme="ngModel"
             placeholder="Thème"
             ngModel="{{fichePedagogique['theme']}}"
@@ -55,7 +61,13 @@
 
           <div *ngIf="theme.invalid  && (theme.dirty || theme.touched)">
             <div *ngIf="theme.errors?.['required']">
-              <small id="descriptionRequired" class="text-danger"> Le thème est obligatoire</small>
+              <small id="themeRequired" class="text-danger"> Le thème est obligatoire</small>
+            </div>
+            <div *ngIf="theme.errors?.['minlength']">
+              <small id="themeMin" class="text-danger"> Il faut minimum 5 caractéres</small>
+            </div> 
+            <div *ngIf="theme.errors?.['maxlength']">
+              <small id="themeMax" class="text-danger"> Il faut au maximum 30 caractéres</small>
             </div>
           </div>
         </div>
@@ -116,6 +128,8 @@
               name="titre"
               aria-describedby="inputGroup-sizing-sm"
               required
+              minlength="5"
+              maxlength="100"
               #titre="ngModel"
               placeholder="Titre"
               ngModel="{{sousPartieFichePedagogique['titre']}}"
@@ -124,6 +138,12 @@
             <div *ngIf="titre.invalid  && (titre.dirty || titre.touched)">
               <div *ngIf="titre.errors?.['required']">
                 <small id="titreRequired" class="text-danger"> Titre est obligatoire</small>
+              </div>
+              <div *ngIf="titre.errors?.['minlength']">
+                <small id="titreMin" class="text-danger"> Il faut minimum 5 caractéres</small>
+              </div>
+              <div *ngIf="titre.errors?.['maxlength']">
+                <small id="titreMax" class="text-danger"> Il faut au maximum 100 caractéres</small>
               </div>
             </div>
           </div>
@@ -139,6 +159,8 @@
               name="contenue"
               aria-describedby="inputGroup-sizing-sm"
               required
+              minlength="5"
+              maxlength="5000"
               #contenue="ngModel"
               placeholder="Contenue"
               ngModel="{{sousPartieFichePedagogique['contenue']}}"
@@ -147,6 +169,12 @@
             <div *ngIf="contenue.invalid  && (contenue.dirty || contenue.touched)">
               <div *ngIf="contenue.errors?.['required']">
                 <small id="contenueRequired" class="text-danger"> Contenue est obligatoire</small>
+              </div>
+              <div *ngIf="contenue.errors?.['minlength']">
+                <small id="contenueMin" class="text-danger"> Il faut minimum 5 caractéres</small>
+              </div>
+              <div *ngIf="contenue.errors?.['maxlength']">
+                <small id="contenueMax" class="text-danger"> Il faut au maximum 5000 caractéres</small>
               </div>
             </div>
           </div>

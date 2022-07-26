@@ -3,6 +3,7 @@ import {NextFunction, Request, Response} from "express";
 import {Quiz} from "../Entity/Quiz";
 import {Image} from "../Entity/Image";
 import {AuthentificationService} from "../Service/AuthentificationService";
+import { validate } from "class-validator";
 
 export class QuizController {
 
@@ -30,13 +31,27 @@ export class QuizController {
     }
 
     async save(request: Request, response: Response, next: NextFunction) {
-        const quiz = await this.quizRepository.save(request.body);
-        return { status: 1, data: quiz } ;
+        let quiz = new Quiz();
+        Object.assign(quiz, {...quiz, ...request.body});
+        const errors = await validate(quiz);
+        if(errors.length > 0){
+            return { status: 0, error: errors };
+        }else{
+            const quizSaved = await this.quizRepository.save(request.body);
+            return { status: 1, data: quizSaved };
+        }
     }
 
     async update(request: Request, response: Response, next: NextFunction) {
-        const quiz = await this.quizRepository.save(request.body);
-        return { status: 1, data: quiz } ;
+        let quiz = new Quiz();
+        Object.assign(quiz, {...quiz, ...request.body});
+        const errors = await validate(quiz);
+        if(errors.length > 0){
+            return { status: 0, error: errors };
+        }else{
+            const quizSaved = await this.quizRepository.save(request.body);
+            return { status: 1, data: quizSaved };
+        }
     }
 
     async remove(request: Request, response: Response, next: NextFunction) {

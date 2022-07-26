@@ -1,5 +1,5 @@
 import {Entity, PrimaryGeneratedColumn, Column} from "typeorm";
-import {Contains, IsInt, Length, IsEmail, IsFQDN, IsDate, Min, Max, IsNotEmpty} from "class-validator";
+import {Contains, IsInt, Length, IsEmail, IsFQDN, IsDate, Min, Max, IsNotEmpty, IsString, IsPhoneNumber, IsPostalCode, MinLength} from "class-validator";
 
 export enum UserRole {
     SUPERADMIN = "super-admin",
@@ -15,10 +15,14 @@ export class User {
 
     @IsNotEmpty()
     @Column()
+    @IsString()
+    @MinLength(4)
     nom: string;
 
     @IsNotEmpty()
     @Column()
+    @IsString()
+    @MinLength(4)
     prenom: string;
 
     @IsNotEmpty()
@@ -31,29 +35,39 @@ export class User {
 
     @IsNotEmpty()
     @Column()
+    @IsString()    
+    @MinLength(6)
     password: string;
 
     @IsNotEmpty()
     @Column({default: ""})
+    @IsString()
     adresse: string;
 
     @IsNotEmpty()
     @Column({default: ""})
+    @IsString()
     pays: string;
 
     @IsNotEmpty()
     @Column({default: ""})
+    @IsString()
     ville: string;
 
     @IsNotEmpty()
     @Column({default: ""})
+    @IsString()
+    @IsPostalCode('FR')
     codePostal: string;
 
     @IsNotEmpty()
     @Column({default: ""})
+    @IsString()
+    @IsPhoneNumber('FR')
     telephone: string;
 
     @IsNotEmpty()
     @Column()
+    @IsEmail()
     email: string;
 }
