@@ -21,6 +21,7 @@
             aria-describedby="inputGroup-sizing-sm"
             required
             minlength="4"
+            maxlength="25"
             #numero="ngModel"
             placeholder="Numéro de commande"
             ngModel="{{commande['numero']}}"
@@ -31,6 +32,9 @@
             <div *ngIf="numero.errors?.['minlength']">
               <small id="numeroMin" class="text-danger"> Il faut minimum 4 caractéres</small>
             </div>
+            <div *ngIf="numero.errors?.['maxlength']">
+              <small id="numeroMax" class="text-danger"> Il faut au maximum 25 caractéres</small>
+            </div>
             <div *ngIf="numero.errors?.['required']">
               <small id="numeroRequired" class="text-danger"> Numéro est obligatoire</small>
             </div>
@@ -40,7 +44,7 @@
           <label class="required" for="dateCommande">Date de la commande</label>
 
           <input
-            type="date"
+            type="datetime-local"
             class="form-control"
             aria-label="date"
             name="date"
@@ -48,7 +52,7 @@
             required
             #date="ngModel"
             placeholder="Date de la commande"
-            [ngModel]="commande['date'] | date:'yyyy-MM-dd'"
+            [ngModel]="commande['date'] | date:'yyyy-MM-dd hh:mm'"
           >
           <div *ngIf="date.invalid  && (date.dirty || date.touched)">
             <div *ngIf="date.errors?.['required']">
@@ -147,10 +151,10 @@
   
             <div *ngIf="quantite.invalid  && (quantite.dirty || quantite.touched)">
               <div *ngIf="quantite.errors?.['required']">
-                <small id="quantite" class="text-danger"> Quantité est obligatoire </small>
+                <small id="quantiteRequired" class="text-danger"> Quantité est obligatoire </small>
               </div>
               <div *ngIf="quantite.errors?.['min']">
-                <small id="quantite" class="text-danger"> Quantité invalide </small>
+                <small id="quantiteMin" class="text-danger"> Quantité invalide </small>
               </div>
             </div>
           </div>

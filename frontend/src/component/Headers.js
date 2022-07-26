@@ -14,19 +14,14 @@ import ArticleService from "../services/article.service";
 import DensityMediumIcon from '@mui/icons-material/DensityMedium';
 import { green } from "@mui/material/colors";
 
-
 const links = [
-    { name: "Accueil", link: "/app" },
+    { name: "Accueil", link: "/" },
     { name: "Fiche Pédagogique", link: "/fiche-pedagogique" },
     { name: "Parcours Ecolo", link: "/parcours-ecolo" },
     { name: "Quiz", link: "/quiz" },
     { name: "Boutique", link: "/boutique" },
     { name: "Conférence", link: "/conference" }
 ];
-
-
-
-
 
 export default function Headers() {
     const [panierTaille, setPanierTaille] = useState(0);

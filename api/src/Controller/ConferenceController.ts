@@ -8,6 +8,7 @@ import {Conference} from "../Entity/Conference";
 import {ConferenceParticipant} from "../Entity/ConferenceParticipant";
 import {User} from "../Entity/User";
 import {AuthentificationService} from '../Service/AuthentificationService';
+import { validate } from "class-validator";
 
 export class ConferenceController {
 
@@ -34,14 +35,28 @@ export class ConferenceController {
         }
     }
 
-    async save(request: Request, response: Response, next: NextFunction) {
-        const conference = await this.conferenceRepository.save(request.body);
-        return {status: 1, data: conference };
+    async save(request: Request, response: Response, next: NextFunction) {        
+        let conference = new Conference();
+        Object.assign(conference, {...conference, ...request.body});
+        const errors = await validate(conference);
+        if(errors.length > 0){
+            return { status: 0, error: errors };
+        }else{
+            const conferenceSaved = await this.conferenceRepository.save(request.body);
+            return { status: 1, data: conferenceSaved };
+        }
     }
 
     async update(request: Request, response: Response, next: NextFunction) {
-        const conference = await this.conferenceRepository.save(request.body);
-        return { status: 1, data: conference } ;
+        let conference = new Conference();
+        Object.assign(conference, {...conference, ...request.body});
+        const errors = await validate(conference);
+        if(errors.length > 0){
+            return { status: 0, error: errors };
+        }else{
+            const conferenceSaved = await this.conferenceRepository.save(request.body);
+            return { status: 1, data: conferenceSaved };
+        }
     }
 
     async remove(request: Request, response: Response, next: NextFunction) {
