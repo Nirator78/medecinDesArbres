@@ -11,7 +11,7 @@
       </button>
     </div>
   </div>
-  <ng-template [ngIf]="userList.length>0" [ngIfElse]="elseBlockTot">
+  <ng-template [ngIf]="userList && userList.length>0" [ngIfElse]="elseBlockTot">
     <div class="table-responsive">
       <table class="table table-hover table-sm" style="white-space: nowrap">
         <thead>

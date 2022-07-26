@@ -10,16 +10,20 @@ export class AuthentificationService {
     private cryptedKey = 'd6F3Efeq';
 
     async getUserInfo(req){
-        const authHeader = req.headers.authorization;
-        const token = authHeader && authHeader.split(' ')[1];
-        const userInfo =  await jwt.verify(token, process.env.SECRET_TOKEN);
-        let infoReturn;
-        if(userInfo.data.user.type){
-            infoReturn = {userId: userInfo.data.user, boutiqueId: userInfo.data.boutique}
-        }else{
-            infoReturn = {userId: userInfo.data.user};
+        try {
+            const authHeader = req.headers.authorization;
+            const token = authHeader && authHeader.split(' ')[1];
+            const userInfo =  await jwt.verify(token, process.env.SECRET_TOKEN);
+            let infoReturn;
+            if(userInfo.data.user.type){
+                infoReturn = {userId: userInfo.data.user, boutiqueId: userInfo.data.boutique}
+            }else{
+                infoReturn = {userId: userInfo.data.user};
+            }
+            return infoReturn;
+        } catch (error) {
+            return null;
         }
-        return infoReturn;
     }
 
     encryptPassword(password){
