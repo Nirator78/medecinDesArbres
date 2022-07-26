@@ -40,6 +40,7 @@ export class ModalFichePedagogiqueComponent {
     // Post de la fiche pédagogique
     this.fichePedagogiqueService[methode](form).then(async (res) => {
       // Ferme le modal
+      form.resetForm();
       this.modalService.dismissAll();
       // Refresh la liste des utilisateurs
       this.listFichePedagogiqueComponent.refresh();
