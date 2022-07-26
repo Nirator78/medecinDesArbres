@@ -13,7 +13,7 @@ export class ConferenceParticipant {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @ManyToOne(() => Conference, conference => conference.id)
+    @ManyToOne(() => Conference, conference => conference.id, { onDelete: 'CASCADE' })
     conference: Conference;
 
     @ManyToOne(type => User, user => user.id)
