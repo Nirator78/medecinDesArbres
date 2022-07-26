@@ -1,34 +1,40 @@
 import { ArticleController } from "../Controller/ArticleController";
+import { UserRole } from "../Entity/User";
 
 export default [
     {
         method: "get",
         route: "/articles",
         controller: ArticleController,
-        action: "all"
+        action: "all",
+        allowedRoles: [UserRole.SUPERADMIN, UserRole.ADMIN, UserRole.USER]
     }, 
     {
         method: "get",
         route: "/article/:id",
         controller: ArticleController,
-        action: "one"
+        action: "one",
+        allowedRoles: [UserRole.SUPERADMIN, UserRole.ADMIN, UserRole.USER]
     },
     {
         method: "post",
         route: "/article",
         controller: ArticleController,
-        action: "save"
+        action: "save",
+        allowedRoles: [UserRole.SUPERADMIN, UserRole.ADMIN]
     },
     {
         method: "put",
         route: "/article/:id",
         controller: ArticleController,
-        action: "update"
+        action: "update",
+        allowedRoles: [UserRole.SUPERADMIN, UserRole.ADMIN]
     },
     {
         method: "delete",
         route: "/article/:id",
         controller: ArticleController,
-        action: "remove"
+        action: "remove",
+        allowedRoles: [UserRole.SUPERADMIN, UserRole.ADMIN]
     }
 ];
