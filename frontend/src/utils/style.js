@@ -2,7 +2,7 @@ import vars from "./vars.js";
 export const useStyles = () => {
     return ({
         _defaultColor: {
-            color: vars.color1,
+            color: 'red',
         },
         _defaultBgColor: {
             backgroundColor: vars.color1,

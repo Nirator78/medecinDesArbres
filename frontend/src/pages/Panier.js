@@ -27,7 +27,7 @@ export default function Panier(props) {
             await ArticleService.postCommand(user.id);
         }
         fetchData();
-        navigate("/app/profile");
+        navigate("/profile");
     }
     const style = useStyles();
 
@@ -36,7 +36,7 @@ export default function Panier(props) {
     })
 
     paniers.forEach((panier) => {
-        totalArticle +=  parseInt(panier.quantite, 10)
+        totalArticle += parseInt(panier.quantite, 10)
     })
 
     return (
@@ -58,50 +58,50 @@ export default function Panier(props) {
                                             {panier.article.prix + "€"}
                                         </Typography>
                                         <Typography variant="subtitle1" color="text.secondary" component="div">
-                                        <Grid item xs={12}>
-                                        <ButtonGroup variant="contained" color="success" aria-label="button group" style={{marginright:2}}>
-                                            <Button  >{"-"}</Button>
-                                            <Button>{panier.quantite}</Button>
-                                            <Button >{"+"}</Button>
-                                        </ButtonGroup>
-                                        </Grid>
+                                            <Grid item xs={12}>
+                                                <ButtonGroup variant="contained" color="success" aria-label="button group" style={{ marginright: 2 }}>
+                                                    <Button  >{"-"}</Button>
+                                                    <Button>{panier.quantite}</Button>
+                                                    <Button >{"+"}</Button>
+                                                </ButtonGroup>
+                                            </Grid>
                                         </Typography>
                                     </CardContent>
                                     <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
                                         <IconButton aria-label="previous">
-                            
+
                                         </IconButton>
                                         <IconButton aria-label="play/pause">
-                                
+
                                         </IconButton>
                                         <IconButton aria-label="next">
-                                        
+
                                         </IconButton>
                                     </Box>
                                 </Box>
                                 <CardMedia
-                                component="img"
-                                sx={{ width: 151 }}
-                                image={"http://localhost:3000/" + panier.article?.image?.url}
-                                alt="Live from space album cover"
+                                    component="img"
+                                    sx={{ width: 151 }}
+                                    image={"http://localhost:3000/" + panier.article?.image?.url}
+                                    alt="Live from space album cover"
                                 />
-                          </Card>
+                            </Card>
                         )
                     })
                 }
-               
-                    <Grid container mt={2} mb={2}>
-                        <Grid itemx xs={11}>
-                            <Typography variant="h6">
-                                Sous-Total ({totalArticle} articles)
-                            </Typography>
-                        </Grid>
-                        <Grid item xs={1}>
-                            <Typography variant="h6">
-                                {total}€
-                            </Typography>
-                        </Grid>
+
+                <Grid container mt={2} mb={2}>
+                    <Grid itemx xs={11}>
+                        <Typography variant="h6">
+                            Sous-Total ({totalArticle} articles)
+                        </Typography>
                     </Grid>
+                    <Grid item xs={1}>
+                        <Typography variant="h6">
+                            {total}€
+                        </Typography>
+                    </Grid>
+                </Grid>
 
                 <GreenButton title="Passer commande" handleClick={handleCommande} />
             </Paper>

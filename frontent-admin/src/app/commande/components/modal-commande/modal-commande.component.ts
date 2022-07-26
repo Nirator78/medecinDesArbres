@@ -61,6 +61,7 @@ export class ModalCommandeComponent {
       // Post de la commande
       this.commandeService[methode](form).then(async (res) => {
       // Ferme le modal
+      form.resetForm();
       this.modalService.dismissAll();
       // Refresh la liste des utilisateurs
       this.listCommandeComponent.refresh();

@@ -21,6 +21,8 @@
             name="description"
             aria-describedby="inputGroup-sizing-sm"
             required
+            minlength="5"
+            maxlength="800"
             #description="ngModel"
             placeholder="Description"
             ngModel="{{parcoursecolo['description']}}"
@@ -29,6 +31,12 @@
           <div *ngIf="description.invalid  && (description.dirty || description.touched)">
             <div *ngIf="description.errors?.['required']">
               <small id="descriptionRequired" class="text-danger"> Description est obligatoire</small>
+            </div>
+            <div *ngIf="description.errors?.['minlength']">
+              <small id="descriptionMin" class="text-danger"> Il faut minimum 5 caractéres</small>
+            </div>
+            <div *ngIf="description.errors?.['maxlength']">
+              <small id="descriptionMax" class="text-danger"> Il faut au maximum 800 caractéres</small>
             </div>
           </div>
         </div>
@@ -106,13 +114,13 @@
             required
             #nbSac="ngModel"
             placeholder="Nombre de sac"
-            min="0"
-            ngModel="{{parcoursecolo['nbSac']}}"
+            min="1"
+            [(ngModel)]="parcoursecolo['nbSac']"
           >
 
           <div *ngIf="nbSac.invalid  && (nbSac.dirty || nbSac.touched)">
             <div *ngIf="nbSac.errors?.['min']">
-              <small id="nbSacInvalid" class="text-danger"> Nombre de sac invalide </small>
+              <small id="nbSacInvalid" class="text-danger"> Nombre de sac invalide, il faut une quantité minimum à 1 </small>
             </div>
             <div *ngIf="nbSac.errors?.['required']">
               <small id="prix" class="text-danger"> Nombre de sac est obligatoire </small>

@@ -3,6 +3,7 @@ import {NextFunction, Request, Response} from "express";
 import {ParcoursEcolo} from "../Entity/ParcoursEcolo";
 import {Image} from "../Entity/Image";
 import {AuthentificationService} from '../Service/AuthentificationService';
+import { validate } from "class-validator";
 
 export class ParcoursEcoloController {
 
@@ -30,13 +31,27 @@ export class ParcoursEcoloController {
     }
 
     async save(request: Request, response: Response, next: NextFunction) {
-        const parcoursEcolo = await this.parcoursEcoloRepository.save(request.body);
-        return { status: 1, data: parcoursEcolo } ;
+        let parcoursEcolo = new ParcoursEcolo();
+        Object.assign(parcoursEcolo, {...parcoursEcolo, ...request.body});
+        const errors = await validate(parcoursEcolo);
+        if(errors.length > 0){
+            return { status: 0, error: errors };
+        }else{
+            const parcoursEcoloSaved = await this.parcoursEcoloRepository.save(request.body);
+            return { status: 1, data: parcoursEcoloSaved };
+        }
     }
 
     async update(request: Request, response: Response, next: NextFunction) {
-        const parcoursEcolo = await this.parcoursEcoloRepository.save(request.body);
-        return { status: 1, data: parcoursEcolo } ;
+        let parcoursEcolo = new ParcoursEcolo();
+        Object.assign(parcoursEcolo, {...parcoursEcolo, ...request.body});
+        const errors = await validate(parcoursEcolo);
+        if(errors.length > 0){
+            return { status: 0, error: errors };
+        }else{
+            const parcoursEcoloSaved = await this.parcoursEcoloRepository.save(request.body);
+            return { status: 1, data: parcoursEcoloSaved };
+        }
     }
 
     async remove(request: Request, response: Response, next: NextFunction) {

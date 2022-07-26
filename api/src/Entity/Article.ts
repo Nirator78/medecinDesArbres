@@ -1,5 +1,5 @@
 import {Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn} from "typeorm";
-import {IsInt, IsString, Length, Min} from "class-validator";
+import {IsDecimal, IsInt, IsNumber, IsString, Length, Min} from "class-validator";
 import {Image} from "./Image";
 
 @Entity()
@@ -16,9 +16,9 @@ export class Article {
     @Length(0, 500)
     description: string;
 
-    @Column()
-    @IsInt()
-    @Min(1)
+    @Column("decimal", { precision: 12, scale: 2, nullable: false })
+    @IsNumber()
+    @Min(0)
     prix: number;
 
     @Column()
@@ -32,5 +32,6 @@ export class Article {
 
     @Column()
     @IsString()
+    @Length(3, 30)
     tag: string;
 }

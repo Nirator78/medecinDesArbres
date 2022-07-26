@@ -1,40 +1,53 @@
 import { ParcoursEcoloController } from "../Controller/ParcoursEcoloController";
+import { UserRole } from "../Entity/User";
 
 export default [
     {
         method: "get",
         route: "/parcours-ecolos",
         controller: ParcoursEcoloController,
-        action: "all"
+        action: "all",
+        allowedRoles: [UserRole.SUPERADMIN, UserRole.ADMIN, UserRole.USER],
+        isLoginNeeded: false
     }, 
     {
         method: "get",
         route: "/parcours-ecolo/:id",
         controller: ParcoursEcoloController,
-        action: "one"
+        action: "one",
+        allowedRoles: [UserRole.SUPERADMIN, UserRole.ADMIN, UserRole.USER],
+        isLoginNeeded: false
     },
     {
         method: "get",
         route: "/user/:id/parcours-ecolo",
         controller: ParcoursEcoloController,
-        action: "getByUser"
+        action: "getByUser",
+        allowedRoles: [UserRole.SUPERADMIN, UserRole.ADMIN, UserRole.USER],
+        isLoginNeeded: true
     },
     {
         method: "post",
         route: "/parcours-ecolo",
         controller: ParcoursEcoloController,
-        action: "save"
+        action: "save",
+        allowedRoles: [UserRole.SUPERADMIN, UserRole.ADMIN, UserRole.USER],
+        isLoginNeeded: true
     },
     {
         method: "put",
         route: "/parcours-ecolo/:id",
         controller: ParcoursEcoloController,
-        action: "update"
+        action: "update",
+        allowedRoles: [UserRole.SUPERADMIN, UserRole.ADMIN, UserRole.USER],
+        isLoginNeeded: true
     },
     {
         method: "delete",
         route: "/parcours-ecolo/:id",
         controller: ParcoursEcoloController,
-        action: "remove"
+        action: "remove",
+        allowedRoles: [UserRole.SUPERADMIN, UserRole.ADMIN, UserRole.USER],
+        isLoginNeeded: true
     }
 ];

@@ -13,11 +13,10 @@ import Panier from "./pages/Panier";
 import FichePedagogiquePage from "../src/component/FichePedagogiquePage";
 
 const MAP_ROUTES = [
-    { path: "/", element: <Navigate to="/app" /> },
-    { path: "/notfound", element: <NotFound /> },
     {
-        path: "/app", element: <Interface />, children: [
+        path: "/", element: <Interface />, children: [
             { index: true, element: <Accueil /> },
+            { path: "notfound", element: <NotFound /> },
             { path: "boutique", element: <Boutique /> },
             { path: "conference", element: <Conference /> },
             {

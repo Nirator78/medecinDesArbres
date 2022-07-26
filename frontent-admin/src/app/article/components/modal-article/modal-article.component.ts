@@ -46,6 +46,7 @@ export class ModalArticleComponent  {
       }
 
       // Ferme le modal
+      form.resetForm();
       this.modalService.dismissAll();
       // Refresh la liste des utilisateurs
       this.listArticleComponent.refresh();

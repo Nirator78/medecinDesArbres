@@ -1,34 +1,45 @@
 import { FichePedagogiqueController } from "../Controller/FichePedagogiqueController";
+import { UserRole } from "../Entity/User";
 
 export default [
     {
         method: "get",
         route: "/fiche-pedagogiques",
         controller: FichePedagogiqueController,
-        action: "all"
+        action: "all",
+        allowedRoles: [UserRole.SUPERADMIN, UserRole.ADMIN, UserRole.USER],
+        isLoginNeeded: false
     }, 
     {
         method: "get",
         route: "/fiche-pedagogique/:id",
         controller: FichePedagogiqueController,
-        action: "one"
+        action: "one",
+        allowedRoles: [UserRole.SUPERADMIN, UserRole.ADMIN, UserRole.USER],
+        isLoginNeeded: false
     }, 
     {
         method: "post",
         route: "/fiche-pedagogique",
         controller: FichePedagogiqueController,
-        action: "save"
+        action: "save",
+        allowedRoles: [UserRole.SUPERADMIN, UserRole.ADMIN],
+        isLoginNeeded: true
     },
     {
         method: "put",
         route: "/fiche-pedagogique/:id",
         controller: FichePedagogiqueController,
-        action: "update"
+        action: "update",
+        allowedRoles: [UserRole.SUPERADMIN, UserRole.ADMIN],
+        isLoginNeeded: true
     },
     {
         method: "delete",
         route: "/fiche-pedagogique/:id",
         controller: FichePedagogiqueController,
-        action: "remove"
+        action: "remove",
+        allowedRoles: [UserRole.SUPERADMIN, UserRole.ADMIN],
+        isLoginNeeded: true
     }
 ];

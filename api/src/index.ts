@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import {createConnection} from "typeorm";
+import {createConnection, ReturningStatementNotSupportedError} from "typeorm";
 import * as express from "express";
 import * as bodyParser from "body-parser";
 import {Request, Response} from "express";
@@ -11,6 +11,7 @@ import * as morgan from 'morgan';
 import * as rfs from 'rotating-file-stream';
 import * as path from 'path';
 import * as cors from 'cors';
+import { AuthentificationService } from "./Service/AuthentificationService";
 
 createConnection().then(async connection => {
     // create express app
@@ -52,11 +53,19 @@ createConnection().then(async connection => {
 
     // register express routes from defined application routes
     Routes.forEach(route => {
-        (app as any)[route.method]('/api'+route.route, (req: Request, res: Response, next: Function) => {
+        (app as any)[route.method]('/api'+route.route, async (req: Request, res: Response, next: Function) => {
+            if(route.isLoginNeeded) {
+                const authentificationService = new AuthentificationService();
+                const verif = await authentificationService.getUserInfo(req);
+                let filtre = {};
+                if(!route.allowedRoles.includes(verif.userId.role)) {
+                    res.status(500).send("Vous n'avez pas les droits d'accès");
+                    return;
+                }
+            }
             const result = (new (route.controller as any))[route.action](req, res, next);
             if (result instanceof Promise) {
                 result.then(result => result !== null && result !== undefined ? res.send(result) : undefined);
-
             } else if (result !== null && result !== undefined) {
                 res.json(result);
             }

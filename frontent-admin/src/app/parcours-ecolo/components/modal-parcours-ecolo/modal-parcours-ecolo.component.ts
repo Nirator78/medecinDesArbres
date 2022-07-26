@@ -61,6 +61,7 @@ export class ModalParcoursEcoloComponent {
       }
 
       // Ferme le modal
+      form.resetForm();
       this.modalService.dismissAll();
       // Refresh la liste des utilisateurs
       this.listParcoursEcoloComponent.refresh();
