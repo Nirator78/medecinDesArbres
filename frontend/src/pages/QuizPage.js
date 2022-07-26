@@ -130,7 +130,7 @@ export default function QuizPage(props) {
 
         if (exist) {
             UserQuizService.postAnswers(user.id, quiz.id, answers);
-            navigate("/app/quiz")
+            navigate("/quiz")
         }
     };
 

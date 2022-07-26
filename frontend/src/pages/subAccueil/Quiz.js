@@ -17,13 +17,13 @@ export default function Quiz(props) {
             </Typography>
             <Grid container spacing={2}>
                 <Grid item xs={4}>
-                    <GreenButton title="Quizz pour les 3-5 ans" handleClick={() => navigate('/app/quiz')} />
+                    <GreenButton title="Quizz pour les 3-5 ans" handleClick={() => navigate('/quiz')} />
                 </Grid>
                 <Grid item xs={4}>
-                    <GreenButton title="Quizz pour les 6-10 ans" handleClick={() => navigate('/app/quiz')} />
+                    <GreenButton title="Quizz pour les 6-10 ans" handleClick={() => navigate('/quiz')} />
                 </Grid>
                 <Grid item xs={4}>
-                    <GreenButton title="Quizz pour les plus grands" handleClick={() => navigate('/app/quiz')} />
+                    <GreenButton title="Quizz pour les plus grands" handleClick={() => navigate('/quiz')} />
                 </Grid>
             </Grid>
         </Paper>
