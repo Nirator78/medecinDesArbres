@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Paper, Typography, Grid, Button, CardActions, CardContent, Card, Avatar } from '@mui/material';
-import ConferenceService from "../services/conference.service";
-import AuthService from "../services/auth.service";
+import { AuthService, ConferenceService } from "../services";
 import AddIcon from '@mui/icons-material/Add';
 import moment from 'moment';
+import { useStyles } from "../utils/style.ts";
 
 export default function Conference(props) {
     const [conferenceList, setConferenceList] = useState([]);
@@ -21,12 +21,13 @@ export default function Conference(props) {
         }
         fetchData();
     }, [refresh])
+    const style = useStyles();
 
     return (
         <>
-            <Paper sx={{ p: 4, mt: 5, ml: 4, mr: 4, mb: 2, borderRadius: 2 }}>
+            <Paper sx={style.containerPaperPage.sx}>
                 <Typography sx={{ mb: 4 }} align="center" variant="h4" gutterBottom component="div">
-                    Informez vous grâce à nos conférence, adaptées a tous !
+                    Informez vous grâce à nos conférences, adaptées à tous !
                 </Typography>
                 <Grid container spacing={{ xs: 2, md: 3, pl: 2 }} columns={{ xs: 4, sm: 8, md: 12 }}>
                     {conferenceList?.map((conf, index) => {

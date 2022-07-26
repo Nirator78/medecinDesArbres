@@ -1,25 +1,11 @@
 import React from "react";
-import AuthService from "../../services/auth.service"
-import Box from '@mui/material/Box';
-import Modal from '@mui/material/Modal';
-import { Button, FormControl, IconButton, Input, InputAdornment, InputLabel } from "@mui/material";
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import GreenButton from "../GreenButton";
+import AuthService from "../../services/auth.service";
+import { Box, Button, FormControl, IconButton, Input, InputAdornment, InputLabel, Modal } from "@mui/material";
+import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { FormError, GreenButton } from "../";
 import { useForm } from "react-hook-form";
-import FormError from "../FormError";
+import { useStyles } from "../../utils/style.ts";
 
-const style = {
-	position: 'absolute',
-	top: '50%',
-	left: '50%',
-	transform: 'translate(-50%, -50%)',
-	width: 500,
-	bgcolor: 'background.paper',
-	borderRadius: 5 + 'px',
-	boxShadow: 24,
-	p: 4,
-};
 function Inscription() {
 	const { register, handleSubmit, formState: { errors } } = useForm();
 
@@ -32,6 +18,8 @@ function Inscription() {
 	const handleMouseDownPassword = (event) => {
 		event.preventDefault();
 	};
+	const style = useStyles();
+
 	async function postData(data) {
 		console.log(data)
 		AuthService.register(data).then(
@@ -57,7 +45,7 @@ function Inscription() {
 				<Button
 					onClick={handleOpen}
 					variant="contained"
-					style={{backgroundColor: '#3e993f' }}
+					style={style.buttonMenu}
 				>
 					Inscription
 				</Button>
@@ -68,7 +56,7 @@ function Inscription() {
 					aria-describedby="modal-modal-description"
 				>
 					
-					<Box sx={style}>
+					<Box sx={style.box}>
 					<form onSubmit={handleSubmit(postData)}>
 						<div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
 							<div className="max-w-md w-full space-y-8">
@@ -78,7 +66,7 @@ function Inscription() {
 										src="/logo.png"
 										alt=""
 									/>
-									<h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Inscription a Médecins des arbres</h2>
+									<h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Inscription à Médecins des arbres</h2>
 								</div>
 
 
@@ -92,7 +80,7 @@ function Inscription() {
 									/>
 									{
 										errors.nom?.type === 'required' &&
-										<FormError text="Le nom est un champ obligatoire" />
+										<FormError text="Le champ 'Nom' est obligatoire" />
 									}
 								</FormControl>
 								<FormControl fullWidth variant="standard">
@@ -105,7 +93,7 @@ function Inscription() {
 									/>
 									{
 										errors.prenom?.type === 'required' &&
-										<FormError text="Le prénom est un champ obligatoire" />
+										<FormError text="Le champ 'Prénom' est obligatoire" />
 									}
 								</FormControl>
 								<FormControl fullWidth variant="standard">
@@ -118,7 +106,7 @@ function Inscription() {
 									/>
 									{
 										errors.email?.type === 'required' &&
-										<FormError text="L'email est un champ obligatoire" />
+										<FormError text="Le champ 'Email' est obligatoire" />
 									}
 								</FormControl>
 								<FormControl fullWidth variant="standard">
@@ -142,11 +130,11 @@ function Inscription() {
 									/>
 									{
 										errors.password?.type === 'required' &&
-										<FormError text="Le mot de passe est un champ obligatoire" />
+										<FormError text="Le champ 'Mot de passe' est obligatoire" />
 									}
 									{
 										errors.password?.type === 'minLength' &&
-										<FormError text="Le mot de passe doit pas avoir minimum 6 caractères" />
+										<FormError text="Le mot de passe doit contenir au moins 6 caractères" />
 									}
 								</FormControl>
 

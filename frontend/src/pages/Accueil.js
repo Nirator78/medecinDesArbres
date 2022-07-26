@@ -1,14 +1,13 @@
 import React from 'react';
 import { Paper, Typography, Grid } from '@mui/material';
-import Operation from './subAccueil/Operation';
-import FichePedagogiques from './subAccueil/FichePedagogiques';
-import Quiz from './subAccueil/Quiz';
-import Boutique from './subAccueil/Boutique';
+import { Boutique, FichePedagogiques, Operation, Quiz } from './subAccueil';
+import { useStyles } from "../utils/style.ts";
 
 export default function Accueil(props) {
+    const style = useStyles();
     return (
         <>
-            <Paper elevation={3} sx={{ p: 4, mt: 5, ml: 4, mr: 4, mb: 2, borderRadius: 7 }}>
+            <Paper elevation={style.containerPaperTop.elevation} sx={style.containerPaperTop.sx}>
                 <Grid container>
                     <Grid item xs={10}>
                         <Typography variant="h5" sx={{ mb: 2 }}>

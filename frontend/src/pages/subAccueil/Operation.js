@@ -1,10 +1,12 @@
 import React from 'react';
 import { Paper, Typography, Grid } from '@mui/material';
-import CardList from '../../component/CardList';
+import { CardList } from '../../component';
+import { useStyles } from "../../utils/style.ts";
 
 export default function Operation(props) {
+    const style = useStyles();
     return (
-        <Paper elevation={3} sx={{ p: 4, ml: 4, mr: 4, mb: 2, borderRadius: 7 }}>
+        <Paper elevation={style.containerPaper.elevation} sx={style.containerPaper.sx}>
             <Typography variant="h6">
                 Opération "Soignons les arbres"
             </Typography>

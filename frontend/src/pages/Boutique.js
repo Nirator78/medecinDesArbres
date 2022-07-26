@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Paper, Grid, Typography, Stack } from '@mui/material';
 import CardBoutique from '../component/CardBoutique';
 import ArticleService from '../services/article.service';
+import { useStyles } from "../utils/style.ts";
 
 export default function Boutique(props) {
     const [articles, setArticles] = useState([]);
@@ -13,10 +14,11 @@ export default function Boutique(props) {
         }
         fetchData();
     }, [])
+    const style = useStyles();
 
     return (
         <>
-            <Paper sx={{ p: 4, mt: 5, ml: 4, mr: 4, mb: 2, borderRadius: 2 }}>
+            <Paper sx={style.containerPaperPage.sx}>
                 <Typography align="center" variant="h4" gutterBottom component="div">
                     Notre boutique 
                 </Typography>
@@ -25,7 +27,7 @@ export default function Boutique(props) {
                 </Typography>
 
                     <Typography sx={{ mb: 4 }} align="center" variant="h5" gutterBottom component="div">
-                        Tout nos produits
+                        Tous nos produits
                     </Typography>
                    
                     <Grid container spacing={{ xs: 2, md: 3, pl: 2 }} columns={{ xs: 4, sm: 8, md: 12 }}>
@@ -46,7 +48,7 @@ export default function Boutique(props) {
                             Qu’est-ce que le zéro déchet ?
                         </Typography>
                         <Typography  component={'span'} variant="body2" color="text.secondary">
-                            Le zéro déchet est une démarche écologique qui vise à altérer notre consommation pour supprimer les déchets et diminuer notre impact écologique. Le zéro déchet est associé à la règle des 5 « R ». Cette règle nous vient de l’anglais et créé par Bea Johnson (A zero waste family) et se traduit par : 
+                            Le zéro déchet est une démarche écologique qui vise à altérer notre consommation pour supprimer les déchets et diminuer notre impact écologique. Le zéro déchet est associé à la règle des 5 « R ». Cette règle, créée par Bea Johnson (A zero waste family), nous vient de l’anglais et se traduit par :
 
                             <Stack
                                 direction={{ xs: 'column', md: 'row', pl: 'row' }}
