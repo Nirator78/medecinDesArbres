@@ -6,6 +6,7 @@ import {getRepository} from "typeorm";
 import {NextFunction, Request, Response} from "express";
 import {FichePedagogique} from "../Entity/FichePedagogique";
 import {AuthentificationService} from '../Service/AuthentificationService';
+import { validate } from "class-validator";
 
 export class FichePedagogiqueController {
 
@@ -31,13 +32,27 @@ export class FichePedagogiqueController {
     }
 
     async save(request: Request, response: Response, next: NextFunction) {
-        const fichePedagogique = await this.fichePedagogiqueRepository.save(request.body);
-        return { status: 1, data: fichePedagogique };
+        let fichePedagogique = new FichePedagogique();
+        Object.assign(fichePedagogique, {...fichePedagogique, ...request.body});
+        const errors = await validate(fichePedagogique);
+        if(errors.length > 0){
+            return { status: 0, error: errors };
+        }else{
+            const fichePedagogiqueSaved = await this.fichePedagogiqueRepository.save(request.body);
+            return { status: 1, data: fichePedagogiqueSaved };
+        }
     }
 
     async update(request: Request, response: Response, next: NextFunction) {
-        const fichePedagogique = await this.fichePedagogiqueRepository.save(request.body);
-        return { status: 1, data: fichePedagogique } ;
+        let fichePedagogique = new FichePedagogique();
+        Object.assign(fichePedagogique, {...fichePedagogique, ...request.body});
+        const errors = await validate(fichePedagogique);
+        if(errors.length > 0){
+            return { status: 0, error: errors };
+        }else{
+            const fichePedagogiqueSaved = await this.fichePedagogiqueRepository.save(request.body);
+            return { status: 1, data: fichePedagogiqueSaved };
+        }
     }
 
     async remove(request: Request, response: Response, next: NextFunction) {

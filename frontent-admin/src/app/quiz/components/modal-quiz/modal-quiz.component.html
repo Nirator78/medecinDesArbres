@@ -27,7 +27,7 @@
             ngModel="{{quiz['titre']}}"
           >
 
-          <div *ngIf="theme.invalid  && (titre.dirty || titre.touched)">
+          <div *ngIf="titre.invalid  && (titre.dirty || titre.touched)">
             <div *ngIf="titre.errors?.['minlength']">
               <small id="titreMin" class="text-danger"> Il faut minimum 5 caractéres</small>
             </div>
@@ -114,7 +114,7 @@
           <label class="required" for="age">Age requis</label>
 
           <input
-            type="age"
+            type="number"
             class="form-control"
             aria-label="age"
             name="age"
