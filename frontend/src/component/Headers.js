@@ -9,7 +9,7 @@ import Inscription from "./Auth/Inscription";
 import Profile from "./Auth/Profile";
 import AuthService from "../services/auth.service"
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import {Badge, Button, Container, IconButton, Menu, MenuItem } from "@mui/material";
+import { Badge, Button, Container, IconButton, Menu, MenuItem } from "@mui/material";
 import ArticleService from "../services/article.service";
 import DensityMediumIcon from '@mui/icons-material/DensityMedium';
 import { green } from "@mui/material/colors";

@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom"
 import ArticleService from '../services/article.service';
 import AuthService from '../services/auth.service';
 import { Paper, Typography, Box, Grid, CardContent, IconButton, CardMedia, Card, ButtonGroup, Button } from '@mui/material';
-import GreenButton from '../component/GreenButton';
+import { GreenButton } from '../../component';
+import { useStyles } from "../utils/style.ts";
 
 export default function Panier(props) {
     const [paniers, setPaniers] = useState([]);
@@ -28,6 +29,7 @@ export default function Panier(props) {
         fetchData();
         navigate("/app/profile");
     }
+    const style = useStyles();
 
     paniers.forEach((panier) => {
         total += panier.article.prix * panier.quantite
@@ -39,7 +41,7 @@ export default function Panier(props) {
 
     return (
         <>
-            <Paper sx={{ p: 4, mt: 5, ml: 4, mr: 4, mb: 2, borderRadius: 2 }}>
+            <Paper sx={style.containerPaperPage.sx}>
                 <Typography align="center" variant="h4" gutterBottom component="div">
                     Votre panier
                 </Typography>
