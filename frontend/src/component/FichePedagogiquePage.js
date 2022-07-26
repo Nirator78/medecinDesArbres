@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom"
 import { Paper, Typography } from '@mui/material';
 import FichePedagogiqueService from "../services/fiche-pedagogique.service";
+import { useStyles } from "../utils/style.js";
 
 export default function FichePedagogiquePage(props) {
     const { id } = useParams();
@@ -20,6 +21,7 @@ export default function FichePedagogiquePage(props) {
         }
         fetchData();
     }, [id])
+    const style = useStyles();
 
     return (
         <>
@@ -27,7 +29,7 @@ export default function FichePedagogiquePage(props) {
                 <Typography sx={{ p: 2, mt: 2, ml: 2, mr: 2 }} variant="h4" align="center" gutterBottom component="div">
                     Informez vous grâce à nos supers fiches pédagogiques, adaptées a tous !
                 </Typography>
-                <Typography variant="h4" align="center" color={'#3e993f'}> {fichePedagogique?.titre}</Typography>
+                <Typography variant="h4" align="center" color={style._defaultColor}> {fichePedagogique?.titre}</Typography>
                 <Typography variant="h5" align="center" color={'gray'}> {fichePedagogique?.theme}</Typography>
 
                 {

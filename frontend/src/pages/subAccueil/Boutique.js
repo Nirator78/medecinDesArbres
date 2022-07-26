@@ -3,7 +3,7 @@ import { Paper, Typography, Grid } from '@mui/material';
 import { CardBoutique, GreenButton } from '../../component';
 import { useNavigate } from 'react-router-dom';
 import ArticleService from '../../services/article.service';
-import { useStyles } from "../../utils/style.ts";
+import { useStyles } from "../../utils/style.js";
 
 export default function Boutique(props) {
     const navigate = useNavigate();

@@ -4,7 +4,8 @@ import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import moment from 'moment'
+import moment from 'moment';
+import { useStyles } from "../../utils/style.js";
 
 export default function Command({ data, index }) {
     let total = 0;
@@ -12,6 +13,7 @@ export default function Command({ data, index }) {
     data.commandeLignes.forEach(article => {
         total += article.quantite * article.article.prix
     });
+    const style = useStyles();
 
     return (
         <Accordion>

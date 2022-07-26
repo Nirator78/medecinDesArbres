@@ -1,7 +1,7 @@
 import React from 'react';
 import { Paper, Typography, Grid } from '@mui/material';
 import { CardList } from '../../component';
-import { useStyles } from "../../utils/style.ts";
+import { useStyles } from "../../utils/style.js";
 
 export default function Operation(props) {
     const style = useStyles();

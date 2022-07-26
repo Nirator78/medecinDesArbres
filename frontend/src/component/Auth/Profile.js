@@ -3,7 +3,7 @@ import { Avatar, Box, Button, Divider, FormControl, IconButton, Input, InputAdor
 import Logout from '@mui/icons-material/Logout';
 import AuthService from '../../services/auth.service';
 import { useNavigate } from "react-router-dom";
-import { useStyles } from "../../utils/style.ts";
+import { useStyles } from "../../utils/style.js";
 
 const PaperProps = {
 	elevation: 0,

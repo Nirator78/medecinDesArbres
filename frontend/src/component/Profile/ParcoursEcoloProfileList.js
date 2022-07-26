@@ -4,6 +4,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import ParcoursEcoloService from "../../services/parcours-ecolo.service";
 import AuthService from "../../services/auth.service";
 import FormParcoursEcolo from '../FormParcoursEcolo';
+import { useStyles } from "../../utils/style.js";
 
 export default function ParcoursEcoloProfileList() {
     const [parcoursEcoloList, setParcoursEcoloList] = useState([]);
@@ -26,12 +27,13 @@ export default function ParcoursEcoloProfileList() {
     const handleClose = () => setOpen(false);
 
     const handleRefresh = () => setRefresh(true);
+    const style = useStyles();
 
     return (
         <>
             <Paper sx={{ p: 4, mt: 5, ml: 4, mr: 4, mb: 2, borderRadius: 2 }}>
                 <Typography align="center" variant="h4" gutterBottom component="div">
-                    Vos parcours écolos partager
+                    Vos parcours écolos partagés
                 </Typography>
                 <Grid container spacing={{ xs: 2, md: 3, pl: 2 }} columns={{ xs: 4, sm: 8, md: 12 }}>
                     {parcoursEcoloList?.length ?
@@ -91,7 +93,7 @@ export default function ParcoursEcoloProfileList() {
                             <Typography variant="body2" color="text.secondary" pb={2}>
                                 Vous n'avez pas de parcours écolos partager avec la communauté
                             </Typography>
-                            <Button style={{ backgroundColor: '#3e993f' }} size="small" variant="contained" sx={{ mb: 2 }} onClick={handleOpen}>Partager un parcours avec la communauté</Button>
+                            <Button style={style._defaultBgColor} size="small" variant="contained" sx={{ mb: 2 }} onClick={handleOpen}>Partager un parcours avec la communauté</Button>
                             <Modal
                                 open={open}
                                 onClose={handleClose}

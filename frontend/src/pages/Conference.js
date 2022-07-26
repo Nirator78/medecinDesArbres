@@ -3,7 +3,7 @@ import { Paper, Typography, Grid, Button, CardActions, CardContent, Card, Avatar
 import { AuthService, ConferenceService } from "../services";
 import AddIcon from '@mui/icons-material/Add';
 import moment from 'moment';
-import { useStyles } from "../utils/style.ts";
+import { useStyles } from "../utils/style.js";
 
 export default function Conference(props) {
     const [conferenceList, setConferenceList] = useState([]);
