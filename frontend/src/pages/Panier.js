@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"
 import ArticleService from '../services/article.service';
 import AuthService from '../services/auth.service';
 import { Paper, Typography, Box, Grid, CardContent, IconButton, CardMedia, Card, ButtonGroup, Button } from '@mui/material';
-import { GreenButton } from '../../component';
+import { GreenButton } from '../component';
 import { useStyles } from "../utils/style.ts";
 
 export default function Panier(props) {

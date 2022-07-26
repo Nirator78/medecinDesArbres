@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom"
 import { Paper, Typography, Grid, CardActions, CardContent, CardMedia, Card } from '@mui/material';
-import { GreenButton } from '../../component';
+import { GreenButton } from '../component';
 import FichePedagogiqueService from "../services/fiche-pedagogique.service";
 import { useStyles } from "../utils/style.ts";
 
