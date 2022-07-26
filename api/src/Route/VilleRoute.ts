@@ -11,34 +11,39 @@ export default [
         route: "/villes",
         controller: VilleController,
         action: "all",
-        allowedRoles: [UserRole.SUPERADMIN, UserRole.ADMIN, UserRole.USER]
+        allowedRoles: [UserRole.SUPERADMIN, UserRole.ADMIN, UserRole.USER],
+        isLoginNeeded: false
     },
     {
         method: "get",
         route: "/ville/:id",
         controller: VilleController,
         action: "one",
-        allowedRoles: [UserRole.SUPERADMIN, UserRole.ADMIN, UserRole.USER]
+        allowedRoles: [UserRole.SUPERADMIN, UserRole.ADMIN, UserRole.USER],
+        isLoginNeeded: false
     },
     {
         method: "post",
         route: "/ville",
         controller: VilleController,
         action: "save",
-        allowedRoles: [UserRole.SUPERADMIN, UserRole.ADMIN]
+        allowedRoles: [UserRole.SUPERADMIN, UserRole.ADMIN],
+        isLoginNeeded: true
     },
     {
         method: "put",
         route: "/ville",
         controller: VilleController,
         action: "update",
-        allowedRoles: [UserRole.SUPERADMIN, UserRole.ADMIN]
+        allowedRoles: [UserRole.SUPERADMIN, UserRole.ADMIN],
+        isLoginNeeded: true
     },
     {
         method: "delete",
         route: "/ville/:id",
         controller: VilleController,
         action: "remove",
-        allowedRoles: [UserRole.SUPERADMIN, UserRole.ADMIN]
+        allowedRoles: [UserRole.SUPERADMIN, UserRole.ADMIN],
+        isLoginNeeded: true
     }
 ];

@@ -54,7 +54,7 @@ createConnection().then(async connection => {
     // register express routes from defined application routes
     Routes.forEach(route => {
         (app as any)[route.method]('/api'+route.route, async (req: Request, res: Response, next: Function) => {
-            if(req.headers.authorization) {
+            if(route.isLoginNeeded) {
                 const authentificationService = new AuthentificationService();
                 const verif = await authentificationService.getUserInfo(req);
                 let filtre = {};
@@ -66,7 +66,6 @@ createConnection().then(async connection => {
             const result = (new (route.controller as any))[route.action](req, res, next);
             if (result instanceof Promise) {
                 result.then(result => result !== null && result !== undefined ? res.send(result) : undefined);
-
             } else if (result !== null && result !== undefined) {
                 res.json(result);
             }
