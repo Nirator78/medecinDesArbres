@@ -8,6 +8,6 @@ export default [
         controller: UploadController,
         action: "upload",
         allowedRoles: [UserRole.SUPERADMIN, UserRole.ADMIN, UserRole.USER],
-        isLoginNeeded: true
+        isLoginNeeded: false
     }
 ];

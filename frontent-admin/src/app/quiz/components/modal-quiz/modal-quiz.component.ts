@@ -72,7 +72,7 @@ export class ModalQuizComponent{
       }
 
       res.questions.map( async (obj, idx) => {
-        if(this.filesQuestions) {
+        if(this.filesQuestions[idx]) {
           const formDataImage = new FormData();
           formDataImage.append("image", this.filesQuestions[idx]);
           await this.quizService.uploadImageQuizQuestion(obj.id, formDataImage);
