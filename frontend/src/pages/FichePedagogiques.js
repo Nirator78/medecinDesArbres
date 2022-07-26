@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom"
 import { Paper, Typography, Grid, CardActions, CardContent, CardMedia, Card } from '@mui/material';
-import GreenButton from '../component/GreenButton';
+import { GreenButton } from '../component';
 import FichePedagogiqueService from "../services/fiche-pedagogique.service";
+import { useStyles } from "../utils/style.ts";
 
 export default function FichePedagogiques(props) {
     const [fichePedagogiqueList, setFichePedagogiqueList] = useState([]);
@@ -15,10 +16,11 @@ export default function FichePedagogiques(props) {
         }
         fetchData();
     }, [])
+    const style = useStyles();
 
     return (
         <>
-            <Paper sx={{ p: 4, mt: 5, ml: 4, mr: 4, mb: 2, borderRadius: 2 }}>
+            <Paper sx={style.containerPaperPage.sx}>
                 <Typography sx={{ mb: 4 }} align="center" variant="h4" gutterBottom component="div">
                     Informez vous grâce à nos supers fiches pédagogiques, adaptées a tous !
                 </Typography>

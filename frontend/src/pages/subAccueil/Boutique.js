@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Paper, Typography, Grid } from '@mui/material';
-import CardBoutique from '../../component/CardBoutique';
-import GreenButton from '../../component/GreenButton';
+import { CardBoutique, GreenButton } from '../../component';
 import { useNavigate } from 'react-router-dom';
 import ArticleService from '../../services/article.service';
+import { useStyles } from "../../utils/style.ts";
 
 export default function Boutique(props) {
     const navigate = useNavigate();
@@ -20,9 +20,10 @@ export default function Boutique(props) {
     const handleClick = () => {
         navigate("/boutique");
     }
+    const style = useStyles();
 
     return (
-        <Paper elevation={3} sx={{ p: 4, ml: 4, mr: 4, mb: 2, borderRadius: 7 }}>
+        <Paper elevation={style.containerPaper.elevation} sx={style.containerPaper.sx}>
             <Typography variant="h6">
                 La boutique
             </Typography>

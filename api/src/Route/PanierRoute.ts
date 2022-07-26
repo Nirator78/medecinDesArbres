@@ -3,42 +3,49 @@
  * Created At 09:29
  */
 import { PanierController } from "../Controller/PanierController";
+import { UserRole } from "../Entity/User";
 
 export default [
     {
         method: "get",
         route: "/paniers",
         controller: PanierController,
-        action: "all"
+        action: "all",
+        allowedRoles: [UserRole.SUPERADMIN, UserRole.ADMIN, UserRole.USER]
     },
     {
         method: "get",
         route: "/panier/:id",
         controller: PanierController,
-        action: "one"
+        action: "one",
+        allowedRoles: [UserRole.SUPERADMIN, UserRole.ADMIN, UserRole.USER]
     },
     {
         method: "get",
         route: "/user/:id/paniers",
         controller: PanierController,
-        action: "getPanierByUser"
+        action: "getPanierByUser",
+        allowedRoles: [UserRole.SUPERADMIN, UserRole.ADMIN, UserRole.USER]
     },
     {
         method: "post",
         route: "/panier",
         controller: PanierController,
-        action: "save"
+        action: "save",
+        allowedRoles: [UserRole.SUPERADMIN, UserRole.ADMIN, UserRole.USER]
     },
     {
         method: "put",
         route: "/panier/:id",
         controller: PanierController,
-        action: "update"
+        action: "update",
+        allowedRoles: [UserRole.SUPERADMIN, UserRole.ADMIN, UserRole.USER]
     },
     {
         method: "delete",
         route: "/panier/:id",
         controller: PanierController,
-        action: "remove"
+        action: "remove",
+        allowedRoles: [UserRole.SUPERADMIN, UserRole.ADMIN, UserRole.USER]
     }
 ];

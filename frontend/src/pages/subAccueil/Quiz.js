@@ -1,17 +1,19 @@
 import React from 'react';
 import { useNavigate } from "react-router-dom"
 import { Paper, Typography, Grid } from '@mui/material';
-import GreenButton from '../../component/GreenButton';
+import { GreenButton } from '../../component';
+import { useStyles } from "../../utils/style.ts";
 
 export default function Quiz(props) {
     const navigate = useNavigate();
+    const style = useStyles();
     return (
-        <Paper elevation={3} sx={{ p: 4, ml: 4, mr: 4, mb: 2, borderRadius: 7 }}>
+        <Paper elevation={style.containerPaper.elevation} sx={style.containerPaper.sx}>
             <Typography variant="h6">
                 Quiz
             </Typography>
             <Typography>
-                Evaluez vos connaissances et devenez un médecin des arbres vous aussi !
+                Évaluez vos connaissances et devenez un médecin des arbres vous aussi !
             </Typography>
             <Grid container spacing={2}>
                 <Grid item xs={4}>

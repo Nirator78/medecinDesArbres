@@ -65,7 +65,7 @@ function CardBoutique({ data }) {
                 </Grid>
                 <div className="flex flex-wrap justify-center">
                     <img
-                        src={"http://localhost:3000/" + data.image.url}
+                        src={"http://localhost:3000/" + data?.image?.url}
                         className="max-w-sm h-32 transition-shadow ease-in-out duration-300 shadow-none hover:shadow-xl"
                         alt={data.nom}
                     />

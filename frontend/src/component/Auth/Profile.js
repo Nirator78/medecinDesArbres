@@ -1,14 +1,9 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
-import Avatar from '@mui/material/Avatar';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import Divider from '@mui/material/Divider';
-import IconButton from '@mui/material/IconButton';
-import Tooltip from '@mui/material/Tooltip';
+import { Avatar, Box, Button, Divider, FormControl, IconButton, Input, InputAdornment, InputLabel, Menu, MenuItem, Modal, Tooltip } from "@mui/material";
 import Logout from '@mui/icons-material/Logout';
 import AuthService from '../../services/auth.service';
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
+import { useStyles } from "../../utils/style.ts";
 
 const PaperProps = {
 	elevation: 0,
@@ -49,6 +44,7 @@ export default function AccountMenu({ user }) {
 	const handleClose = () => {
 		setAnchorEl(null);
 	};
+	const style = useStyles();
 
 	function handleClickLogout(e) {
 		AuthService.logout();
