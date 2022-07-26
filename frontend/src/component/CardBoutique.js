@@ -10,7 +10,7 @@ import AuthService from "../services/auth.service";
 import { Card, CardActions, CardContent, Chip, Grid } from "@mui/material";
 import { green } from "@mui/material/colors";
 
-function CardBoutique({ data }) {   
+function CardBoutique({ data }) {
     const [quantity, setQuantity] = useState(0);
     const [open, setOpen] = useState(false);
 
@@ -30,6 +30,8 @@ function CardBoutique({ data }) {
 
     const handleAddToCart = () => {
         ArticleService.addToCart(user.id, data.id, quantity);
+        setOpen(false)
+        setQuantity(0);
     }
 
     const handleOpenModal = () => {
@@ -37,7 +39,7 @@ function CardBoutique({ data }) {
             setOpen(true)
         }
     }
-    
+
 
     const handleCloseModal = () => {
         setOpen(false)
@@ -57,34 +59,34 @@ function CardBoutique({ data }) {
                     </Grid>
                     <Grid item xs={3}>
                         <Typography variant="h6" color="textSecondary" >
-                            {data.prix }€ 
+                            {data.prix}€
                         </Typography>
                     </Grid>
                 </Grid>
                 <div className="flex flex-wrap justify-center">
-                <img
-                    src={"http://localhost:3000/" + data.image.url}
-                    className="max-w-sm h-32 transition-shadow ease-in-out duration-300 shadow-none hover:shadow-xl"
-                    alt={data.nom}
-                />
+                    <img
+                        src={"http://localhost:3000/" + data.image.url}
+                        className="max-w-sm h-32 transition-shadow ease-in-out duration-300 shadow-none hover:shadow-xl"
+                        alt={data.nom}
+                    />
                 </div>
                 <CardContent>
-                    <Chip sx={{ backgroundColor: green[700] }} label={data.tag}/>
+                    <Chip sx={{ backgroundColor: green[700] }} label={data.tag} />
                     <Typography variant="body2" color="textSecondary" component="p" mt={2}>
-                    {data.description}
+                        {data.description}
                     </Typography>
                 </CardContent>
                 <CardActions disableSpacing>
                     <Grid container textAlign='center'>
                         <Grid item xs={12}>
-                            <ButtonGroup variant="contained" color="success" aria-label="button group" style={{marginright:2}}>
+                            <ButtonGroup variant="contained" color="success" aria-label="button group" style={{ marginright: 2 }}>
                                 <Button onClick={handleRemoveArticle} >{"-"}</Button>
                                 <Button>{quantity}</Button>
                                 <Button onClick={handleAddArticle}>{"+"}</Button>
                             </ButtonGroup>
                         </Grid>
-                        <Grid item xs={12} style={{marginLeft:6, marginTop:2}} > 
-                            <Button 
+                        <Grid item xs={12} style={{ marginLeft: 6, marginTop: 2 }} >
+                            <Button
                                 onClick={handleOpenModal}
                                 variant="contained"
                                 color="success"
