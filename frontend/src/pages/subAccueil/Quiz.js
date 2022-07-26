@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from "react-router-dom"
 import { Paper, Typography, Grid } from '@mui/material';
 import { GreenButton } from '../../component';
-import { useStyles } from "../../utils/style.ts";
+import { useStyles } from "../../utils/style.js";
 
 export default function Quiz(props) {
     const navigate = useNavigate();

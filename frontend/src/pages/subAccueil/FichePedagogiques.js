@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"
 import { Paper, Typography, Grid } from '@mui/material';
 import { GreenButton } from '../../component';
 import FichePedagogiqueService from "../../services/fiche-pedagogique.service";
-import { useStyles } from "../../utils/style.ts";
+import { useStyles } from "../../utils/style.js";
 
 export default function FichePedagogiques(props) {
     const [fichePedagogiqueList, setFichePedagogiqueList] = useState([]);

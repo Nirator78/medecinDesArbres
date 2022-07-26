@@ -4,7 +4,7 @@ import { Box, Button, FormControl, IconButton, Input, InputAdornment, InputLabel
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { FormError, GreenButton } from "../";
 import { useForm } from "react-hook-form";
-import { useStyles } from "../../utils/style.ts";
+import { useStyles } from "../../utils/style.js";
 
 function Connexion() {
 	const { register, handleSubmit, formState: { errors } } = useForm();

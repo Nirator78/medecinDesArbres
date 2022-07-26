@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
-import "../css/header.css"
+import "../css/header.css";
 import Toolbar from '@mui/material/Toolbar';
 import { Link as RouterLink, NavLink } from 'react-router-dom';
 import Connexion from "./Auth/Connexion";
@@ -12,8 +12,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Badge, Button, Container, IconButton, Menu, MenuItem } from "@mui/material";
 import ArticleService from "../services/article.service";
 import DensityMediumIcon from '@mui/icons-material/DensityMedium';
-import { green } from "@mui/material/colors";
-
+import { useStyles } from "../utils/style.js";
 
 const links = [
     { name: "Accueil", link: "/app" },
@@ -52,9 +51,10 @@ export default function Headers() {
     const handleCloseNavMenu = () => {
       setAnchorElNav(null);
     };
+    const style = useStyles();
 
     return (
-        <AppBar position="static" style={{ background: '#FFFFFF' }} >
+        <AppBar position="static" style={{ background: '#FFF' }} >
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
 
@@ -67,7 +67,7 @@ export default function Headers() {
                     onClick={handleOpenNavMenu}
                     color="inherit"
                     >
-                    <DensityMediumIcon sx={{ color: green[700] }}/>
+                    <DensityMediumIcon sx={style._defaultColor}/>
                     </IconButton>
                     <Menu
                     id="menu-appbar"
@@ -91,7 +91,7 @@ export default function Headers() {
                             // important for mapping
                             links.map((link, index) => {
                                 return (
-                                    <MenuItem style={{ color: '#4caf50' }} item key={index} onClick={handleCloseNavMenu}>
+                                    <MenuItem style={style._defaultColor} item key={index} onClick={handleCloseNavMenu}>
                                         <NavLink className={({ isActive }) => (isActive ? 'activer' : 'inactive')} to={link.link}>
                                             {link.name}
                                         </NavLink>
@@ -106,7 +106,7 @@ export default function Headers() {
                         // important for mapping
                         links.map((link, index) => {
                             return (
-                                <Button style={{ color: '#4caf50' }} item key={index}>
+                                <Button style={style._defaultColor} item key={index}>
                                     <NavLink className={({ isActive }) => (isActive ? 'activer' : 'inactive')} to={link.link}>
                                         {link.name}
                                     </NavLink>
@@ -127,7 +127,7 @@ export default function Headers() {
                             <RouterLink to="/app/panier">
                                 <IconButton aria-label="cart">
                                     <Badge badgeContent={panierTaille} color="secondary">
-                                        <ShoppingCartIcon style={{ color: '#4caf50' }} />
+                                        <ShoppingCartIcon style={style._defaultColor} />
                                     </Badge>
                                 </IconButton>
                             </RouterLink>

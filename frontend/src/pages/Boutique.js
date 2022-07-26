@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Paper, Grid, Typography, Stack } from '@mui/material';
 import CardBoutique from '../component/CardBoutique';
 import ArticleService from '../services/article.service';
-import { useStyles } from "../utils/style.ts";
+import { useStyles } from "../utils/style.js";
 
 export default function Boutique(props) {
     const [articles, setArticles] = useState([]);

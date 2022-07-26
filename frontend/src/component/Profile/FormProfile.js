@@ -5,6 +5,7 @@ import UserService from "../../services/user.service";
 import { useForm } from "react-hook-form";
 import FormError from '../FormError';
 import AuthService from "../../services/auth.service";
+import { useStyles } from "../../utils/style.js";
 
 export default function FormProfile({ }) {
     const { register, handleSubmit, formState: { errors }, setValue } = useForm({ mode: 'onBlur' });
@@ -38,6 +39,7 @@ export default function FormProfile({ }) {
         Object.assign(data, { id: user.id });
         await UserService.updateUser(data);
     };
+    const style = useStyles();
 
     return (
         <>
@@ -200,7 +202,7 @@ export default function FormProfile({ }) {
                         </Grid>
                     </Grid>
                     <Grid pt={1} align="center">
-                        <Button type="submit" style={{ backgroundColor: '#3e993f' }} variant="contained">Sauvegarder</Button>
+                        <Button type="submit" style={style._defaultBgColor} variant="contained">Sauvegarder</Button>
                     </Grid>
                 </Paper>
             </form>

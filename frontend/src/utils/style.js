@@ -1,6 +1,15 @@
-import vars from "./vars.ts";
+import vars from "./vars.js";
 export const useStyles = () => {
     return ({
+        _defaultColor: {
+            color: vars.color1,
+        },
+        _defaultBgColor: {
+            backgroundColor: vars.color1,
+        },
+        _defaultBorderColor: {
+            borderColor: vars.color1,
+        },
         box: {
             position: 'absolute',
         	top: '50%',

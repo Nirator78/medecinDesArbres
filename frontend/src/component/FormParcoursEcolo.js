@@ -82,7 +82,7 @@ export default function FormParcoursEcolo({ handleClose, handleRefresh }) {
                     />
                     {
                         errors.nbSac?.type === 'required' &&
-                        <FormError text="Le nom de sac est un champ obligatoire" />
+                        <FormError text="Le nombre de sacs est un champ obligatoire" />
                     }
                     <br></br>
                     <label className="block text-gray-700 text-md font-bold mb-2" htmlFor="nbSac">
@@ -91,7 +91,7 @@ export default function FormParcoursEcolo({ handleClose, handleRefresh }) {
                     <select {...register("ville")}
                         className="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat
                         border border-solid border-gray-300 rounded transition ease-in-out m-0">
-                        <option selected>Sélectionné une ville</option>
+                        <option selected>Sélectionnez une ville</option>
                         {
                             villesList?.map((ville, idx) => {
                                 return <option key={idx} value={ville.id}>{ville.ville}</option>

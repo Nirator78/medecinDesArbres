@@ -4,7 +4,7 @@ import ArticleService from '../services/article.service';
 import AuthService from '../services/auth.service';
 import { Paper, Typography, Box, Grid, CardContent, IconButton, CardMedia, Card, ButtonGroup, Button } from '@mui/material';
 import { GreenButton } from '../component';
-import { useStyles } from "../utils/style.ts";
+import { useStyles } from "../utils/style.js";
 
 export default function Panier(props) {
     const [paniers, setPaniers] = useState([]);
