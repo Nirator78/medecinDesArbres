@@ -24,7 +24,7 @@ function Quiz({ quiz }) {
     const navigate = useNavigate();
 
     const handleClick = () => {
-        navigate("/app/quiz/" + quiz.id);
+        navigate("/quiz/" + quiz.id);
     };
 
     return (

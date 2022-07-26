@@ -15,7 +15,7 @@ export default function FichePedagogiquePage(props) {
             if (response.status) {
                 setFichePedagogique(response.data[0]);
             } else {
-                navigate('/app/fiche-pedagogique')
+                navigate('/fiche-pedagogique')
             }
         }
         fetchData();

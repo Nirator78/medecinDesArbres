@@ -18,7 +18,7 @@ export default function Boutique(props) {
     }, [])
 
     const handleClick = () => {
-        navigate("/app/boutique");
+        navigate("/boutique");
     }
 
     return (

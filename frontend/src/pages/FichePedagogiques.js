@@ -42,7 +42,7 @@ export default function FichePedagogiques(props) {
                                         </Typography>
                                     </CardContent>
                                     <CardActions>
-                                        <GreenButton title="Voir" handleClick={() => navigate(`/app/fiche-pedagogique/${fiche.id}`)} />
+                                        <GreenButton title="Voir" handleClick={() => navigate(`/fiche-pedagogique/${fiche.id}`)} />
                                     </CardActions>
                                 </Card>
                             </Grid>

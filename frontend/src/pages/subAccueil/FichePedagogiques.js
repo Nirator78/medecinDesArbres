@@ -28,7 +28,7 @@ export default function FichePedagogiques(props) {
                 {fichePedagogiqueList.map((fiche, index) => {
                     return (
                         <Grid item xs={4} key={index}>
-                            <GreenButton title={fiche.titre} handleClick={() => navigate(`/app/fiche-pedagogique/${fiche.id}`)} />
+                            <GreenButton title={fiche.titre} handleClick={() => navigate(`/fiche-pedagogique/${fiche.id}`)} />
                         </Grid>
                     )
                 })}

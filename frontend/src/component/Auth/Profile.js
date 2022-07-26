@@ -72,7 +72,7 @@ export default function AccountMenu({ user }) {
 				transformOrigin={{ horizontal: 'right', vertical: 'top' }}
 				anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
 			>
-				<MenuItem onClick={() => navigate('/app/profile')}>
+				<MenuItem onClick={() => navigate('/profile')}>
 					<Avatar /> Profile
 				</MenuItem>
 				<Divider />
