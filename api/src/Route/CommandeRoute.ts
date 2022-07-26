@@ -11,48 +11,55 @@ export default [
         route: "/commandes",
         controller: CommandeController,
         action: "all",
-        allowedRoles: [UserRole.SUPERADMIN, UserRole.ADMIN]
+        allowedRoles: [UserRole.SUPERADMIN, UserRole.ADMIN],
+        isLoginNeeded: true
     },
     {
         method: "get",
         route: "/commande/:id",
         controller: CommandeController,
         action: "one",
-        allowedRoles: [UserRole.SUPERADMIN, UserRole.ADMIN, UserRole.USER]
+        allowedRoles: [UserRole.SUPERADMIN, UserRole.ADMIN, UserRole.USER],
+        isLoginNeeded: true
     },
     {
         method: "get",
         route: "/user/:id/commandes",
         controller: CommandeController,
         action: "getCommandeByUser",
-        allowedRoles: [UserRole.SUPERADMIN, UserRole.ADMIN, UserRole.USER]
+        allowedRoles: [UserRole.SUPERADMIN, UserRole.ADMIN, UserRole.USER],
+        isLoginNeeded: true
     },
     {
         method: "post",
         route: "/user/:userId/panier",
         controller: CommandeController,
         action: "createCommandeByPanier",
-        allowedRoles: [UserRole.SUPERADMIN, UserRole.ADMIN, UserRole.USER]
+        allowedRoles: [UserRole.SUPERADMIN, UserRole.ADMIN, UserRole.USER],
+        isLoginNeeded: true
     },
     {
         method: "post",
         route: "/commande",
         controller: CommandeController,
         action: "save",
-        allowedRoles: [UserRole.SUPERADMIN, UserRole.ADMIN]
+        allowedRoles: [UserRole.SUPERADMIN, UserRole.ADMIN],
+        isLoginNeeded: true
     },
     {
         method: "put",
         route: "/commande/:id",
         controller: CommandeController,
         action: "update",
-        allowedRoles: [UserRole.SUPERADMIN, UserRole.ADMIN]
+        allowedRoles: [UserRole.SUPERADMIN, UserRole.ADMIN],
+        isLoginNeeded: true
     },
     {
         method: "delete",
         route: "/commande/:id",
         controller: CommandeController,
         action: "remove",
-        allowedRoles: [UserRole.SUPERADMIN, UserRole.ADMIN]
+        allowedRoles: [UserRole.SUPERADMIN, UserRole.ADMIN],
+        isLoginNeeded: true
     }
 ];

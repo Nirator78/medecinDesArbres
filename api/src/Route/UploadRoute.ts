@@ -7,6 +7,7 @@ export default [
         route: "/upload/:type/:id",
         controller: UploadController,
         action: "upload",
-        allowedRoles: [UserRole.SUPERADMIN, UserRole.ADMIN, UserRole.USER]
+        allowedRoles: [UserRole.SUPERADMIN, UserRole.ADMIN, UserRole.USER],
+        isLoginNeeded: true
     }
 ];
