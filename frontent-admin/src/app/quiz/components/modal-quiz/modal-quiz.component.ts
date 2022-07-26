@@ -35,7 +35,8 @@ export class ModalQuizComponent{
     });
 
     if(this.mode === "modal"){
-      this.quiz = {}
+      this.quiz = {};
+      this.reponses = [];
     }
 
     this.showQuizQuestionForm = !this.quiz.id;
@@ -46,17 +47,17 @@ export class ModalQuizComponent{
 
     let methode = "";
     if(this.quiz.id){
-      methode="updateQuiz"
+      methode="updateQuiz";
       form.value.id = JSON.parse(this.quiz.id);
     }
     else {
       methode="createQuiz"
     }
-    form.value.questions = this.quiz.questions
+    form.value.questions = this.quiz.questions;
 
     form.value.questions.map((obj) => {
       // On vire les images du formulaire
-      this.filesQuestions.push(obj.image)
+      this.filesQuestions.push(obj.image);
       delete obj.image;
     });
     // Post de la quiz
@@ -74,11 +75,12 @@ export class ModalQuizComponent{
         if(this.filesQuestions) {
           const formDataImage = new FormData();
           formDataImage.append("image", this.filesQuestions[idx]);
-          await this.quizService.uploadImageQuizQuestion(obj.id, formDataImage)
+          await this.quizService.uploadImageQuizQuestion(obj.id, formDataImage);
         }
       });
 
       // Ferme le modal
+      form.resetForm();
       this.modalService.dismissAll();
       // Refresh la liste des utilisateurs
       this.listQuizComponent.refresh();

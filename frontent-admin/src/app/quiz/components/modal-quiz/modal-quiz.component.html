@@ -20,15 +20,19 @@
             name="titre"
             aria-describedby="inputGroup-sizing-sm"
             required
-            minlength="4"
+            minlength="5"
+            maxlength="50"
             #titre="ngModel"
             placeholder="Titre du quiz"
             ngModel="{{quiz['titre']}}"
           >
 
-          <div *ngIf="titre.invalid  && (titre.dirty || titre.touched)">
+          <div *ngIf="theme.invalid  && (titre.dirty || titre.touched)">
             <div *ngIf="titre.errors?.['minlength']">
-              <small id="titreMin" class="text-danger"> Il faut minimum 4 caractéres</small>
+              <small id="titreMin" class="text-danger"> Il faut minimum 5 caractéres</small>
+            </div>
+            <div *ngIf="titre.errors?.['maxlength']">
+              <small id="titreMax" class="text-danger"> Il faut au maximum 50 caractéres</small>
             </div>
             <div *ngIf="titre.errors?.['required']">
               <small id="titreRequired" class="text-danger"> Titre est obligatoire</small>
@@ -45,13 +49,21 @@
             name="theme"
             aria-describedby="inputGroup-sizing-sm"
             required
+            minlength="5"
+            maxlength="30"
             #theme="ngModel"
-            placeholder="Theme"
+            placeholder="Thème"
             [ngModel]="quiz['theme']"
           >
           <div *ngIf="theme.invalid  && (theme.dirty || theme.touched)">
             <div *ngIf="theme.errors?.['required']">
-              <small id="themeRequired" class="text-danger"> Theme est obligatoire</small>
+              <small id="themeRequired" class="text-danger"> Thème est obligatoire</small>
+            </div>
+            <div *ngIf="theme.errors?.['minlength']">
+              <small id="themeMin" class="text-danger"> Il faut minimum 5 caractéres</small>
+            </div>
+            <div *ngIf="theme.errors?.['maxlength']">
+              <small id="themeMax" class="text-danger"> Il faut au maximum 30 caractéres</small>
             </div>
           </div>
         </div>
@@ -68,6 +80,8 @@
             name="description"
             aria-describedby="inputGroup-sizing-sm"
             required
+            minlength="5"
+            maxlength="800"
             #description="ngModel"
             placeholder="Description"
             ngModel="{{quiz['description']}}"
@@ -76,6 +90,12 @@
           <div *ngIf="description.invalid  && (description.dirty || description.touched)">
             <div *ngIf="description.errors?.['required']">
               <small id="descriptionRequired" class="text-danger"> Description est obligatoire</small>
+            </div>
+            <div *ngIf="description.errors?.['minlength']">
+              <small id="descriptionMin" class="text-danger"> Il faut minimum 5 caractéres</small>
+            </div>
+            <div *ngIf="description.errors?.['maxlength']">
+              <small id="descriptionMax" class="text-danger"> Il faut au maximum 800 caractéres</small>
             </div>
           </div>
         </div>
@@ -100,13 +120,17 @@
             name="age"
             aria-describedby="inputGroup-sizing-sm"
             required
+            min="3"
             #age="ngModel"
             placeholder="Age requis"
             [ngModel]="quiz['age']"
           >
           <div *ngIf="age.invalid  && (age.dirty || age.touched)">
             <div *ngIf="age.errors?.['required']">
-              <small id="themeRequired" class="text-danger"> Age est obligatoire</small>
+              <small id="ageRequired" class="text-danger"> Age est obligatoire</small>
+            </div>
+            <div *ngIf="age.errors?.['min']">
+              <small id="age" class="text-danger"> Age invalide, l'age minimum est de 3 ans</small>
             </div>
           </div>
         </div>
@@ -187,6 +211,8 @@
               name="question"
               aria-describedby="inputGroup-sizing-sm"
               required
+              minlength="5"
+              maxlength="800"
               #question="ngModel"
               placeholder="Question"
               ngModel="{{quiz['question']}}"
@@ -194,7 +220,13 @@
 
             <div *ngIf="question.invalid  && (question.dirty || question.touched)">
               <div *ngIf="question.errors?.['required']">
-                <small id="questionRequired" class="text-danger"> Question est obligatoire</small>
+                <small id="questionRequired" class="text-danger"> Le champ question est obligatoire</small>
+              </div>
+              <div *ngIf="question.errors?.['minlength']">
+                <small id="questionMin" class="text-danger"> Il faut minimum 5 caractéres</small>
+              </div>
+              <div *ngIf="question.errors?.['maxlength']">
+                <small id="questionMax" class="text-danger"> Il faut au maximum 800 caractéres</small>
               </div>
             </div>
             <div class="mb-3 w-96">
@@ -234,10 +266,23 @@
                     name="reponse"
                     aria-describedby="inputGroup-sizing-sm"
                     required
+                    minlength="5"
+                    maxlength="800"
                     #reponse="ngModel"
                     placeholder="Réponse"
                     [ngModel]="quiz['reponse']"
                   ></textarea>
+                  <div *ngIf="reponse.invalid  && (reponse.dirty || reponse.touched)">
+                    <div *ngIf="reponse.errors?.['required']">
+                      <small id="reponseRequired" class="text-danger"> Le champ réponse est obligatoire</small>
+                    </div>
+                    <div *ngIf="reponse.errors?.['minlength']">
+                      <small id="reponseMin" class="text-danger"> Il faut minimum 5 caractéres</small>
+                    </div>
+                    <div *ngIf="reponse.errors?.['maxlength']">
+                      <small id="reponseMax" class="text-danger"> Il faut au maximum 800 caractéres</small>
+                    </div>
+                  </div>
                 </div>
                 <!-- Réponse -->
               </div>
@@ -266,7 +311,7 @@
 
         <div class="mt-2">
           <!-- Ajouter ligne quiz -->
-          <input class="btn btn-primary btn-sm" type="submit" value="Ajouter une ligne" [disabled]="quizQuestionForm.invalid">
+          <input class="btn btn-primary btn-sm" type="submit" value="Ajouter une ligne" [disabled]="quizQuestionForm.invalid || reponses.length == 0">
         </div>
       </form>
       <!-- Fermer -->

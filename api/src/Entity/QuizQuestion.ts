@@ -1,3 +1,4 @@
+import { IsString, MaxLength, Min, MinLength } from "class-validator";
 import {Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToOne, JoinColumn, OneToMany} from "typeorm";
 
 import {Image} from "./Image";
@@ -11,6 +12,9 @@ export class QuizQuestion {
     id: number;
 
     @Column()
+    @IsString()
+    @MinLength(5)
+    @MaxLength(800)
     question: string;
 
     @OneToOne(() => Image, {cascade: true, nullable: true})
