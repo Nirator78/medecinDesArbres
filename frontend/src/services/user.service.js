@@ -10,7 +10,9 @@ class UserService {
     }
 
     async updateUser(payload) {
-        payload.password = AuthService.encryptPassword(payload.password);
+        if(payload.password !== AuthService.getUser().password) {
+            payload.password = AuthService.encryptPassword(payload.password);
+        }
         payload.role = AuthService.getUser().role;
         const response = await api.put('/user/'+ payload.id, payload, { headers: { "Authorization": `Bearer ${AuthService.getToken()}` } } );
         const user = await response; 
