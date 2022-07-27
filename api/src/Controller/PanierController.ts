@@ -6,6 +6,7 @@ import {getRepository} from "typeorm";
 import {NextFunction, Request, Response} from "express";
 import {Panier} from "../Entity/Panier";
 import {AuthentificationService} from '../Service/AuthentificationService';
+import { validate } from "class-validator";
 
 export class PanierController {
 
@@ -44,13 +45,27 @@ export class PanierController {
     }
 
     async save(request: Request, response: Response, next: NextFunction) {
-        const panier = await this.panierRepository.save(request.body);
-        return { status: 1, data: panier } ;
+        let panier = new Panier();
+        Object.assign(panier, {...panier, ...request.body});
+        const errors = await validate(panier);
+        if(errors.length > 0){
+            return { status: 0, error: errors };
+        }else{
+            const panierSaved = await this.panierRepository.save(request.body);
+            return { status: 1, data: panierSaved };
+        }
     }
 
     async update(request: Request, response: Response, next: NextFunction) {
-        const panier = await this.panierRepository.save(request.body);
-        return { status: 1, data: panier } ;
+        let panier = new Panier();
+        Object.assign(panier, {...panier, ...request.body});
+        const errors = await validate(panier);
+        if(errors.length > 0){
+            return { status: 0, error: errors };
+        }else{
+            const panierSaved = await this.panierRepository.save(request.body);
+            return { status: 1, data: panierSaved };
+        }
     }
 
     async remove(request: Request, response: Response, next: NextFunction) {

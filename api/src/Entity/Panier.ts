@@ -2,6 +2,7 @@
  * Created by Clement on 20/07/2021
  * Created At 09:26
  */
+import { IsNumber, IsString, Min } from 'class-validator';
 import {Entity, PrimaryGeneratedColumn, Column, JoinTable, ManyToOne} from 'typeorm';
 
 import {Article} from './Article';
@@ -18,7 +19,9 @@ export class Panier {
     article: Article;
 
     @Column()
-    quantite: string;
+    @IsNumber()
+    @Min(1)
+    quantite: number;
 
     @ManyToOne(type => User, user => user.id)
     @JoinTable({ name: "user" })
