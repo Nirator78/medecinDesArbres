@@ -91,7 +91,7 @@ export default function Panier(props) {
                 }
 
                 <Grid container mt={2} mb={2}>
-                    <Grid itemx xs={11}>
+                    <Grid item xs={11}>
                         <Typography variant="h6">
                             Sous-Total ({totalArticle} articles)
                         </Typography>

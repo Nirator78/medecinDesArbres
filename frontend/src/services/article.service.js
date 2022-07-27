@@ -27,7 +27,7 @@ class ArticleService {
                 user: userId,
                 article: articleId,
                 quantite: quantity
-            })
+            }, { headers: { "Authorization": `Bearer ${AuthService.getToken()}` } })
             .then((response) => { return response.status })
     }
     async getPanier(

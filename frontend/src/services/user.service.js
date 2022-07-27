@@ -12,7 +12,7 @@ class UserService {
 
     async updateUser(payload) {
         payload.password = AuthService.encryptPassword(payload.password);
-        const response = await axios.put(API_URL+'/user/'+ payload.id, payload);
+        const response = await axios.put(API_URL+'/user/'+ payload.id, payload, { headers: { "Authorization": `Bearer ${AuthService.getToken()}` } } );
         const user = await response;
         // on met l'utilisateur modifié dans le localstorage
         localStorage.setItem("user", JSON.stringify(user.data.data));
