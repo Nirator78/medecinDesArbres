@@ -16,13 +16,13 @@ export class User {
     @IsNotEmpty()
     @Column()
     @IsString()
-    @MinLength(4)
+    @MinLength(1)
     nom: string;
 
     @IsNotEmpty()
     @Column()
     @IsString()
-    @MinLength(4)
+    @MinLength(1)
     prenom: string;
 
     @IsNotEmpty()
