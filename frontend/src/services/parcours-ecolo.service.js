@@ -22,13 +22,13 @@ class ParcoursEcoloService {
     }
 
     async createParcoursEcolo(payload) {
-        const response = await api.post('/parcours-ecolo', payload);
+        const response = await api.post('/parcours-ecolo', payload, { headers: {"Authorization" : `Bearer ${AuthService.getToken()}`} });
         const parcoursEcolo = await response;
         return response.status ? parcoursEcolo.data : false;
     }
 
     async deleteParcoursEcolo(id) {
-        const response = await api.delete('/parcours-ecolo/'+id);
+        const response = await api.delete('/parcours-ecolo/'+id, { headers: {"Authorization" : `Bearer ${AuthService.getToken()}`} });
         const parcoursEcolo = await response;
         return response.status ? parcoursEcolo.statut : false;
     }

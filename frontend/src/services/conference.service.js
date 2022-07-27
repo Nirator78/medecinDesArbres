@@ -1,3 +1,4 @@
+import { AuthService } from ".";
 import {api} from "../utils/axios";
 
 class ConferenceService {
@@ -9,7 +10,7 @@ class ConferenceService {
     }
 
     async addUserToConference(conferenceId, userId) {
-        const response = await api.post('/conference/' + conferenceId + '/user/' + userId);
+        const response = await api.post('/conference/' + conferenceId + '/user/' + userId,"", { headers: { "Authorization": `Bearer ${AuthService.getToken()}` } });
         const conferenceList = await response.data;
         return conferenceList.data;
     }

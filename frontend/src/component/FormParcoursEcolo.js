@@ -22,8 +22,8 @@ export default function FormParcoursEcolo({ handleClose, handleRefresh }) {
         const user = AuthService.getUser();
         const image = data.image ? data.image[0] : null;
         delete data.image;
+        data.nbSac = Number(data.nbSac);
         Object.assign(data, { user: user.id });
-
         const newParcoursEcolo = await ParcoursEcoloService.createParcoursEcolo(data);
 
         ParcoursEcoloService.uplaodParcoursEcoloImage(image, newParcoursEcolo.data.id);
