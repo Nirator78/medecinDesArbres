@@ -48,7 +48,7 @@ export default function Panier(props) {
                 {
                     paniers.map((panier, index) => {
                         return (
-                            <Card sx={{ display: 'flex' }}>
+                            <Card key={index} sx={{ display: 'flex' }}>
                                 <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                                     <CardContent sx={{ flex: '1 0 auto' }}>
                                         <Typography component="div" variant="h5">
