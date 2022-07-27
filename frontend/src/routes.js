@@ -11,6 +11,7 @@ import QuizPage from "./pages/QuizPage";
 import Profile from "./pages/Profile";
 import Panier from "./pages/Panier";
 import FichePedagogiquePage from "../src/component/FichePedagogiquePage";
+import AnswerQuiz from "./pages/AnswerQuiz";
 
 const MAP_ROUTES = [
     {
@@ -22,7 +23,12 @@ const MAP_ROUTES = [
             {
                 path: "quiz", children: [
                     { index: true, element: <Quizs /> },
-                    { path: ":id", element: <QuizPage /> }
+                    {
+                        path: ":id", children: [
+                            { index: true, element: <QuizPage /> },
+                            { path: "reponse/:reponseId", element: <AnswerQuiz /> },
+                        ]
+                    },
                 ]
             },
             { path: "parcours-ecolo", element: <ParcoursEcolo /> },

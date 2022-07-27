@@ -112,7 +112,7 @@ export default function QuizPage(props) {
         }
     }
 
-    const handleClick = () => {
+    const handleClick = async () => {
         let exist = true;
         quiz.questions.forEach((question) => {
             let answerExist = false;
@@ -129,8 +129,8 @@ export default function QuizPage(props) {
         setError(!exist);
 
         if (exist) {
-            UserQuizService.postAnswers(user.id, quiz.id, answers);
-            navigate("/quiz")
+            const response = await UserQuizService.postAnswers(user.id, quiz.id, answers);
+            navigate("/quiz/" + id + "/reponse/" + response.id)
         }
     };
 
