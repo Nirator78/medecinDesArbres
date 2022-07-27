@@ -9,7 +9,7 @@ export class UserQuizController {
     private authentificationService = new AuthentificationService();
 
     async all(request: Request, response: Response, next: NextFunction) {
-        let userQuizListe = await this.userQuizRepository.find({ relations: ["user", "quiz", "userQuestion", "userQuestion.question", "userQuestion.userReponse", "userQuestion.userReponse.reponse"] });
+        let userQuizListe = await this.userQuizRepository.find({ relations: ["user", "quiz", "userQuestion", "userQuestion.question", "userQuestion.question.reponse", "userQuestion.userReponse", "userQuestion.userReponse.reponse"] });
 
         if(userQuizListe){
             return { status: 1, data: userQuizListe }
@@ -19,7 +19,7 @@ export class UserQuizController {
     }
 
     async one(request: Request, response: Response, next: NextFunction) {
-        let userQuiz = await this.userQuizRepository.findOne(request.params.id,{ relations: ["user", "quiz", "userQuestion", "userQuestion.question", "userQuestion.userReponse", "userQuestion.userReponse.reponse"] });
+        let userQuiz = await this.userQuizRepository.findOne(request.params.id,{ relations: ["user", "quiz", "userQuestion", "userQuestion.question", "userQuestion.question.reponse", "userQuestion.userReponse", "userQuestion.userReponse.reponse"] });
         if(userQuiz){
             return { status: 1, data: userQuiz }
         }else{
@@ -48,7 +48,7 @@ export class UserQuizController {
     }
 
     async getUserQuizByUser(request: Request, response: Response, next: NextFunction) {
-        let userQuizListe = await this.userQuizRepository.find({ where: {user: request.params.id},  relations: ["user", "quiz", "userQuestion", "userQuestion.question", "userQuestion.userReponse", "userQuestion.userReponse.reponse"] });
+        let userQuizListe = await this.userQuizRepository.find({ where: {user: request.params.id},  relations: ["user", "quiz", "userQuestion", "userQuestion.question", "userQuestion.question.reponse", "userQuestion.userReponse", "userQuestion.userReponse.reponse"] });
 
         if(userQuizListe){
             return { status: 1, data: userQuizListe }
