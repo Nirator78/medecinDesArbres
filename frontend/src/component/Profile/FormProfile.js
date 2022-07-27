@@ -183,24 +183,6 @@ export default function FormProfile({ }) {
                             }
                         </Grid>
                     </Grid>
-                    <Grid container>
-                        <Grid item xs={12}>
-                            <label className="text-gray-700 text-md font-bold mb-2" htmlFor="password">
-                                Mot de passe
-                            </label>
-                            <input
-                                name="password"
-                                className="form-control w-full py-2 px-3 text-base font-normal text-gray-700 bg-white bg-clip-padding
-                                        border border-solid border-gray-300 rounded transition ease-in-out m-0"
-                                placeholder="Mot de passe"
-                                {...register("password", { required: true, maxLength: 150 })}
-                            />
-                            {
-                                errors.password?.type === 'required' &&
-                                <FormError text="Le mot de passe est un champs obligatoire" />
-                            }
-                        </Grid>
-                    </Grid>
                     <Grid pt={1} align="center">
                         <Button type="submit" style={style._defaultBgColor} variant="contained">Sauvegarder</Button>
                     </Grid>

@@ -12,7 +12,7 @@ h1
   font-size: 20px;
   font-family: "Segoe print";
   font-weight: bold;
-  color: #3e993f;
+  color: #4f7c1a;
 }
 
 h2
@@ -20,12 +20,12 @@ h2
   font-size: 15px;
   font-style: italic;
   font-family: "Segoe print";
-  color: #3e993f;
+  color: #4f7c1a;
 }
 
 h3
 {
-  color: #3e993f;
+  color: #4f7c1a;
 }
 
 .nav-item::after {
@@ -33,7 +33,7 @@ h3
   display: block;
   width: 0px;
   height: 2px;
-  background: #3e993f;
+  background: #4f7c1a;
   transition: 0.4s;
 }
 
@@ -49,10 +49,10 @@ h3
 .nav-link:hover {
   padding: 5px 5px;
   transition: 0.2s;
-  color: #3e993f;
+  color: #4f7c1a;
 }
 
 .active{
-  background-color: #3e993f;
-  color: #3e993f;
+  background-color: #4f7c1a;
+  color: #4f7c1a;
 }

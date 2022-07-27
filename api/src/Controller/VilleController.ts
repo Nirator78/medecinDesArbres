@@ -2,6 +2,7 @@ import {getRepository, Like} from "typeorm";
 import {NextFunction, Request, Response} from "express";
 import {Ville} from "../Entity/Ville";
 import {AuthentificationService} from '../Service/AuthentificationService';
+import { validate } from "class-validator";
 
 export class VilleController {
 
@@ -34,13 +35,27 @@ export class VilleController {
     }
 
     async save(request: Request, response: Response, next: NextFunction) {
-        const ville = await this.villeRepository.save(request.body);
-        return { status: 1, data: ville } ;
+        let ville = new Ville();
+        Object.assign(ville, {...ville, ...request.body});
+        const errors = await validate(ville);
+        if(errors.length > 0){
+            return { status: 0, error: errors };
+        }else{
+            const villeSaved = await this.villeRepository.save(request.body);
+            return { status: 1, data: villeSaved };
+        }
     }
 
     async update(request: Request, response: Response, next: NextFunction) {
-        const ville = await this.villeRepository.save(request.body);
-        return { status: 1, data: ville } ;
+        let conference = new Ville();
+        Object.assign(conference, {...conference, ...request.body});
+        const errors = await validate(conference);
+        if(errors.length > 0){
+            return { status: 0, error: errors };
+        }else{
+            const villeSaved = await this.villeRepository.save(request.body);
+            return { status: 1, data: villeSaved };
+        }
     }
 
     async remove(request: Request, response: Response, next: NextFunction) {

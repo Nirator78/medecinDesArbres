@@ -28,3 +28,9 @@ main {
     margin-left:230px;
 } 
 
+.btn-link{
+    color: #4f7c1a;
+}
+.btn-link:hover{
+    color: #477018;
+}

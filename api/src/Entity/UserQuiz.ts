@@ -3,6 +3,7 @@ import {Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, JoinTable}
 import {Quiz} from "./Quiz";
 import {UserQuestion} from "./UserQuestion";
 import {User} from "./User";
+import { IsNumber } from "class-validator";
 
 @Entity()
 export class UserQuiz {
@@ -21,5 +22,6 @@ export class UserQuiz {
     userQuestion: UserQuestion[];
 
     @Column()
+    @IsNumber()
     fini: number;
 }
