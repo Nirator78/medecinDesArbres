@@ -17,7 +17,7 @@ const MAP_ROUTES = [
     {
         path: "/", element: <Interface />, children: [
             { index: true, element: <Accueil /> },
-            { path: "notfound", element: <NotFound /> },
+            { path:'*', exact:true, element: <NotFound /> },
             { path: "boutique", element: <Boutique /> },
             { path: "conference", element: <Conference /> },
             {

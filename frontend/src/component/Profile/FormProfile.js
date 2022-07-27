@@ -29,7 +29,7 @@ export default function FormProfile({ }) {
                 setValue('password', userConnected.password)
             }
             else {
-                navigate('/app');
+                navigate('/');
             }
         }
         fetchData();

@@ -10,17 +10,22 @@ export default function Panier(props) {
     const [paniers, setPaniers] = useState([]);
     let total = 0
     let totalArticle = 0
+    let user = AuthService.getUser()
     const navigate = useNavigate();
 
-    const user = AuthService.getUser();
-
+    
     useEffect(() => {
         async function fetchData() {
-            const response = await ArticleService.getPanier(user.id);
-            setPaniers(response);
+            if (user) {
+                const response = await ArticleService.getPanier(user.id);
+                setPaniers(response);
+            }
+            else {
+                navigate("/");
+            }
         }
         fetchData();
-    }, [user.id])
+    }, [])
 
     const handleCommande = () => {
         async function fetchData() {
