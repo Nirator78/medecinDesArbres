@@ -19,9 +19,9 @@ class UserQuizService {
     async getUserQuiz(
         id
     ) {
-        const response = await axios.get(API_URL + "/user-quiz/" + id, { headers: { "Authorization": `Bearer ${AuthService.getToken()}` } });
-        const command = await response.data.data;
-        return command
+        const response = await api.get("/user-quiz/" + id, { headers: { "Authorization": `Bearer ${AuthService.getToken()}` } });
+        const userQuiz = await response.data.data;
+        return userQuiz
     }
 }
 
