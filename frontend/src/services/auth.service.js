@@ -1,6 +1,5 @@
-import axios from "axios"
 import cryptoJS from "crypto-js";
-const API_URL = "http://localhost:3000/api"
+import {api} from "../utils/axios";
 
 class AuthService {
 
@@ -12,8 +11,8 @@ class AuthService {
         // On crypte le mot de passe avant envoei api
         data.password = this.encryptPassword(data.password);
 
-        return axios
-            .post(API_URL + "/user/login", data)
+        return api
+            .post("/user/login", data)
             .then(response => {
                 if (response.data.token) {
                     localStorage.setItem("user", JSON.stringify(response.data.data));
@@ -22,22 +21,26 @@ class AuthService {
                 return response.data;
             });
     }
+
     logout() {
         localStorage.clear();
         window.location.reload();
     }
+
     register(data) {
         // On crypte le mot de passe avant envoei api
         data.password = this.encryptPassword(data.password);
         
-        return axios.post(API_URL + '/user', data)
+        return api.post('/user', data)
             .then(response => {
                 return response.data;
             });
     }
+
     getToken() {
         return JSON.parse(localStorage.getItem("token"));
     }
+    
     getUser() {
         return JSON.parse(localStorage.getItem("user"));
     }

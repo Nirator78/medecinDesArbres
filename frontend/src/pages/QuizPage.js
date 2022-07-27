@@ -5,7 +5,7 @@ import GreenButton from '../component/GreenButton';
 import { Paper, Typography, CircularProgress, Card, CardHeader, CardMedia, CardContent, FormControl, RadioGroup, FormControlLabel, Radio, Divider } from '@mui/material';
 import AuthService from "../services/auth.service"
 import UserQuizService from '../services/user-quiz.service';
-
+import { baseURLImage } from '../utils/axios';
 
 function Question({ question, getValue }) {
     const [value, setValue] = React.useState(0);
@@ -34,7 +34,7 @@ function Question({ question, getValue }) {
                     maxWidth: 500,
                     maxHeight: 180,
                 }}
-                image={"http://localhost:3000/" + question?.image?.url}
+                image={baseURLImage + question?.image?.url}
                 alt={question.question}
             />
             <CardContent>
