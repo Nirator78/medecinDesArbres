@@ -41,6 +41,7 @@ export class ModalUserComponent {
     // Post l'utilisateur
     this.userService[methode](form).then(() => {
       // Ferme le modal
+      form.resetForm();
       this.modalService.dismissAll();
       // Refresh la liste des utilisateurs
       this.listUserComponent.refresh();

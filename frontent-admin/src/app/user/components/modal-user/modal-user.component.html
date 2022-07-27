@@ -20,7 +20,7 @@
             name="nom"
             aria-describedby="inputGroup-sizing-sm"
             required
-            minlength="4"
+            minlength="1"
             #nom="ngModel"
             placeholder="Nom"
             ngModel="{{user['nom']}}"
@@ -28,7 +28,7 @@
 
           <div *ngIf="nom.invalid  && (nom.dirty || nom.touched)">
             <div *ngIf="nom.errors?.['minlength']">
-              <small id="nomMin" class="text-danger"> Il faut minimum 4 caractéres</small>
+              <small id="nomMin" class="text-danger"> Il faut minimum 1 caractére</small>
             </div>
             <div *ngIf="nom.errors?.['required']">
               <small id="nomRequired" class="text-danger"> Nom est obligatoire</small>
@@ -46,6 +46,7 @@
             name="prenom"
             aria-describedby="inputGroup-sizing-sm"
             required
+            minlength="1"
             #prenom="ngModel"
             placeholder="Prénom"
             ngModel="{{user['prenom']}}"
@@ -54,6 +55,9 @@
           <div *ngIf="prenom.invalid  && (prenom.dirty || prenom.touched)">
             <div *ngIf="prenom.errors?.['required']">
               <small id="prenomRequired" class="text-danger"> Prénom est obligatoire</small>
+            </div>
+            <div *ngIf="prenom.errors?.['minlength']">
+              <small id="prenomMin" class="text-danger"> Il faut minimum 1 caractére</small>
             </div>
           </div>
         </div>
@@ -219,6 +223,7 @@
             aria-describedby="inputGroup-sizing-sm"
             ngModel="{{user['password']}}"
             required
+            minlength="6"
             #password="ngModel"
             placeholder="Mot de passe"
           >
@@ -226,6 +231,9 @@
           <div *ngIf="password.invalid  && (password.dirty || password.touched)">
             <div *ngIf="password.errors?.['required']">
               <small id="password" class="text-danger"> Mot de passe est obligatoire</small>
+            </div>
+            <div *ngIf="password.errors?.['minlength']">
+              <small id="password" class="text-danger"> Mot de passe doit contenir au moins 6 caractères</small>
             </div>
           </div>
         </div>
