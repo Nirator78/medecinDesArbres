@@ -14,7 +14,14 @@ class UserQuizService {
                 quiz: quiz,
                 userQuestion: answers
             }, { headers: { "Authorization": `Bearer ${AuthService.getToken()}` } })
-            .then((response) => { return response.status })
+            .then((response) => { return response.data.data })
+    }
+    async getUserQuiz(
+        id
+    ) {
+        const response = await axios.get(API_URL + "/user-quiz/" + id, { headers: { "Authorization": `Bearer ${AuthService.getToken()}` } });
+        const command = await response.data.data;
+        return command
     }
 }
 
