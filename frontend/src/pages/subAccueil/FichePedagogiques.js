@@ -21,10 +21,10 @@ export default function FichePedagogiques(props) {
 
     return (
         <Paper elevation={style.containerPaper.elevation} sx={style.containerPaper.sx}>
-            <Typography variant="h6">
+            <Typography variant="h6" sx={{ pb: 2 }}>
                 Fiches pédagogiques
             </Typography>
-            <Typography>
+            <Typography sx={{ pb: 3 }}>
                 Informez vous grâce à nos supers fiches pédagogiques, adaptées a tous !
             </Typography>
             <Grid container spacing={2}>

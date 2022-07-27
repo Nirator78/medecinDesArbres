@@ -1,10 +1,13 @@
 import React from "react";
 import Box from "@mui/material/Box"
 import { Typography } from "@mui/material";
+import { useStyles } from "../utils/style.js";
 
 function CardList({ title, data }) {
+    const style = useStyles();
     return (
-        <Box sx={{ p: 2, border: 1, borderColor: "green", borderRadius: 4 }}>
+
+        <Box sx={style.boxBordered}>
             <Typography variant="h6">
                 {title}
             </Typography>
