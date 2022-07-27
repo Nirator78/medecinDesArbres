@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Card, CardHeader, CardMedia, CardContent, CardActions, Paper, Typography, Grid } from '@mui/material';
 import QuizService from '../services/quiz.service';
 import GreenButton from '../component/GreenButton';
+import { baseURLImage } from '../utils/axios';
 
 function SubHeader({ quiz }) {
     return (
@@ -41,7 +42,7 @@ function Quiz({ quiz }) {
                     maxWidth: 500,
                     maxHeight: 180,
                 }}
-                image={"http://localhost:3000/" + quiz?.image?.url}
+                image={baseURLImage + quiz?.image?.url}
                 alt={quiz.description}
             />
             <CardContent>

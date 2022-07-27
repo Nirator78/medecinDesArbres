@@ -13,6 +13,7 @@ import { Badge, Button, Container, IconButton, Menu, MenuItem } from "@mui/mater
 import ArticleService from "../services/article.service";
 import DensityMediumIcon from '@mui/icons-material/DensityMedium';
 import { green } from "@mui/material/colors";
+import { useStyles } from "../utils/style.js";
 
 const links = [
     { name: "Accueil", link: "/" },
@@ -47,6 +48,7 @@ export default function Headers() {
     const handleCloseNavMenu = () => {
         setAnchorElNav(null);
     };
+    const style = useStyles();
 
     return (
         <AppBar position="static" style={{ background: '#FFFFFF' }} >
@@ -62,7 +64,7 @@ export default function Headers() {
                             onClick={handleOpenNavMenu}
                             color="inherit"
                         >
-                            <DensityMediumIcon sx={{ color: green[700] }} />
+                            <DensityMediumIcon sx={style._defaultColor} />
                         </IconButton>
                         <Menu
                             id="menu-appbar"
@@ -86,7 +88,7 @@ export default function Headers() {
                                 // important for mapping
                                 links.map((link, index) => {
                                     return (
-                                        <MenuItem style={{ color: '#4caf50' }} key={index} onClick={handleCloseNavMenu}>
+                                        <MenuItem style={style._defaultColor} key={index} onClick={handleCloseNavMenu}>
                                             <NavLink className={({ isActive }) => (isActive ? 'activer' : 'inactive')} to={link.link}>
                                                 {link.name}
                                             </NavLink>
@@ -101,7 +103,7 @@ export default function Headers() {
                             // important for mapping
                             links.map((link, index) => {
                                 return (
-                                    <Button style={{ color: '#4caf50' }} key={index}>
+                                    <Button style={style._defaultColor} key={index}>
                                         <NavLink className={({ isActive }) => (isActive ? 'activer' : 'inactive')} to={link.link}>
                                             {link.name}
                                         </NavLink>
@@ -121,8 +123,8 @@ export default function Headers() {
                         <>
                             <RouterLink to="/panier">
                                 <IconButton aria-label="cart">
-                                    <Badge badgeContent={panierTaille} color="secondary">
-                                        <ShoppingCartIcon style={{ color: '#4caf50' }} />
+                                    <Badge badgeContent={panierTaille} color="success">
+                                        <ShoppingCartIcon style={style._defaultColor} />
                                     </Badge>
                                 </IconButton>
                             </RouterLink>

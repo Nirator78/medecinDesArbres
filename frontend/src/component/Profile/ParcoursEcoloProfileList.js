@@ -5,6 +5,7 @@ import ParcoursEcoloService from "../../services/parcours-ecolo.service";
 import AuthService from "../../services/auth.service";
 import FormParcoursEcolo from '../FormParcoursEcolo';
 import { useStyles } from "../../utils/style.js";
+import {baseURLImage} from '../../utils/axios';
 
 export default function ParcoursEcoloProfileList() {
     const [parcoursEcoloList, setParcoursEcoloList] = useState([]);
@@ -58,7 +59,7 @@ export default function ParcoursEcoloProfileList() {
                                                 maxWidth: 500,
                                                 maxHeight: 180,
                                             }}
-                                            image={"http://localhost:3000/" + parcoursEcolo?.image?.url}
+                                            image={baseURLImage + parcoursEcolo?.image?.url}
                                             alt={parcoursEcolo.description}
                                         />
                                         <CardContent>

@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Paper, Typography, Grid, Modal, Button, Card, CardHeader, Avatar, CardMedia, CardContent, CardActions } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
-import ParcoursEcoloService from "../services/parcours-ecolo.service";
-import AuthService from "../services/auth.service";
+import { AuthService, ParcoursEcoloService } from "../services";
 import FormParcoursEcolo from "../component/FormParcoursEcolo";
+import { useStyles } from "../utils/style.js";
+import {baseURLImage} from '../utils/axios';
 
 export default function ParcoursEcolo(props) {
     const [parcoursEcoloList, setParcoursEcoloList] = useState([]);
@@ -25,18 +26,19 @@ export default function ParcoursEcolo(props) {
     const handleClose = () => setOpen(false);
 
     const handleRefresh = () => setRefresh(true);
+    const style = useStyles();
 
     return (
         <>
-            <Paper sx={{ p: 4, mt: 5, ml: 4, mr: 4, mb: 2, borderRadius: 2 }}>
+            <Paper sx={style.containerPaperPage.sx}>
                 <Typography align="center" variant="h4" gutterBottom component="div">
                     Liste des parcours écolos de nos utilisateurs
                 </Typography>
 
                 {
                     AuthService.isLogin() ?
-                        <div>
-                            <Button variant="contained" sx={{ mb: 2 }} onClick={handleOpen}>Partager son parcours écolo</Button>
+                        <div style={{textAlign: 'center'}}>
+                            <Button variant="contained" sx={style.buttonMb} onClick={handleOpen}>Partager son parcours écolo</Button>
                             <Modal
                                 open={open}
                                 onClose={handleClose}
@@ -52,7 +54,7 @@ export default function ParcoursEcolo(props) {
                     {parcoursEcoloList.map((parcoursEcolo, index) => {
                         return (
                             <Grid item xs={4} key={index}>
-                                <Card sx={{ maxWidth: 345 }}>
+                                <Card/* sx={{ maxWidth: 345 }}*/>
                                     <CardHeader
                                         avatar={
                                             <Avatar aria-label="recipe">
@@ -70,7 +72,7 @@ export default function ParcoursEcolo(props) {
                                             maxWidth: 500,
                                             maxHeight: 180,
                                         }}
-                                        image={"http://localhost:3000/" + parcoursEcolo?.image?.url}
+                                        image={baseURLImage + parcoursEcolo?.image?.url}
                                         alt={parcoursEcolo.description}
                                     />
                                     <CardContent>

@@ -77,7 +77,7 @@ export default function Command({ data, index }) {
                         data.commandeLignes.map((panier, index) => {
                             return (
                             
-                                    <Grid container sx={{ mb: 2 }}>
+                                    <Grid key={index} container sx={{ mb: 2 }}>
                                         <Grid item xs={2}>
                                             <Typography style={{ fontWeight: 600 }}>
                                                 {panier.article.nom}

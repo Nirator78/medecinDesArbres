@@ -24,10 +24,10 @@ export default function Boutique(props) {
 
     return (
         <Paper elevation={style.containerPaper.elevation} sx={style.containerPaper.sx}>
-            <Typography variant="h6">
+            <Typography variant="h6" sx={{ pb: 2 }}>
                 La boutique
             </Typography>
-            <Typography>
+            <Typography sx={{ pb: 3 }}>
                 Nos produits éco-responsables vous seront utiles au quotidien pour contribuer à la protection de l'environnement
             </Typography>
             <Grid container spacing={5} alignItems="center" justifyContent="center">
@@ -41,7 +41,7 @@ export default function Boutique(props) {
                     })
                 }
                 <Grid item xs={12}>
-                    <GreenButton title="Accéder a tous nos produits" handleClick={handleClick} />
+                    <GreenButton title="Accéder à tous nos produits" handleClick={handleClick} />
                 </Grid>
             </Grid>
         </Paper>

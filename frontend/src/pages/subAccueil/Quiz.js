@@ -9,10 +9,10 @@ export default function Quiz(props) {
     const style = useStyles();
     return (
         <Paper elevation={style.containerPaper.elevation} sx={style.containerPaper.sx}>
-            <Typography variant="h6">
+            <Typography variant="h6" sx={{ pb: 2 }}>
                 Quiz
             </Typography>
-            <Typography>
+            <Typography sx={{ pb: 3 }}>
                 Évaluez vos connaissances et devenez un médecin des arbres vous aussi !
             </Typography>
             <Grid container spacing={2}>

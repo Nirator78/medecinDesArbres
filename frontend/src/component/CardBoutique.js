@@ -1,14 +1,11 @@
 import React, { useState } from "react";
-import Box from "@mui/material/Box"
-import Button from "@mui/material/Button";
-import ButtonGroup from "@mui/material/ButtonGroup";
-import Modal from "@mui/material/Modal";
-import Paper from "@mui/material/Paper";
-import Typography from "@mui/material/Typography";
-import ArticleService from "../services/article.service";
-import AuthService from "../services/auth.service";
+import { Box, Button, ButtonGroup, Modal, Paper, Typography } from "@mui/material";
+import { ArticleService, AuthService } from "../services";
 import { Card, CardActions, CardContent, Chip, Grid } from "@mui/material";
 import { green } from "@mui/material/colors";
+import { GreenButton } from '../component';
+import { useStyles } from "../utils/style.js";
+import {baseURLImage} from '../utils/axios';
 
 function CardBoutique({ data }) {
     const [quantity, setQuantity] = useState(0);
@@ -44,57 +41,58 @@ function CardBoutique({ data }) {
     const handleCloseModal = () => {
         setOpen(false)
     }
+    const style = useStyles();
 
 
     return (
         <>
-            <Card >
-                <Grid container>
-                    <Grid item xs={6}>
-                        <Typography variant="h6">
-                            {data.nom}
-                        </Typography>
+            <Card style={style.card}>
+                <CardContent sx={style.cardContent}>
+                    <Grid container>
+                        <Grid item xs={6}>
+                            <Typography variant="h6">
+                                {data.nom}
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={3}>
+                        </Grid>
+                        <Grid item xs={3}>
+                            <Typography variant="h6" color="textSecondary" >
+                                {data.prix}€
+                            </Typography>
+                        </Grid>
                     </Grid>
-                    <Grid item xs={3}>
-                    </Grid>
-                    <Grid item xs={3}>
-                        <Typography variant="h6" color="textSecondary" >
-                            {data.prix}€
-                        </Typography>
-                    </Grid>
-                </Grid>
-                <div className="flex flex-wrap justify-center">
-                    <img
-                        src={"http://localhost:3000/" + data?.image?.url}
-                        className="max-w-sm h-32 transition-shadow ease-in-out duration-300 shadow-none hover:shadow-xl"
-                        alt={data.nom}
-                    />
-                </div>
-                <CardContent>
-                    <Chip sx={{ backgroundColor: green[700] }} label={data.tag} />
-                    <Typography variant="body2" color="textSecondary" component="p" mt={2}>
+                    <div className="flex flex-wrap justify-center">
+                        <img
+                            src={baseURLImage + data?.image?.url}
+                            className="max-w-sm h-32 transition-shadow ease-in-out duration-300 shadow-none hover:shadow-xl"
+                            alt={data.nom}
+                        />
+                    </div>
+                    <Chip sx={style.chip} label={data.tag} />
+                    <Typography variant="body2" color="textSecondary" component="p" sx={{mt: 2, mb: 2}}>
                         {data.description}
                     </Typography>
+                    <CardActions disableSpacing>
+                         <Grid container textAlign='center'>
+                             <Grid item xs={12}>
+                                 <ButtonGroup variant="contained" color="success" aria-label="button group">
+                                     <Button onClick={handleRemoveArticle} sx={style.buttonGroup}>{"-"}</Button>
+                                     <Button sx={style.buttonGroup}>{quantity}</Button>
+                                     <Button onClick={handleAddArticle} sx={style.buttonGroup}>{"+"}</Button>
+                                 </ButtonGroup>
+                             </Grid>
+                             <Grid item xs={12} mt={1} >
+                                 <Button
+                                     onClick={handleOpenModal}
+                                     variant="contained"
+                                     sx={style.button}
+                                 >Ajouter au panier</Button>
+                             </Grid>
+                         </Grid>
+                     </CardActions>
                 </CardContent>
-                <CardActions disableSpacing>
-                    <Grid container textAlign='center'>
-                        <Grid item xs={12}>
-                            <ButtonGroup variant="contained" color="success" aria-label="button group" style={{ marginright: 2 }}>
-                                <Button onClick={handleRemoveArticle} >{"-"}</Button>
-                                <Button>{quantity}</Button>
-                                <Button onClick={handleAddArticle}>{"+"}</Button>
-                            </ButtonGroup>
-                        </Grid>
-                        <Grid item xs={12} style={{ marginLeft: 6, marginTop: 2 }} >
-                            <Button
-                                onClick={handleOpenModal}
-                                variant="contained"
-                                color="success"
 
-                            >Ajouter au panier</Button>
-                        </Grid>
-                    </Grid>
-                </CardActions>
             </Card>
 
             <Modal

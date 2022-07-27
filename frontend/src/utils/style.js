@@ -2,13 +2,16 @@ import vars from "./vars.js";
 export const useStyles = () => {
     return ({
         _defaultColor: {
-            color: 'red',
+            color: vars.color1,
         },
         _defaultBgColor: {
             backgroundColor: vars.color1,
         },
         _defaultBorderColor: {
             borderColor: vars.color1,
+        },
+        badge: {
+            color: vars.color2,
         },
         box: {
             position: 'absolute',
@@ -21,9 +24,48 @@ export const useStyles = () => {
         	boxShadow: 24,
         	p: 4,
         },
+        boxBordered: {
+            p: 2,
+            border: 1,
+            borderColor: vars.color1,
+            borderRadius: 4
+        },
+        button: {
+            color: "#fff",
+            backgroundColor: vars.color1,
+            "&:hover": {
+                backgroundColor: vars.color2,
+            }
+        },
+        buttonGroup: {
+            color: "#fff",
+            borderColor: "white !important",
+            backgroundColor: vars.color1,
+            "&:hover": {
+                backgroundColor: vars.color2,
+            },
+        },
+        buttonMb: {
+            marginBottom: 4,
+            color: "#fff",
+            backgroundColor: vars.color1,
+            "&:hover": {
+                backgroundColor: vars.color2,
+            }
+        },
         buttonMenu: {
             marginRight: 2,
             backgroundColor: vars.color1,
+        },
+        card: {
+            borderRadius: vars.borderPage,
+        },
+        cardContent: {
+            p: 3,
+        },
+        chip: {
+            backgroundColor: vars.color1,
+            color: "white",
         },
         containerPaper: {
             elevation: 3,
