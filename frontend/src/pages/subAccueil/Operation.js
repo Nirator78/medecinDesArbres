@@ -7,18 +7,18 @@ export default function Operation(props) {
     const style = useStyles();
     return (
         <Paper elevation={style.containerPaper.elevation} sx={style.containerPaper.sx}>
-            <Typography variant="h6">
+            <Typography variant="h6" sx={{ pb: 2 }}>
                 Opération "Soignons les arbres"
             </Typography>
-            <Typography>
+            <Typography sx={{ pb: 3 }}>
                 Ramassez les déchets lors de vos parcours quotidiens et partagez vos efforts avec la communauté !
             </Typography>
             <Grid container spacing={2}>
                 <Grid item xs={4}>
-                    <CardList title="Dernier nettoyages" data={[]} />
+                    <CardList title="Derniers nettoyages" data={[]} />
                 </Grid>
                 <Grid item xs={8}>
-                    <CardList title="Meilleur nettoyeurs" data={[]} />
+                    <CardList title="Meilleurs nettoyeurs" data={[]} />
                 </Grid>
             </Grid>
         </Paper>

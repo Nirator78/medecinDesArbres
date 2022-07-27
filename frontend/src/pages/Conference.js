@@ -33,8 +33,8 @@ export default function Conference(props) {
                     {conferenceList?.map((conf, index) => {
                         return (
                             <Grid item xs={4} key={index}>
-                                <Card sx={{ maxWidth: 345 }}>
-                                    <CardContent>
+                                <Card /*sx={{ maxWidth: 345 }}*/style={style.card}>
+                                    <CardContent sx={style.cardContent}>
                                         <Typography component={'span'} sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
                                             {conf?.titre} - {conf?.theme}
                                         </Typography>
@@ -47,17 +47,17 @@ export default function Conference(props) {
                                         <Typography component={'div'} variant="body2">
                                             Nombre de participants <Avatar sx={{ width: 32, height: 32, bgcolor: 'green' }}> {conf?.conferenceParticipants?.length}</Avatar>
                                         </Typography>
+                                        <CardActions style={{ justifyContent: 'center' }}>
+                                            {
+                                                AuthService.isLogin() && !conf?.conferenceParticipants?.find(participant => participant.user.id === connectedUser.id) ?
+                                                    <Button variant="contained" sx={style.button} onClick={() => {
+                                                        ConferenceService.addUserToConference(conf.id, connectedUser.id);
+                                                        handleRefresh();
+                                                    }}>
+                                                        <AddIcon></AddIcon> Rejoindre la conférence</Button> : <></>
+                                            }
+                                        </CardActions>
                                     </CardContent>
-                                    <CardActions style={{ justifyContent: 'center' }}>
-                                        {
-                                            AuthService.isLogin() && !conf?.conferenceParticipants?.find(participant => participant.user.id === connectedUser.id) ?
-                                                <Button variant="contained" onClick={() => {
-                                                    ConferenceService.addUserToConference(conf.id, connectedUser.id);
-                                                    handleRefresh();
-                                                }}>
-                                                    <AddIcon></AddIcon> Rejoindre la conférence</Button> : <></>
-                                        }
-                                    </CardActions>
                                 </Card>
                             </Grid>
                         )
