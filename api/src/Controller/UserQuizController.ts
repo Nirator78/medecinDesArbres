@@ -2,6 +2,7 @@ import {getRepository} from "typeorm";
 import {NextFunction, Request, Response} from "express";
 import {UserQuiz} from "../Entity/UserQuiz";
 import {AuthentificationService} from '../Service/AuthentificationService';
+import { validate } from "class-validator";
 
 export class UserQuizController {
 
@@ -28,13 +29,27 @@ export class UserQuizController {
     }
 
     async save(request: Request, response: Response, next: NextFunction) {
-        const userQuiz = await this.userQuizRepository.save(request.body);
-        return { status: 1, data: userQuiz } ;
+        let userQuiz = new UserQuiz();
+        Object.assign(userQuiz, {...userQuiz, ...request.body});
+        const errors = await validate(userQuiz);
+        if(errors.length > 0){
+            return { status: 0, error: errors };
+        }else{
+            const userQuizSaved = await this.userQuizRepository.save(request.body);
+            return { status: 1, data: userQuizSaved };
+        }
     }
 
     async update(request: Request, response: Response, next: NextFunction) {
-        const userQuiz = await this.userQuizRepository.save(request.body);
-        return { status: 1, data: userQuiz } ;
+        let userQuiz = new UserQuiz();
+        Object.assign(userQuiz, {...userQuiz, ...request.body});
+        const errors = await validate(userQuiz);
+        if(errors.length > 0){
+            return { status: 0, error: errors };
+        }else{
+            const userQuizSaved = await this.userQuizRepository.save(request.body);
+            return { status: 1, data: userQuizSaved };
+        }
     }
 
     async remove(request: Request, response: Response, next: NextFunction) {

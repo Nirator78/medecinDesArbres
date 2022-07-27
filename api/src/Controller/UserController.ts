@@ -5,6 +5,7 @@ import {User, UserRole} from "../Entity/User";
 import {PasswordKey} from '../Entity/PasswordKey';
 import {MailService} from '../Service/MailService';
 import {AuthentificationService} from "../Service/AuthentificationService";
+import { validate } from "class-validator";
 
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
@@ -37,10 +38,16 @@ export class UserController {
         // On crypte le mot de passe pour le bdd
         request.body.password = bcrypt.hashSync(request.body.password, salt);
 
-        const user = await this.userRepository.save(request.body);
-        let token = jwt.sign({ data: user },process.env.SECRET_TOKEN, { expiresIn: '1h' });
-
-        return { status: 1, data: user, token: token };
+        let user = new User();
+        Object.assign(user, {...user, ...request.body});
+        const errors = await validate(user);
+        if(errors.length > 0){
+            return { status: 0, error: errors };
+        }else{
+            const userSaved = await this.userRepository.save(request.body);
+            let token = jwt.sign({ data: userSaved },process.env.SECRET_TOKEN, { expiresIn: '1h' });
+            return { status: 1, data: userSaved, token: token };
+        }
     }
 
     async update(request: Request, response: Response, next: NextFunction) {
@@ -51,8 +58,15 @@ export class UserController {
             const salt = bcrypt.genSaltSync(10);
             request.body.password = bcrypt.hashSync(decryptedPassword, salt);
         }
-        const user = await this.userRepository.save(request.body);
-        return { status: 1, data: user } ;
+        let user = new User();
+        Object.assign(user, {...user, ...request.body});
+        const errors = await validate(user);
+        if(errors.length > 0){
+            return { status: 0, error: errors };
+        }else{
+            const userSaved = await this.userRepository.save(request.body);
+            return { status: 1, data: userSaved };
+        }
     }
 
     async remove(request: Request, response: Response, next: NextFunction) {
