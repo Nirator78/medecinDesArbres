@@ -25,6 +25,9 @@ export class ModalFichePedagogiqueComponent {
 
   open(content) {
     this.modalService.open(content, { ariaLabelledBy: "modal-basic-title", size: "lg"});
+    if(this.mode === "modal"){
+      this.fichePedagogique = {}
+    };
   }
 
   onSubmit(form: NgForm){
