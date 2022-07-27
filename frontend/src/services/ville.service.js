@@ -1,10 +1,9 @@
-import axios from "axios"
-const API_URL = "http://localhost:3000/api"
+import {api} from "../utils/axios";
 
 class VilleService {
 
     async getAllVilles() {
-        const response = await axios.get(API_URL+'/villes?limit=10');
+        const response = await api.get('/villes?limit=10');
         const fichePedagogiqueList = await response.data;
         return fichePedagogiqueList.data;
     }

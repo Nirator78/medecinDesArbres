@@ -5,6 +5,7 @@ import { Card, CardActions, CardContent, Chip, Grid } from "@mui/material";
 import { green } from "@mui/material/colors";
 import { GreenButton } from '../component';
 import { useStyles } from "../utils/style.js";
+import {baseURLImage} from '../utils/axios';
 
 function CardBoutique({ data }) {
     const [quantity, setQuantity] = useState(0);
@@ -63,7 +64,7 @@ function CardBoutique({ data }) {
                     </Grid>
                     <div className="flex flex-wrap justify-center">
                         <img
-                            src={"http://localhost:3000/" + data?.image?.url}
+                            src={baseURLImage + data?.image?.url}
                             className="max-w-sm h-32 transition-shadow ease-in-out duration-300 shadow-none hover:shadow-xl"
                             alt={data.nom}
                         />

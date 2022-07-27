@@ -1,6 +1,5 @@
-import axios from "axios"
 import AuthService from "./auth.service";
-const API_URL = "http://localhost:3000/api"
+import {api} from "../utils/axios";
 
 class UserQuizService {
     async postAnswers(
@@ -8,8 +7,8 @@ class UserQuizService {
         quiz,
         answers
     ) {
-        return axios
-            .post(API_URL + "/user-quiz", {
+        return api
+            .post("/user-quiz", {
                 user: userId,
                 fini: 1,
                 quiz: quiz,

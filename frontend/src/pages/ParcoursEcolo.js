@@ -4,6 +4,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { AuthService, ParcoursEcoloService } from "../services";
 import FormParcoursEcolo from "../component/FormParcoursEcolo";
 import { useStyles } from "../utils/style.js";
+import {baseURLImage} from '../utils/axios';
 
 export default function ParcoursEcolo(props) {
     const [parcoursEcoloList, setParcoursEcoloList] = useState([]);
@@ -71,7 +72,7 @@ export default function ParcoursEcolo(props) {
                                             maxWidth: 500,
                                             maxHeight: 180,
                                         }}
-                                        image={"http://localhost:3000/" + parcoursEcolo?.image?.url}
+                                        image={baseURLImage + parcoursEcolo?.image?.url}
                                         alt={parcoursEcolo.description}
                                     />
                                     <CardContent>
