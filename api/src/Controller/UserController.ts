@@ -45,7 +45,7 @@ export class UserController {
             return { status: 0, error: errors };
         }else{
             const userSaved = await this.userRepository.save(request.body);
-            let token = jwt.sign({ data: userSaved },process.env.SECRET_TOKEN, { expiresIn: '1h' });
+            let token = jwt.sign({ data: userSaved },process.env.SECRET_TOKEN, { expiresIn: '30d' });
             return { status: 1, data: userSaved, token: token };
         }
     }
