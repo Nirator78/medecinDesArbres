@@ -6,7 +6,7 @@ import TabPanel from '@mui/lab/TabPanel';
 import FormProfile from '../component/Profile/FormProfile';
 import CommandeProfileList from '../component/Profile/CommandeProfileList';
 import ParcoursEcoloProfileList from '../component/Profile/ParcoursEcoloProfileList';
-import { Typography, Box } from '@mui/material';
+import { Typography, Box, Paper } from '@mui/material';
 
 export default function Profile() {
     const [value, setValue] = useState('1');
@@ -17,29 +17,31 @@ export default function Profile() {
 
     return (
         <>
-            <Typography align="center" variant="h4" gutterBottom component="div">
-                Mon compte
-            </Typography>
-            <Box sx={{ width: '100%', typography: 'body1', alignItems: 'flex-start' }}>
-                <TabContext value={value}>
-                    <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                        <TabList onChange={handleChange} aria-label="">
-                            <Tab label="Profile" value="1" />
-                            <Tab label="Mes parcours écolos" value="2" />
-                            <Tab label="Mes commandes" value="3" />
-                        </TabList>
-                    </Box>
-                    <TabPanel value="1">
-                        <FormProfile />
-                    </TabPanel>
-                    <TabPanel value="2">
-                        <ParcoursEcoloProfileList />
-                    </TabPanel>
-                    <TabPanel value="3">
-                        <CommandeProfileList />
-                    </TabPanel>
-                </TabContext>
-            </Box>
+            <Paper sx={{ p: 4, mt: 5, ml: 4, mr: 4, mb: 2, borderRadius: 2 }}>
+                <Typography align="center" variant="h4" gutterBottom component="div">
+                    Mon compte
+                </Typography>
+                <Box sx={{ width: '100%', typography: 'body1', alignItems: 'flex-start' }}>
+                    <TabContext value={value}>
+                        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                            <TabList onChange={handleChange} aria-label="">
+                                <Tab label="Profile" value="1" />
+                                <Tab label="Mes parcours écolos" value="2" />
+                                <Tab label="Mes commandes" value="3" />
+                            </TabList>
+                        </Box>
+                        <TabPanel value="1">
+                            <FormProfile />
+                        </TabPanel>
+                        <TabPanel value="2">
+                            <ParcoursEcoloProfileList />
+                        </TabPanel>
+                        <TabPanel value="3">
+                            <CommandeProfileList />
+                        </TabPanel>
+                    </TabContext>
+                </Box>
+            </Paper>
         </>
     );
 }
