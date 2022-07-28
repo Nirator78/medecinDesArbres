@@ -18,24 +18,22 @@ export default function CommandeProfileList() {
 
     return (
         <>
-            <Paper sx={{ p: 4, mt: 5, ml: 4, mr: 4, mb: 2, borderRadius: 2 }}>
-                <Typography align="center" variant="h4" gutterBottom component="div">
-                    Mes commandes
+            <Typography align="center" variant="h5" gutterBottom component="div">
+                Mes commandes
+            </Typography>
+            {
+                commands.map((command, index) => {
+                    return (
+                        <Command data={command} key={index} />
+                    )
+                })
+            }
+            {
+                !commands.length &&
+                <Typography variant="body2" align='center' color="text.secondary" pb={2}>
+                    Vous n'avez pas encore effectué de commande
                 </Typography>
-                {
-                    commands.map((command, index) => {
-                        return (
-                            <Command data={command} key={index} />
-                        )
-                    })
-                }
-                {
-                    !commands.length &&
-                    <Typography variant="body2" align='center' color="text.secondary" pb={2}>
-                        Vous n'avez pas de commandes réalisées
-                    </Typography>   
-                }
-            </Paper>
+            }
         </>
     )
 }

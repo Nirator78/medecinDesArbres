@@ -1,8 +1,25 @@
 import React, { useEffect, useState } from 'react';
-import { Paper, Grid, Typography, Stack } from '@mui/material';
+import { Paper, Grid, Typography, Stack, styled } from '@mui/material';
 import CardBoutique from '../component/CardBoutique';
 import ArticleService from '../services/article.service';
 import { useStyles } from "../utils/style.js";
+
+const CustomPaper = styled('div')(({ theme }) => ({
+    [theme.breakpoints.down('sm')]: {
+        p: 4,
+        margin: 0,
+        marginTop: 40,
+    },
+    [theme.breakpoints.up('sm')]: {
+        p: 4,
+        mt: 5,
+        ml: 4,
+        mr: 4,
+        marginBottom: 0,
+        borderRadius: 2,
+        boxShadow: "rgba(0, 0, 0, 0.2) 0px 2px 1px -1px, rgba(0, 0, 0, 0.14) 0px 1px 1px 0px, rgba(0, 0, 0, 0.12) 0px 1px 3px 0px",
+    }
+}));
 
 export default function Boutique(props) {
     const [articles, setArticles] = useState([]);
@@ -18,7 +35,7 @@ export default function Boutique(props) {
 
     return (
         <>
-            <Paper sx={style.containerPaperPage.sx}>
+            <CustomPaper sx={style.containerPaperPage.sx}>
                 <Typography align="center" variant="h4" gutterBottom component="div">
                     Notre boutique 
                 </Typography>
@@ -82,7 +99,7 @@ export default function Boutique(props) {
                             </Typography>                
                     </Typography>
                 </Typography>
-            </Paper>
+            </CustomPaper>
         </>
     )
 }

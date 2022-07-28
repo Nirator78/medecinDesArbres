@@ -2,10 +2,29 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from "react-router-dom";
 import QuizService from '../services/quiz.service';
 import GreenButton from '../component/GreenButton';
-import { Paper, Typography, CircularProgress, Card, CardHeader, CardMedia, CardContent, FormControl, RadioGroup, FormControlLabel, Radio, Divider } from '@mui/material';
+import { Paper, Typography, CircularProgress, Card, CardHeader, CardMedia, CardContent, FormControl, RadioGroup, FormControlLabel, Radio, Divider, styled } from '@mui/material';
 import AuthService from "../services/auth.service"
 import UserQuizService from '../services/user-quiz.service';
+import { useStyles } from "../utils/style.js";
 import { baseURLImage } from '../utils/axios';
+
+const CustomPaper = styled('div')(({ theme }) => ({
+    [theme.breakpoints.down('sm')]: {
+        p: 4,
+        margin: 0,
+        marginTop: 40,
+    },
+    [theme.breakpoints.up('sm')]: {
+        p: 4,
+        mt: 5,
+        ml: 4,
+        mr: 4,
+        marginBottom: 0,
+        borderRadius: 2,
+        boxShadow: "rgba(0, 0, 0, 0.2) 0px 2px 1px -1px, rgba(0, 0, 0, 0.14) 0px 1px 1px 0px, rgba(0, 0, 0, 0.12) 0px 1px 3px 0px",
+    }
+}));
+
 
 function Question({ question, getValue }) {
     const [value, setValue] = React.useState(0);
@@ -20,9 +39,10 @@ function Question({ question, getValue }) {
             }]
         })
     };
+    const style = useStyles();
 
     return (
-        <Card sx={{ width: 500 }}>
+        <Card sx={{ /*width: 500*/my: 2 }}>
             <CardHeader
                 title={question.question}
             />
@@ -31,7 +51,7 @@ function Question({ question, getValue }) {
                 component="img"
                 height="194"
                 style={{
-                    maxWidth: 500,
+                    //maxWidth: 500,
                     maxHeight: 180,
                 }}
                 image={baseURLImage + question?.image?.url}
@@ -65,6 +85,7 @@ export default function QuizPage(props) {
     const [quiz, setQuiz] = useState(null);
     const [answers, setAnswers] = useState([])
     const [error, setError] = useState(false);
+    const style = useStyles();
 
     useEffect(() => {
         async function fetchData() {
@@ -78,7 +99,7 @@ export default function QuizPage(props) {
         return (
             <Paper sx={{ p: 2 }}>
                 <Typography>
-                    Veuillez vous connecter pour accedez à cette page.
+                    Veuillez vous connecter pour accéder à cette page.
                 </Typography>
             </Paper>
         )
@@ -134,24 +155,27 @@ export default function QuizPage(props) {
         }
     };
 
+
     return (
-        <Paper sx={{ p: 2 }}>
-            <Typography align="center" variant="h4" gutterBottom component="div">
+        <CustomPaper sx={style.containerPaperPage.sx}>
+            <Typography align="center" variant="h4" gutterBottom component="div" sx={{ mb: 4 }}>
                 {quiz.titre}
             </Typography>
-            <Typography variant="body2" gutterBottom component="div">
-                Répondez a toute les questions puis envoyer vos réponses afin d'affirmer vos connaissances sur les {quiz.theme} !
+            <Typography variant="body2" gutterBottom component="div" sx={{ mb: 2 }}>
+                Répondez à toutes les questions puis envoyez vos réponses afin d'évaluer vos connaissances sur les {quiz.theme} !
             </Typography>
+            <Paper elevation={0} sx={style.containerPaperBloc.sx}>
             {quiz.questions.map((question) => {
                 return (
                     <Question question={question} getValue={setNewValue} key={question.id} />
                 )
             })}
+            </Paper>
             <Divider sx={{ m: 2 }} />
             {error && (
-                <Typography color="error">Le formulaire n'est pas complet, vous avez oubliez une ou plusieurs question !</Typography>
+                <Typography color="error">Le formulaire n'est pas complet, vous avez oublié une ou plusieurs questions !</Typography>
             )}
             <GreenButton title="Envoyer vos réponses" handleClick={handleClick} />
-        </Paper>
+        </CustomPaper>
     )
 }

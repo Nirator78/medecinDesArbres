@@ -32,81 +32,79 @@ export default function ParcoursEcoloProfileList() {
 
     return (
         <>
-            <Paper sx={{ p: 4, mt: 5, ml: 4, mr: 4, mb: 2, borderRadius: 2 }}>
-                <Typography align="center" variant="h4" gutterBottom component="div">
-                    Mes parcours écolos partagés
-                </Typography>
-                <Grid container spacing={{ xs: 2, md: 3, pl: 2 }} columns={{ xs: 4, sm: 8, md: 12 }}>
-                    {parcoursEcoloList?.length ?
-                        parcoursEcoloList?.map((parcoursEcolo, index) => {
-                            return (
-                                <Grid item xs={4} key={index}>
-                                    <Card sx={{ maxWidth: 345 }}>
-                                        <CardHeader
-                                            avatar={
-                                                <Avatar aria-label="recipe">
-                                                    {parcoursEcolo.user.prenom.substr(0, 1)}{parcoursEcolo.user.nom.substr(0, 1)}
-                                                </Avatar>
+            <Typography align="center" variant="h5" gutterBottom component="div">
+                Mes parcours écolos partagés
+            </Typography>
+            <Grid container spacing={{ xs: 2, md: 3, pl: 2 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+                {parcoursEcoloList?.length ?
+                    parcoursEcoloList?.map((parcoursEcolo, index) => {
+                        return (
+                            <Grid item xs={4} key={index}>
+                                <Card sx={{ maxWidth: 345 }}>
+                                    <CardHeader
+                                        avatar={
+                                            <Avatar aria-label="recipe" style={style._defaultBgColor}>
+                                                {parcoursEcolo.user.prenom.substr(0, 1)}{parcoursEcolo.user.nom.substr(0, 1)}
+                                            </Avatar>
+                                        }
+                                        title={parcoursEcolo.user.prenom + " " + parcoursEcolo.user.nom}
+                                        subheader={parcoursEcolo.ville.ville}
+                                    />
+
+                                    <CardMedia
+                                        component="img"
+                                        height="194"
+                                        style={{
+                                            maxWidth: 500,
+                                            maxHeight: 180,
+                                        }}
+                                        image={baseURLImage + parcoursEcolo?.image?.url}
+                                        alt={parcoursEcolo.description}
+                                    />
+                                    <CardContent>
+                                        <Typography variant="body2" color="text.secondary">
+                                            {parcoursEcolo.description}
+                                        </Typography>
+                                        <Typography variant="body2" color="text.secondary">
+                                            Nombre de sac ramassés: {parcoursEcolo.nbSac}
+                                        </Typography>
+                                        <CardActions style={{ justifyContent: 'right' }}>
+                                            {
+                                                connectedUser.id === parcoursEcolo.user.id ?
+                                                    <Button style={style.buttonDanger} variant="contained" onClick={() => {
+                                                        ParcoursEcoloService.deleteParcoursEcolo(parcoursEcolo.id);
+                                                        setTimeout(
+                                                            () => {
+                                                                handleRefresh()
+                                                            },
+                                                            500
+                                                        );
+                                                    }}><DeleteIcon></DeleteIcon></Button> :
+                                                    null
                                             }
-                                            title={parcoursEcolo.user.prenom + " " + parcoursEcolo.user.nom}
-                                            subheader={parcoursEcolo.ville.ville}
-                                        />
+                                        </CardActions>
+                                    </CardContent>
 
-                                        <CardMedia
-                                            component="img"
-                                            height="194"
-                                            style={{
-                                                maxWidth: 500,
-                                                maxHeight: 180,
-                                            }}
-                                            image={baseURLImage + parcoursEcolo?.image?.url}
-                                            alt={parcoursEcolo.description}
-                                        />
-                                        <CardContent>
-                                            <Typography variant="body2" color="text.secondary">
-                                                {parcoursEcolo.description}
-                                            </Typography>
-                                            <Typography variant="body2" color="text.secondary">
-                                                Nombre de sac ramassés: {parcoursEcolo.nbSac}
-                                            </Typography>
-                                            <CardActions style={{ justifyContent: 'right' }}>
-                                                {
-                                                    connectedUser.id === parcoursEcolo.user.id ?
-                                                        <Button variant="contained" onClick={() => {
-                                                            ParcoursEcoloService.deleteParcoursEcolo(parcoursEcolo.id);
-                                                            setTimeout(
-                                                                () => {
-                                                                    handleRefresh()
-                                                                },
-                                                                500
-                                                            );
-                                                        }}><DeleteIcon></DeleteIcon></Button> :
-                                                        null
-                                                }
-                                            </CardActions>
-                                        </CardContent>
-
-                                    </Card>
-                                </Grid>
-                            )
-                        }) :
-                        <Grid item xs={12} pt={4} align="center">
-                            <Typography variant="body2" color="text.secondary" pb={2}>
-                                Vous n'avez pas de parcours écolos partager avec la communauté
-                            </Typography>
-                            <Button style={style._defaultBgColor} size="small" variant="contained" sx={{ mb: 2 }} onClick={handleOpen}>Partager un parcours avec la communauté</Button>
-                            <Modal
-                                open={open}
-                                onClose={handleClose}
-                                aria-labelledby="modal-modal-title"
-                                aria-describedby="modal-modal-description"
-                            >
-                                <FormParcoursEcolo handleClose={handleClose} handleRefresh={handleRefresh}></FormParcoursEcolo>
-                            </Modal>
-                        </Grid>
-                    }
-                </Grid>
-            </Paper>
+                                </Card>
+                            </Grid>
+                        )
+                    }) :
+                    <Grid item xs={12} pt={4} align="center">
+                        <Typography variant="body2" color="text.secondary" pb={2}>
+                            Vous n'avez pas de parcours écolos partager avec la communauté
+                        </Typography>
+                        <Button style={style._defaultBgColor} size="small" variant="contained" sx={{ mb: 2 }} onClick={handleOpen}>Partager un parcours avec la communauté</Button>
+                        <Modal
+                            open={open}
+                            onClose={handleClose}
+                            aria-labelledby="modal-modal-title"
+                            aria-describedby="modal-modal-description"
+                        >
+                            <FormParcoursEcolo handleClose={handleClose} handleRefresh={handleRefresh}></FormParcoursEcolo>
+                        </Modal>
+                    </Grid>
+                }
+            </Grid>
         </>
     )
 }

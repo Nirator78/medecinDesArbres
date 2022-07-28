@@ -34,7 +34,7 @@ export default function Boutique(props) {
                 {
                     articles.map((item) => {
                         return (
-                            <Grid item xs={4} key={item.id}>
+                            <Grid item xs={12} sm={6} md={4} key={item.id}>
                                 <CardBoutique data={item} />
                             </Grid>
                         )

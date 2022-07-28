@@ -2,7 +2,7 @@ import React from "react";
 import AuthService from "../../services/auth.service";
 import { Box, Button, FormControl, IconButton, Input, InputAdornment, InputLabel, Modal } from "@mui/material";
 import { Visibility, VisibilityOff } from '@mui/icons-material';
-import { FormError, GreenButton } from "../";
+import { ButtonConnexion, FormError, GreenButton } from "../";
 import { useForm } from "react-hook-form";
 import { useStyles } from "../../utils/style.js";
 
@@ -155,7 +155,8 @@ function Inscription() {
 								</div>
 
 								<div>
-									<GreenButton title="S'inscrire" type="submit" />
+                                    <ButtonConnexion title="S'inscrire" handleClick={postData} />
+									/*<GreenButton title="S'inscrire" type="submit" />*/
 								</div>
 							</div>
 						</div>

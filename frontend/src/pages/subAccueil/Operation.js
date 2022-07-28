@@ -14,10 +14,10 @@ export default function Operation(props) {
                 Ramassez les déchets lors de vos parcours quotidiens et partagez vos efforts avec la communauté !
             </Typography>
             <Grid container spacing={2}>
-                <Grid item xs={4}>
+                <Grid item xs={12} md={6}>
                     <CardList title="Derniers nettoyages" data={[]} />
                 </Grid>
-                <Grid item xs={8}>
+                <Grid item xs={12} md={6}>
                     <CardList title="Meilleurs nettoyeurs" data={[]} />
                 </Grid>
             </Grid>
