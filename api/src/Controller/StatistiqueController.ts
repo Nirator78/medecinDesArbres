@@ -216,7 +216,8 @@ export class StatistiqueController {
             FROM test.parcours_ecolo PE
             LEFT JOIN test.user AS U ON PE.userId=U.id
             GROUP BY CONCAT(U.nom, ' ', U.prenom)
-            ORDER BY nbSac DESC;
+            ORDER BY nbSac DESC
+            LIMIT 5;
         ;
         `);
 

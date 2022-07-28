@@ -55,7 +55,7 @@ export default [
         route: "/statistique-parcours-ecolo",
         controller: StatistiqueController,
         action: "parcoursEcoloSac",
-        allowedRoles: [UserRole.SUPERADMIN, UserRole.ADMIN],
-        isLoginNeeded: true
+        allowedRoles: [UserRole.SUPERADMIN, UserRole.ADMIN, UserRole.USER],
+        isLoginNeeded: false
     }
 ];

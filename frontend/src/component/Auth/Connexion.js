@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import { useStyles } from "../../utils/style.js";
 
 function Connexion() {
-	const { register, handleSubmit, formState: { errors } } = useForm();
+	const { register, handleSubmit, formState: { errors }, reset } = useForm();
 	const [showPassword, setShowPassword] = React.useState(false)
 	const [erreur, setErreur] = React.useState()
 	const handleClickShowPassword = () => {
@@ -37,7 +37,7 @@ function Connexion() {
 
 	const [open, setOpen] = React.useState(false);
 	const handleOpen = () => setOpen(true);
-	const handleClose = () => setOpen(false);
+	const handleClose = () => {setOpen(false); reset();	}
 
 	return (
 		<>
