@@ -58,15 +58,19 @@ export default function FormParcoursEcolo({ handleClose, handleRefresh }) {
                         className="form-control w-full block py-2 px-3 text-base font-normal text-gray-700 bg-white bg-clip-padding
                                         border border-solid border-gray-300 rounded transition ease-in-out m-0"
                         placeholder="Description"
-                        {...register("description", { required: true, maxLength: 150 })}
+                        {...register("description", { required: true,minLength: 5, maxLength: 800 })}
                     />
                     {
                         errors.description?.type === 'required' &&
                         <FormError text="La description du mail est un champs obligatoire" />
                     }
                     {
+                        errors.description?.type === 'minLength' &&
+                        <FormError text="La description du mail doit contenir au moins 5 caractères" />
+                    }
+                    {
                         errors.description?.type === 'maxLength' &&
-                        <FormError text="La description du mail ne doit pas dépasser les 150 caractères" />
+                        <FormError text="La description du mail ne doit pas dépasser les 800 caractères" />
                     }
 
                     <br></br>
@@ -78,26 +82,34 @@ export default function FormParcoursEcolo({ handleClose, handleRefresh }) {
                         type="number"
                         className="form-control w-full block shadow appearance-none border rounded py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
                         placeholder="Nombre de sac ramassés"
-                        {...register("nbSac", { required: true })}
+                        {...register("nbSac", { required: true, min: 1 })}
                     />
                     {
                         errors.nbSac?.type === 'required' &&
                         <FormError text="Le nombre de sacs est un champ obligatoire" />
                     }
+                    {
+                        errors.nbSac?.type === 'min' &&
+                        <FormError text="Le nombre de sacs doit être supérieur à 0" />
+                    }
                     <br></br>
                     <label className="block text-gray-700 text-md font-bold mb-2" htmlFor="nbSac">
                         Ville
                     </label>
-                    <select {...register("ville")}
+                    <select {...register("ville", {required: true})}>
                         className="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat
-                        border border-solid border-gray-300 rounded transition ease-in-out m-0">
-                        <option selected>Sélectionnez une ville</option>
+                        border border-solid border-gray-300 rounded transition ease-in-out m-0" defaultValue={''}>
+                        <option value={''}>Sélectionnez une ville</option>
                         {
                             villesList?.map((ville, idx) => {
                                 return <option key={idx} value={ville.id}>{ville.ville}</option>
                             })
                         }
                     </select>
+                    {
+                        errors.ville?.type === 'required' &&
+                        <FormError text="La ville est un champ obligatoire" />
+                    }      
                     <br></br>
                     <label className="block text-gray-700 text-md font-bold mb-2" htmlFor="image">
                         Image
@@ -107,6 +119,10 @@ export default function FormParcoursEcolo({ handleClose, handleRefresh }) {
                         name="image"
                         type="file"
                         {...register("image", { required: true })} />
+                        {
+                            errors.image?.type === 'required' &&
+                            <FormError text="L'image est un champ obligatoire" />
+                        }
                     <br></br>
                     <div className="h-56 grid grid-cols-3 gap-4 content-evenly ...">
                         <input className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full mt-4" type="submit" />
