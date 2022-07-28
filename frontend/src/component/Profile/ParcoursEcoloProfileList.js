@@ -34,7 +34,7 @@ export default function ParcoursEcoloProfileList() {
         <>
             <Paper sx={{ p: 4, mt: 5, ml: 4, mr: 4, mb: 2, borderRadius: 2 }}>
                 <Typography align="center" variant="h4" gutterBottom component="div">
-                    Vos parcours écolos partagés
+                    Mes parcours écolos partagés
                 </Typography>
                 <Grid container spacing={{ xs: 2, md: 3, pl: 2 }} columns={{ xs: 4, sm: 8, md: 12 }}>
                     {parcoursEcoloList?.length ?

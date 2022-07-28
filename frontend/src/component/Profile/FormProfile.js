@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button, Grid, Paper } from '@mui/material';
+import { Button, Grid, Paper, Typography } from '@mui/material';
 import UserService from "../../services/user.service";
 import { useForm } from "react-hook-form";
 import FormError from '../FormError';
@@ -46,8 +46,11 @@ export default function FormProfile({ }) {
 
             <form onSubmit={handleSubmit(onSubmit)}>
                 <Paper sx={{ p: 4, mt: 5, ml: 4, mr: 4, mb: 2, borderRadius: 2 }}>
+                    <Typography align="center" variant="h4" gutterBottom component="div">
+                        Mes informations
+                    </Typography>
                     <Grid container>
-                        <Grid item xs={6} >
+                        <Grid item xs={6} p={1}>
                             <label className="text-gray-700 text-md font-bold mb-2" htmlFor="nom">
                                 Nom
                             </label>
@@ -56,7 +59,7 @@ export default function FormProfile({ }) {
                                 className="form-control w-full py-2 px-3 text-base text-gray-700 bg-white bg-clip-padding
                                             border border-solid border-gray-300 rounded transition ease-in-out m-0"
                                 placeholder="Nom"
-                                {...register("nom", { required: true, maxLength: 150 })}
+                                {...register("nom", { required: true })}
                             />
                             {
                                 errors.nom?.type === 'required' &&
@@ -64,7 +67,7 @@ export default function FormProfile({ }) {
                             }
 
                         </Grid>
-                        <Grid item xs={6} pl={1}>
+                        <Grid item xs={6} p={1}>
                             <label className="text-gray-700 text-md font-bold mb-2" htmlFor="prenom">
                                 Prenom
                             </label>
@@ -73,7 +76,7 @@ export default function FormProfile({ }) {
                                 className="form-control w-full py-2 px-3 text-base font-normal text-gray-700 bg-white bg-clip-padding
                                             border border-solid border-gray-300 rounded transition ease-in-out m-0"
                                 placeholder="Prenom"
-                                {...register("prenom", { required: true, maxLength: 150 })}
+                                {...register("prenom", { required: true })}
                             />
                             {
                                 errors.prenom?.type === 'required' &&
@@ -82,23 +85,32 @@ export default function FormProfile({ }) {
                         </Grid>
                     </Grid>
                     <Grid container>
-                        <Grid item xs={6}>
+                        <Grid item xs={6} p={1}>
                             <label className="text-gray-700 text-md font-bold mb-2" htmlFor="email">
                                 Email
                             </label>
                             <input
                                 name="email"
+                                type="email"
                                 className="form-control w-full py-2 px-3 text-base font-normal text-gray-700 bg-white bg-clip-padding
                                         border border-solid border-gray-300 rounded transition ease-in-out m-0"
                                 placeholder="Email"
-                                {...register("email", { required: true, maxLength: 150 })}
+                                {...register("email", { required: true, 
+                                    pattern: {
+                                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i 
+                                    } 
+                                })}
                             />
                             {
                                 errors.email?.type === 'required' &&
                                 <FormError text="L'email est un champs obligatoire" />
                             }
+                              {
+                                errors.email?.type === 'pattern' &&
+                                <FormError text="L'email est invalide" />
+                            }
                         </Grid>
-                        <Grid item xs={6} pl={1}>
+                        <Grid item xs={6} p={1}>
                             <label className="text-gray-700 text-md font-bold mb-2" htmlFor="telephone">
                                 Téléphone
                             </label>
@@ -107,16 +119,25 @@ export default function FormProfile({ }) {
                                 className="form-control w-full py-2 px-3 text-base font-normal text-gray-700 bg-white bg-clip-padding
                                         border border-solid border-gray-300 rounded transition ease-in-out m-0"
                                 placeholder="Téléphone"
-                                {...register("telephone", { required: true, maxLength: 150 })}
+                                {...register("telephone", { required: true,
+                                    pattern: {
+                                        value: /^[0-9]{10}$/i
+                            
+                                    }
+                                })}
                             />
                             {
                                 errors.telephone?.type === 'required' &&
                                 <FormError text="Le telephone est un champs obligatoire" />
                             }
+                            {
+                                errors.telephone?.type === 'pattern' &&
+                                <FormError text="Le telephone est invalide" />
+                            }
                         </Grid>
                     </Grid>
                     <Grid container>
-                        <Grid item xs={12}>
+                        <Grid item xs={12} p={1}>
                             <label className="text-gray-700 text-md font-bold mb-2" htmlFor="adresse">
                                 Adresse
                             </label>
@@ -125,7 +146,7 @@ export default function FormProfile({ }) {
                                 className="form-control w-full py-2 px-3 text-base font-normal text-gray-700 bg-white bg-clip-padding
                                         border border-solid border-gray-300 rounded transition ease-in-out m-0"
                                 placeholder="Adresse"
-                                {...register("adresse", { required: true, maxLength: 150 })}
+                                {...register("adresse", { required: true })}
                             />
                             {
                                 errors.adresse?.type === 'required' &&
@@ -134,7 +155,7 @@ export default function FormProfile({ }) {
                         </Grid>
                     </Grid>
                     <Grid container>
-                        <Grid item xs={4}>
+                        <Grid item xs={4} p={1}>
                             <label className="text-gray-700 text-md font-bold mb-2" htmlFor="ville">
                                 Ville
                             </label>
@@ -143,14 +164,14 @@ export default function FormProfile({ }) {
                                 className="form-control w-full py-2 px-3 text-base font-normal text-gray-700 bg-white bg-clip-padding
                                             border border-solid border-gray-300 rounded transition ease-in-out m-0"
                                 placeholder="Ville"
-                                {...register("ville", { required: true, maxLength: 150 })}
+                                {...register("ville", { required: true })}
                             />
                             {
                                 errors.ville?.type === 'required' &&
                                 <FormError text="La ville est un champs obligatoire" />
                             }
                         </Grid>
-                        <Grid item xs={4} pl={1}>
+                        <Grid item xs={4} p={1}>
                             <label className="text-gray-700 text-md font-bold mb-2" htmlFor="codePostal">
                                 Code postal
                             </label>
@@ -159,14 +180,22 @@ export default function FormProfile({ }) {
                                 className="form-control w-full py-2 px-3 text-base font-normal text-gray-700 bg-white bg-clip-padding
                                         border border-solid border-gray-300 rounded transition ease-in-out m-0"
                                 placeholder="Code postal"
-                                {...register("codePostal", { required: true, maxLength: 150 })}
+                                {...register("codePostal", { required: true
+                                    , pattern: {
+                                        value: /^[0-9]{5}$/i
+                                    }
+                                })}
                             />
                             {
                                 errors.codePostal?.type === 'required' &&
                                 <FormError text="Le code postal est un champs obligatoire" />
                             }
+                            {
+                                errors.codePostal?.type === 'pattern' &&
+                                <FormError text="Le code postal est invalide" />
+                            }
                         </Grid>
-                        <Grid item xs={4} pl={1}>
+                        <Grid item xs={4} p={1}>
                             <label className="text-gray-700 text-md font-bold mb-2" htmlFor="pays">
                                 Pays
                             </label>
@@ -175,7 +204,7 @@ export default function FormProfile({ }) {
                                 className="form-control w-full py-2 px-3 text-base font-normal text-gray-700 bg-white bg-clip-padding
                                         border border-solid border-gray-300 rounded transition ease-in-out m-0"
                                 placeholder="Pays"
-                                {...register("pays", { required: true, maxLength: 150 })}
+                                {...register("pays", { required: true })}
                             />
                             {
                                 errors.pays?.type === 'required' &&
