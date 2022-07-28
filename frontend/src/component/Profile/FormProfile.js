@@ -45,8 +45,8 @@ export default function FormProfile({ }) {
         <>
 
             <form onSubmit={handleSubmit(onSubmit)}>
-                <Paper sx={{ p: 4, mt: 5, ml: 4, mr: 4, mb: 2, borderRadius: 2 }}>
-                    <Typography align="center" variant="h4" gutterBottom component="div">
+
+                    <Typography align="center" variant="h5" gutterBottom component="div">
                         Mes informations
                     </Typography>
                     <Grid container>
@@ -215,7 +215,7 @@ export default function FormProfile({ }) {
                     <Grid pt={1} align="center">
                         <Button type="submit" style={style._defaultBgColor} variant="contained">Sauvegarder</Button>
                     </Grid>
-                </Paper>
+
             </form>
         </>
     )

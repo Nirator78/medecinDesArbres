@@ -48,7 +48,7 @@ export default function Command({ data, index }) {
             </AccordionSummary>
             <AccordionDetails>
                 <Box sx={{ p: 2, borderRadius: 4}}>
-                    <Grid container sx={{borderBottom: 1, borderColor: "#3e993f", mb: 2 }}>
+                    <Grid container sx={style.borderBottom}>
                         <Grid item xs={2}>
                             <Typography style={{ fontWeight: 600 }}>
                                 Nom
@@ -104,7 +104,7 @@ export default function Command({ data, index }) {
                             )
                         })
                     }
-                    <Grid container sx={{borderTop: 1, borderColor: "#3e993f", pt: 2}}>
+                    <Grid container sx={style.borderTop}>
                         <Grid item xs={2}>
                             <Typography style={{ fontWeight: 600 }}>
                                 Total

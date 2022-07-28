@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { Typography, Box } from '@mui/material';
 import ParcoursEcoloService from "../services/parcours-ecolo.service";
 import { useForm } from "react-hook-form";
-import FormError from '../component/FormError';
 import AuthService from "../services/auth.service";
 import VilleService from "../services/ville.service";
+import { useStyles } from "../utils/style.js";
+import { ButtonConnexion, FormError, GreenButton } from "../component";
 
 export default function FormParcoursEcolo({ handleClose, handleRefresh }) {
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -30,105 +31,91 @@ export default function FormParcoursEcolo({ handleClose, handleRefresh }) {
         handleClose();
         handleRefresh();
     };
-
-    const style = {
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-        width: 400,
-        bgcolor: 'background.paper',
-        border: '2px solid #000',
-        boxShadow: 24,
-        p: 4,
-    };
+    const style = useStyles();
 
     return (
-        <Box sx={style}>
-            <Typography id="modal-modal-title" variant="h6" component="h2">
-                Partager votre parcours écolo !
-            </Typography>
-            <>
-                <form onSubmit={handleSubmit(onSubmit)}>
-                    <label className="block text-gray-700 text-md font-bold mb-2" htmlFor="description">
-                        Description
-                    </label>
-                    <textarea
-                        name="description"
-                        className="form-control w-full block py-2 px-3 text-base font-normal text-gray-700 bg-white bg-clip-padding
-                                        border border-solid border-gray-300 rounded transition ease-in-out m-0"
-                        placeholder="Description"
-                        {...register("description", { required: true,minLength: 5, maxLength: 800 })}
-                    />
-                    {
-                        errors.description?.type === 'required' &&
-                        <FormError text="La description du mail est un champs obligatoire" />
-                    }
-                    {
-                        errors.description?.type === 'minLength' &&
-                        <FormError text="La description du mail doit contenir au moins 5 caractères" />
-                    }
-                    {
-                        errors.description?.type === 'maxLength' &&
-                        <FormError text="La description du mail ne doit pas dépasser les 800 caractères" />
-                    }
+        <>
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <label className="block text-gray-700 text-md font-bold mb-2" htmlFor="description">
+                    Description
+                </label>
+                <textarea
+                    name="description"
+                    className="form-control w-full block py-2 px-3 text-base font-normal text-gray-700 bg-white bg-clip-padding
+                                    border border-solid border-gray-300 rounded transition ease-in-out m-0"
+                    placeholder="Description"
+                    {...register("description", { required: true,minLength: 5, maxLength: 800 })}
+                />
+                {
+                    errors.description?.type === 'required' &&
+                    <FormError text="Le champ 'description' est obligatoire" />
+                }
+                {
+                    errors.description?.type === 'minLength' &&
+                    <FormError text="La description doit contenir au moins 5 caractères" />
+                }
+                {
+                    errors.description?.type === 'maxLength' &&
+                    <FormError text="La description ne doit pas dépasser les 800 caractères" />
+                }
 
-                    <br></br>
-                    <label className="block text-gray-700 text-md font-bold mb-2" htmlFor="nbSac">
-                        Nombre de sac ramassés
-                    </label>
-                    <input
-                        name="nbSac"
-                        type="number"
-                        className="form-control w-full block shadow appearance-none border rounded py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
-                        placeholder="Nombre de sac ramassés"
-                        {...register("nbSac", { required: true, min: 1 })}
-                    />
+                <br></br>
+                <label className="block text-gray-700 text-md font-bold mb-2" htmlFor="nbSac">
+                    Nombre de sac ramassés
+                </label>
+                <input
+                    name="nbSac"
+                    type="number"
+                    className="form-control w-full block shadow appearance-none border rounded py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
+                    placeholder="Nombre de sac ramassés"
+                    {...register("nbSac", { required: true, min: 1 })}
+                />
+                {
+                    errors.nbSac?.type === 'required' &&
+                    <FormError text="Le champ 'nombre de sacs' est obligatoire" />
+                }
+                {
+                    errors.nbSac?.type === 'min' &&
+                    <FormError text="Le nombre de sacs renseigné doit être supérieur à 0" />
+                }
+                <br></br>
+                <label className="block text-gray-700 text-md font-bold mb-2" htmlFor="nbSac">
+                    Ville
+                </label>
+                <select {...register("ville", {required: true})}>
+                    className="form-select appearance-none block w-full py-2 px-3 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat
+                    border border-solid border-gray-300 rounded transition ease-in-out m-0" defaultValue={''}>
+                    <option value={''}>Sélectionnez une ville</option>
                     {
-                        errors.nbSac?.type === 'required' &&
-                        <FormError text="Le nombre de sacs est un champ obligatoire" />
+                        villesList?.map((ville, idx) => {
+                            return <option key={idx} value={ville.id}>{ville.ville}</option>
+                        })
                     }
+                </select>
+                {
+                    errors.ville?.type === 'required' &&
+                    <FormError text="Le champ 'ville' est obligatoire" />
+                }
+                <br></br>
+                <br></br>
+                <label className="block text-gray-700 text-md font-bold mb-2" htmlFor="image">
+                    Image
+                </label>
+                <input
+                    ref={register}
+                    name="image"
+                    type="file"
+                    {...register("image", { required: true })} />
                     {
-                        errors.nbSac?.type === 'min' &&
-                        <FormError text="Le nombre de sacs doit être supérieur à 0" />
+                        errors.image?.type === 'required' &&
+                        <FormError text="Le champ 'image' est obligatoire" />
                     }
-                    <br></br>
-                    <label className="block text-gray-700 text-md font-bold mb-2" htmlFor="nbSac">
-                        Ville
-                    </label>
-                    <select {...register("ville", {required: true})}>
-                        className="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat
-                        border border-solid border-gray-300 rounded transition ease-in-out m-0" defaultValue={''}>
-                        <option value={''}>Sélectionnez une ville</option>
-                        {
-                            villesList?.map((ville, idx) => {
-                                return <option key={idx} value={ville.id}>{ville.ville}</option>
-                            })
-                        }
-                    </select>
-                    {
-                        errors.ville?.type === 'required' &&
-                        <FormError text="La ville est un champ obligatoire" />
-                    }      
-                    <br></br>
-                    <label className="block text-gray-700 text-md font-bold mb-2" htmlFor="image">
-                        Image
-                    </label>
-                    <input
-                        ref={register}
-                        name="image"
-                        type="file"
-                        {...register("image", { required: true })} />
-                        {
-                            errors.image?.type === 'required' &&
-                            <FormError text="L'image est un champ obligatoire" />
-                        }
-                    <br></br>
-                    <div className="h-56 grid grid-cols-3 gap-4 content-evenly ...">
-                        <input className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full mt-4" type="submit" />
-                    </div>
-                </form>
-            </>
-        </Box>
+                <br></br>
+                <br></br>
+                <div className="h-56 grid grid-cols-3 gap-4 content-evenly ...">
+                    <ButtonConnexion title="Envoyer" />
+                </div>
+            </form>
+        </>
     )
 }

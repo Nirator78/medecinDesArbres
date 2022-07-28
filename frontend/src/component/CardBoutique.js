@@ -1,11 +1,17 @@
 import React, { useState } from "react";
-import { Box, Button, ButtonGroup, Modal, Paper, Typography } from "@mui/material";
+import { Box, Button, ButtonGroup, Modal, Paper, Typography, Dialog } from "@mui/material";
 import { ArticleService, AuthService } from "../services";
 import { Card, CardActions, CardContent, Chip, Grid } from "@mui/material";
 import { green } from "@mui/material/colors";
 import { GreenButton } from '../component';
 import { useStyles } from "../utils/style.js";
 import {baseURLImage} from '../utils/axios';
+
+import TextField from '@mui/material/TextField';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 
 function CardBoutique({ data }) {
     const [quantity, setQuantity] = useState(0);
@@ -95,27 +101,28 @@ function CardBoutique({ data }) {
 
             </Card>
 
-            <Modal
+            <Dialog
                 open={open}
                 onClose={handleCloseModal}
                 aria-labelledby="modal-confirm"
             >
-                <Box sx={{
-                    position: 'absolute',
-                    top: '50%',
-                    left: '50%',
-                    transform: 'translate(-50%, -50%)',
-                    boxShadow: 24,
-                }}>
-                    <Paper sx={{ p: 4 }}>
-                        <Typography variant="h6">
-                            Etes vous sur de vouloir ajouter {quantity} {data.nom}{quantity > 1 ? "s" : ""} a votre panier ?
+            <DialogContent>
+
+
+                        <Typography variant="h6" sx={{pb: 2}}>
+                            Êtes vous sur de vouloir ajouter {quantity} {data.nom}{quantity > 1 ? "s" : ""} à votre panier ?
                         </Typography>
-                        <Button onClick={handleCloseModal} variant="contained" color="error">Cancel</Button>
-                        <Button onClick={handleAddToCart} variant="contained" color="success">Confirm</Button>
-                    </Paper>
-                </Box>
-            </Modal>
+                        <Grid container spacing={{ xs: 2, md: 3, pl: 2 }} columns={{ xs: 6, sm: 12 }}>
+                            <Grid item xs={6} sx={{textAlign: 'center'}}>
+                                <Button sx={style.buttonDanger} onClick={handleCloseModal} variant="contained">Annuler</Button>
+                            </Grid>
+                             <Grid item xs={6} sx={{textAlign: 'center'}}>
+                                <Button sx={style.button} onClick={handleAddToCart} variant="contained" color="success">Valider</Button>
+                            </Grid>
+                        </Grid>
+
+                </DialogContent>
+            </Dialog>
         </>
     )
 }

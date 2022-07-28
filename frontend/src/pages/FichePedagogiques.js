@@ -1,9 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom"
-import { Paper, Typography, Grid, CardActions, CardContent, CardMedia, Card } from '@mui/material';
+import { Paper, Typography, Grid, CardActions, CardContent, CardMedia, Card, styled } from '@mui/material';
 import { GreenButton } from '../component';
 import FichePedagogiqueService from "../services/fiche-pedagogique.service";
 import { useStyles } from "../utils/style.js";
+
+const CustomPaper = styled('div')(({ theme }) => ({
+    [theme.breakpoints.down('sm')]: {
+        p: 4,
+        margin: 0,
+        marginTop: 40,
+    },
+    [theme.breakpoints.up('sm')]: {
+        p: 4,
+        mt: 5,
+        ml: 4,
+        mr: 4,
+        marginBottom: 0,
+        borderRadius: 2,
+        boxShadow: "rgba(0, 0, 0, 0.2) 0px 2px 1px -1px, rgba(0, 0, 0, 0.14) 0px 1px 1px 0px, rgba(0, 0, 0, 0.12) 0px 1px 3px 0px",
+    }
+}));
 
 export default function FichePedagogiques(props) {
     const [fichePedagogiqueList, setFichePedagogiqueList] = useState([]);
@@ -20,7 +37,7 @@ export default function FichePedagogiques(props) {
 
     return (
         <>
-            <Paper sx={style.containerPaperPage.sx}>
+            <CustomPaper sx={style.containerPaperPage.sx}>
                 <Typography sx={{ mb: 4 }} align="center" variant="h4" gutterBottom component="div">
                     Informez vous grâce à nos supers fiches pédagogiques, adaptées a tous !
                 </Typography>
@@ -28,13 +45,7 @@ export default function FichePedagogiques(props) {
                     {fichePedagogiqueList.map((fiche, index) => {
                         return (
                             <Grid item xs={4} key={index}>
-                                <Card sx={{ maxWidth: 345 }}>
-                                    <CardMedia
-                                        component="img"
-                                        alt="green iguana"
-                                        height="140"
-                                        image="https://picsum.photos/100/50"
-                                    />
+                                <Card /*sx={{ maxWidth: 345 }}*/>
                                     <CardContent>
                                         <Typography gutterBottom variant="h5" component="div">
                                             {fiche.titre}
@@ -43,7 +54,7 @@ export default function FichePedagogiques(props) {
                                             {fiche.theme}
                                         </Typography>
                                     </CardContent>
-                                    <CardActions>
+                                    <CardActions sx={{ pb: 2, px: 2 }}>
                                         <GreenButton title="Voir" handleClick={() => navigate(`/fiche-pedagogique/${fiche.id}`)} />
                                     </CardActions>
                                 </Card>
@@ -51,7 +62,7 @@ export default function FichePedagogiques(props) {
                         )
                     })}
                 </Grid>
-            </Paper>
+            </CustomPaper>
         </>
     )
 }

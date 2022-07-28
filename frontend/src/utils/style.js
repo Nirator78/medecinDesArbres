@@ -13,6 +13,16 @@ export const useStyles = () => {
         badge: {
             color: vars.color2,
         },
+        borderBottom: {
+            borderBottom: 1,
+            borderColor: vars.color1,
+            mb: 2
+        },
+        borderTop: {
+            borderTop: 1,
+            borderColor: vars.color1,
+            pt: 2
+        },
         box: {
             position: 'absolute',
         	top: '50%',
@@ -35,6 +45,13 @@ export const useStyles = () => {
             backgroundColor: vars.color1,
             "&:hover": {
                 backgroundColor: vars.color2,
+            }
+        },
+        buttonDanger: {
+            color: "#fff",
+            backgroundColor: vars.color5,
+            "&:hover": {
+                backgroundColor: vars.color4,
             }
         },
         buttonGroup: {
@@ -77,15 +94,27 @@ export const useStyles = () => {
                 borderRadius: vars.borderCard
             }
         },
+        containerPaperBloc: {
+            sx: {
+                pt: 3,
+                borderRadius: vars.borderPage
+            }
+        },
         containerPaperPage: {
             //elevation: 3,
             sx: {
-                p: 4,
-                mt: 5,
-                ml: 4,
-                mr: 4,
-                mb: 2,
-                borderRadius: vars.borderPage
+                /*[theme.breakpoints.down('md')]: {
+                  backgroundColor: 'red',
+                },
+                [theme.breakpoints.up('md')]: {*/
+                  p: 4,
+                  mt: 5,
+                  ml: 4,
+                  mr: 4,
+                  mb: 2,
+                  borderRadius: vars.borderPage
+                /*}*/
+
             }
         },
         containerPaperTop: {
@@ -98,6 +127,12 @@ export const useStyles = () => {
                 mb: 2,
                 borderRadius: vars.borderCard
             }
-        }
+        },
+        /*tab: {
+            backgroundColor: 'lime',
+            '&:Mui-selected': {
+                backgroundColor: 'red',
+            }
+        },*/
     });
 };
