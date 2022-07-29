@@ -7,6 +7,7 @@ import UserQuizService from '../services/user-quiz.service';
 import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined';
 import RemoveCircleOutlineOutlinedIcon from '@mui/icons-material/RemoveCircleOutlineOutlined';
 import { useStyles } from "../utils/style.js";
+import { set } from 'react-hook-form';
 
 function Reponse({ question }) {
     const icon = question.userReponse[0].reponse.bonne ? <CheckCircleOutlineOutlinedIcon color="success" /> : <RemoveCircleOutlineOutlinedIcon color="error" />
@@ -30,6 +31,8 @@ export default function AnswerQuiz(props) {
     const navigate = useNavigate();
     const user = AuthService.getUser();
     const [reponses, setReponses] = useState(null);
+    const [resultatBon, setResultatBon] = useState(0);
+    const [resultatMauvais, setResultatMauvais] = useState(0);
     const style = useStyles();
 
     useEffect(() => {
@@ -39,6 +42,12 @@ export default function AnswerQuiz(props) {
         }
         fetchData();
     }, [id, reponseId])
+
+    useEffect(() => {
+        reponses?.userQuestion.forEach((panier) => {
+            panier.userReponse[0].reponse.bonne ? setResultatBon((old) => old + 1) : setResultatMauvais((old) => old + 1)
+        })
+    }, [reponses])
 
     if (!user) {
         return (
@@ -74,6 +83,18 @@ export default function AnswerQuiz(props) {
                 )
             })}
             <Divider sx={{ m: 2 }} />
+            <Typography variant="body2" gutterBottom component="div" sx={{ mb: 3 }}>
+                Vous avez répondu {resultatBon} bonne(s) réponses sur {reponses.userQuestion.length} questions.
+            </Typography>
+            <Typography variant="body2" gutterBottom component="div" sx={{ mb: 3 }}>
+                {
+                    resultatBon < (Number(reponses.userQuestion.length / 3)) ? 
+                    "Ne vous inquiétez pas, vous pouvez améliorer votre score en allant voir les fiches pédagogiques et revenez tester votre connaissance." 
+                    : resultatBon <= (Number(reponses.userQuestion.length / 2)) ?
+                    "Vous avez un bon score, vous pouvez continuer à améliorer votre score en allant voir les fiches pédagogiques." :
+                    "Vous avez un excellent score, vous pouvez faire d'autre quiz."
+                }
+            </Typography>
             <GreenButton title="Retourner au menu Quiz" handleClick={handleClick} />
         </Paper>
     )
