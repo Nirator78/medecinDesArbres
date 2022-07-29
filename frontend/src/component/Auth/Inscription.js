@@ -125,15 +125,15 @@ function Inscription() {
 													</IconButton>
 												</InputAdornment>
 											}
-											{...register("password", { required: true, minLength: 6 })}
+											{...register("password", { required: true, pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/i})}
 										/>
 										{
 											errors.password?.type === 'required' &&
 											<FormError text="Le champ 'Mot de passe' est obligatoire" />
 										}
 										{
-											errors.password?.type === 'minLength' &&
-											<FormError text="Le mot de passe doit contenir au moins 6 caractères" />
+											errors.password?.type === 'pattern' &&
+											<FormError text="Le champ 'Mot de passe' doit contenir au moins 6 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial" />
 										}
 									</FormControl>
 
@@ -141,16 +141,20 @@ function Inscription() {
 									<div className="flex items-center justify-between pt-6 pb-6">
 										<div className="flex items-center">
 											<input
-												id="remember-me"
-												name="remember-me"
+												id="acceptTerms"
+												name="acceptTerms"
 												type="checkbox"
 												className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+												{...register("acceptTerms", { validate: value => value === true  })}
 											/>
-											<label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
+											<label htmlFor="acceptTerms" className="ml-2 block text-sm text-gray-900">
 												J'ai lu et j'accepte les termes et conditions
 											</label>
 										</div>
-
+										{
+											errors.acceptTerms?.type === 'validate' &&
+											<FormError text="Vous devez accepter les termes et conditions" />
+										}
 									</div>
 									<div>
 										<ButtonConnexion title="S'inscrire" handleClick={postData} />
