@@ -57,13 +57,13 @@ export class PanierController {
     }
 
     async update(request: Request, response: Response, next: NextFunction) {
-        let panier = new Panier();
+        const panier = await this.panierRepository.findOne(request.params.id);
         Object.assign(panier, {...panier, ...request.body});
         const errors = await validate(panier);
         if(errors.length > 0){
             return { status: 0, error: errors };
         }else{
-            const panierSaved = await this.panierRepository.save(request.body);
+            const panierSaved = await this.panierRepository.save(panier);
             return { status: 1, data: panierSaved };
         }
     }
