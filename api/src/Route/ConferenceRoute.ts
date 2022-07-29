@@ -49,5 +49,13 @@ export default [
         action: "addUserToConference",
         allowedRoles: [UserRole.SUPERADMIN, UserRole.ADMIN, UserRole.USER],
         isLoginNeeded: true
+    },
+    {
+        method: "delete",
+        route: "/conference/:conferenceId/user/:userId",
+        controller: ConferenceController,
+        action: "removeUserToConference",
+        allowedRoles: [UserRole.SUPERADMIN, UserRole.ADMIN, UserRole.USER],
+        isLoginNeeded: true
     }
 ];

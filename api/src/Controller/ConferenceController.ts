@@ -92,4 +92,16 @@ export class ConferenceController {
             return { status: 0, error: e }
         }
     }
+
+    async removeUserToConference(request: Request, response: Response, next: NextFunction) {
+        try{
+            const {conferenceId, userId} = request.params;
+            // Recherche de la conférence participant à delete 
+            let conferenceParticipants = await this.conferenceParticipantRepository.findOne({ where: { conference: conferenceId, user: userId } });
+            await this.conferenceParticipantRepository.remove(conferenceParticipants);
+            return { status: 1 }
+        }catch (e){
+            return { status: 0, error: e }
+        }
+    }
 }

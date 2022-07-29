@@ -36,6 +36,20 @@ class ArticleService {
         const paniers = await response.data.data;
         return paniers
     }
+    async putPanier(
+        id, body
+    ) {
+        const response = await api.put('/panier/'+ id, body, { headers: { "Authorization": `Bearer ${AuthService.getToken()}` } });
+        const paniers = await response.data.data;
+        return paniers
+    }
+    async deletePanier(
+        idPanier
+    ) {
+        const response = await api.delete('/panier/'+ idPanier, { headers: { "Authorization": `Bearer ${AuthService.getToken()}` } });
+        const paniers = await response.data.data;
+        return paniers
+    }
     async postCommand(
         userId
     ) {

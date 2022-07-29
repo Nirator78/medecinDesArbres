@@ -39,6 +39,11 @@ export default function Conference(props) {
         }
         fetchData();
     }, [refresh])
+
+    const handleRemoveUserConference = async (conferenceId, userId) => {
+        await ConferenceService.removeUserToConference(conferenceId, userId);
+        handleRefresh();
+    }
     const style = useStyles();
 
     return (
@@ -66,13 +71,23 @@ export default function Conference(props) {
                                             Nombre de participants : <Chip sx={ style.chip } label={conf?.conferenceParticipants?.length} />
                                         </Typography>
                                         <CardActions style={{ justifyContent: 'center' }}>
+                                            
                                             {
-                                                AuthService.isLogin() && !conf?.conferenceParticipants?.find(participant => participant.user.id === connectedUser.id) ?
-                                                    <Button variant="contained" sx={style.button} onClick={() => {
-                                                        ConferenceService.addUserToConference(conf.id, connectedUser.id);
-                                                        handleRefresh();
-                                                    }}>
-                                                        <AddIcon></AddIcon> Rejoindre la conférence</Button> : <></>
+                                                AuthService.isLogin() && (
+                                                    !conf?.conferenceParticipants?.find(participant => participant.user.id === connectedUser.id) ?
+                                                        <Button variant="contained" sx={style.button} onClick={() => {
+                                                            ConferenceService.addUserToConference(conf.id, connectedUser.id);
+                                                            handleRefresh();
+                                                        }}>
+                                                            <AddIcon></AddIcon> Rejoindre la conférence</Button> :
+                                                    <Button sx={style.buttonDanger} variant="contained" 
+                                                        onClick={() => {
+                                                            handleRemoveUserConference(conf.id, connectedUser.id)
+                                                        }}
+                                                    >
+                                                        Ne plus participer à la conférence
+                                                    </Button>
+                                                )
                                             }
                                         </CardActions>
                                     </CardContent>
