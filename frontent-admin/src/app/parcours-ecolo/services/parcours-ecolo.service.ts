@@ -14,13 +14,13 @@ export class ParcoursEcoloService {
     return response["data"];
   }
 
-  async createParcoursEcolo(user) {
-    const response = await this.apiService.postTypeRequest('parcours-ecolo', user.value).toPromise() || {};
+  async createParcoursEcolo(parcoursEcolo) {
+    const response = await this.apiService.postTypeRequest('parcours-ecolo', parcoursEcolo.value).toPromise() || {};
     return response["data"];
   }
 
-  async updateParcoursEcolo(user) {
-    const response = await this.apiService.putTypeRequest('parcours-ecolo/' + user.value.id, user.value).toPromise() || {};
+  async updateParcoursEcolo(parcoursEcolo) {
+    const response = await this.apiService.putTypeRequest('parcours-ecolo/' + parcoursEcolo.value.id, parcoursEcolo.value).toPromise() || {};
     return response["data"];
   }
 

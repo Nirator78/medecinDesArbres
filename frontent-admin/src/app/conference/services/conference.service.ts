@@ -14,13 +14,13 @@ export class ConferenceService {
     return response["data"];
   }
 
-  async createConference(user) {
-    const response = await this.apiService.postTypeRequest('conference', user.value).toPromise() || {};
+  async createConference(conference) {
+    const response = await this.apiService.postTypeRequest('conference', conference.value).toPromise() || {};
     return response["data"];
   }
 
-  async updateConference(user) {
-    const response = await this.apiService.putTypeRequest('conference/' + user.value.id, user.value).toPromise() || {};
+  async updateConference(conference) {
+    const response = await this.apiService.putTypeRequest('conference/' + conference.value.id, conference.value).toPromise() || {};
     return response["data"];
   }
 

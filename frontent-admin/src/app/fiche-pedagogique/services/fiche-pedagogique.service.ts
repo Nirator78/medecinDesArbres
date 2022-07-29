@@ -14,13 +14,13 @@ export class FichePedagogiqueService {
     return response["data"];
   }
 
-  async createFichePedagogique(user) {
-    const response = await this.apiService.postTypeRequest('fiche-pedagogique', user.value).toPromise() || {};
+  async createFichePedagogique(fichePedagogique) {
+    const response = await this.apiService.postTypeRequest('fiche-pedagogique', fichePedagogique.value).toPromise() || {};
     return response["data"];
   }
 
-  async updateFichePedagogique(user) {
-    const response = await this.apiService.putTypeRequest('fiche-pedagogique/' + user.value.id, user.value).toPromise() || {};
+  async updateFichePedagogique(fichePedagogique) {
+    const response = await this.apiService.putTypeRequest('fiche-pedagogique/' + fichePedagogique.value.id, fichePedagogique.value).toPromise() || {};
     return response["data"];
   }
 

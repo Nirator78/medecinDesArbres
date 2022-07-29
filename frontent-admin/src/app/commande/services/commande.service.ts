@@ -14,13 +14,13 @@ export class CommandeService {
     return response["data"];
   }
 
-  async createCommande(user) {
-    const response = await this.apiService.postTypeRequest('commande', user.value).toPromise() || {};
+  async createCommande(commande) {
+    const response = await this.apiService.postTypeRequest('commande', commande.value).toPromise() || {};
     return response["data"];
   }
 
-  async updateCommande(user) {
-    const response = await this.apiService.putTypeRequest('commande/' + user.value.id, user.value).toPromise() || {};
+  async updateCommande(commande) {
+    const response = await this.apiService.putTypeRequest('commande/' + commande.value.id, commande.value).toPromise() || {};
     return response["data"];
   }
 
