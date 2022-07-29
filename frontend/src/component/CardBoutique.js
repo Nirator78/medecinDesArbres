@@ -1,17 +1,11 @@
 import React, { useState } from "react";
-import { Box, Button, ButtonGroup, Modal, Paper, Typography, Dialog } from "@mui/material";
+import { Button, ButtonGroup, Typography, Dialog } from "@mui/material";
 import { ArticleService, AuthService } from "../services";
 import { Card, CardActions, CardContent, Chip, Grid } from "@mui/material";
-import { green } from "@mui/material/colors";
-import { GreenButton } from '../component';
 import { useStyles } from "../utils/style.js";
 import {baseURLImage} from '../utils/axios';
 
-import TextField from '@mui/material/TextField';
-import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
 
 function CardBoutique({ data }) {
     const [quantity, setQuantity] = useState(0);
@@ -79,24 +73,34 @@ function CardBoutique({ data }) {
                     <Typography variant="body2" color="textSecondary" component="p" sx={{mt: 2, mb: 2}}>
                         {data.description}
                     </Typography>
-                    <CardActions disableSpacing>
-                         <Grid container textAlign='center'>
-                             <Grid item xs={12}>
-                                 <ButtonGroup variant="contained" color="success" aria-label="button group">
-                                     <Button onClick={handleRemoveArticle} sx={style.buttonGroup}>{"-"}</Button>
-                                     <Button sx={style.buttonGroup}>{quantity}</Button>
-                                     <Button onClick={handleAddArticle} sx={style.buttonGroup}>{"+"}</Button>
-                                 </ButtonGroup>
-                             </Grid>
-                             <Grid item xs={12} mt={1} >
-                                 <Button
-                                     onClick={handleOpenModal}
-                                     variant="contained"
-                                     sx={style.button}
-                                 >Ajouter au panier</Button>
-                             </Grid>
-                         </Grid>
-                     </CardActions>
+                    { user &&
+                        <CardActions disableSpacing>
+                            <Grid container textAlign='center'>
+                                <Grid item xs={12}>
+                                    <ButtonGroup variant="contained" color="success" aria-label="button group">
+                                        <Button onClick={handleRemoveArticle} sx={style.buttonGroup}>{"-"}</Button>
+                                        <Button sx={style.buttonGroup}>{quantity}</Button>
+                                        <Button onClick={handleAddArticle} sx={style.buttonGroup}>{"+"}</Button>
+                                    </ButtonGroup>
+                                </Grid>
+                                <Grid item xs={12} mt={1} >
+                                    <Button
+                                        onClick={handleOpenModal}
+                                        variant="contained"
+                                        sx={style.button}
+                                    >Ajouter au panier</Button>
+                                </Grid>
+                            </Grid>
+                        </CardActions>
+                    }
+                    {
+                        !user &&
+                        <Grid item xs={12} mt={1}>
+                            <Button sx={style.button} variant="contained">
+                                Il faut vous connecter ou vous inscrire pour ajouter un article au panier
+                            </Button>
+                        </Grid>
+                    }
                 </CardContent>
 
             </Card>

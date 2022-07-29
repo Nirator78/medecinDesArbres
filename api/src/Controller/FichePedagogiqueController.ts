@@ -14,7 +14,15 @@ export class FichePedagogiqueController {
     private authentificationService = new AuthentificationService();
 
     async all(request: Request, response: Response, next: NextFunction) {
-        let fichePedagogiqueListe = await this.fichePedagogiqueRepository.find({ relations: ["sousPartieFichePedagogiques"] });
+        const option = {
+            relations: ["sousPartieFichePedagogiques"]
+        };
+
+        if(request.query.limit){
+            Object.assign(option, {take: request.query.limit});
+        }
+        
+        let fichePedagogiqueListe = await this.fichePedagogiqueRepository.find(option);
         if(fichePedagogiqueListe){
             return { status: 1, data: fichePedagogiqueListe }
         }else{

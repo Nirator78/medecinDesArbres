@@ -11,12 +11,15 @@ export default function FichePedagogiques(props) {
 
     useEffect(() => {
         async function fetchData() {
-            const response = await FichePedagogiqueService.getAllFichePedagogiques();
+            const response = await FichePedagogiqueService.getAllFichePedagogiques(9);
             setFichePedagogiqueList(response);
         }
         fetchData();
     }, [])
 
+    const handleClick = () => {
+        navigate("/fiche-pedagogique");
+    }
     const style = useStyles();
 
     return (
@@ -35,6 +38,9 @@ export default function FichePedagogiques(props) {
                         </Grid>
                     )
                 })}
+                <Grid item xs={12} mt={2}>
+                    <GreenButton title="Accéder à toutes nos fiches" handleClick={handleClick} />
+                </Grid>
             </Grid>
         </Paper>
     )

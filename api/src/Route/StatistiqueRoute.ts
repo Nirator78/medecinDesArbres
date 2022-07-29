@@ -57,5 +57,13 @@ export default [
         action: "parcoursEcoloSac",
         allowedRoles: [UserRole.SUPERADMIN, UserRole.ADMIN, UserRole.USER],
         isLoginNeeded: false
+    },
+    {
+        method: "get",
+        route: "/statistique-parcours-ecolo-top-five",
+        controller: StatistiqueController,
+        action: "parcoursEcoloTopFive",
+        allowedRoles: [UserRole.SUPERADMIN, UserRole.ADMIN, UserRole.USER],
+        isLoginNeeded: false
     }
 ];
