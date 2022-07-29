@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Paper, Typography, Grid } from '@mui/material';
-import { CardBoutique, GreenButton } from '../../component';
+import { CardBoutique, GreenButton, OrangeButton } from '../../component';
 import { useNavigate } from 'react-router-dom';
 import ArticleService from '../../services/article.service';
 import { useStyles } from "../../utils/style.js";
@@ -41,7 +41,7 @@ export default function Boutique(props) {
                     })
                 }
                 <Grid item xs={12}>
-                    <GreenButton title="Accéder à tous nos produits" handleClick={handleClick} />
+                    <OrangeButton title="Accéder à tous nos produits" handleClick={handleClick} />
                 </Grid>
             </Grid>
         </Paper>

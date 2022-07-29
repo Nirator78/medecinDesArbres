@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom"
 import { Paper, Typography, Grid } from '@mui/material';
-import { GreenButton } from '../../component';
+import { GreenButton, OrangeButton } from '../../component';
 import FichePedagogiqueService from "../../services/fiche-pedagogique.service";
 import { useStyles } from "../../utils/style.js";
 
@@ -39,7 +39,7 @@ export default function FichePedagogiques(props) {
                     )
                 })}
                 <Grid item xs={12} mt={2}>
-                    <GreenButton title="Accéder à toutes nos fiches" handleClick={handleClick} />
+                    <OrangeButton sx={style.buttonDanger} title="Accéder à toutes nos fiches" handleClick={handleClick} />
                 </Grid>
             </Grid>
         </Paper>
