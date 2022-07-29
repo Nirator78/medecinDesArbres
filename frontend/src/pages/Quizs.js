@@ -90,6 +90,12 @@ export default function Quizs(props) {
                 <Typography align="center" variant="h4" gutterBottom component="div" sx={{ mb: 4 }}>
                     Quiz
                 </Typography>
+                <Typography align="center" variant="body1" component="div" sx={{ mb: 4 }}>
+                    Nos quiz sont spécialement préparés pour vous. Vous pouvez retrouvez des quiz de tout niveau et de tout âge. La durée de chacuns des quiz est de 3 minutes maximum alors n’attendez pas.
+                </Typography>
+                <Typography align="center" variant="body1" component="div" sx={{ mb: 4 }}>
+                    Évaluez vos connaissances et devenez un médecin des arbres vous aussi !
+                </Typography>
                 <Grid container spacing={{ xs: 2, md: 3, pl: 2 }} columns={{ xs: 4, sm: 8, md: 12 }}>
                     {quizs.map((quiz) => {
                         return (

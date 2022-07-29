@@ -52,6 +52,9 @@ export default function Conference(props) {
                 <Typography sx={{ mb: 4 }} align="center" variant="h4" gutterBottom component="div">
                     Informez vous grâce à nos conférences, adaptées à tous !
                 </Typography>
+                <Typography align="center" variant="body1" component="div" sx={{ mb: 4 }}>
+                    Ajouter un petit text explicatif...
+                </Typography>
                 <Grid container spacing={{ xs: 2, md: 3, pl: 2 }} columns={{ xs: 4, sm: 8, md: 12 }}>
                     {conferenceList?.map((conf, index) => {
                         return (
