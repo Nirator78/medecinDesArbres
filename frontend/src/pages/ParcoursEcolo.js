@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Paper, Typography, Grid, Modal, Button, Card, CardHeader, Avatar, CardMedia, CardContent, CardActions, Dialog, DialogContent, DialogTitle, styled } from '@mui/material';
+import { Typography, Grid, Button, Card, CardHeader, Avatar, CardMedia, CardContent, CardActions, Dialog, DialogContent, DialogTitle, styled } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { AuthService, ParcoursEcoloService } from "../services";
 import { FormParcoursEcolo } from "../component";
@@ -58,6 +58,15 @@ export default function ParcoursEcolo(props) {
             <CustomPaper sx={style.containerPaperPage.sx}>
                 <Typography align="center" variant="h4" gutterBottom component="div" sx={{ mb: 4 }} >
                     Liste des parcours écolos de nos utilisateurs
+                </Typography>
+                <Typography sx={{ mb: 4 }} align="center" variant="h7" gutterBottom component="div">
+                    Vous pouvez retrouver tous les parcours écolo réaliser par la communauté avec leurs itinéraires et le nombre de sacs de déchets repérer. Ce partage permet de localiser au mieux les itinéraires déjà nettoyés ou de signaler un grand nombre de déchets sur celui-ci. N’hésité plus sauvons la planète ensemble, plus vos actes sont conséquents, plus vous serez mis en avant dans notre classement.
+                </Typography>                
+                <Typography sx={{ mb: 4 }} align="center" variant="h7" gutterBottom component="div">
+                    Alors vous aussi partagez votre parcourt, et nettoie notre belle planète !
+                </Typography>
+                <Typography sx={{ mb: 4 }} align="center" variant="h7" gutterBottom component="div">
+                    Vous pouvez ajouter un parcours écolo à votre compte pour que vous puissiez le partager avec d’autres utilisateurs.
                 </Typography>
 
                 {

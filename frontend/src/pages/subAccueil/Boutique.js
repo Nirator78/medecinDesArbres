@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Paper, Typography, Grid } from '@mui/material';
-import { CardBoutique, GreenButton, OrangeButton } from '../../component';
+import { CardBoutique, OrangeButton } from '../../component';
 import { useNavigate } from 'react-router-dom';
 import ArticleService from '../../services/article.service';
 import { useStyles } from "../../utils/style.js";

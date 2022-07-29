@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Paper, Grid, Typography, Stack, styled } from '@mui/material';
+import { Grid, Typography, Stack, styled } from '@mui/material';
 import CardBoutique from '../component/CardBoutique';
 import ArticleService from '../services/article.service';
 import { useStyles } from "../utils/style.js";
