@@ -14,13 +14,13 @@ export class QuizService {
     return response["data"];
   }
 
-  async createQuiz(user) {
-    const response = await this.apiService.postTypeRequest('quiz', user.value).toPromise() || {};
+  async createQuiz(quiz) {
+    const response = await this.apiService.postTypeRequest('quiz', quiz.value).toPromise() || {};
     return response["data"];
   }
 
-  async updateQuiz(user) {
-    const response = await this.apiService.putTypeRequest('quiz/' + user.value.id, user.value).toPromise() || {};
+  async updateQuiz(quiz) {
+    const response = await this.apiService.putTypeRequest('quiz/' + quiz.value.id, quiz.value).toPromise() || {};
     return response["data"];
   }
 
