@@ -14,13 +14,13 @@ export class ArticleService {
     return response["data"];
   }
 
-  async createArticle(user) {
-    const response = await this.apiService.postTypeRequest('article', user.value).toPromise() || {};
+  async createArticle(article) {
+    const response = await this.apiService.postTypeRequest('article', article.value).toPromise() || {};
     return response["data"];
   }
 
-  async updateArticle(user) {
-    const response = await this.apiService.putTypeRequest('article/' + user.value.id, user.value).toPromise() || {};
+  async updateArticle(article) {
+    const response = await this.apiService.putTypeRequest('article/' + article.value.id, article.value).toPromise() || {};
     return response["data"];
   }
 
