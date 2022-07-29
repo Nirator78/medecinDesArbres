@@ -41,5 +41,17 @@ class ParcoursEcoloService {
         return response.status ? imageParcoursEcolo : false;
     }
 
+    async getStatistiqueParcoursEcolo() {
+        const response = await api.get('/statistique-parcours-ecolo');
+        const StatistiqueParcoursEcolo = await response.data;
+        return StatistiqueParcoursEcolo.data;
+    }
+
+    async getStatistiqueParcoursEcoloTopFive() {
+        const response = await api.get('/statistique-parcours-ecolo-top-five');
+        const StatistiqueParcoursEcoloTopFive = await response.data;
+        return StatistiqueParcoursEcoloTopFive.data;
+    }
+
 }
 export default new ParcoursEcoloService();

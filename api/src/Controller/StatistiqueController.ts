@@ -227,4 +227,23 @@ export class StatistiqueController {
             return { status: 0 };
         }
     }
+
+    async parcoursEcoloTopFive(request: Request, response: Response, next: NextFunction) {
+        let parcoursEcoloSacListTopFive = await this.entityManager.query(`
+            SELECT 
+            CONCAT(U.nom, ' ', U.prenom) AS user,
+            nbSac
+            FROM test.parcours_ecolo PE
+            LEFT JOIN test.user AS U ON PE.userId=U.id
+            ORDER BY PE.id DESC
+            LIMIT 5;
+            ;
+        `);
+
+        if(parcoursEcoloSacListTopFive){
+            return { status: 1, data: parcoursEcoloSacListTopFive }
+        }else{
+            return { status: 0 };
+        }
+    }
 }
