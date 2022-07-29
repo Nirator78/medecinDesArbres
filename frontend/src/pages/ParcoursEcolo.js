@@ -98,7 +98,6 @@ export default function ParcoursEcolo(props) {
                                             maxHeight: 180,
                                         }}
                                         image={baseURLImage + parcoursEcolo?.image?.url}
-                                        alt={parcoursEcolo.description}
                                     />
                                     <CardContent>
                                         <Typography variant="body2" color="text.secondary" sx={{ pb: 2 }}>
