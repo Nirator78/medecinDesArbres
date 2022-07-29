@@ -24,7 +24,7 @@ export default [
         controller: UserController,
         action: "save",
         allowedRoles: [UserRole.SUPERADMIN, UserRole.ADMIN, UserRole.USER],
-        isLoginNeeded: true
+        isLoginNeeded: false
     },
     {
         method: "put",

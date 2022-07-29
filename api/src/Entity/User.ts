@@ -1,5 +1,5 @@
 import {Entity, PrimaryGeneratedColumn, Column} from "typeorm";
-import {Contains, IsInt, Length, IsEmail, IsFQDN, IsDate, Min, Max, IsNotEmpty, IsString, IsPhoneNumber, IsPostalCode, MinLength} from "class-validator";
+import {Contains, IsInt, Length, IsEmail, IsFQDN, IsDate, Min, Max, IsNotEmpty, IsString, IsPhoneNumber, IsPostalCode, MinLength, IsEmpty, ValidateIf} from "class-validator";
 
 export enum UserRole {
     SUPERADMIN = "super-admin",
@@ -25,7 +25,6 @@ export class User {
     @MinLength(1)
     prenom: string;
 
-    @IsNotEmpty()
     @Column({
         type: "enum",
         enum: UserRole,
@@ -39,29 +38,34 @@ export class User {
     @MinLength(6)
     password: string;
 
+    @ValidateIf(o => o.adresse !== undefined)
     @IsNotEmpty()
-    @Column({default: ""})
+    @Column()
     @IsString()
     adresse: string;
 
+    @ValidateIf(o => o.pays !== undefined)
     @IsNotEmpty()
-    @Column({default: ""})
+    @Column()
     @IsString()
     pays: string;
 
+    @ValidateIf(o => o.ville !== undefined)
     @IsNotEmpty()
-    @Column({default: ""})
+    @Column()
     @IsString()
     ville: string;
 
+    @ValidateIf(o => o.codePostal !== undefined)
     @IsNotEmpty()
-    @Column({default: ""})
+    @Column()
     @IsString()
     @IsPostalCode('FR')
     codePostal: string;
 
+    @ValidateIf(o => o.telephone !== undefined)
     @IsNotEmpty()
-    @Column({default: ""})
+    @Column()
     @IsString()
     @IsPhoneNumber('FR')
     telephone: string;
