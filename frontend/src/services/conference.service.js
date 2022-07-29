@@ -14,5 +14,11 @@ class ConferenceService {
         const conferenceList = await response.data;
         return conferenceList.data;
     }
+
+    async removeUserToConference(conferenceId, userId) {
+        const response = await api.delete('/conference/' + conferenceId + '/user/' + userId, { headers: { "Authorization": `Bearer ${AuthService.getToken()}` } });
+        const conferenceList = await response.data;
+        return conferenceList.data;
+    }
 }
 export default new ConferenceService();
