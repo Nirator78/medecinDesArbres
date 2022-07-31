@@ -5,6 +5,7 @@ import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { ButtonConnexion, FormError } from "../";
 import { useForm } from "react-hook-form";
 import { useStyles } from "../../utils/style.js";
+import MotPasseOublie from "./MotDePasseOublie";
 
 function Connexion() {
 	const { register, handleSubmit, formState: { errors }, reset } = useForm();
@@ -128,9 +129,7 @@ function Connexion() {
 											</div>
 
 											<div className="text-sm">
-												<button className="font-medium text-indigo-600 hover:text-indigo-500">
-													Mot de passe oublié?
-												</button>
+												<MotPasseOublie></MotPasseOublie>
 											</div>
 										</div>
 										<div>

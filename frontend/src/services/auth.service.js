@@ -49,5 +49,20 @@ class AuthService {
         return localStorage.getItem("token") && localStorage.getItem("user") ? true : false
     }
 
+    forgotPassword(data) {
+        return api.post('/user/forgot-password-request', data)
+            .then(response => {
+                return response.data;
+            });
+    }
+
+    newPassword(data) {
+        data.password = this.encryptPassword(data.password);
+        return api.post('/user/forgot-password-response', data)
+            .then(response => {
+                return response.data;
+            });
+    }
+
 }
 export default new AuthService();
