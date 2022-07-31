@@ -41,10 +41,10 @@ export default function Operation(props) {
             </Typography>
             <Grid container spacing={2}>
                 <Grid item xs={12} md={6}>
-                    <CardList title="Derniers nettoyages" data={statistiquesTopFive} />
+                    <CardList title="Derniers nettoyages" data={statistiques} />
                 </Grid>
                 <Grid item xs={12} md={6}>
-                    <CardList title="Meilleurs nettoyeurs" data={statistiques} />
+                    <CardList title="Meilleurs nettoyeurs" data={statistiquesTopFive} />
                 </Grid>
             </Grid>
         </Paper>
