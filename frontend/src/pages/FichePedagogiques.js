@@ -42,7 +42,7 @@ export default function FichePedagogiques(props) {
                     Informez vous grâce à nos supers fiches pédagogiques, adaptées a tous !
                 </Typography>
                 <Typography align="center" variant="body1" component="div" sx={{ mb: 4 }}>
-                    Ajouter un petit text explicatif...
+                    Nos fiches pédagogiques sont adaptées à tous, et vous permettent de vous informer simplement sur des themes divers et variés.
                 </Typography>
                 <Grid container spacing={{ xs: 2, md: 3, pl: 2 }} columns={{ xs: 4, sm: 8, md: 12 }}>
                     {fichePedagogiqueList.map((fiche, index) => {
