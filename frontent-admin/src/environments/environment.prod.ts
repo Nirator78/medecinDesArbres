@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://admin.medecindesarbres.tk',
+  apiUrl: 'https://api.medecindesarbres.tk',
   cryptedKey: 'd6F3Efeq'
 };
