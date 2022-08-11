@@ -6,6 +6,7 @@ import { Paper, Typography, Box, Grid, CardContent, CardMedia, Card, ButtonGroup
 import { GreenButton } from '../component';
 import { useStyles } from "../utils/style.js";
 import DeleteIcon from '@mui/icons-material/Delete';
+import {baseURLImage} from '../utils/axios';
 
 export default function Panier(props) {
     const [paniers, setPaniers] = useState([]);
@@ -137,7 +138,7 @@ export default function Panier(props) {
                                 <CardMedia
                                     component="img"
                                     sx={{ width: 151 }}
-                                    image={"http://localhost:3000/" + panier.article?.image?.url}
+                                    image={baseURLImage + panier.article?.image?.url}
                                     alt="Live from space album cover"
                                 />
                             </Card>

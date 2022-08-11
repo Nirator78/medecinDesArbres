@@ -150,7 +150,7 @@ export class UserController {
             // On update dans la base avec le nouveau mot de passe
             const user = await this.userRepository.save(userUpdatePassword[0]);
             // Suppression de la clé unique de modification de mot de passe
-            //await this.passwordKeyRepository.remove(passwordKeyVerif[0]);
+            await this.passwordKeyRepository.remove(passwordKeyVerif[0]);
 
             return { status: 1, data: user} ;
         }else{
