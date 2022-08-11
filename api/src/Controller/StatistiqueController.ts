@@ -9,9 +9,9 @@ export class StatistiqueController {
         /**
          * -- Top 5
          * SELECT ART.nom AS Nom, SUM(CDELIG.quantite) AS Quantite
-         * FROM test.commande_ligne AS CDELIG
-         * LEFT JOIN test.commande AS CDEENT ON CDEENT.id=CDELIG.commandeId
-         * LEFT JOIN test.article AS ART ON ART.id=CDELIG.articleId
+         * FROM commande_ligne AS CDELIG
+         * LEFT JOIN commande AS CDEENT ON CDEENT.id=CDELIG.commandeId
+         * LEFT JOIN article AS ART ON ART.id=CDELIG.articleId
          * WHERE MONTH(CDEENT.date)=MONTH(NOW())
          * GROUP BY ART.nom
          * ORDER BY SUM(CDELIG.quantite) DESC
@@ -43,9 +43,9 @@ export class StatistiqueController {
         /**
          * -- Chiffre d'affaire par mois
          * SELECT YEAR(date) AS Annee, MONTHNAME(date) AS Mois, SUM(CDELIG.quantite*ART.prix) AS ChiffreAffaire
-         * FROM test.commande_ligne AS CDELIG
-         * LEFT JOIN test.commande AS CDEENT ON CDEENT.id=CDELIG.commandeId
-         * LEFT JOIN test.article AS ART ON ART.id=CDELIG.articleId
+         * FROM commande_ligne AS CDELIG
+         * LEFT JOIN commande AS CDEENT ON CDEENT.id=CDELIG.commandeId
+         * LEFT JOIN article AS ART ON ART.id=CDELIG.articleId
          * GROUP BY YEAR(date), MONTHNAME(date);
          */
 
@@ -71,9 +71,9 @@ export class StatistiqueController {
         /**
          * -- Chiffre d'affaire par mois
          * SELECT YEAR(date) AS annee, MONTH(date) AS mois, CDEENT.userId, SUM(CDELIG.quantite*ART.prix) AS Panier
-         * FROM test.commande_ligne AS CDELIG
-         * LEFT JOIN test.commande AS CDEENT ON CDEENT.id=CDELIG.commandeId
-         * LEFT JOIN test.article AS ART ON ART.id=CDELIG.articleId
+         * FROM commande_ligne AS CDELIG
+         * LEFT JOIN commande AS CDEENT ON CDEENT.id=CDELIG.commandeId
+         * LEFT JOIN article AS ART ON ART.id=CDELIG.articleId
          * GROUP BY YEAR(date), MONTH(date), CDEENT.userId
          */
         let panier = await createQueryBuilder()
@@ -191,10 +191,10 @@ export class StatistiqueController {
                 WHEN QR.bonne = 0 THEN 1
                 ELSE 0
                 END) AS NbMauvaiseRéponse
-                FROM test.quiz AS QUIZ
-                LEFT JOIN test.quiz_question AS QQ ON QQ.quizId=QUIZ.id
-                LEFT JOIN test.quiz_reponse AS QR ON QR.quizQuestionId=QQ.id
-                LEFT JOIN test.user_reponse AS UR ON UR.reponseId=QR.id
+                FROM quiz AS QUIZ
+                LEFT JOIN quiz_question AS QQ ON QQ.quizId=QUIZ.id
+                LEFT JOIN quiz_reponse AS QR ON QR.quizQuestionId=QQ.id
+                LEFT JOIN user_reponse AS UR ON UR.reponseId=QR.id
                 WHERE UR.id IS NOT NULL
                 GROUP BY QUIZ.titre
             ) AS X
@@ -213,8 +213,8 @@ export class StatistiqueController {
             SELECT 
             CONCAT(U.nom, ' ', U.prenom) AS user,
             SUM(PE.nbSac) AS nbSac
-            FROM test.parcours_ecolo PE
-            LEFT JOIN test.user AS U ON PE.userId=U.id
+            FROM parcours_ecolo PE
+            LEFT JOIN user AS U ON PE.userId=U.id
             GROUP BY CONCAT(U.nom, ' ', U.prenom)
             ORDER BY nbSac DESC
             LIMIT 5;
@@ -233,8 +233,8 @@ export class StatistiqueController {
             SELECT 
             CONCAT(U.nom, ' ', U.prenom) AS user,
             nbSac
-            FROM test.parcours_ecolo PE
-            LEFT JOIN test.user AS U ON PE.userId=U.id
+            FROM parcours_ecolo PE
+            LEFT JOIN user AS U ON PE.userId=U.id
             ORDER BY PE.id DESC
             LIMIT 5;
             ;
