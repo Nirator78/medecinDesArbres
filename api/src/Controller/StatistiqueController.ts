@@ -212,11 +212,10 @@ export class StatistiqueController {
         let parcoursEcoloSacList = await this.entityManager.query(`
             SELECT 
             CONCAT(U.nom, ' ', U.prenom) AS user,
-            SUM(PE.nbSac) AS nbSac
+            nbSac
             FROM parcours_ecolo PE
             LEFT JOIN user AS U ON PE.userId=U.id
-            GROUP BY CONCAT(U.nom, ' ', U.prenom)
-            ORDER BY nbSac DESC
+            ORDER BY PE.id DESC
             LIMIT 5;
         ;
         `);
@@ -232,12 +231,13 @@ export class StatistiqueController {
         let parcoursEcoloSacListTopFive = await this.entityManager.query(`
             SELECT 
             CONCAT(U.nom, ' ', U.prenom) AS user,
-            nbSac
+            SUM(PE.nbSac) AS nbSac
             FROM parcours_ecolo PE
             LEFT JOIN user AS U ON PE.userId=U.id
-            ORDER BY PE.id DESC
+            GROUP BY CONCAT(U.nom, ' ', U.prenom), userId
+            ORDER BY nbSac DESC
             LIMIT 5;
-            ;
+        ;
         `);
 
         if(parcoursEcoloSacListTopFive){
